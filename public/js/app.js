@@ -7769,7 +7769,7 @@ function AppLayout() {
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useLocation)();
   var hash = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useLocation)().hash;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios.patch("/api/session", {
+    axios.post("/api/session", {
       date: moment__WEBPACK_IMPORTED_MODULE_4___default()().format("LLL")
     }).then(function (res) {
       if (res.data.checkout !== null) {
@@ -7901,7 +7901,7 @@ function AddToCartNoSeats() {
     setDisabled = _useState4[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
   var goToCheckOut = function goToCheckOut() {
-    axios__WEBPACK_IMPORTED_MODULE_6__["default"].patch("/create_checkout", {
+    axios__WEBPACK_IMPORTED_MODULE_6__["default"].post("/create_checkout", {
       data: _CartData__WEBPACK_IMPORTED_MODULE_2__["default"].data,
       date: moment__WEBPACK_IMPORTED_MODULE_3___default()().format("LLL")
     }).then(function (res) {
@@ -8914,7 +8914,7 @@ var TimerSession = function TimerSession(props) {
   }, [new Date(props.time) + location]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (session === false) {
-      axios__WEBPACK_IMPORTED_MODULE_4__["default"].patch("/api/end_session").then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_4__["default"].post("/api/end_session").then(function (res) {
         _add_to_cart_CartData__WEBPACK_IMPORTED_MODULE_1__["default"].data = [];
         navigate("/#" + Math.floor(Math.random() * 9999));
       });

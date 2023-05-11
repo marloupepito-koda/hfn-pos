@@ -40,7 +40,7 @@ const TimerSession = (props) => {
 
     useEffect(() => {
         if (session === false) {
-            axios.patch("/api/end_session").then((res) => {
+            axios.post("/api/end_session").then((res) => {
                 CartData.data = [];
                 navigate("/#" + Math.floor(Math.random() * 9999));
             });

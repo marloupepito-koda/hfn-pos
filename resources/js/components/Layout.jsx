@@ -11,7 +11,7 @@ function AppLayout() {
     const hash = useLocation().hash;
     useEffect(() => {
         axios
-            .patch("/api/session", {
+            .post("/api/session", {
                 date: moment().format("LLL"),
             })
             .then((res) => {

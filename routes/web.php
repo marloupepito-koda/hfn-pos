@@ -32,7 +32,7 @@ Route::get('/{jsx?}',function(){
 
 
 
-Route::patch('/create_checkout', [CartProductsController::class, 'create_checkout']);
+Route::post('/create_checkout', [CartProductsController::class, 'create_checkout']);
 
 
 

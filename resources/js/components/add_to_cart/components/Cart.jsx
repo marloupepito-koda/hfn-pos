@@ -12,7 +12,7 @@ function AddToCartNoSeats() {
     const navigate = useNavigate();
     const goToCheckOut = () => {
         axios
-            .patch("/create_checkout", {
+            .post("/create_checkout", {
                 data: CartData.data,
                 date: moment().format("LLL"),
             })
