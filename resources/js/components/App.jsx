@@ -17,7 +17,7 @@ if (document.getElementById("app")) {
     const Index = ReactDOM.createRoot(document.getElementById("app"));
 
     Index.render(
-        // <React.StrictMode>
+        // <React.StrictMode>ss
         <Example />
         // </React.StrictMode>
     );
