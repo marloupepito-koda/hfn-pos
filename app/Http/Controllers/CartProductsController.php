@@ -49,10 +49,6 @@ class CartProductsController extends Controller
         
 
        
-          session(['create_checkout' => $request->data]);
-          $datetime = new DateTime($request->date);
-          $datetime->modify('+5 minutes');
-          session(['session' => $datetime->format('Y-m-d H:i:s')]);
 
           if (session('session') === null) {
 
@@ -179,7 +175,9 @@ class CartProductsController extends Controller
                     ]);
 
 
-               
+               $datetime = new DateTime($request->date);
+               $datetime->modify('+5 minutes');
+               session(['session' => $datetime->format('Y-m-d H:i:s')]);
           }
 
 
@@ -279,6 +277,7 @@ class CartProductsController extends Controller
           }
 
 
+          session(['create_checkout' => $request->data]);
           return response()->json([
                'status' => session('session'),
           ]);
