@@ -6,27 +6,17 @@
 
         <title>Hollywood Fight Nights</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         
-<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+        <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 
             <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="{{ asset('js/app.js') }}" defer></script>
  
-           <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
-            <link href="css/bootstrap.min.css" rel="stylesheet">
-            <link href="css/bootstrap-icons.css" rel="stylesheet">
-            <link href="css/templatemo-festava-live.css" rel="stylesheet">
     </head>
     <style>
         
-  <style
-   type="text/css">
+  <style>
 	.st0{font-family:'ArialMT';}
 	.st1{font-size:20px;}
 	.st2{font-size:17px;}
