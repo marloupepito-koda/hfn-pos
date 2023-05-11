@@ -11,7 +11,7 @@ function AppLayout() {
     const hash = useLocation().hash;
     useEffect(() => {
         axios
-            .post("/api/session", {
+            .get("/api/session", {
                 date: moment().format("LLL"),
             })
             .then((res) => {

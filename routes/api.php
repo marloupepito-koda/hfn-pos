@@ -20,7 +20,7 @@ use App\Http\Controllers\CartProductsController;
 
 Route::get('/get_seats', [CartProductsController::class, 'get_seats']);
 Route::post('/create_checkout', [CartProductsController::class, 'create_checkout']);
-Route::post('/session', [CartProductsController::class, 'session']);
+Route::get('/session', [CartProductsController::class, 'session']);
 Route::post('/end_session', [CartProductsController::class, 'end_session']);
 
 

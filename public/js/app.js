@@ -7769,7 +7769,7 @@ function AppLayout() {
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useLocation)();
   var hash = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useLocation)().hash;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios.post("/api/session", {
+    axios.get("/api/session", {
       date: moment__WEBPACK_IMPORTED_MODULE_4___default()().format("LLL")
     }).then(function (res) {
       if (res.data.checkout !== null) {
