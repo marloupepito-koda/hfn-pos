@@ -285,7 +285,7 @@ class CartProductsController extends Controller
      }
 
 
-     public function session(Request $request)
+     public function session()
      {
           return response()->json([
                'status' => session('session'),
@@ -293,7 +293,7 @@ class CartProductsController extends Controller
           ]);
      }
 
-     public function end_session(Request $request)
+     public function end_session()
      {
 
           $data = session('create_checkout');
