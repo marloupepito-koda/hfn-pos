@@ -7714,7 +7714,7 @@ if (document.getElementById("app")) {
   var Index = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById("app"));
   Index.render(
   /*#__PURE__*/
-  // <React.StrictMode>ss
+  // <React.StrictMode>
   (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Example, {})
   // </React.StrictMode>
   );

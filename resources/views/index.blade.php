@@ -24,6 +24,7 @@
             <link href="css/templatemo-festava-live.css" rel="stylesheet">
     </head>
     <style>
+        
   <style
    type="text/css">
 	.st0{font-family:'ArialMT';}
