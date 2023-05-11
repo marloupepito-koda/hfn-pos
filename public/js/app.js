@@ -25313,7 +25313,14 @@ function CardSearchTicket() {
             })]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-md-12 mt-5"
+          className: "col-md-12 mt-5",
+          children: value.length !== 0 ? value.map(function (res) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              data: value
+            });
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+            children: status
+          })
         })]
       })]
     })

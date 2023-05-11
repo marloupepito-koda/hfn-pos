@@ -176,7 +176,7 @@ class CartProductsController extends Controller
 
 
                $datetime = new DateTime($request->date);
-               $datetime->modify('+2 minutes');
+               $datetime->modify('+5 minutes');
                session(['session' => $datetime->format('Y-m-d H:i:s')]);
           }
 
@@ -186,7 +186,10 @@ class CartProductsController extends Controller
                     $token = session('token');
                if ($request->data[$i]['product_name'] !== 'General Admission No Seat') {
                     $cartOrders = CartOrders::where('token','=',$token)->first();
-
+                          CartProducts::where('cart_product_id', $request->data[$i]['cart_product_id'])
+                         ->update([
+                              'quantity' => 0
+                         ]);
 
                         $code = mt_rand(1000000000, 9999999999);
                         $success1 =  CartOrderedProducts::insert([
@@ -214,6 +217,7 @@ class CartProductsController extends Controller
                          'table_number' => 0,
                          ]);
                          
+                         
                          if($success1){
                               $co = CartOrderedProducts::where('token',$token)->first();
 
@@ -226,10 +230,7 @@ class CartProductsController extends Controller
                               ]);
                          }
                
-                     CartProducts::where('cart_product_id', $request->data[$i]['cart_product_id'])
-                         ->update([
-                              'quantity' => 0
-                         ]);
+                   
 
                }else{
                       $cartOrders = CartOrders::where('token','=',$token)->first();
@@ -271,6 +272,7 @@ class CartProductsController extends Controller
                          }
                
                }
+               
 
           }
 

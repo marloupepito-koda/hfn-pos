@@ -49,13 +49,13 @@ function CardSearchTicket() {
                         </div>
                     </form>
                     <div className="col-md-12 mt-5">
-                        {/* {value.length !== 0 ? (
+                        {value.length !== 0 ? (
                             value.map((res) => (
                                 <SearchTicketTable data={value} />
                             ))
                         ) : (
                             <h3>{status}</h3>
-                        )} */}
+                        )}
                     </div>
                 </div>
             </div>
