@@ -9,7 +9,7 @@ import Row7 from "./SectionG/Row7";
 import Row8 from "./SectionG/Row8";
 import Row9 from "./SectionG/Row9";
 import Row10 from "./SectionG/Row10";
-function SectionA() {
+function SectionA(props) {
     const [row1, setRow1] = useState([]);
     const [row2, setRow2] = useState([]);
     const [row3, setRow3] = useState([]);
@@ -22,51 +22,42 @@ function SectionA() {
     const [row10, setRow10] = useState([]);
 
     useEffect(() => {
-        axios.get("/api/get_seats").then((res) => {
-            const row1 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 7061 && obj.cart_product_id > 7040
-            );
+        const row1 = props.seats.filter(
+            (obj) => obj.cart_product_id < 7061 && obj.cart_product_id > 7040
+        );
 
-            const row2 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 7081 && obj.cart_product_id > 7060
-            );
+        const row2 = props.seats.filter(
+            (obj) => obj.cart_product_id < 7081 && obj.cart_product_id > 7060
+        );
 
-            const row3 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 7105 && obj.cart_product_id > 7080
-            );
+        const row3 = props.seats.filter(
+            (obj) => obj.cart_product_id < 7105 && obj.cart_product_id > 7080
+        );
 
-            const row4 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 7129 && obj.cart_product_id > 7104
-            );
+        const row4 = props.seats.filter(
+            (obj) => obj.cart_product_id < 7129 && obj.cart_product_id > 7104
+        );
 
-            const row5 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 7157 && obj.cart_product_id > 7128
-            );
+        const row5 = props.seats.filter(
+            (obj) => obj.cart_product_id < 7157 && obj.cart_product_id > 7128
+        );
 
-            const row6 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 7185 && obj.cart_product_id > 7156
-            );
+        const row6 = props.seats.filter(
+            (obj) => obj.cart_product_id < 7185 && obj.cart_product_id > 7156
+        );
 
-            const row7 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 7217 && obj.cart_product_id > 7184
-            );
+        const row7 = props.seats.filter(
+            (obj) => obj.cart_product_id < 7217 && obj.cart_product_id > 7184
+        );
 
-            setRow1(row1);
-            setRow2(row2);
-            setRow3(row3);
-            setRow4(row4);
-            setRow5(row5);
-            setRow6(row6);
-            setRow7(row7);
-        });
-    }, []);
+        setRow1(row1);
+        setRow2(row2);
+        setRow3(row3);
+        setRow4(row4);
+        setRow5(row5);
+        setRow6(row6);
+        setRow7(row7);
+    }, [props]);
     return (
         <>
             <Row1 data={row1} />

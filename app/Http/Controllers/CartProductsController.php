@@ -42,6 +42,8 @@ class CartProductsController extends Controller
           return response()->json([
                'status' => $results,
           ]);
+
+          
      }
 
      public function create_checkout(Request $request)

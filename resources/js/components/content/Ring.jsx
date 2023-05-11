@@ -10,6 +10,7 @@ import Draggable from "react-draggable";
 import axios from "axios";
 function Ring(props) {
     const [zoom, setZoom] = useState(1);
+    const [seats, setSeats] = useState([]);
     const container = {
         width: "100%",
         height: "85vh",
@@ -38,6 +39,12 @@ function Ring(props) {
             setZoom(zoom + 0.1);
         }
     };
+
+    useEffect(() => {
+        axios.get("/api/get_seats").then((res) => {
+            setSeats(res.data.status);
+        });
+    }, []);
     return (
         <div>
             <div className="col-md-12" style={{ zIndex: "1" }}>
@@ -85,13 +92,13 @@ function Ring(props) {
                         >
                             <defs id="defs18930" />
                             <g id="viewport">
-                                <SectionA />
+                                <SectionA seats={seats} />
                                 {/* <SectionB /> */}
-                                <SectionC />
+                                <SectionC seats={seats} />
                                 {/* <SectionD /> */}
-                                <SectionE />
+                                <SectionE seats={seats} />
                                 {/* <SectionF /> */}
-                                <SectionG />
+                                <SectionG seats={seats} />
                                 <rect
                                     x="292"
                                     y="291"

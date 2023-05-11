@@ -11,7 +11,7 @@ import Row9 from "./SectionE/Row9";
 import Row10 from "./SectionE/Row10";
 import Row11 from "./SectionE/Row11";
 import Row12 from "./SectionE/Row12";
-function SectionA() {
+function SectionA(props) {
     const [row1, setRow1] = useState([]);
     const [row2, setRow2] = useState([]);
     const [row3, setRow3] = useState([]);
@@ -27,87 +27,73 @@ function SectionA() {
     const [row13, setRow13] = useState([]);
 
     useEffect(() => {
-        axios.get("/api/get_seats").then((res) => {
-            const row1 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 6741 && obj.cart_product_id > 6720
-            );
+        const row1 = props.seats.filter(
+            (obj) => obj.cart_product_id < 6741 && obj.cart_product_id > 6720
+        );
 
-            const row2 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 6761 && obj.cart_product_id > 6740
-            );
+        const row2 = props.seats.filter(
+            (obj) => obj.cart_product_id < 6761 && obj.cart_product_id > 6740
+        );
 
-            const row3 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 6785 && obj.cart_product_id > 6760
-            );
+        const row3 = props.seats.filter(
+            (obj) => obj.cart_product_id < 6785 && obj.cart_product_id > 6760
+        );
 
-            const row4 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 6809 && obj.cart_product_id > 6784
-            );
+        const row4 = props.seats.filter(
+            (obj) => obj.cart_product_id < 6809 && obj.cart_product_id > 6784
+        );
 
-            const row5 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 6837 && obj.cart_product_id > 6808
-            );
+        const row5 = props.seats.filter(
+            (obj) => obj.cart_product_id < 6837 && obj.cart_product_id > 6808
+        );
 
-            const row6 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 6865 && obj.cart_product_id > 6836
-            );
+        const row6 = props.seats.filter(
+            (obj) => obj.cart_product_id < 6865 && obj.cart_product_id > 6836
+        );
 
-            const row7 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 6897 && obj.cart_product_id > 6864
-            );
+        const row7 = props.seats.filter(
+            (obj) => obj.cart_product_id < 6897 && obj.cart_product_id > 6864
+        );
 
-            const row8 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 6929 && obj.cart_product_id > 6896
-            );
+        const row8 = props.seats.filter(
+            (obj) => obj.cart_product_id < 6929 && obj.cart_product_id > 6896
+        );
 
-            const row9 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 6965 && obj.cart_product_id > 6928
-            );
+        const row9 = props.seats.filter(
+            (obj) => obj.cart_product_id < 6965 && obj.cart_product_id > 6928
+        );
 
-            const row10 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 7001 && obj.cart_product_id > 6964
-            );
+        const row10 = props.seats.filter(
+            (obj) => obj.cart_product_id < 7001 && obj.cart_product_id > 6964
+        );
 
-            const row11 = res.data.status.filter(
-                (obj) =>
-                    obj.cart_product_id < 7041 && obj.cart_product_id > 7000
-            );
+        const row11 = props.seats.filter(
+            (obj) => obj.cart_product_id < 7041 && obj.cart_product_id > 7000
+        );
 
-            // const row12 = res.data.status.filter(
-            //     (obj) =>
-            //         obj.cart_product_id < 6721 && obj.cart_product_id > 6680
-            // );
+        // const row12 = props.seats.filter(
+        //     (obj) =>
+        //         obj.cart_product_id < 6721 && obj.cart_product_id > 6680
+        // );
 
-            // const row13 = res.data.status.filter(
-            //     (obj) =>
-            //         obj.cart_product_id < 6757 && obj.cart_product_id > 6720
-            // );
-            setRow1(row1);
-            setRow2(row2);
-            setRow3(row3);
-            setRow4(row4);
-            setRow5(row5);
-            setRow6(row6);
-            setRow7(row7);
-            setRow8(row8);
-            setRow9(row9);
-            setRow10(row10);
-            setRow11(row11);
-            // setRow12(row12);
-            // setRow13(row13);
-            console.log("waass", row1);
-        });
-    }, []);
+        // const row13 = props.seats.filter(
+        //     (obj) =>
+        //         obj.cart_product_id < 6757 && obj.cart_product_id > 6720
+        // );
+        setRow1(row1);
+        setRow2(row2);
+        setRow3(row3);
+        setRow4(row4);
+        setRow5(row5);
+        setRow6(row6);
+        setRow7(row7);
+        setRow8(row8);
+        setRow9(row9);
+        setRow10(row10);
+        setRow11(row11);
+        // setRow12(row12);
+        // setRow13(row13);
+    }, [props]);
     return (
         <>
             <Row1 data={row1} />

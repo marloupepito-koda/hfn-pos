@@ -8969,6 +8969,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sections_SectionG__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./sections/SectionG */ "./resources/js/components/content/sections/SectionG.jsx");
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-draggable */ "./node_modules/react-draggable/build/cjs/cjs.js");
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_draggable__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -8993,6 +8994,10 @@ function Ring(props) {
     _useState2 = _slicedToArray(_useState, 2),
     zoom = _useState2[0],
     setZoom = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    seats = _useState4[0],
+    setSeats = _useState4[1];
   var container = {
     width: "100%",
     height: "85vh",
@@ -9019,6 +9024,11 @@ function Ring(props) {
       setZoom(zoom + 0.1);
     }
   };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    axios__WEBPACK_IMPORTED_MODULE_10__["default"].get("/api/get_seats").then(function (res) {
+      setSeats(res.data.status);
+    });
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
       className: "col-md-12",
@@ -9069,7 +9079,15 @@ function Ring(props) {
               id: "defs18930"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("g", {
               id: "viewport",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_sections_SectionA__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_sections_SectionC__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_sections_SectionE__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_sections_SectionG__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("rect", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_sections_SectionA__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                seats: seats
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_sections_SectionC__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                seats: seats
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_sections_SectionE__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                seats: seats
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_sections_SectionG__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                seats: seats
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("rect", {
                 x: "292",
                 y: "291",
                 className: "st6",
@@ -9148,7 +9166,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function SectionA() {
+function SectionA(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     row1 = _useState2[0],
@@ -9194,53 +9212,51 @@ function SectionA() {
     row11 = _useState22[0],
     setRow11 = _useState22[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios.get("/api/get_seats").then(function (res) {
-      var row1 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6021;
-      });
-      var row2 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6041 && obj.cart_product_id > 6020;
-      });
-      var row3 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6065 && obj.cart_product_id > 6040;
-      });
-      var row4 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6089 && obj.cart_product_id > 6064;
-      });
-      var row5 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6117 && obj.cart_product_id > 6088;
-      });
-      var row6 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6145 && obj.cart_product_id > 6116;
-      });
-      var row7 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6177 && obj.cart_product_id > 6144;
-      });
-      var row8 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6209 && obj.cart_product_id > 6176;
-      });
-      var row9 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6245 && obj.cart_product_id > 6208;
-      });
-      var row10 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6281 && obj.cart_product_id > 6244;
-      });
-      var row11 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6321 && obj.cart_product_id > 6280;
-      });
-      setRow1(row1);
-      setRow2(row2);
-      setRow3(row3);
-      setRow4(row4);
-      setRow5(row5);
-      setRow6(row6);
-      setRow7(row7);
-      setRow8(row8);
-      setRow9(row9);
-      setRow10(row10);
-      setRow11(row11);
+    var row1 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6021;
     });
-  }, []);
+    var row2 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6041 && obj.cart_product_id > 6020;
+    });
+    var row3 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6065 && obj.cart_product_id > 6040;
+    });
+    var row4 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6089 && obj.cart_product_id > 6064;
+    });
+    var row5 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6117 && obj.cart_product_id > 6088;
+    });
+    var row6 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6145 && obj.cart_product_id > 6116;
+    });
+    var row7 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6177 && obj.cart_product_id > 6144;
+    });
+    var row8 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6209 && obj.cart_product_id > 6176;
+    });
+    var row9 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6245 && obj.cart_product_id > 6208;
+    });
+    var row10 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6281 && obj.cart_product_id > 6244;
+    });
+    var row11 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6321 && obj.cart_product_id > 6280;
+    });
+    setRow1(row1);
+    setRow2(row2);
+    setRow3(row3);
+    setRow4(row4);
+    setRow5(row5);
+    setRow6(row6);
+    setRow7(row7);
+    setRow8(row8);
+    setRow9(row9);
+    setRow10(row10);
+    setRow11(row11);
+  }, [props]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_SectionA_Row1__WEBPACK_IMPORTED_MODULE_1__["default"], {
       data: row1
@@ -13578,7 +13594,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function SectionA() {
+function SectionA(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     row1 = _useState2[0],
@@ -13632,61 +13648,57 @@ function SectionA() {
     row13 = _useState26[0],
     setRow13 = _useState26[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios.get("/api/get_seats").then(function (res) {
-      var row1 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6341 && obj.cart_product_id > 6320;
-      });
-      var row2 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6361 && obj.cart_product_id > 6340;
-      });
-      var row3 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6385 && obj.cart_product_id > 6360;
-      });
-      var row4 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6409 && obj.cart_product_id > 6384;
-      });
-      var row5 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6437 && obj.cart_product_id > 6408;
-      });
-      var row6 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6465 && obj.cart_product_id > 6436;
-      });
-      var row7 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6497 && obj.cart_product_id > 6464;
-      });
-      var row8 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6529 && obj.cart_product_id > 6496;
-      });
-      var row9 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6601 && obj.cart_product_id > 6528;
-      });
-      var row10 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6641 && obj.cart_product_id > 6600;
-      });
-      var row11 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6681 && obj.cart_product_id > 6640;
-      });
-      var row12 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6721 && obj.cart_product_id > 6680;
-      });
-      var row13 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6757 && obj.cart_product_id > 6720;
-      });
-      setRow1(row1);
-      setRow2(row2);
-      setRow3(row3);
-      setRow4(row4);
-      setRow5(row5);
-      setRow6(row6);
-      setRow7(row7);
-      setRow8(row8);
-      setRow9(row9);
-      setRow10(row10);
-      setRow11(row11);
-      // setRow12(row12);
-      // setRow13(row13);
+    var row1 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6341 && obj.cart_product_id > 6320;
     });
-  }, []);
+    var row2 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6361 && obj.cart_product_id > 6340;
+    });
+    var row3 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6385 && obj.cart_product_id > 6360;
+    });
+    var row4 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6409 && obj.cart_product_id > 6384;
+    });
+    var row5 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6437 && obj.cart_product_id > 6408;
+    });
+    var row6 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6465 && obj.cart_product_id > 6436;
+    });
+    var row7 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6497 && obj.cart_product_id > 6464;
+    });
+    var row8 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6529 && obj.cart_product_id > 6496;
+    });
+    var row9 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6601 && obj.cart_product_id > 6528;
+    });
+    var row10 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6641 && obj.cart_product_id > 6600;
+    });
+    var row11 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6681 && obj.cart_product_id > 6640;
+    });
+    var row12 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6721 && obj.cart_product_id > 6680;
+    });
+    var row13 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6757 && obj.cart_product_id > 6720;
+    });
+    setRow1(row1);
+    setRow2(row2);
+    setRow3(row3);
+    setRow4(row4);
+    setRow5(row5);
+    setRow6(row6);
+    setRow7(row7);
+    setRow8(row8);
+    setRow9(row9);
+    setRow10(row10);
+    setRow11(row11);
+  }, [props]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_SectionC_Row1__WEBPACK_IMPORTED_MODULE_1__["default"], {
       data: row1
@@ -18429,7 +18441,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function SectionA() {
+function SectionA(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     row1 = _useState2[0],
@@ -18483,66 +18495,63 @@ function SectionA() {
     row13 = _useState26[0],
     setRow13 = _useState26[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios.get("/api/get_seats").then(function (res) {
-      var row1 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6741 && obj.cart_product_id > 6720;
-      });
-      var row2 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6761 && obj.cart_product_id > 6740;
-      });
-      var row3 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6785 && obj.cart_product_id > 6760;
-      });
-      var row4 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6809 && obj.cart_product_id > 6784;
-      });
-      var row5 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6837 && obj.cart_product_id > 6808;
-      });
-      var row6 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6865 && obj.cart_product_id > 6836;
-      });
-      var row7 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6897 && obj.cart_product_id > 6864;
-      });
-      var row8 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6929 && obj.cart_product_id > 6896;
-      });
-      var row9 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 6965 && obj.cart_product_id > 6928;
-      });
-      var row10 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 7001 && obj.cart_product_id > 6964;
-      });
-      var row11 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 7041 && obj.cart_product_id > 7000;
-      });
-
-      // const row12 = res.data.status.filter(
-      //     (obj) =>
-      //         obj.cart_product_id < 6721 && obj.cart_product_id > 6680
-      // );
-
-      // const row13 = res.data.status.filter(
-      //     (obj) =>
-      //         obj.cart_product_id < 6757 && obj.cart_product_id > 6720
-      // );
-      setRow1(row1);
-      setRow2(row2);
-      setRow3(row3);
-      setRow4(row4);
-      setRow5(row5);
-      setRow6(row6);
-      setRow7(row7);
-      setRow8(row8);
-      setRow9(row9);
-      setRow10(row10);
-      setRow11(row11);
-      // setRow12(row12);
-      // setRow13(row13);
-      console.log("waass", row1);
+    var row1 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6741 && obj.cart_product_id > 6720;
     });
-  }, []);
+    var row2 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6761 && obj.cart_product_id > 6740;
+    });
+    var row3 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6785 && obj.cart_product_id > 6760;
+    });
+    var row4 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6809 && obj.cart_product_id > 6784;
+    });
+    var row5 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6837 && obj.cart_product_id > 6808;
+    });
+    var row6 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6865 && obj.cart_product_id > 6836;
+    });
+    var row7 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6897 && obj.cart_product_id > 6864;
+    });
+    var row8 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6929 && obj.cart_product_id > 6896;
+    });
+    var row9 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 6965 && obj.cart_product_id > 6928;
+    });
+    var row10 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 7001 && obj.cart_product_id > 6964;
+    });
+    var row11 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 7041 && obj.cart_product_id > 7000;
+    });
+
+    // const row12 = props.seats.filter(
+    //     (obj) =>
+    //         obj.cart_product_id < 6721 && obj.cart_product_id > 6680
+    // );
+
+    // const row13 = props.seats.filter(
+    //     (obj) =>
+    //         obj.cart_product_id < 6757 && obj.cart_product_id > 6720
+    // );
+    setRow1(row1);
+    setRow2(row2);
+    setRow3(row3);
+    setRow4(row4);
+    setRow5(row5);
+    setRow6(row6);
+    setRow7(row7);
+    setRow8(row8);
+    setRow9(row9);
+    setRow10(row10);
+    setRow11(row11);
+    // setRow12(row12);
+    // setRow13(row13);
+  }, [props]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_SectionE_Row1__WEBPACK_IMPORTED_MODULE_1__["default"], {
       data: row1
@@ -22962,7 +22971,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function SectionA() {
+function SectionA(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     row1 = _useState2[0],
@@ -23004,37 +23013,35 @@ function SectionA() {
     row10 = _useState20[0],
     setRow10 = _useState20[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios.get("/api/get_seats").then(function (res) {
-      var row1 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 7061 && obj.cart_product_id > 7040;
-      });
-      var row2 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 7081 && obj.cart_product_id > 7060;
-      });
-      var row3 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 7105 && obj.cart_product_id > 7080;
-      });
-      var row4 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 7129 && obj.cart_product_id > 7104;
-      });
-      var row5 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 7157 && obj.cart_product_id > 7128;
-      });
-      var row6 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 7185 && obj.cart_product_id > 7156;
-      });
-      var row7 = res.data.status.filter(function (obj) {
-        return obj.cart_product_id < 7217 && obj.cart_product_id > 7184;
-      });
-      setRow1(row1);
-      setRow2(row2);
-      setRow3(row3);
-      setRow4(row4);
-      setRow5(row5);
-      setRow6(row6);
-      setRow7(row7);
+    var row1 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 7061 && obj.cart_product_id > 7040;
     });
-  }, []);
+    var row2 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 7081 && obj.cart_product_id > 7060;
+    });
+    var row3 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 7105 && obj.cart_product_id > 7080;
+    });
+    var row4 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 7129 && obj.cart_product_id > 7104;
+    });
+    var row5 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 7157 && obj.cart_product_id > 7128;
+    });
+    var row6 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 7185 && obj.cart_product_id > 7156;
+    });
+    var row7 = props.seats.filter(function (obj) {
+      return obj.cart_product_id < 7217 && obj.cart_product_id > 7184;
+    });
+    setRow1(row1);
+    setRow2(row2);
+    setRow3(row3);
+    setRow4(row4);
+    setRow5(row5);
+    setRow6(row6);
+    setRow7(row7);
+  }, [props]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_SectionG_Row1__WEBPACK_IMPORTED_MODULE_1__["default"], {
       data: row1
