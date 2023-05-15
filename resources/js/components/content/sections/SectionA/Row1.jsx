@@ -113,8 +113,6 @@ function Row1(props) {
                                 : ""
                         ] = el)
                     }
-                    onMouseEnter={() => openTooltip(true, seatData)}
-                    onMouseLeave={() => openTooltip(false, seatData)}
                     key={i + Math.random()}
                     onClick={() =>
                         taken === "taken" ? "" : addCartSeat(seatData)

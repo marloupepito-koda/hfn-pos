@@ -9393,12 +9393,6 @@ function Row1(props) {
         ref: function ref(el) {
           return myRef.current[seatData !== undefined ? seatData.cart_product_id : ""] = el;
         },
-        onMouseEnter: function onMouseEnter() {
-          return openTooltip(true, seatData);
-        },
-        onMouseLeave: function onMouseLeave() {
-          return openTooltip(false, seatData);
-        },
         onClick: function onClick() {
           return taken === "taken" ? "" : addCartSeat(seatData);
         },

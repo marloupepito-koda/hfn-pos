@@ -7,16 +7,20 @@
         <title>Hollywood Fight Nights</title>
 
         
-        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-        <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
             <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="{{ asset('js/app.js') }}" defer></script>
  
+            <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+            <link href="css/bootstrap.min.css" rel="stylesheet">
+            <link href="css/bootstrap-icons.css" rel="stylesheet">
+            <link href="css/templatemo-festava-live.css" rel="stylesheet">
     </head>
-    <style>
-        
-  <style>
+  <style
+   type="text/css">
 	.st0{font-family:'ArialMT';}
 	.st1{font-size:20px;}
 	.st2{font-size:17px;}
@@ -158,7 +162,7 @@
         }
 
           .taken {
-           /* fill: grey !important; */
+           fill: grey !important;
             opacity: 0.2 !important;
         }
         @media only screen and (max-width: 600px) {
@@ -168,8 +172,6 @@
         }
 </style>
 
-
-        </style>
     <body className="antialiased">
         <div id="app">
          
