@@ -8,9 +8,11 @@ import SectionF from "./sections/SectionF";
 import SectionG from "./sections/SectionG";
 import Draggable from "react-draggable";
 import axios from "axios";
+import { set } from "lodash";
 function Ring(props) {
     const [zoom, setZoom] = useState(1);
     const [seats, setSeats] = useState([]);
+    const [loading, setLoading] = useState(true);
     const container = {
         width: "100%",
         height: "85vh",
@@ -43,6 +45,7 @@ function Ring(props) {
     useEffect(() => {
         axios.get("/api/get_seats").then((res) => {
             setSeats(res.data.status);
+            setLoading(false);
         });
     }, []);
     return (
@@ -68,67 +71,73 @@ function Ring(props) {
                 </div>
                 &nbsp;
             </div>
-            <div className="container col-md-12" style={container}>
-                <Draggable>
-                    <center
-                        // onWheel={handleScroll}
-                        className="container"
-                        style={{
-                            transform: `scale(${zoom})`,
-                            cursor: "move",
-                        }}
-                    >
-                        <svg
-                            height="200%"
-                            width="1150px"
+            {loading ? (
+                <center>
+                    <div class="spinner-border" role="status"></div>
+                </center>
+            ) : (
+                <div className="container col-md-12" style={container}>
+                    <Draggable>
+                        <center
+                            // onWheel={handleScroll}
+                            className="container"
                             style={{
                                 transform: `scale(${zoom})`,
-                                enableBackground: "new 0 0 612 792",
-                                WebkitUserDrag: "none",
-                                // cursor: "move",
-                                marginTop: "-250",
+                                cursor: "move",
                             }}
-                            viewBox="0 0 612 792"
-                            xmlSpace="preserve"
-                            xmlns="http://www.w3.org/2000/svg"
                         >
-                            <defs id="defs18930" />
-                            <g id="viewport">
-                                <SectionA seats={seats} />
-                                {/* <SectionB /> */}
-                                <SectionC seats={seats} />
-                                {/* <SectionD /> */}
-                                <SectionE seats={seats} />
-                                {/* <SectionF /> */}
-                                <SectionG seats={seats} />
-                                <rect
-                                    x="292"
-                                    y="291"
-                                    className="st6"
-                                    width="77.5"
-                                    height="77.5"
-                                    id="rect18191"
-                                />
-                                <rect
-                                    x="292"
-                                    y="291"
-                                    className="st21"
-                                    width="77.5"
-                                    height="77.5"
-                                    id="rect18193"
-                                />
-                                <text
-                                    transform="matrix(1 0 0 1 316.9026 331.7651)"
-                                    className="st22 st23"
-                                    id="text18195"
-                                >
-                                    RING
-                                </text>
-                            </g>
-                        </svg>
-                    </center>
-                </Draggable>
-            </div>
+                            <svg
+                                height="200%"
+                                width="1150px"
+                                style={{
+                                    transform: `scale(${zoom})`,
+                                    enableBackground: "new 0 0 612 792",
+                                    WebkitUserDrag: "none",
+                                    // cursor: "move",
+                                    marginTop: "-250",
+                                }}
+                                viewBox="0 0 612 792"
+                                xmlSpace="preserve"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <defs id="defs18930" />
+                                <g id="viewport">
+                                    <SectionA seats={seats} />
+                                    {/* <SectionB /> */}
+                                    <SectionC seats={seats} />
+                                    {/* <SectionD /> */}
+                                    <SectionE seats={seats} />
+                                    {/* <SectionF /> */}
+                                    <SectionG seats={seats} />
+                                    <rect
+                                        x="292"
+                                        y="291"
+                                        className="st6"
+                                        width="77.5"
+                                        height="77.5"
+                                        id="rect18191"
+                                    />
+                                    <rect
+                                        x="292"
+                                        y="291"
+                                        className="st21"
+                                        width="77.5"
+                                        height="77.5"
+                                        id="rect18193"
+                                    />
+                                    <text
+                                        transform="matrix(1 0 0 1 316.9026 331.7651)"
+                                        className="st22 st23"
+                                        id="text18195"
+                                    >
+                                        RING
+                                    </text>
+                                </g>
+                            </svg>
+                        </center>
+                    </Draggable>
+                </div>
+            )}
         </div>
     );
 }
