@@ -20,6 +20,7 @@ function AddToCartTable() {
                     </tr>
                 </thead>
                 <tbody>
+                    <tr></tr>
                     {data.length === 0 || data.length === undefined
                         ? ""
                         : data.map((res) => (

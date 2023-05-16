@@ -17,7 +17,6 @@ function CardSearchTicket() {
                 setStatus("No results!");
             }
         });
-        const found = "1139635697" === search ? true : false;
     };
 
     return (

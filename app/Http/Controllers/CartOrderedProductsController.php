@@ -9,6 +9,7 @@ class CartOrderedProductsController extends Controller
 {
       public $client_id = 157;
 
+     
       public function search_ticket_code($search){
           $cartOrderProducts = new CartOrderedProducts;
 
@@ -29,8 +30,7 @@ class CartOrderedProductsController extends Controller
 
           // $aa = $cartOrderProducts->checkOutSeats($request,$randomToken);
 
-          $data= session('create_checkout');
-
+          $data = session('create_checkout');
              for ($i=0; $i < count($data); $i++) { 
                          
 

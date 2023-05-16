@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import CartData from "../../add_to_cart/CartData";
-import { useLocation, useOutletContext, Link } from "react-router-dom";
+import {
+    useLocation,
+    useOutletContext,
+    Link,
+    useNavigate,
+} from "react-router-dom";
 import CheckoutPaymentMethods from "./PaymentMethod";
+import axios from "axios";
 function CheckoutTable() {
     const location = useLocation().hash;
     const [addCart, setAddCart] = useState([]);
     const [inputValue, setInputValue] = useState("");
     const [count, setCount] = useOutletContext();
+    const navigate = useNavigate();
     useEffect(() => {
         setAddCart(CartData.data);
-    }, [count]);
+    }, [count + location]);
 
     const subTotal = CartData.data.reduce((accumulator, currentValue) => {
         return accumulator + currentValue.price_list;
@@ -29,6 +36,31 @@ function CheckoutTable() {
         setInputValue(formattedValue);
     }
 
+    function removeItem(event) {
+        const index = CartData.data.findIndex(
+            (res) => res.cart_product_id === event
+        );
+        const deleted = CartData.data.splice(index, 1);
+        if (deleted) {
+            axios
+                .post("/api/remove_checkout", {
+                    cart_product_id: event,
+                    data: CartData.data,
+                })
+                .then((res) => {
+                    if (res.data.status === "success") {
+                        if (CartData.data.length === 0) {
+                            axios.post("/api/end_session").then((res) => {
+                                window.location.href = "/";
+                            });
+                        } else {
+                            navigate("#" + Math.floor(Math.random() * 9999));
+                        }
+                    }
+                });
+        }
+    }
+
     return (
         <>
             <h3 className="mt-5">Order Summary</h3>
@@ -40,6 +72,7 @@ function CheckoutTable() {
                         <th scope="col">Fee</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Total</th>
+                        <th scope="col">Remove</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,6 +101,16 @@ function CheckoutTable() {
                             <td>{res.quantity}</td>
                             <td>
                                 {res.price_fee + res.price_list * res.quantity}
+                            </td>
+                            <td>
+                                <button
+                                    onClick={() =>
+                                        removeItem(res.cart_product_id)
+                                    }
+                                    className="btn btn-sm btn-danger"
+                                >
+                                    remove
+                                </button>
                             </td>
                         </tr>
                     ))}

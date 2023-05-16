@@ -22,6 +22,7 @@ Route::get('/get_seats', [CartProductsController::class, 'get_seats']);
 Route::post('/create_checkout', [CartProductsController::class, 'create_checkout']);
 Route::get('/session', [CartProductsController::class, 'session']);
 Route::post('/end_session', [CartProductsController::class, 'end_session']);
+Route::post('/remove_checkout', [CartProductsController::class, 'remove_checkout']);
 
 
 Route::post('/send_place_orders', [CartOrderedProductsController::class, 'send_place_orders']);

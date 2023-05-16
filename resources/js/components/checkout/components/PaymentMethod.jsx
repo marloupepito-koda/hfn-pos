@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import CartData from "../../add_to_cart/CartData";
 function CheckoutPaymentMethods(props) {
     const [method, setMethod] = useState("credits");
     const [amount, setAmount] = useState(0);
@@ -8,6 +9,7 @@ function CheckoutPaymentMethods(props) {
     const navigate = useNavigate();
     const location = useLocation().hash;
     const [paymentCard, setPaymentCard] = useState({
+        cart: CartData.data,
         fullname: "",
         email: "",
         where_find: "",
@@ -18,6 +20,7 @@ function CheckoutPaymentMethods(props) {
         discount: props.discount,
     });
     const [paymentCash, setPaymentCash] = useState({
+        cart: CartData.data,
         fullname: "",
         email: "",
         tenders: 0,
@@ -30,6 +33,7 @@ function CheckoutPaymentMethods(props) {
     });
 
     const [paymentCheck, setPaymentCheck] = useState({
+        cart: CartData.data,
         fullname: "",
         email: "",
         check_info: "",
@@ -80,10 +84,15 @@ function CheckoutPaymentMethods(props) {
         setDisabled(true);
         if (method === "credits") {
             axios.post("/api/send_place_orders", paymentCard).then((res) => {
-                console.log(paymentCard);
                 if (res.data.status === "success") {
-                    window.location.href = "/";
-                    //setDisabled(false);
+                    axios
+                        .post("/send_reservation", {
+                            data: paymentCard,
+                        })
+                        .then((res) => {
+                            console.log("res", paymentCard);
+                            // window.location.href = "/";
+                        });
                 }
             });
         } else if (method === "cash") {
@@ -91,7 +100,6 @@ function CheckoutPaymentMethods(props) {
                 console.log(paymentCash);
                 if (res.data.status === "success") {
                     window.location.href = "/";
-                    //setDisabled(false);
                 }
             });
         } else {
@@ -99,7 +107,6 @@ function CheckoutPaymentMethods(props) {
                 console.log(paymentCheck);
                 if (res.data.status === "success") {
                     window.location.href = "/";
-                    //setDisabled(false);
                 }
             });
         }

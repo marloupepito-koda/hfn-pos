@@ -69,18 +69,20 @@ function Ring(props) {
                 &nbsp;
             </div>
             <div className="container col-md-12" style={container}>
-                <center
-                    // onWheel={handleScroll}
-                    className="container"
-                    style={{
-                        transform: `scale(${zoom})`,
-                    }}
-                >
-                    <Draggable>
+                <Draggable>
+                    <center
+                        // onWheel={handleScroll}
+                        className="container"
+                        style={{
+                            transform: `scale(${zoom})`,
+                            cursor: "move",
+                        }}
+                    >
                         <svg
                             height="200%"
                             width="1150px"
                             style={{
+                                transform: `scale(${zoom})`,
                                 enableBackground: "new 0 0 612 792",
                                 WebkitUserDrag: "none",
                                 // cursor: "move",
@@ -124,8 +126,8 @@ function Ring(props) {
                                 </text>
                             </g>
                         </svg>
-                    </Draggable>
-                </center>
+                    </center>
+                </Draggable>
             </div>
         </div>
     );

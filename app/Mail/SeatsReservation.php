@@ -16,10 +16,11 @@ class SeatsReservation extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($title, $content)
+    public function __construct($title, $content,$data)
     {
         $this->title = $title;
         $this->content = $content;
+        $this->data = $data;
     }
 
     /**
@@ -53,11 +54,12 @@ class SeatsReservation extends Mailable
     }
     public function build()
     {
-        //    return $this->markdown('emails.reservation')
-        //         ->with([
-        //             'title' => $this->title,
-        //             'content' => $this->content,
-        //         ]);
-        return $this->markdown('emails.reservation');
+           return $this->markdown('emails.reservation')
+                ->with([
+                    'title' => $this->title,
+                    'content' => $this->content,
+                     'data' => $this->data,
+                ]);
+        // return $this->markdown('emails.reservation');
     }
 }

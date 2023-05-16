@@ -18,6 +18,18 @@ class CartProductsController extends Controller
      public $order_type = "HFN POS";
      public $cart_customer_id = 0;
      
+     public function remove_checkout(Request $request){
+                session(['create_checkout' => $request->data]);
+                       CartProducts::where([['event_id', '=', $this->event_id],['cart_product_id', '=', $request->cart_product_id]])
+                         ->update([
+                              'quantity' => 1
+                         ]);
+                    return response()->json([
+                    'status' => 'success',
+               ]);
+     }
+       
+       
      public function get_seats($status = '', $cat_id = null)
      {
 
@@ -178,10 +190,11 @@ class CartProductsController extends Controller
 
 
                $datetime = new DateTime($request->date);
-               $datetime->modify('+5 minutes');
+               $datetime->modify('+4 minutes');
                session(['session' => $datetime->format('Y-m-d H:i:s')]);
           }
 
+             $code = mt_rand(1000000000, 9999999999);
 
              for ($i = 0; $i < count($request->data); $i++) {
 
@@ -193,7 +206,6 @@ class CartProductsController extends Controller
                               'quantity' => 0
                          ]);
 
-                        $code = mt_rand(1000000000, 9999999999);
                         $success1 =  CartOrderedProducts::insert([
                          'client_id' => $this->client_id,
                          'cart_product_id' => $request->data[$i]['cart_product_id'],
@@ -236,7 +248,6 @@ class CartProductsController extends Controller
 
                }else{
                       $cartOrders = CartOrders::where('token','=',$token)->first();
-                        $code = mt_rand(1000000000, 9999999999);
                         $success1 =  CartOrderedProducts::insert([
                          'client_id' => $this->client_id,
                          'cart_product_id' =>7247,

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartProductsController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SeatsReservation;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,11 +20,16 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/send_reservation', function () {
-    $title = 'Welcome to My Website';
-    $content = 'Thanks for signing up!';
-  // Mail::to('recipient@example.com')->send(new SeatsReservation($title, $content));
-    return view('emails.reservation');
+Route::post('/send_reservation', function (Request $request) {
+    $title = 'Welcome to Hollywood Fight Nights';
+    $content = 'Thanks for purchasing tickets!';
+    $data = $request->data;
+    Mail::to($request->data['email'])->send(new SeatsReservation($title, $content,$data));
+    // return view('emails.reservation')->with([
+    //                 'title' => $title,
+    //                 'content' => $content,
+    //                  $data
+    //             ]);
 });
 
 Route::get('/{jsx?}',function(){

@@ -75,9 +75,9 @@ function AddToCartNoSeats() {
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row">
+                                                    <td scope="row">
                                                         VIP Ringside
-                                                    </th>
+                                                    </td>
                                                     <td>$ 200-$ 150</td>
                                                     <td>
                                                         <div
@@ -168,12 +168,11 @@ function AddToCartNoSeats() {
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row">$ 60.00</th>
+                                                    <td scope="row">$ 60.00</td>
                                                     <td>
                                                         <select
                                                             className="form-select form-select-sm mb-3"
                                                             aria-label=".form-select-sm example"
-                                                            defaultValue="1"
                                                             onInput={(e) =>
                                                                 setQuantity(
                                                                     e.target
@@ -181,13 +180,6 @@ function AddToCartNoSeats() {
                                                                 )
                                                             }
                                                         >
-                                                            <option
-                                                                value="0"
-                                                                selected
-                                                                disabled
-                                                            >
-                                                                Select Quantity
-                                                            </option>
                                                             {rows.map((res) => (
                                                                 <option
                                                                     key={res}

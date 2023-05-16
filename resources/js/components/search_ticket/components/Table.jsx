@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 function SearchTicketTable(props) {
-    console.log("props", props.data);
     return (
         <table className="table table-striped">
             <thead>
@@ -18,7 +17,7 @@ function SearchTicketTable(props) {
                     <tr>
                         <th scope="row">{res.cart_order_id}</th>
                         <td>
-                            {res.cart_product_id === 0
+                            {res.cart_product_id === 7247
                                 ? "General Admission No Seat"
                                 : ""}
                         </td>
