@@ -26,14 +26,13 @@ class CartOrderedProductsController extends Controller
      public function send_place_orders(Request $request)
      {
           $cartOrderProducts = new CartOrderedProducts;
-         $token =session('token');
+          $token =session('token');
 
           // $aa = $cartOrderProducts->checkOutSeats($request,$randomToken);
-
+          session(['order_complete' =>  generateRandomString()]);
           $data = session('create_checkout');
              for ($i=0; $i < count($data); $i++) { 
                          
-
                         CartOrderedProducts::where([['cart_product_id','=',$data[$i]['cart_product_id']],['token','=',session('token')]])
                         ->update([
                               'quantity' => $data[$i]['quantity'], 
