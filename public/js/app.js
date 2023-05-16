@@ -8319,6 +8319,118 @@ function CheckoutLayout() {
 
 /***/ }),
 
+/***/ "./resources/js/components/checkout/components/OrderedComplete.jsx":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/checkout/components/OrderedComplete.jsx ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function OrderedComplete() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "container mt-5 pt-5",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "row",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "col-md-12"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "col-md-12",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+          children: "Order Complete"
+        }), "Thank you for purchasing your ticket(s) for Hollywood Fight Nights"]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "col-md-12",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
+          className: "table",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                scope: "col",
+                children: "Product"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                scope: "col",
+                children: "Tickets"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                scope: "col",
+                children: "Price"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                scope: "col",
+                children: "Quantity"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                scope: "col",
+                children: "Total"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                scope: "col",
+                children: "Action"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tbody", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                scope: "row",
+                children: "1"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "Mark"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "Otto"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "@mdo"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "Otto"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "@mdo"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                scope: "row",
+                children: "2"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "Jacob"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "Thornton"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "@fat"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "Otto"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "@mdo"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                scope: "row",
+                children: "3"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "Larry"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "the Bird"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "@twitter"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "Otto"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: "@mdo"
+              })]
+            })]
+          })]
+        })
+      })]
+    })
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderedComplete);
+
+/***/ }),
+
 /***/ "./resources/js/components/checkout/components/PaymentMethod.jsx":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/checkout/components/PaymentMethod.jsx ***!
@@ -8447,7 +8559,7 @@ function CheckoutPaymentMethods(props) {
             data: paymentCard
           }).then(function (res) {
             console.log("res", paymentCard);
-            // window.location.href = "/";
+            window.location.href = "/ordered_complete";
           });
         }
       });
@@ -8455,14 +8567,24 @@ function CheckoutPaymentMethods(props) {
       axios__WEBPACK_IMPORTED_MODULE_4__["default"].post("/api/send_place_orders", paymentCash).then(function (res) {
         console.log(paymentCash);
         if (res.data.status === "success") {
-          window.location.href = "/";
+          axios__WEBPACK_IMPORTED_MODULE_4__["default"].post("/send_reservation", {
+            data: paymentCard
+          }).then(function (res) {
+            console.log("res", paymentCard);
+            window.location.href = "/ordered_complete";
+          });
         }
       });
     } else {
       axios__WEBPACK_IMPORTED_MODULE_4__["default"].post("/api/send_place_orders", paymentCheck).then(function (res) {
         console.log(paymentCheck);
         if (res.data.status === "success") {
-          window.location.href = "/";
+          axios__WEBPACK_IMPORTED_MODULE_4__["default"].post("/send_reservation", {
+            data: paymentCard
+          }).then(function (res) {
+            console.log("res", paymentCard);
+            window.location.href = "/ordered_complete";
+          });
         }
       });
     }
@@ -25173,13 +25295,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _Error404__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Error404 */ "./resources/js/components/routes/Error404.jsx");
 /* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Layout */ "./resources/js/components/Layout.jsx");
 /* harmony import */ var _add_to_cart_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../add_to_cart/Layout */ "./resources/js/components/add_to_cart/Layout.jsx");
 /* harmony import */ var _checkout_Layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../checkout/Layout */ "./resources/js/components/checkout/Layout.jsx");
 /* harmony import */ var _search_ticket_Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../search_ticket/Layout */ "./resources/js/components/search_ticket/Layout.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _checkout_components_OrderedComplete__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../checkout/components/OrderedComplete */ "./resources/js/components/checkout/components/OrderedComplete.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -25188,22 +25311,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var router = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.createBrowserRouter)([{
+
+var router = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.createBrowserRouter)([{
   path: "/",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {}),
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {}),
   children: [{
     path: "/",
-    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_add_to_cart_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_add_to_cart_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {})
   }, {
     path: "/checkout",
-    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_checkout_Layout__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_checkout_Layout__WEBPACK_IMPORTED_MODULE_4__["default"], {})
   }, {
     path: "/tickets",
-    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_search_ticket_Layout__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_search_ticket_Layout__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+  }, {
+    path: "/ordered_complete",
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_checkout_components_OrderedComplete__WEBPACK_IMPORTED_MODULE_6__["default"], {})
   }]
 }, {
   path: "*",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Error404__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Error404__WEBPACK_IMPORTED_MODULE_1__["default"], {})
 }]);
 
 /***/ }),

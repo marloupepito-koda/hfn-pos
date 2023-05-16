@@ -91,7 +91,7 @@ function CheckoutPaymentMethods(props) {
                         })
                         .then((res) => {
                             console.log("res", paymentCard);
-                            // window.location.href = "/";
+                            window.location.href = "/ordered_complete";
                         });
                 }
             });
@@ -99,14 +99,28 @@ function CheckoutPaymentMethods(props) {
             axios.post("/api/send_place_orders", paymentCash).then((res) => {
                 console.log(paymentCash);
                 if (res.data.status === "success") {
-                    window.location.href = "/";
+                    axios
+                        .post("/send_reservation", {
+                            data: paymentCard,
+                        })
+                        .then((res) => {
+                            console.log("res", paymentCard);
+                            window.location.href = "/ordered_complete";
+                        });
                 }
             });
         } else {
             axios.post("/api/send_place_orders", paymentCheck).then((res) => {
                 console.log(paymentCheck);
                 if (res.data.status === "success") {
-                    window.location.href = "/";
+                    axios
+                        .post("/send_reservation", {
+                            data: paymentCard,
+                        })
+                        .then((res) => {
+                            console.log("res", paymentCard);
+                            window.location.href = "/ordered_complete";
+                        });
                 }
             });
         }
