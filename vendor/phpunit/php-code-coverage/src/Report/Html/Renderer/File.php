@@ -134,7 +134,7 @@ final class File extends Renderer
             [
                 'items'     => $this->renderItems($node),
                 'lines'     => $this->renderSourceWithLineCoverage($node),
-                'legend'    => '<p><span class="legend covered-by-small-tests">Covered by small (and larger) tests</span><span class="legend covered-by-medium-tests">Covered by medium (and large) tests</span><span class="legend covered-by-large-tests">Covered by large tests (and tests of unknown size)</span><span class="legend not-covered">Not covered</span><span class="legend not-coverable">Not coverable</span></p>',
+                'legend'    => '<p><span className="legend covered-by-small-tests">Covered by small (and larger) tests</span><span className="legend covered-by-medium-tests">Covered by medium (and large) tests</span><span className="legend covered-by-large-tests">Covered by large tests (and tests of unknown size)</span><span className="legend not-covered">Not covered</span><span className="legend not-coverable">Not coverable</span></p>',
                 'structure' => '',
             ]
         );
@@ -146,7 +146,7 @@ final class File extends Renderer
                 [
                     'items'     => $this->renderItems($node),
                     'lines'     => $this->renderSourceWithBranchCoverage($node),
-                    'legend'    => '<p><span class="success"><strong>Fully covered</strong></span><span class="warning"><strong>Partially covered</strong></span><span class="danger"><strong>Not covered</strong></span></p>',
+                    'legend'    => '<p><span className="success"><strong>Fully covered</strong></span><span className="warning"><strong>Partially covered</strong></span><span className="danger"><strong>Not covered</strong></span></p>',
                     'structure' => $this->renderBranchStructure($node),
                 ]
             );
@@ -157,7 +157,7 @@ final class File extends Renderer
                 [
                     'items'     => $this->renderItems($node),
                     'lines'     => $this->renderSourceWithPathCoverage($node),
-                    'legend'    => '<p><span class="success"><strong>Fully covered</strong></span><span class="warning"><strong>Partially covered</strong></span><span class="danger"><strong>Not covered</strong></span></p>',
+                    'legend'    => '<p><span className="success"><strong>Fully covered</strong></span><span className="warning"><strong>Partially covered</strong></span><span className="danger"><strong>Not covered</strong></span></p>',
                     'structure' => $this->renderPathStructure($node),
                 ]
             );
@@ -680,7 +680,7 @@ final class File extends Renderer
             }
 
             if ($branchStructure !== '') { // don't show empty branches
-                $branches .= '<h5 class="structure-heading"><a name="' . htmlspecialchars($methodName, $this->htmlSpecialCharsFlags) . '">' . $this->abbreviateMethodName($methodName) . '</a></h5>' . "\n";
+                $branches .= '<h5 className="structure-heading"><a name="' . htmlspecialchars($methodName, $this->htmlSpecialCharsFlags) . '">' . $this->abbreviateMethodName($methodName) . '</a></h5>' . "\n";
                 $branches .= $branchStructure;
             }
         }
@@ -786,7 +786,7 @@ final class File extends Renderer
             }
 
             if ($pathStructure !== '') {
-                $paths .= '<h5 class="structure-heading"><a name="' . htmlspecialchars($methodName, $this->htmlSpecialCharsFlags) . '">' . $this->abbreviateMethodName($methodName) . '</a></h5>' . "\n";
+                $paths .= '<h5 className="structure-heading"><a name="' . htmlspecialchars($methodName, $this->htmlSpecialCharsFlags) . '">' . $this->abbreviateMethodName($methodName) . '</a></h5>' . "\n";
                 $paths .= $pathStructure;
             }
         }
@@ -906,14 +906,14 @@ final class File extends Renderer
             if (is_string($token)) {
                 if ($token === '"' && $tokens[$j - 1] !== '\\') {
                     $result[$i] .= sprintf(
-                        '<span class="string">%s</span>',
+                        '<span className="string">%s</span>',
                         htmlspecialchars($token, $this->htmlSpecialCharsFlags)
                     );
 
                     $stringFlag = !$stringFlag;
                 } else {
                     $result[$i] .= sprintf(
-                        '<span class="keyword">%s</span>',
+                        '<span className="keyword">%s</span>',
                         htmlspecialchars($token, $this->htmlSpecialCharsFlags)
                     );
                 }
@@ -953,7 +953,7 @@ final class File extends Renderer
                         }
 
                         $result[$i] .= sprintf(
-                            '<span class="%s">%s</span>',
+                            '<span className="%s">%s</span>',
                             $colour,
                             $line
                         );
@@ -1010,17 +1010,17 @@ final class File extends Renderer
                 case BaseTestRunner::STATUS_PASSED:
                     switch ($testData['size']) {
                         case 'small':
-                            $testCSS = ' class="covered-by-small-tests"';
+                            $testCSS = ' className="covered-by-small-tests"';
 
                             break;
 
                         case 'medium':
-                            $testCSS = ' class="covered-by-medium-tests"';
+                            $testCSS = ' className="covered-by-medium-tests"';
 
                             break;
 
                         default:
-                            $testCSS = ' class="covered-by-large-tests"';
+                            $testCSS = ' className="covered-by-large-tests"';
 
                             break;
                     }
@@ -1031,13 +1031,13 @@ final class File extends Renderer
                 case BaseTestRunner::STATUS_INCOMPLETE:
                 case BaseTestRunner::STATUS_RISKY:
                 case BaseTestRunner::STATUS_WARNING:
-                    $testCSS = ' class="warning"';
+                    $testCSS = ' className="warning"';
 
                     break;
 
                 case BaseTestRunner::STATUS_FAILURE:
                 case BaseTestRunner::STATUS_ERROR:
-                    $testCSS = ' class="danger"';
+                    $testCSS = ' className="danger"';
 
                     break;
             }

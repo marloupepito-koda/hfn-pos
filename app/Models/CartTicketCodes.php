@@ -11,8 +11,10 @@ class CartTicketCodes extends Model
 {
     use HasFactory;
     protected $table = 'cart_ticket_codes';
+    protected $primaryKey = 'cart_ticket_code_id';
+    public $timestamps = false;
+    
     protected $fillable = [
-        'cart_ticket_code_id',
         'cart_ordered_product_id',
         'product_id',
         'code',
@@ -24,6 +26,7 @@ class CartTicketCodes extends Model
 
     public function cartOrderedProducts(): BelongsTo
     {
-        return $this->belongsTo(CartOrderedProducts::class);
+        return $this->belongsTo(CartOrderedProducts::class ,'cart_ticket_code_id');
     }
+    
 }

@@ -10,7 +10,9 @@ function AddToCartTopNavbar() {
     return (
         <nav className="navbar navbar-expand-lg bg-black fixed-top">
             <div className="container">
-                <a className="navbar-brand">HFN Live</a>
+                <a href="/" className="navbar-brand">
+                    HFN Live
+                </a>
 
                 {/* <a
                     href="ticket.html"

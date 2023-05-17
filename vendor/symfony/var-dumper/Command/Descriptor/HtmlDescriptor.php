@@ -44,7 +44,7 @@ class HtmlDescriptor implements DumpDescriptorInterface
         $title = '-';
         if (isset($context['request'])) {
             $request = $context['request'];
-            $controller = "<span class='dumped-tag'>{$this->dumper->dump($request['controller'], true, ['maxDepth' => 0])}</span>";
+            $controller = "<span className='dumped-tag'>{$this->dumper->dump($request['controller'], true, ['maxDepth' => 0])}</span>";
             $title = sprintf('<code>%s</code> <a href="%s">%s</a>', $request['method'], $uri = $request['uri'], $uri);
             $dedupIdentifier = $request['identifier'];
         } elseif (isset($context['cli'])) {
@@ -73,16 +73,16 @@ class HtmlDescriptor implements DumpDescriptorInterface
         $output->writeln(<<<HTML
 <article data-dedup-id="$dedupIdentifier">
     <header>
-        <div class="row">
-            <h2 class="col">$title</h2>
-            <time class="col text-small" title="$isoDate" datetime="$isoDate">
+        <div className="row">
+            <h2 className="col">$title</h2>
+            <time className="col text-small" title="$isoDate" datetime="$isoDate">
                 {$this->extractDate($context)}
             </time>
         </div>
         {$this->renderTags($tags)}
     </header>
-    <section class="body">
-        <p class="text-small">
+    <section className="body">
+        <p className="text-small">
             $sourceDescription
         </p>
         {$this->dumper->dump($data, true)}
@@ -105,12 +105,12 @@ HTML
 
         $renderedTags = '';
         foreach ($tags as $key => $value) {
-            $renderedTags .= sprintf('<li><span class="badge">%s</span>%s</li>', $key, $value);
+            $renderedTags .= sprintf('<li><span className="badge">%s</span>%s</li>', $key, $value);
         }
 
         return <<<HTML
-<div class="row">
-    <ul class="tags">
+<div className="row">
+    <ul className="tags">
         $renderedTags
     </ul>
 </div>

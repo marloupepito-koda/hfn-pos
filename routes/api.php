@@ -27,6 +27,12 @@ Route::post('/remove_checkout', [CartProductsController::class, 'remove_checkout
 
 Route::post('/send_place_orders', [CartOrderedProductsController::class, 'send_place_orders']);
 Route::get('/search_ticket_code/{search}', [CartOrderedProductsController::class, 'search_ticket_code']);
+Route::get('/get_order_complete', [CartOrderedProductsController::class, 'get_order_complete']);
+Route::post('/redeem_ticket', [CartOrderedProductsController::class, 'redeem_ticket']);
+Route::post('/accept_redeem', [CartOrderedProductsController::class, 'accept_redeem']);
+Route::get('/release_ticket/{id}/{productid}', [CartOrderedProductsController::class, 'release_ticket']);
+
+
 // Route::middleware(['web'])->group(function () {
 // }); 
 

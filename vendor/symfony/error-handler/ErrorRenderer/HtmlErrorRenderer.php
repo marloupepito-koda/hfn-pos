@@ -233,7 +233,7 @@ class HtmlErrorRenderer implements ErrorRendererInterface
         }
 
         if (false !== $link = $this->getFileLink($file, $line)) {
-            return sprintf('<a href="%s" title="Click to open this file" class="file_link">%s</a>', $this->escape($link), $text);
+            return sprintf('<a href="%s" title="Click to open this file" className="file_link">%s</a>', $this->escape($link), $text);
         }
 
         return $text;
@@ -266,7 +266,7 @@ class HtmlErrorRenderer implements ErrorRendererInterface
             }
 
             for ($i = max($line - $srcContext, 1), $max = min($line + $srcContext, \count($content)); $i <= $max; ++$i) {
-                $lines[] = '<li'.($i == $line ? ' class="selected"' : '').'><code>'.$this->fixCodeMarkup($content[$i - 1]).'</code></li>';
+                $lines[] = '<li'.($i == $line ? ' className="selected"' : '').'><code>'.$this->fixCodeMarkup($content[$i - 1]).'</code></li>';
             }
 
             return '<ol start="'.max($line - $srcContext, 1).'">'.implode("\n", $lines).'</ol>';

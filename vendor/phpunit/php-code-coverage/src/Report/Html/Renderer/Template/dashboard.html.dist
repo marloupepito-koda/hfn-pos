@@ -11,11 +11,11 @@
  </head>
  <body>
   <header>
-   <div class="container-fluid">
-    <div class="row">
-     <div class="col-md-12">
+   <div className="container-fluid">
+    <div className="row">
+     <div className="col-md-12">
       <nav aria-label="breadcrumb">
-       <ol class="breadcrumb">
+       <ol className="breadcrumb">
 {{breadcrumbs}}
        </ol>
       </nav>
@@ -23,35 +23,35 @@
     </div>
    </div>
   </header>
-  <div class="container-fluid">
-   <div class="row">
-    <div class="col-md-12">
+  <div className="container-fluid">
+   <div className="row">
+    <div className="col-md-12">
      <h2>Classes</h2>
     </div>
    </div>
-   <div class="row">
-    <div class="col-md-6">
+   <div className="row">
+    <div className="col-md-6">
      <h3>Coverage Distribution</h3>
      <div id="classCoverageDistribution" style="height: 300px;">
        <svg></svg>
      </div>
     </div>
-    <div class="col-md-6">
+    <div className="col-md-6">
      <h3>Complexity</h3>
      <div id="classComplexity" style="height: 300px;">
        <svg></svg>
      </div>
     </div>
    </div>
-   <div class="row">
-    <div class="col-md-6">
+   <div className="row">
+    <div className="col-md-6">
      <h3>Insufficient Coverage</h3>
-     <div class="scrollbox">
-      <table class="table">
+     <div className="scrollbox">
+      <table className="table">
        <thead>
         <tr>
          <th>Class</th>
-         <th class="text-right">Coverage</th>
+         <th className="text-right">Coverage</th>
         </tr>
        </thead>
        <tbody>
@@ -60,14 +60,14 @@
       </table>
      </div>
     </div>
-    <div class="col-md-6">
+    <div className="col-md-6">
      <h3>Project Risks</h3>
-     <div class="scrollbox">
-      <table class="table">
+     <div className="scrollbox">
+      <table className="table">
        <thead>
         <tr>
          <th>Class</th>
-         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+         <th className="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
         </tr>
        </thead>
        <tbody>
@@ -77,34 +77,34 @@
      </div>
     </div>
    </div>
-   <div class="row">
-    <div class="col-md-12">
+   <div className="row">
+    <div className="col-md-12">
      <h2>Methods</h2>
     </div>
    </div>
-   <div class="row">
-    <div class="col-md-6">
+   <div className="row">
+    <div className="col-md-6">
      <h3>Coverage Distribution</h3>
      <div id="methodCoverageDistribution" style="height: 300px;">
        <svg></svg>
      </div>
     </div>
-    <div class="col-md-6">
+    <div className="col-md-6">
      <h3>Complexity</h3>
      <div id="methodComplexity" style="height: 300px;">
        <svg></svg>
      </div>
     </div>
    </div>
-   <div class="row">
-    <div class="col-md-6">
+   <div className="row">
+    <div className="col-md-6">
      <h3>Insufficient Coverage</h3>
-     <div class="scrollbox">
-      <table class="table">
+     <div className="scrollbox">
+      <table className="table">
        <thead>
         <tr>
          <th>Method</th>
-         <th class="text-right">Coverage</th>
+         <th className="text-right">Coverage</th>
         </tr>
        </thead>
        <tbody>
@@ -113,14 +113,14 @@
       </table>
      </div>
     </div>
-    <div class="col-md-6">
+    <div className="col-md-6">
      <h3>Project Risks</h3>
-     <div class="scrollbox">
-      <table class="table">
+     <div className="scrollbox">
+      <table className="table">
        <thead>
         <tr>
          <th>Method</th>
-         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+         <th className="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
         </tr>
        </thead>
        <tbody>

@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
                 element: <SearchTicketLayout />,
             },
             {
-                path: "/ordered_complete",
+                path: "/order_complete",
                 element: <OrderedComplete />,
             },
         ],

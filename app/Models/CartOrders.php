@@ -11,9 +11,9 @@ class CartOrders extends Model
 {
     use HasFactory;
     protected $table = 'cart_orders';
-
+     protected $primaryKey = 'cart_order_id';
+        public $timestamps = false;
       protected $fillable = [
-        'cart_order_id',
         'client_id',
         'invoice_number',
         'cart_customer_id',

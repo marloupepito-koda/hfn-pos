@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CartOrderedProducts;
 
 class CartProducts extends Model
 {
     use HasFactory;
      protected $table = 'cart_products';
+     public $timestamps = false;
+     protected $primaryKey = 'cart_product_id';
      protected $fillable = [
         'cart_product_id',
         'client_id',
@@ -66,4 +70,8 @@ class CartProducts extends Model
         'ticket_side_image_1',
         'ticket_side_image_2',
     ];
+    public function cartProducts(): BelongsTo
+    {
+        return $this->belongsTo(CartOrderedProducts::class, 'cart_product_id');
+    }
 }

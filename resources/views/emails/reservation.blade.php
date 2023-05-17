@@ -3,18 +3,18 @@
    
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <body class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
+    <body className="container mt-5">
+        <div className="row">
+            <div className="col-md-12">
             </div>
-            <div class="col-md-12 mb-5">
+            <div className="col-md-12 mb-5">
                 <p>ATTENTION: You will see a Charge on Your Credit Card Billing Statement from EVENT ESSENTIALS, the OFFICIAL TICKETING COMPANY for HOLLYWOOD FIGHT NIGHT and 360 PROMOTIONS. NO REFUNDS.</p>
             <p>Dear CALLUM WALSH,</p>
 
             <p>We appreciate your choice to join us at the Hollywood Fight Nights 2023. We look forward to seeing you there!</p>
             <p>Below is your order summary along with your actual ticket.</p>
-               <div class="col-md-4 mt-5">
-                      <table class="table">
+               <div className="col-md-4 mt-5">
+                      <table className="table">
                         <tr>
                             <th scope="row">Order Name:  </th>
                             <td>{{ $data['fullname'] }}</td>
@@ -25,8 +25,8 @@
                 </table>
             </div>
             </div>
-            <div class="col-md-12">
-                <table class="table">
+            <div className="col-md-12">
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Product Name</th>
@@ -54,8 +54,8 @@
                     </tbody>
                 </table>
             </div>
-             <div class="col-md-4 mt-5">
-                      <table class="table">
+             <div className="col-md-4 mt-5">
+                      <table className="table">
                         <tr>
                             <th scope="row">SUB TOTAL: </th>
                             <td>Mark</td>

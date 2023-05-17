@@ -1,8 +1,8 @@
-<div class="exception">
-  <div class="exc-title">
+<div className="exception">
+  <div className="exc-title">
     <?php foreach ($name as $i => $nameSection): ?>
       <?php if ($i == count($name) - 1): ?>
-        <span class="exc-title-primary"><?php echo $tpl->escape($nameSection) ?></span>
+        <span className="exc-title-primary"><?php echo $tpl->escape($nameSection) ?></span>
       <?php else: ?>
         <?php echo $tpl->escape($nameSection) . ' \\' ?>
       <?php endif ?>
@@ -12,21 +12,21 @@
     <?php endif ?>
   </div>
 
-  <div class="exc-message">
+  <div className="exc-message">
     <?php if (!empty($message)): ?>
       <span><?php echo $tpl->escape($message) ?></span>
 
 
       <?php if (count($previousMessages)): ?>
-        <div class="exc-title prev-exc-title">
-          <span class="exc-title-secondary">Previous exceptions</span>
+        <div className="exc-title prev-exc-title">
+          <span className="exc-title-secondary">Previous exceptions</span>
         </div>
 
         <ul>
           <?php foreach ($previousMessages as $i => $previousMessage): ?>
             <li>
               <?php echo $tpl->escape($previousMessage) ?>
-              <span class="prev-exc-code">(<?php echo $previousCodes[$i] ?>)</span>
+              <span className="prev-exc-code">(<?php echo $previousCodes[$i] ?>)</span>
             </li>
           <?php endforeach; ?>
         </ul>
@@ -35,10 +35,10 @@
 
 
     <?php else: ?>
-      <span class="exc-message-empty-notice">No message</span>
+      <span className="exc-message-empty-notice">No message</span>
     <?php endif ?>
 
-    <ul class="search-for-help">
+    <ul className="search-for-help">
       <?php if (!empty($docref_url)): ?>
       <li>
         <a rel="noopener noreferrer" target="_blank" href="<?php echo $docref_url; ?>" title="Search for help in the PHP manual.">
@@ -54,7 +54,7 @@
           <!-- Google icon by Alfredo H, from https://www.iconfinder.com/alfredoh -->
           <!-- Creative Commons (Attribution 3.0 Unported) -->
           <!-- http://creativecommons.org/licenses/by/3.0/ -->
-          <svg class="google" height="16" viewBox="0 0 512 512" width="16" xmlns="http://www.w3.org/2000/svg">
+          <svg className="google" height="16" viewBox="0 0 512 512" width="16" xmlns="http://www.w3.org/2000/svg">
             <path d="M457.732 216.625c2.628 14.04 4.063 28.743 4.063 44.098C461.795 380.688 381.48 466 260.205 466c-116.024 0-210-93.977-210-210s93.976-210 210-210c56.703 0 104.076 20.867 140.44 54.73l-59.205 59.197v-.135c-22.046-21.002-50-31.762-81.236-31.762-69.297 0-125.604 58.537-125.604 127.84 0 69.29 56.306 127.97 125.604 127.97 62.87 0 105.653-35.966 114.46-85.313h-114.46v-81.902h197.528z"/>
           </svg>
         </a>
@@ -64,7 +64,7 @@
           <!-- DuckDuckGo icon by IconBaandar Team, from https://www.iconfinder.com/iconbaandar -->
           <!-- Creative Commons (Attribution 3.0 Unported) -->
           <!-- http://creativecommons.org/licenses/by/3.0/ -->
-          <svg class="duckduckgo" height="16" viewBox="150 150 1675 1675" width="16" xmlns="http://www.w3.org/2000/svg">
+          <svg className="duckduckgo" height="16" viewBox="150 150 1675 1675" width="16" xmlns="http://www.w3.org/2000/svg">
             <path d="M1792 1024c0 204.364-80.472 398.56-224.955 543.04-144.483 144.48-338.68 224.95-543.044 224.95-204.36 0-398.56-80.47-543.04-224.95-144.48-144.482-224.95-338.676-224.95-543.04 0-204.365 80.47-398.562 224.96-543.045C625.44 336.47 819.64 256 1024 256c204.367 0 398.565 80.47 543.05 224.954C1711.532 625.437 1792 819.634 1792 1024zm-270.206 497.787C1654.256 1389.327 1728 1211.36 1728 1024c0-187.363-73.74-365.332-206.203-497.796C1389.332 393.74 1211.363 320 1024 320s-365.33 73.742-497.795 206.205C393.742 658.67 320 836.637 320 1024c0 187.36 73.744 365.326 206.206 497.787C658.67 1654.25 836.638 1727.99 1024 1727.99c187.362 0 365.33-73.74 497.794-206.203z"/>
             <path d="M1438.64 1177.41c0-.03-.005-.017-.01.004l.01-.004z"/>
             <path d="M1499.8 976.878c.03-.156-.024-.048-.11.107l.11-.107z"/>
@@ -77,7 +77,7 @@
         <a rel="noopener noreferrer" target="_blank" href="https://stackoverflow.com/search?q=<?php echo urlencode(implode('\\', $name).' '.$message) ?>" title="Search for help on Stack Overflow.">
           <!-- Stack Overflow icon by Picons.me, from https://www.iconfinder.com/Picons -->
           <!-- Free for commercial use -->
-          <svg class="stackoverflow" height="16" viewBox="-1163 1657.697 56.693 56.693" width="16" xmlns="http://www.w3.org/2000/svg">
+          <svg className="stackoverflow" height="16" viewBox="-1163 1657.697 56.693 56.693" width="16" xmlns="http://www.w3.org/2000/svg">
             <path d="M-1126.04 1689.533l-16.577-9.778 2.088-3.54 16.578 9.778zM-1127.386 1694.635l-18.586-4.996 1.068-3.97 18.586 4.995zM-1127.824 1700.137l-19.165-1.767.378-4.093 19.165 1.767zM-1147.263 1701.293h19.247v4.11h-19.247z"/>
             <path d="M-1121.458 1710.947s0 .96-.032.96v.016h-30.796s-.96 0-.96-.016h-.032v-20.03h3.288v16.805h25.244v-16.804h3.288v19.07zM-1130.667 1667.04l10.844 15.903-3.396 2.316-10.843-15.903zM-1118.313 1663.044l3.29 18.963-4.05.703-3.29-18.963z"/>
           </svg>
@@ -86,10 +86,10 @@
     </ul>
 
     <span id="plain-exception"><?php echo $tpl->escape($plain_exception) ?></span>
-    <button id="copy-button" class="rightButton clipboard" data-clipboard-text="<?php echo $tpl->escape($plain_exception) ?>" title="Copy exception details to clipboard">
+    <button id="copy-button" className="rightButton clipboard" data-clipboard-text="<?php echo $tpl->escape($plain_exception) ?>" title="Copy exception details to clipboard">
       COPY
     </button>
-    <button id="hide-error" class="rightButton" title="Hide error message" onclick="document.getElementsByClassName('Whoops')[0].style.display = 'none';">
+    <button id="hide-error" className="rightButton" title="Hide error message" onclick="document.getElementsByClassName('Whoops')[0].style.display = 'none';">
       HIDE
     </button>
   </div>

@@ -8,6 +8,9 @@ function CheckoutPaymentMethods(props) {
     const [disable, setDisabled] = useState(false);
     const navigate = useNavigate();
     const location = useLocation().hash;
+    useEffect(() => {
+        console.log("dadada", CartData);
+    }, [CartData]);
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
         fullname: "",
@@ -19,6 +22,7 @@ function CheckoutPaymentMethods(props) {
         subTotal: props.subTotal,
         discount: props.discount,
     });
+
     const [paymentCash, setPaymentCash] = useState({
         cart: CartData.data,
         fullname: "",
@@ -83,46 +87,58 @@ function CheckoutPaymentMethods(props) {
         e.preventDefault();
         setDisabled(true);
         if (method === "credits") {
-            axios.post("/api/send_place_orders", paymentCard).then((res) => {
-                if (res.data.status === "success") {
-                    axios
-                        .post("/send_reservation", {
-                            data: paymentCard,
-                        })
-                        .then((res) => {
-                            console.log("res", paymentCard);
-                            window.location.href = "/ordered_complete";
-                        });
-                }
-            });
+            axios
+                .post("/api/send_place_orders", {
+                    data: paymentCard,
+                })
+                .then((res) => {
+                    if (res.data.status === "success") {
+                        axios
+                            .post("/send_reservation", {
+                                data: paymentCard,
+                            })
+                            .then((res) => {
+                                console.log("res", paymentCard);
+                                window.location.href = "/order_complete";
+                            });
+                    }
+                });
         } else if (method === "cash") {
-            axios.post("/api/send_place_orders", paymentCash).then((res) => {
-                console.log(paymentCash);
-                if (res.data.status === "success") {
-                    axios
-                        .post("/send_reservation", {
-                            data: paymentCard,
-                        })
-                        .then((res) => {
-                            console.log("res", paymentCard);
-                            window.location.href = "/ordered_complete";
-                        });
-                }
-            });
+            axios
+                .post("/api/send_place_orders", {
+                    data: paymentCard,
+                })
+                .then((res) => {
+                    console.log(paymentCash);
+                    if (res.data.status === "success") {
+                        axios
+                            .post("/send_reservation", {
+                                data: paymentCard,
+                            })
+                            .then((res) => {
+                                console.log("res", paymentCard);
+                                window.location.href = "/order_complete";
+                            });
+                    }
+                });
         } else {
-            axios.post("/api/send_place_orders", paymentCheck).then((res) => {
-                console.log(paymentCheck);
-                if (res.data.status === "success") {
-                    axios
-                        .post("/send_reservation", {
-                            data: paymentCard,
-                        })
-                        .then((res) => {
-                            console.log("res", paymentCard);
-                            window.location.href = "/ordered_complete";
-                        });
-                }
-            });
+            axios
+                .post("/api/send_place_orders", {
+                    data: paymentCard,
+                })
+                .then((res) => {
+                    console.log(paymentCheck);
+                    if (res.data.status === "success") {
+                        axios
+                            .post("/send_reservation", {
+                                data: paymentCard,
+                            })
+                            .then((res) => {
+                                console.log("res", paymentCard);
+                                window.location.href = "/order_complete";
+                            });
+                    }
+                });
         }
     };
     return (

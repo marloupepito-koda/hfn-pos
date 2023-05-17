@@ -107,7 +107,7 @@ following to load the ``TestListener``:
 .. code-block:: xml
 
     <listeners>
-        <listener class="\Mockery\Adapter\Phpunit\TestListener"></listener>
+        <listener className="\Mockery\Adapter\Phpunit\TestListener"></listener>
     </listeners>
 
 Make sure Composer's or Mockery's autoloader is present in the bootstrap file

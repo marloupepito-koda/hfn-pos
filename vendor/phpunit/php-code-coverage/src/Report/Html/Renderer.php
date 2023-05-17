@@ -237,12 +237,12 @@ abstract class Renderer
     protected function activeBreadcrumb(AbstractNode $node): string
     {
         $buffer = sprintf(
-            '         <li class="breadcrumb-item active">%s</li>' . "\n",
+            '         <li className="breadcrumb-item active">%s</li>' . "\n",
             $node->name()
         );
 
         if ($node instanceof DirectoryNode) {
-            $buffer .= '         <li class="breadcrumb-item">(<a href="dashboard.html">Dashboard</a>)</li>' . "\n";
+            $buffer .= '         <li className="breadcrumb-item">(<a href="dashboard.html">Dashboard</a>)</li>' . "\n";
         }
 
         return $buffer;
@@ -251,7 +251,7 @@ abstract class Renderer
     protected function inactiveBreadcrumb(AbstractNode $node, string $pathToRoot): string
     {
         return sprintf(
-            '         <li class="breadcrumb-item"><a href="%sindex.html">%s</a></li>' . "\n",
+            '         <li className="breadcrumb-item"><a href="%sindex.html">%s</a></li>' . "\n",
             $pathToRoot,
             $node->name()
         );

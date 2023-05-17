@@ -670,7 +670,7 @@ class ComponentTagCompiler
                 if ($match[1] === 'class') {
                     $match[2] = str_replace('"', "'", $match[2]);
 
-                    return ":class=\"\Illuminate\Support\Arr::toCssClasses{$match[2]}\"";
+                    return ":className=\"\Illuminate\Support\Arr::toCssClasses{$match[2]}\"";
                 }
 
                 return $match[0];

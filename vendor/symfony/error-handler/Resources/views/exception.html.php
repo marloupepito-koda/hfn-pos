@@ -1,33 +1,33 @@
-<div class="exception-summary <?= !$exceptionMessage ? 'exception-without-message' : ''; ?>">
-    <div class="exception-metadata">
-        <div class="container">
-            <h2 class="exception-hierarchy">
+<div className="exception-summary <?= !$exceptionMessage ? 'exception-without-message' : ''; ?>">
+    <div className="exception-metadata">
+        <div className="container">
+            <h2 className="exception-hierarchy">
                 <?php foreach (array_reverse($exception->getAllPrevious(), true) as $index => $previousException) { ?>
                     <a href="#trace-box-<?= $index + 2; ?>"><?= $this->abbrClass($previousException->getClass()); ?></a>
-                    <span class="icon"><?= $this->include('assets/images/chevron-right.svg'); ?></span>
+                    <span className="icon"><?= $this->include('assets/images/chevron-right.svg'); ?></span>
                 <?php } ?>
                 <a href="#trace-box-1"><?= $this->abbrClass($exception->getClass()); ?></a>
             </h2>
-            <h2 class="exception-http">
+            <h2 className="exception-http">
                 HTTP <?= $statusCode; ?> <small><?= $statusText; ?></small>
             </h2>
         </div>
     </div>
 
-    <div class="exception-message-wrapper">
-        <div class="container">
-            <h1 class="break-long-words exception-message<?= mb_strlen($exceptionMessage) > 180 ? ' long' : ''; ?>"><?= $this->formatFileFromText(nl2br($exceptionMessage)); ?></h1>
+    <div className="exception-message-wrapper">
+        <div className="container">
+            <h1 className="break-long-words exception-message<?= mb_strlen($exceptionMessage) > 180 ? ' long' : ''; ?>"><?= $this->formatFileFromText(nl2br($exceptionMessage)); ?></h1>
 
-            <div class="exception-illustration hidden-xs-down">
+            <div className="exception-illustration hidden-xs-down">
                 <?= $this->include('assets/images/symfony-ghost.svg.php'); ?>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container">
-    <div class="sf-tabs">
-        <div class="tab">
+<div className="container">
+    <div className="sf-tabs">
+        <div className="tab">
             <?php
             $exceptionAsArray = $exception->toArray();
             $exceptionWithUserCode = [];
@@ -41,15 +41,15 @@
                 }
             }
             ?>
-            <h3 class="tab-title">
+            <h3 className="tab-title">
                 <?php if ($exceptionAsArrayCount > 1) { ?>
-                    Exceptions <span class="badge"><?= $exceptionAsArrayCount; ?></span>
+                    Exceptions <span className="badge"><?= $exceptionAsArrayCount; ?></span>
                 <?php } else { ?>
                     Exception
                 <?php } ?>
             </h3>
 
-            <div class="tab-content">
+            <div className="tab-content">
                 <?php
                 foreach ($exceptionAsArray as $i => $e) {
                     echo $this->include('views/traces.html.php', [
@@ -63,17 +63,17 @@
         </div>
 
         <?php if ($logger) { ?>
-        <div class="tab <?= !$logger->getLogs() ? 'disabled' : ''; ?>">
-            <h3 class="tab-title">
+        <div className="tab <?= !$logger->getLogs() ? 'disabled' : ''; ?>">
+            <h3 className="tab-title">
                 Logs
-                <?php if ($logger->countErrors()) { ?><span class="badge status-error"><?= $logger->countErrors(); ?></span><?php } ?>
+                <?php if ($logger->countErrors()) { ?><span className="badge status-error"><?= $logger->countErrors(); ?></span><?php } ?>
             </h3>
 
-            <div class="tab-content">
+            <div className="tab-content">
                 <?php if ($logger->getLogs()) { ?>
                     <?= $this->include('views/logs.html.php', ['logs' => $logger->getLogs()]); ?>
                 <?php } else { ?>
-                    <div class="empty">
+                    <div className="empty">
                         <p>No log messages</p>
                     </div>
                 <?php } ?>
@@ -81,16 +81,16 @@
         </div>
         <?php } ?>
 
-        <div class="tab">
-            <h3 class="tab-title">
+        <div className="tab">
+            <h3 className="tab-title">
                 <?php if ($exceptionAsArrayCount > 1) { ?>
-                    Stack Traces <span class="badge"><?= $exceptionAsArrayCount; ?></span>
+                    Stack Traces <span className="badge"><?= $exceptionAsArrayCount; ?></span>
                 <?php } else { ?>
                     Stack Trace
                 <?php } ?>
             </h3>
 
-            <div class="tab-content">
+            <div className="tab-content">
                 <?php
                 foreach ($exceptionAsArray as $i => $e) {
                     echo $this->include('views/traces_text.html.php', [
@@ -104,10 +104,10 @@
         </div>
 
         <?php if ($currentContent) { ?>
-        <div class="tab">
-            <h3 class="tab-title">Output content</h3>
+        <div className="tab">
+            <h3 className="tab-title">Output content</h3>
 
-            <div class="tab-content">
+            <div className="tab-content">
                 <?= $currentContent; ?>
             </div>
         </div>

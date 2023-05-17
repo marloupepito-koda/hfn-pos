@@ -59,7 +59,7 @@ class HtmlDumper extends CliDumper
     ];
 
     protected $dumpHeader;
-    protected $dumpPrefix = '<pre class=sf-dump id=%s data-indent-pad="%s">';
+    protected $dumpPrefix = '<pre className=sf-dump id=%s data-indent-pad="%s">';
     protected $dumpSuffix = '</pre><script>Sfdump(%s)</script>';
     protected $dumpId = 'sf-dump';
     protected $colors = true;
@@ -519,12 +519,12 @@ return function (root, x) {
         var search = doc.createElement('div');
         search.className = 'sf-dump-search-wrapper sf-dump-search-hidden';
         search.innerHTML = '
-            <input type="text" class="sf-dump-search-input">
-            <span class="sf-dump-search-count">0 of 0<\/span>
-            <button type="button" class="sf-dump-search-input-previous" tabindex="-1">
+            <input type="text" className="sf-dump-search-input">
+            <span className="sf-dump-search-count">0 of 0<\/span>
+            <button type="button" className="sf-dump-search-input-previous" tabindex="-1">
                 <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 1331l-166 165q-19 19-45 19t-45-19L896 965l-531 531q-19 19-45 19t-45-19l-166-165q-19-19-19-45.5t19-45.5l742-741q19-19 45-19t45 19l742 741q19 19 19 45.5t-19 45.5z"\/><\/svg>
             <\/button>
-            <button type="button" class="sf-dump-search-input-next" tabindex="-1">
+            <button type="button" className="sf-dump-search-input-next" tabindex="-1">
                 <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 808l-742 741q-19 19-45 19t-45-19L109 808q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"\/><\/svg>
             <\/button>
         ';
@@ -637,8 +637,8 @@ return function (root, x) {
                 h = elt.innerHTML;
                 elt[elt.innerText ? 'innerText' : 'textContent'] = s.substring(0, options.maxStringLength);
                 elt.className += ' sf-dump-str-collapse';
-                elt.innerHTML = '<span class=sf-dump-str-collapse>'+h+'<a class="sf-dump-ref sf-dump-str-toggle" title="Collapse"> ◀</a></span>'+
-                    '<span class=sf-dump-str-expand>'+elt.innerHTML+'<a class="sf-dump-ref sf-dump-str-toggle" title="'+x+' remaining characters"> ▶</a></span>';
+                elt.innerHTML = '<span className=sf-dump-str-collapse>'+h+'<a className="sf-dump-ref sf-dump-str-toggle" title="Collapse"> ◀</a></span>'+
+                    '<span className=sf-dump-str-expand>'+elt.innerHTML+'<a className="sf-dump-ref sf-dump-str-toggle" title="'+x+' remaining characters"> ▶</a></span>';
             }
         }
     } catch (e) {
@@ -790,7 +790,7 @@ EOHTML
         if ('' === $str && isset($cursor->attr['img-data'], $cursor->attr['content-type'])) {
             $this->dumpKey($cursor);
             $this->line .= $this->style('default', $cursor->attr['img-size'] ?? '', []);
-            $this->line .= $cursor->depth >= $this->displayOptions['maxDepth'] ? ' <samp class=sf-dump-compact>' : ' <samp class=sf-dump-expanded>';
+            $this->line .= $cursor->depth >= $this->displayOptions['maxDepth'] ? ' <samp className=sf-dump-compact>' : ' <samp className=sf-dump-expanded>';
             $this->endValue($cursor);
             $this->line .= $this->indentPad;
             $this->line .= sprintf('<img src="data:%s;base64,%s" /></samp>', $cursor->attr['content-type'], base64_encode($cursor->attr['img-data']));
@@ -812,10 +812,10 @@ EOHTML
 
         if ($cursor->skipChildren || $cursor->depth >= $this->displayOptions['maxDepth']) {
             $cursor->skipChildren = false;
-            $eol = ' class=sf-dump-compact>';
+            $eol = ' className=sf-dump-compact>';
         } else {
             $this->expandNextHash = false;
-            $eol = ' class=sf-dump-expanded>';
+            $eol = ' className=sf-dump-expanded>';
         }
 
         if ($hasChild) {
@@ -856,11 +856,11 @@ EOHTML
 
         if ('ref' === $style) {
             if (empty($attr['count'])) {
-                return sprintf('<a class=sf-dump-ref>%s</a>', $v);
+                return sprintf('<a className=sf-dump-ref>%s</a>', $v);
             }
             $r = ('#' !== $v[0] ? 1 - ('@' !== $v[0]) : 2).substr($value, 1);
 
-            return sprintf('<a class=sf-dump-ref href=#%s-ref%s title="%d occurrences">%s</a>', $this->dumpId, $r, 1 + $attr['count'], $v);
+            return sprintf('<a className=sf-dump-ref href=#%s-ref%s title="%d occurrences">%s</a>', $this->dumpId, $r, 1 + $attr['count'], $v);
         }
 
         if ('const' === $style && isset($attr['value'])) {
@@ -892,18 +892,18 @@ EOHTML
             }
             $label = esc(substr($value, -$attr['ellipsis']));
             $style = str_replace(' title="', " title=\"$v\n", $style);
-            $v = sprintf('<span class=%s>%s</span>', $class, substr($v, 0, -\strlen($label)));
+            $v = sprintf('<span className=%s>%s</span>', $class, substr($v, 0, -\strlen($label)));
 
             if (!empty($attr['ellipsis-tail'])) {
                 $tail = \strlen(esc(substr($value, -$attr['ellipsis'], $attr['ellipsis-tail'])));
-                $v .= sprintf('<span class=%s>%s</span>%s', $class, substr($label, 0, $tail), substr($label, $tail));
+                $v .= sprintf('<span className=%s>%s</span>%s', $class, substr($label, 0, $tail), substr($label, $tail));
             } else {
                 $v .= $label;
             }
         }
 
-        $v = "<span class=sf-dump-{$style}>".preg_replace_callback(static::$controlCharsRx, function ($c) use ($map) {
-            $s = $b = '<span class="sf-dump-default';
+        $v = "<span className=sf-dump-{$style}>".preg_replace_callback(static::$controlCharsRx, function ($c) use ($map) {
+            $s = $b = '<span className="sf-dump-default';
             $c = $c[$i = 0];
             if ($ns = "\r" === $c[$i] || "\n" === $c[$i]) {
                 $s .= ' sf-dump-ns';
@@ -932,7 +932,7 @@ EOHTML
             $v = sprintf('<a href="%s"%s rel="noopener noreferrer">%s</a>', esc($this->utf8Encode($attr['href'])), $target, $v);
         }
         if (isset($attr['lang'])) {
-            $v = sprintf('<code class="%s">%s</code>', esc($attr['lang']), $v);
+            $v = sprintf('<code className="%s">%s</code>', esc($attr['lang']), $v);
         }
 
         return $v;

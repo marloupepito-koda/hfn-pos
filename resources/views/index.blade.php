@@ -20,6 +20,9 @@
     </head>
   <style
    type="text/css">
+   .swal2-confirm.btn.btn-success{
+       margin-left:15px !important;
+   }
 	.st0{font-family:'ArialMT';}
 	.st1{font-size:20px;}
 	.st2{font-size:17px;}

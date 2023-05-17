@@ -73,7 +73,7 @@ function Ring(props) {
             </div>
             {loading ? (
                 <center>
-                    <div class="spinner-border" role="status"></div>
+                    <div className="spinner-border" role="status"></div>
                 </center>
             ) : (
                 <div className="container col-md-12" style={container}>

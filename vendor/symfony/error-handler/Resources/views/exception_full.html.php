@@ -19,13 +19,13 @@
 
         <?php if (class_exists(\Symfony\Component\HttpKernel\Kernel::class)) { ?>
             <header>
-                <div class="container">
-                    <h1 class="logo"><?= $this->include('assets/images/symfony-logo.svg'); ?> Symfony Exception</h1>
+                <div className="container">
+                    <h1 className="logo"><?= $this->include('assets/images/symfony-logo.svg'); ?> Symfony Exception</h1>
 
-                    <div class="help-link">
+                    <div className="help-link">
                         <a href="https://symfony.com/doc/<?= Symfony\Component\HttpKernel\Kernel::VERSION; ?>/index.html">
-                            <span class="icon"><?= $this->include('assets/images/icon-book.svg'); ?></span>
-                            <span class="hidden-xs-down">Symfony</span> Docs
+                            <span className="icon"><?= $this->include('assets/images/icon-book.svg'); ?></span>
+                            <span className="hidden-xs-down">Symfony</span> Docs
                         </a>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
-<div class="trace trace-as-html" id="trace-box-<?= $index; ?>">
-    <div class="trace-details">
-        <div class="trace-head">
-            <div class="sf-toggle" data-toggle-selector="#trace-html-<?= $index; ?>" data-toggle-initial="<?= $expand ? 'display' : ''; ?>">
-                <span class="icon icon-close"><?= $this->include('assets/images/icon-minus-square-o.svg'); ?></span>
-                <span class="icon icon-open"><?= $this->include('assets/images/icon-plus-square-o.svg'); ?></span>
+<div className="trace trace-as-html" id="trace-box-<?= $index; ?>">
+    <div className="trace-details">
+        <div className="trace-head">
+            <div className="sf-toggle" data-toggle-selector="#trace-html-<?= $index; ?>" data-toggle-initial="<?= $expand ? 'display' : ''; ?>">
+                <span className="icon icon-close"><?= $this->include('assets/images/icon-minus-square-o.svg'); ?></span>
+                <span className="icon icon-open"><?= $this->include('assets/images/icon-plus-square-o.svg'); ?></span>
                 <?php
                 $separator = strrpos($exception['class'], '\\');
                 $separator = false === $separator ? 0 : $separator + 1;
@@ -14,20 +14,20 @@
                 <?php if ('' === $class) { ?>
                     <br>
                 <?php } else { ?>
-                    <h3 class="trace-class">
+                    <h3 className="trace-class">
                         <?php if ('' !== $namespace) { ?>
-                            <span class="trace-namespace"><?= $namespace; ?></span>
+                            <span className="trace-namespace"><?= $namespace; ?></span>
                         <?php } ?>
                         <?= $class; ?>
                     </h3>
                 <?php } ?>
                 <?php if ($exception['message'] && $index > 1) { ?>
-                    <p class="break-long-words trace-message"><?= $this->escape($exception['message']); ?></p>
+                    <p className="break-long-words trace-message"><?= $this->escape($exception['message']); ?></p>
                 <?php } ?>
             </div>
         </div>
 
-        <div id="trace-html-<?= $index; ?>" class="sf-toggle-content">
+        <div id="trace-html-<?= $index; ?>" className="sf-toggle-content">
         <?php
         $isFirstUserCode = true;
         foreach ($exception['trace'] as $i => $trace) {
@@ -36,7 +36,7 @@
             if ($displayCodeSnippet) {
                 $isFirstUserCode = false;
             } ?>
-            <div class="trace-line <?= $isVendorTrace ? 'trace-from-vendor' : ''; ?>">
+            <div className="trace-line <?= $isVendorTrace ? 'trace-from-vendor' : ''; ?>">
                 <?= $this->include('views/trace.html.php', [
                     'prefix' => $index,
                     'i' => $i,

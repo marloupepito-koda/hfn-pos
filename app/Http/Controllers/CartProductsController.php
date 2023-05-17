@@ -194,10 +194,10 @@ class CartProductsController extends Controller
                session(['session' => $datetime->format('Y-m-d H:i:s')]);
           }
 
-             $code = mt_rand(1000000000, 9999999999);
 
              for ($i = 0; $i < count($request->data); $i++) {
 
+             $code = mt_rand(1000000000, 9999999999);
                     $token = session('token');
                if ($request->data[$i]['product_name'] !== 'General Admission No Seat') {
                     $cartOrders = CartOrders::where('token','=',$token)->first();

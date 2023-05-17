@@ -10,7 +10,7 @@ function CardSearchTicket() {
         setStatus("Loading...");
         axios.get("/api/search_ticket_code/" + search).then((res) => {
             setValue(res.data.status);
-            console.log(res.data.status);
+            console.log("new", res.data.status);
             if (res.data.status.length !== 0) {
                 setStatus("");
             } else {
@@ -49,9 +49,18 @@ function CardSearchTicket() {
                     </form>
                     <div className="col-md-12 mt-5">
                         {value.length !== 0 ? (
-                            value.map((res) => (
-                                <SearchTicketTable data={value} />
-                            ))
+                            value.map((res) =>
+                                res.cart_products.quantity === 1 ? (
+                                    <h3 key={res.cart_ordered_product_id}>
+                                        No results!
+                                    </h3>
+                                ) : (
+                                    <SearchTicketTable
+                                        key={res.cart_ordered_product_id}
+                                        data={value}
+                                    />
+                                )
+                            )
                         ) : (
                             <h3>{status}</h3>
                         )}

@@ -7,7 +7,7 @@
     <style><?= $this->include('assets/css/error.css'); ?></style>
 </head>
 <body>
-<div class="container">
+<div className="container">
     <h1>Oops! An Error Occurred</h1>
     <h2>The server returned a "<?= $statusCode; ?> <?= $statusText; ?>".</h2>
 

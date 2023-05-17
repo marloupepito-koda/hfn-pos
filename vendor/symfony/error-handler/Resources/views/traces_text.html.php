@@ -1,14 +1,14 @@
-<table class="trace trace-as-text">
-    <thead class="trace-head">
+<table className="trace trace-as-text">
+    <thead className="trace-head">
         <tr>
-            <th class="sf-toggle" data-toggle-selector="#trace-text-<?= $index; ?>" data-toggle-initial="<?= 1 === $index ? 'display' : ''; ?>">
-                <div class="trace-class">
+            <th className="sf-toggle" data-toggle-selector="#trace-text-<?= $index; ?>" data-toggle-initial="<?= 1 === $index ? 'display' : ''; ?>">
+                <div className="trace-class">
                     <?php if ($numExceptions > 1) { ?>
-                        <span class="text-muted">[<?= $numExceptions - $index + 1; ?>/<?= $numExceptions; ?>]</span>
+                        <span className="text-muted">[<?= $numExceptions - $index + 1; ?>/<?= $numExceptions; ?>]</span>
                     <?php } ?>
                     <?= ($parts = explode('\\', $exception['class'])) ? end($parts) : ''; ?>
-                    <span class="icon icon-close"><?= $this->include('assets/images/icon-minus-square-o.svg'); ?></span>
-                    <span class="icon icon-open"><?= $this->include('assets/images/icon-plus-square-o.svg'); ?></span>
+                    <span className="icon icon-close"><?= $this->include('assets/images/icon-minus-square-o.svg'); ?></span>
+                    <span className="icon icon-open"><?= $this->include('assets/images/icon-plus-square-o.svg'); ?></span>
                 </div>
             </th>
         </tr>
@@ -18,7 +18,7 @@
         <tr>
             <td>
                 <?php if ($exception['trace']) { ?>
-                <pre class="stacktrace">
+                <pre className="stacktrace">
 <?php
                     echo $this->escape($exception['class']).":\n";
                     if ($exception['message']) {
