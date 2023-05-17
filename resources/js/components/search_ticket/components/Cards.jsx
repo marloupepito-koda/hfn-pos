@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import SearchTicketTable from "./Table";
 function CardSearchTicket() {
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState(7536717902);
     const [value, setValue] = useState([]);
     const [status, setStatus] = useState("");
     const searchTicket = (e) => {
@@ -53,6 +53,10 @@ function CardSearchTicket() {
                                 res.cart_products.quantity === 1 ? (
                                     <h3 key={res.cart_ordered_product_id}>
                                         No results!
+                                    </h3>
+                                ) : res.cart_ticket_codes.status === 1 ? (
+                                    <h3 key={res.cart_ordered_product_id}>
+                                        Ticket Redeemed
                                     </h3>
                                 ) : (
                                     <SearchTicketTable

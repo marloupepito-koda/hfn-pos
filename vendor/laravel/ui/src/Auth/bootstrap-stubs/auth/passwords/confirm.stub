@@ -14,7 +14,7 @@
                         @csrf
 
                         <div className="row mb-3">
-                            <label for="password" className="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label htmlFor="password" className="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div className="col-md-6">
                                 <input id="password" type="password" className="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">

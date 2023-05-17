@@ -14,7 +14,7 @@
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div className="row mb-3">
-                            <label for="email" className="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label htmlFor="email" className="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div className="col-md-6">
                                 <input id="email" type="email" className="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
@@ -28,7 +28,7 @@
                         </div>
 
                         <div className="row mb-3">
-                            <label for="password" className="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label htmlFor="password" className="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div className="col-md-6">
                                 <input id="password" type="password" className="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -42,7 +42,7 @@
                         </div>
 
                         <div className="row mb-3">
-                            <label for="password-confirm" className="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                            <label htmlFor="password-confirm" className="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                             <div className="col-md-6">
                                 <input id="password-confirm" type="password" className="form-control" name="password_confirmation" required autocomplete="new-password">

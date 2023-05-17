@@ -187,7 +187,7 @@ class CartProductsController extends Controller
 
 
                $datetime = new DateTime($request->date);
-               $datetime->modify('+4 minutes');
+               $datetime->modify('+6 minutes');
 
                   $request->session()->put('session',$datetime->format('Y-m-d H:i:s'));
           }
@@ -232,10 +232,10 @@ class CartProductsController extends Controller
                          
                          
                          if($success1){
-                              $co = CartOrderedProducts::where('token',$token)->first();
+                              $cop = CartOrderedProducts::where('token',$token)->first();
 
                               CartTicketCodes::insert([
-                                   'cart_ordered_product_id' => $co->cart_ordered_product_id + $i,
+                                   'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i,
                                    'product_id' => $request->data[$i]['cart_product_id'],
                                    'code' => $code,
                                    'token' => $token,
@@ -273,9 +273,9 @@ class CartProductsController extends Controller
                          ]);
                          
                          if($success1){
-                              $co = CartOrderedProducts::where('token',$token)->first();
+                              $cop = CartOrderedProducts::where('token',$token)->first();
                               CartTicketCodes::insert([
-                                   'cart_ordered_product_id' => $co->cart_ordered_product_id + $i,
+                                   'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i +1,
                                    'product_id' =>7247,
                                    'code' => $code,
                                    'token' => $token,

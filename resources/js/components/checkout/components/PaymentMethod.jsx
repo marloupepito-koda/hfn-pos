@@ -5,12 +5,13 @@ import CartData from "../../add_to_cart/CartData";
 function CheckoutPaymentMethods(props) {
     const [method, setMethod] = useState("credits");
     const [amount, setAmount] = useState(0);
+    const [discount, setDiscount] = useState(0);
     const [disable, setDisabled] = useState(false);
     const navigate = useNavigate();
     const location = useLocation().hash;
     useEffect(() => {
-        console.log("dadada", CartData);
-    }, [CartData]);
+        setDiscount(props.discount);
+    }, [CartData + props.discount]);
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
         fullname: "",
@@ -20,7 +21,6 @@ function CheckoutPaymentMethods(props) {
         grandTotal: props.grandTotal,
         ticketFee: props.ticketFee,
         subTotal: props.subTotal,
-        discount: props.discount,
     });
 
     const [paymentCash, setPaymentCash] = useState({
@@ -33,7 +33,6 @@ function CheckoutPaymentMethods(props) {
         grandTotal: props.grandTotal,
         ticketFee: props.ticketFee,
         subTotal: props.subTotal,
-        discount: props.discount,
     });
 
     const [paymentCheck, setPaymentCheck] = useState({
@@ -46,7 +45,6 @@ function CheckoutPaymentMethods(props) {
         grandTotal: props.grandTotal,
         ticketFee: props.ticketFee,
         subTotal: props.subTotal,
-        discount: props.discount,
     });
     const changeHandler = (e) => {
         setMethod(e);
@@ -90,6 +88,7 @@ function CheckoutPaymentMethods(props) {
             axios
                 .post("/api/send_place_orders", {
                     data: paymentCard,
+                    discount: discount,
                 })
                 .then((res) => {
                     if (res.data.status === "success") {
@@ -107,6 +106,7 @@ function CheckoutPaymentMethods(props) {
             axios
                 .post("/api/send_place_orders", {
                     data: paymentCard,
+                    discount: discount,
                 })
                 .then((res) => {
                     console.log(paymentCash);
@@ -125,6 +125,7 @@ function CheckoutPaymentMethods(props) {
             axios
                 .post("/api/send_place_orders", {
                     data: paymentCard,
+                    discount: discount,
                 })
                 .then((res) => {
                     console.log(paymentCheck);
@@ -158,7 +159,7 @@ function CheckoutPaymentMethods(props) {
                         />
                         <label
                             className="form-check-label"
-                            for="flexRadioDefault1"
+                            htmlFor="flexRadioDefault1"
                         >
                             Credit Card
                         </label>
@@ -177,7 +178,7 @@ function CheckoutPaymentMethods(props) {
                         />
                         <label
                             className="form-check-label"
-                            for="flexRadioDefault1"
+                            htmlFor="flexRadioDefault1"
                         >
                             Cash
                         </label>
@@ -196,7 +197,7 @@ function CheckoutPaymentMethods(props) {
                         />
                         <label
                             className="form-check-label"
-                            for="flexRadioDefault1"
+                            htmlFor="flexRadioDefault1"
                         >
                             Check
                         </label>
@@ -284,18 +285,20 @@ function CheckoutPaymentMethods(props) {
                         className="form-control"
                         onInput={(e) => whereHandler(e.target.value)}
                     >
-                        <option disabled selected>
-                            Select...
+                        <option disabled>Select...</option>
+                        <option value="Previous Attendee">
+                            Previous Attendee
                         </option>
-                        <option>Previous Attendee</option>
-                        <option>Friends/Words of mount</option>
-                        <option>Facebook</option>
-                        <option>Instagram</option>
-                        <option>Tweeter</option>
-                        <option>Email</option>
-                        <option>Flyers/Signage</option>
-                        <option>Radio</option>
-                        <option>Others</option>
+                        <option value="Friends/Words of mount">
+                            Friends/Words of mount
+                        </option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Tweeter">Tweeter</option>
+                        <option value="Email">Email</option>
+                        <option value="Flyers/Signage">Flyers/Signage</option>
+                        <option value="Radio">Radio</option>
+                        <option value="Others">Others</option>
                     </select>
                 </div>
                 <div className="col-md-12  mt-4 ">

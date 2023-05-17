@@ -6,17 +6,19 @@ function OrderedComplete() {
     useEffect(() => {
         axios.get("/api/get_order_complete").then((res) => {
             setData(res.data.status);
-            console.log(res.data.status);
+            console.log("waaa", res.data.status);
         });
     }, []);
 
+    function backToIndex() {
+        window.location.href = "/";
+    }
     async function clickRedeem(e) {
         await axios
             .post("/api/redeem_ticket", {
                 data: e,
             })
             .then((res) => {
-                console.log(res.data.status);
                 if (res.data.status.cart_ticket_codes.status === 0) {
                     axios
                         .post("/api/accept_redeem", {
@@ -43,6 +45,16 @@ function OrderedComplete() {
                 }
             });
     }
+    const subTotal = data.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.cart_products.price_list;
+    }, 0);
+
+    const ticketFee = data.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.cart_products.price_fee;
+    }, 0);
+
+    const grandTotal = subTotal + ticketFee;
+    const discount = data[0] === undefined ? 0 : data[0].discount_offset;
     return (
         <div className="container mt-5 pt-5">
             <div className="row">
@@ -119,6 +131,35 @@ function OrderedComplete() {
                               ))
                             : ""}
                     </table>
+                </div>
+                <div className="col-md-3 offset-md-9">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Sub Total</th>
+                                <td scope="col">{subTotal}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Discount</th>
+                                <td>{discount}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Ticket Fee</th>
+                                <td>{ticketFee}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Grand Total</th>
+                                <td>{grandTotal - discount}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div className="col-md-3 ">
+                    <button className="btn btn-dark " onClick={backToIndex}>
+                        Next Order
+                    </button>
                 </div>
             </div>
         </div>

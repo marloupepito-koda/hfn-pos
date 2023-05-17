@@ -11,11 +11,14 @@ import axios from "axios";
 function CheckoutTable() {
     const location = useLocation().hash;
     const [addCart, setAddCart] = useState([]);
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState("0.00");
     const [count, setCount] = useOutletContext();
     const navigate = useNavigate();
     useEffect(() => {
         setAddCart(CartData.data);
+        if (CartData.data.length === 0) {
+            navigate("/");
+        }
     }, [count + location]);
 
     const subTotal = CartData.data.reduce((accumulator, currentValue) => {
@@ -31,8 +34,8 @@ function CheckoutTable() {
     function handleInput(event) {
         const formattedValue = new Intl.NumberFormat("en-US", {
             style: "decimal",
+            minimumFractionDigits: 2,
         }).format(event.target.value);
-
         setInputValue(formattedValue);
     }
 
@@ -153,7 +156,7 @@ function CheckoutTable() {
                 subTotal={subTotal}
                 ticketFee={ticketFee}
                 grandTotal={grandTotal - inputValue}
-                discount={parseFloat(inputValue)}
+                discount={inputValue}
             />
         </>
     );

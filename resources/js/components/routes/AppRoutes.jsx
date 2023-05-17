@@ -16,6 +16,10 @@ export const router = createBrowserRouter([
                 element: <AddToCart />,
             },
             {
+                path: "/upgrade/:code",
+                element: <AddToCart />,
+            },
+            {
                 path: "/checkout",
                 element: <CheckoutLayout />,
             },

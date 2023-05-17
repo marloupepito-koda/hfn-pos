@@ -4,10 +4,16 @@ import AddToCartNoSeats from "./components/Cart";
 
 function AddToCart() {
     return (
-        <div>
-            <div className="row col-md-8 offset-md-2">
-                <AddToCartNoSeats />
-                <Ring />
+        <div className="m-3 mt-5">
+            <br />
+            <br />
+            <div className="row">
+                <div className="col-md-7">
+                    <Ring />
+                </div>
+                <div className="col-md-5">
+                    <AddToCartNoSeats />
+                </div>
             </div>
         </div>
     );

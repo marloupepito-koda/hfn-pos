@@ -1,7 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 function SearchTicketTable(props) {
+    const navigate = useNavigate();
+    function upgradeHandler(code) {
+        navigate("/upgrade/" + code);
+    }
     function releaseHandler(productid, code) {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -73,7 +78,11 @@ function SearchTicketTable(props) {
                         </td>
                         <td>{res.code}</td>
                         <td>
-                            <button type="button" className="btn btn-success">
+                            <button
+                                onClick={() => upgradeHandler(res.code)}
+                                type="button"
+                                className="btn btn-success"
+                            >
                                 Upgrade
                             </button>
                         </td>

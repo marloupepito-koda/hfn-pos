@@ -51,11 +51,11 @@ class SubRequestHandler
         $trustedValues = [];
         foreach (array_reverse($request->getClientIps()) as $ip) {
             $trustedIps[] = $ip;
-            $trustedValues[] = sprintf('for="%s"', $ip);
+            $trustedValues[] = sprintf('htmlFor="%s"', $ip);
         }
         if ($ip !== $remoteAddr) {
             $trustedIps[] = $remoteAddr;
-            $trustedValues[] = sprintf('for="%s"', $remoteAddr);
+            $trustedValues[] = sprintf('htmlFor="%s"', $remoteAddr);
         }
 
         // set trusted values, reusing as much as possible the global trusted settings

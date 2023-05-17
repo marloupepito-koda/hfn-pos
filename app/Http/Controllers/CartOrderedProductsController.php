@@ -34,7 +34,7 @@ class CartOrderedProductsController extends Controller
 
         public function accept_redeem(Request $request){
 
-              CartTicketCodes::where('cart_ticket_code_id',$request->cart_ordered_product_id)->update([
+              CartTicketCodes::where('cart_ordered_product_id',$request->cart_ordered_product_id)->update([
                'status' =>$request->status
                ]);
 
@@ -78,7 +78,7 @@ class CartOrderedProductsController extends Controller
                         ->update([
                               'price_group' => 0,
                               'price_offset' => 0.00,
-                              'discount_offset' => 0.00,
+                              'discount_offset' => floatval($request->discount),
                               'cart_product_options' => 0, 
                               'cart_coupon_id' => 0,
                               'date_submitted' => date("Y-m-d H:i:s"),
@@ -99,7 +99,7 @@ class CartOrderedProductsController extends Controller
                               'price' => $data[$i]['price_list'], 
                               'price_group' => 0,
                               'price_offset' => 0.00,
-                              'discount_offset' => 0.00,
+                              'discount_offset' =>  floatval($request->discount),
                               'cart_product_options' => 0, 
                               'cart_coupon_id' => 0,
                               'date_submitted' => date("Y-m-d H:i:s"),

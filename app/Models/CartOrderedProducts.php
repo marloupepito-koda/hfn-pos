@@ -58,7 +58,7 @@ class CartOrderedProducts extends Model
 
     
      public function searchTickets($search){
-          $results = CartOrderedProducts::where('code', '=', $search)->with('cartProducts')->get();
+          $results = CartOrderedProducts::where('code', '=', $search)->with(['cartProducts','cartTicketCodes'])->get();
           return $results;
      }
 

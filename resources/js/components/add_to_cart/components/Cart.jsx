@@ -56,7 +56,71 @@ function AddToCartNoSeats() {
                 <div className="card-body">
                     <blockquote className="blockquote mb-0">
                         <div className="row">
-                            <div className="col-md-6 ">
+                            <div className="col-md-12">
+                                <div className="card h-100 ">
+                                    <div className="card-body">
+                                        <h5 className="card-title">
+                                            General Admission No Seat
+                                        </h5>
+                                        <table className="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">
+                                                        General Admission No
+                                                        Seat
+                                                    </th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td scope="row">$ 60.00</td>
+                                                    <td>
+                                                        <select
+                                                            className="form-select form-select-sm mb-3"
+                                                            aria-label=".form-select-sm example"
+                                                            onInput={(e) =>
+                                                                setQuantity(
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                        >
+                                                            {rows.map((res) => (
+                                                                <option
+                                                                    key={res}
+                                                                    value={res}
+                                                                >
+                                                                    {res}
+                                                                </option>
+                                                            ))}
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <button
+                                                            onClick={addNoSeats}
+                                                            className="btn btn-sm btn-primary"
+                                                        >
+                                                            ADD TO CART
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <AddToCartTable />
+                                    <button
+                                        disabled={disable}
+                                        onClick={goToCheckOut}
+                                        className="btn  btn-primary m-3"
+                                    >
+                                        CHECKOUT
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="col-md-12 mt-5">
                                 <div
                                     className="card "
                                     style={{ backgroundColor: "#d9d9d9" }}
@@ -147,70 +211,6 @@ function AddToCartNoSeats() {
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="card h-100 ">
-                                    <div className="card-body">
-                                        <h5 className="card-title">
-                                            General Admission No Seat
-                                        </h5>
-                                        <table className="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Price</th>
-                                                    <th scope="col">
-                                                        General Admission No
-                                                        Seat
-                                                    </th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td scope="row">$ 60.00</td>
-                                                    <td>
-                                                        <select
-                                                            className="form-select form-select-sm mb-3"
-                                                            aria-label=".form-select-sm example"
-                                                            onInput={(e) =>
-                                                                setQuantity(
-                                                                    e.target
-                                                                        .value
-                                                                )
-                                                            }
-                                                        >
-                                                            {rows.map((res) => (
-                                                                <option
-                                                                    key={res}
-                                                                    value={res}
-                                                                >
-                                                                    {res}
-                                                                </option>
-                                                            ))}
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                        <button
-                                                            onClick={addNoSeats}
-                                                            className="btn btn-sm btn-primary"
-                                                        >
-                                                            ADD TO CART
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <AddToCartTable />
-                                    <button
-                                        disabled={disable}
-                                        onClick={goToCheckOut}
-                                        className="btn  btn-primary m-3"
-                                    >
-                                        CHECKOUT
-                                    </button>
                                 </div>
                             </div>
                         </div>
