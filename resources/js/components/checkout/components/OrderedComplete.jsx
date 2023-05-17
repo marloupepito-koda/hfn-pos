@@ -19,7 +19,8 @@ function OrderedComplete() {
                 data: e,
             })
             .then((res) => {
-                if (res.data.status.cart_ticket_codes.status === 0) {
+                console.log(e);
+                if (res.data.status.cart_ticket_codes === null) {
                     axios
                         .post("/api/accept_redeem", {
                             cart_ordered_product_id: e,
@@ -31,7 +32,22 @@ function OrderedComplete() {
                                 icon: "success",
                                 title: "Ticket Redeemed",
                                 showConfirmButton: false,
-                                timer: 3000,
+                                timer: 1500,
+                            });
+                        });
+                } else if (res.data.status.cart_ticket_codes.status === 0) {
+                    axios
+                        .post("/api/accept_redeem", {
+                            cart_ordered_product_id: e,
+                            status: 1,
+                        })
+                        .then((res) => {
+                            Swal.fire({
+                                allowOutsideClick: false,
+                                icon: "success",
+                                title: "Ticket Redeemed",
+                                showConfirmButton: false,
+                                timer: 1500,
                             });
                         });
                 } else {
@@ -40,7 +56,7 @@ function OrderedComplete() {
                         icon: "error",
                         title: "Ticket already Redeemed",
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 1500,
                     });
                 }
             });

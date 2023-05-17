@@ -275,7 +275,7 @@ class CartProductsController extends Controller
                          if($success1){
                               $cop = CartOrderedProducts::where('token',$token)->first();
                               CartTicketCodes::insert([
-                                   'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i +1,
+                                   'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i,
                                    'product_id' =>7247,
                                    'code' => $code,
                                    'token' => $token,
