@@ -64,20 +64,17 @@ class CartProductsController extends Controller
 
        
 
-          if (session('session') === null) {
-
-
+          if ($request->session()->get('session') === null) {
                 function generateRandomString()
-          {
-               $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-               $randomString = '';
-               for ($i = 0; $i < 32; $i++) {
-                    $randomString .= $characters[rand(0, strlen($characters) - 1)];
-               }
-               return $randomString;
-          }
-                    session(['token' =>  generateRandomString()]);
-
+                    {
+                         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                         $randomString = '';
+                         for ($i = 0; $i < 32; $i++) {
+                              $randomString .= $characters[rand(0, strlen($characters) - 1)];
+                         }
+                         return $randomString;
+                    }
+                    $request->session()->put('token', generateRandomString());
                     $token = session('token');                  
                        CartOrders::insert([
                          'client_id' => $this->client_id,
@@ -191,14 +188,16 @@ class CartProductsController extends Controller
 
                $datetime = new DateTime($request->date);
                $datetime->modify('+4 minutes');
-               session(['session' => $datetime->format('Y-m-d H:i:s')]);
+
+                  $request->session()->put('session',$datetime->format('Y-m-d H:i:s'));
           }
 
 
              for ($i = 0; $i < count($request->data); $i++) {
 
              $code = mt_rand(1000000000, 9999999999);
-                    $token = session('token');
+                    $token = $request->session()->get('token');
+
                if ($request->data[$i]['product_name'] !== 'General Admission No Seat') {
                     $cartOrders = CartOrders::where('token','=',$token)->first();
                           CartProducts::where('cart_product_id', $request->data[$i]['cart_product_id'])
@@ -290,27 +289,27 @@ class CartProductsController extends Controller
           }
 
 
-          session(['create_checkout' => $request->data]);
+           $request->session()->put('create_checkout', $request->data);
           return response()->json([
-               'status' => session('session'),
+               'status' =>$request->session()->get('session'),
           ]);
 
      }
 
 
-     public function session()
+     public function session(Request $request)
      {
           return response()->json([
-               'status' => session('session'),
-               'checkout' => session('create_checkout'),
+               'status' => $request->session()->get('session'),
+               'checkout' => $request->session()->get('create_checkout'),
           ]);
      }
 
-     public function end_session()
+     public function end_session(Request $request)
      {
 
-          $data = session('create_checkout');
-          $checkoutToken = session('checkout_token');
+          $data = $request->session()->get('create_checkout');
+          $checkoutToken = $request->session()->get('checkout_token');
 
           for ($i = 0; $i < count($data); $i++) {
                if ($data[$i]['product_name'] !== 'General Admission No Seat') {
@@ -327,9 +326,9 @@ class CartProductsController extends Controller
           // CartOrderedProducts::where('token',session('token'))->delete();
           // CartTicketCodes::where('token',session('token'))->delete();
           // CartOrders::where('token',session('token'))->delete();
-          session()->forget('session');
-          session()->forget('token');
-          session()->forget('create_checkout');
+          $request->session()->forget('session');
+          $request->session()->forget('token');
+          $request->session()->forget('create_checkout');
           return response()->json([
                'status' => 'success',
           ]);

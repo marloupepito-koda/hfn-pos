@@ -38,19 +38,14 @@ class CartOrderedProductsController extends Controller
                'status' =>$request->status
                ]);
 
-               // $seats= CartTicketCodes::where('cart_ticket_code_id',$request->cart_ordered_product_id);
-               // $seats->status = $request->status;
-               // $seats->touch(); 
-
-      
            return response()->json([
                'status' =>$request->cart_ordered_product_id,
           ]);
         }
 
         
-      public function get_order_complete(){
-          $ordered =CartOrderedProducts::where('token',session('token'))->with(['cartProducts','cartTicketCodes'])->get();
+      public function get_order_complete(Request $request){
+          $ordered =CartOrderedProducts::where('token',$request->session()->get('token'))->with(['cartProducts','cartTicketCodes'])->get();
             return response()->json([
                'status' =>$ordered,
           ]);
@@ -72,14 +67,14 @@ class CartOrderedProductsController extends Controller
      public function send_place_orders(Request $request)
      {
           $cartOrderProducts = new CartOrderedProducts;
-          $token =session('token');
+          $token = $request->session()->get('token');
 
-          session(['order_complete' =>  $request->data]);
-          $data = session('create_checkout');
+            $request->session()->put('order_complete', $request->data);
+          $data = $request->session()->get('create_checkout');
 
              for ($i=0; $i < count($data); $i++) { 
                     if($data[$i]['cart_product_id'] === 'no seats'){
-                         CartOrderedProducts::where('token','=',session('token'))
+                         CartOrderedProducts::where('token','=',$token)
                         ->update([
                               'price_group' => 0,
                               'price_offset' => 0.00,
@@ -98,7 +93,7 @@ class CartOrderedProductsController extends Controller
                               'table_number' => 0,
                       ]);
                     }else{
-                        CartOrderedProducts::where([['cart_product_id','=',$data[$i]['cart_product_id']],['token','=',session('token')]])
+                        CartOrderedProducts::where([['cart_product_id','=',$data[$i]['cart_product_id']],['token','=',$token]])
                         ->update([
                               'quantity' => $data[$i]['quantity'], 
                               'price' => $data[$i]['price_list'], 
@@ -125,9 +120,8 @@ class CartOrderedProductsController extends Controller
 
             }
 
-          session()->forget('session');
-          session()->forget('create_checkout');
-         
+         $request->session()->forget('session');
+         $request->session()->forget('create_checkout');
           return response()->json([
                'status' =>'success',
           ]);
