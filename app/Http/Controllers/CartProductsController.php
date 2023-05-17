@@ -309,7 +309,7 @@ class CartProductsController extends Controller
      {
 
           $data = $request->session()->get('create_checkout');
-          $checkoutToken = $request->session()->get('checkout_token');
+          // $checkoutToken = $request->session()->get('checkout_token');
 
           for ($i = 0; $i < count($data); $i++) {
                if ($data[$i]['product_name'] !== 'General Admission No Seat') {
