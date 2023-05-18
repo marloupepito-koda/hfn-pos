@@ -31,7 +31,7 @@ Route::get('/get_order_complete', [CartOrderedProductsController::class, 'get_or
 Route::post('/redeem_ticket', [CartOrderedProductsController::class, 'redeem_ticket']);
 Route::post('/accept_redeem', [CartOrderedProductsController::class, 'accept_redeem']);
 Route::get('/release_ticket/{id}/{productid}', [CartOrderedProductsController::class, 'release_ticket']);
-
+Route::get('/get_ordered_products/{code}', [CartOrderedProductsController::class, 'get_ordered_products']);
 
 // Route::middleware(['web'])->group(function () {
 // }); 

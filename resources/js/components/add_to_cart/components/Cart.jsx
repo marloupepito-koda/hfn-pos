@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import AddToCartTable from "./Table";
 import CartData from "../CartData";
 import axios from "axios";
@@ -10,19 +10,25 @@ function AddToCartNoSeats() {
     const [count, setCount] = useOutletContext();
     const [disable, setDisabled] = useState(true);
     const navigate = useNavigate();
+    const { code } = useParams();
     const goToCheckOut = () => {
-        axios
-            .post("/create_checkout", {
-                data: CartData.data,
-                date: moment().format("LLL"),
-            })
-            .then((res) => {
-                navigate("/checkout#" + Math.floor(Math.random() * 9999));
-            });
+        if (code === undefined) {
+            axios
+                .post("/create_checkout", {
+                    data: CartData.data,
+                    date: moment().format("LLL"),
+                })
+                .then((res) => {
+                    navigate("/checkout#" + Math.floor(Math.random() * 9999));
+                });
+        } else {
+            navigate(
+                "/checkout/" + code + "#" + Math.floor(Math.random() * 9999)
+            );
+        }
     };
 
     useEffect(() => {
-        console.log(CartData.data.length);
         if (CartData.data.length === 0) {
             setDisabled(true);
         } else {
@@ -109,8 +115,8 @@ function AddToCartNoSeats() {
                                             </tbody>
                                         </table>
                                     </div>
-
                                     <AddToCartTable />
+
                                     <button
                                         disabled={disable}
                                         onClick={goToCheckOut}

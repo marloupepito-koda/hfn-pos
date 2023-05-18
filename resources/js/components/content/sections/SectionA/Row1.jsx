@@ -113,11 +113,11 @@ function Row1(props) {
                                 : ""
                         ] = el)
                     }
+                    onMouseEnter={() => openTooltip(true, seatData)}
+                    onMouseLeave={() => openTooltip(false, seatData)}
                     key={i + Math.random()}
-                    onClick={() =>
-                        taken === "taken" ? "" : addCartSeat(seatData)
-                    }
-                    id="app-title"
+                    onClick={() => addCartSeat(seatData)}
+                    id="seat-3827"
                     className="booth vip-ringside"
                     section="1"
                 >

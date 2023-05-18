@@ -6,11 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\CartOrderedProducts;
 use App\Models\CartTicketCodes;
 use App\Models\CartProducts;
+use App\Models\CartOrders;
 class CartOrderedProductsController extends Controller
 {
       public $client_id = 157;
 
-      
+       public function get_ordered_products($code){
+            $order= CartOrderedProducts::where('code',$code)->with('cartProducts')->get();
+            return response()->json([
+               'checkout' =>$order,
+            ]); 
+       }
         public function release_ticket($productid,$code){
           
           CartProducts::find($productid)->update([
@@ -72,6 +78,17 @@ class CartOrderedProductsController extends Controller
             $request->session()->put('order_complete', $request->data);
           $data = $request->session()->get('create_checkout');
 
+               CartOrders::where('token',$token)->update([
+                    'shipping_first_name' =>$request->data['fullname'],
+                    'shipping_email'=>$request->data['email'],
+                    'notes'=>$request->data['notes'],
+                    'total_grand'=>$request->data['grandTotal'],
+                    'ticket_fee'=>$request->data['ticketFee'],
+                    'total_sub'=>$request->data['subTotal'],
+                    'tender'=>$request->data['tenders'],
+                    'check_info'=>$request->data['check_info'],
+                    'total_discount'=>$request->discount
+               ]);
              for ($i=0; $i < count($data); $i++) { 
                     if($data[$i]['cart_product_id'] === 'no seats'){
                          CartOrderedProducts::where('token','=',$token)

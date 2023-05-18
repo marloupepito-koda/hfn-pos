@@ -9,6 +9,7 @@ import SectionG from "./sections/SectionG";
 import Draggable from "react-draggable";
 import axios from "axios";
 import { set } from "lodash";
+import DraggableComponent from "./Draggable";
 function Ring(props) {
     const [zoom, setZoom] = useState(1);
     const [seats, setSeats] = useState([]);
@@ -48,22 +49,23 @@ function Ring(props) {
             setLoading(false);
         });
     }, []);
+
     return (
         <div>
-            <div className="col-md-12" style={{ zIndex: "1" }}>
-                <div className="row col-md-2 p-0">
-                    <div className="col-md-6 p-0">
+            <div className="col-md-12 p-3" style={{ zIndex: "1" }}>
+                <div className="row ">
+                    <div className="col-md-3 col-4">
                         <button
                             onClick={handleZoomIn}
-                            className="btn btn-sm btn-primary"
+                            className="btn btn-md btn-primary"
                         >
                             Zoom In
                         </button>
                     </div>
-                    <div className="col-md-6 p-0">
+                    <div className="col-md-3  col-4">
                         <button
                             onClick={handleZoomOut}
-                            className="btn btn-sm btn-primary"
+                            className="btn btn-md btn-primary "
                         >
                             Zoom Out
                         </button>
@@ -83,7 +85,6 @@ function Ring(props) {
                             className="container"
                             style={{
                                 transform: `scale(${zoom})`,
-                                cursor: "move",
                             }}
                         >
                             <svg

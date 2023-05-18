@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 function SearchTicketTable(props) {
     const navigate = useNavigate();
     function upgradeHandler(code) {
-        navigate("/upgrade/" + code);
+        window.location.href = "/upgrade/" + code;
     }
     function releaseHandler(productid, code) {
         const swalWithBootstrapButtons = Swal.mixin({

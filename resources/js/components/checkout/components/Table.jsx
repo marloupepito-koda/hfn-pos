@@ -5,6 +5,7 @@ import {
     useOutletContext,
     Link,
     useNavigate,
+    useParams,
 } from "react-router-dom";
 import CheckoutPaymentMethods from "./PaymentMethod";
 import axios from "axios";
@@ -13,11 +14,19 @@ function CheckoutTable() {
     const [addCart, setAddCart] = useState([]);
     const [inputValue, setInputValue] = useState("0.00");
     const [count, setCount] = useOutletContext();
+    const { code } = useParams();
     const navigate = useNavigate();
     useEffect(() => {
-        setAddCart(CartData.data);
-        if (CartData.data.length === 0) {
-            navigate("/");
+        if (code === undefined) {
+            setAddCart(CartData.data);
+            if (CartData.data.length === 0) {
+                navigate("/");
+            }
+        } else {
+            setAddCart(CartData.data);
+            if (CartData.data.length === 0) {
+                navigate("/upgrade/" + code);
+            }
         }
     }, [count + location]);
 

@@ -4,9 +4,7 @@ import AddToCartNoSeats from "./components/Cart";
 
 function AddToCart() {
     return (
-        <div className="m-3 mt-5">
-            <br />
-            <br />
+        <div className="container-fluid mt-5">
             <div className="row">
                 <div className="col-md-7">
                     <Ring />

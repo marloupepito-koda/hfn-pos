@@ -4,32 +4,45 @@ import AddToCartTopNavbar from "./add_to_cart/components/TopNavbar";
 import TimerSession from "./components/Timer";
 import CartData from "./add_to_cart/CartData";
 import moment from "moment";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 function AppLayout() {
     const [timeLeft, setTimeLeft] = useState(0);
     const [data, setData] = useState([]);
     const location = useLocation();
     const hash = useLocation().hash;
+    const { code } = useParams();
     useEffect(() => {
-        axios
-            .get("/api/session", {
-                date: moment().format("LLL"),
-            })
-            .then((res) => {
-                if (res.data.checkout !== null) {
-                    setData(res.data.checkout);
-                    if (CartData.data.length === 0) {
-                        CartData.data = res.data.checkout;
+        if (code === undefined) {
+            axios
+                .get("/api/session", {
+                    date: moment().format("LLL"),
+                })
+                .then((res) => {
+                    if (res.data.checkout !== null) {
+                        setData(res.data.checkout);
+                        if (CartData.data.length === 0) {
+                            CartData.data = res.data.checkout;
+                        }
+                        setTimeLeft(res.data.status);
+                    } else {
+                        setData(CartData.data);
                     }
-                    setTimeLeft(res.data.status);
+                });
+        } else {
+            axios.get("/api/get_ordered_products/" + code).then((res) => {
+                if (CartData.data.length === 0) {
+                    CartData.data = [res.data.checkout[0].cart_products];
+                    setData(res.data.checkout);
                 } else {
-                    setData(CartData.data);
+                    CartData.data = CartData.data.slice(0, 2);
                 }
             });
+        }
     }, [location + data + hash]);
     return (
         <>
             <AddToCartTopNavbar />
-
             <TimerSession time={timeLeft} />
             <div style={{ marginTop: "15px" }}></div>
             <Outlet context={[data]} />

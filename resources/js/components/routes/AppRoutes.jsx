@@ -24,6 +24,10 @@ export const router = createBrowserRouter([
                 element: <CheckoutLayout />,
             },
             {
+                path: "/checkout/:code",
+                element: <CheckoutLayout />,
+            },
+            {
                 path: "/tickets",
                 element: <SearchTicketLayout />,
             },

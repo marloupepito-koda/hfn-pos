@@ -51,23 +51,26 @@ const TimerSession = (props) => {
 
     return (
         <div>
-            <br />
-            <div className="container">
-                <button
-                    type="button"
-                    className="btn btn-dark btn-lg "
-                    style={{
-                        position: "fixed",
-                        top: "30%",
-                        right: "20px",
-                        transform: "translateY(-50%)",
-                        width: "auto",
-                        zIndex: "1",
-                    }}
-                >
-                    {`${minutes} minutes, ${seconds} seconds`}
-                </button>
-            </div>
+            {seconds !== 0 ? (
+                <div className="container">
+                    <button
+                        type="button"
+                        className="btn btn-dark btn-lg "
+                        style={{
+                            position: "fixed",
+                            top: "30%",
+                            right: "20px",
+                            transform: "translateY(-50%)",
+                            width: "auto",
+                            zIndex: "1",
+                        }}
+                    >
+                        {`${minutes} minutes, ${seconds} seconds`}
+                    </button>
+                </div>
+            ) : (
+                <></>
+            )}
         </div>
     );
 };
