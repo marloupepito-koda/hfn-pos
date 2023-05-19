@@ -180,8 +180,9 @@
     color: white;
     position: relative;
 }
+
 #rotateMode2 {
-    border-radius: 25%;
+    border-radius: 50%;
     width: 125px;
     height: 125px;
     background-color: gray;
@@ -230,3 +231,4 @@
     left: 50%;
     transform: translateX(-50%);
 }
+

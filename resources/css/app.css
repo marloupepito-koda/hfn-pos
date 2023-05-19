@@ -171,3 +171,63 @@
 .booth.vip-ringside .booth-fill {
     fill: rgb(168, 0, 255);
 }
+
+#rotateMode {
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    background-color: gray;
+    color: white;
+    position: relative;
+}
+
+#rotateMode2 {
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    background-color: gray;
+    color: white;
+    position: relative;
+}
+
+#left {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+}
+
+#right {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+}
+
+#up {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#down {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#up1 {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#down1 {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
