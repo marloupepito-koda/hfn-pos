@@ -97,6 +97,13 @@ function Row12(props) {
                     : undefined
             );
 
+            const taken =
+                seatData !== undefined
+                    ? seatData.quantity === 0
+                        ? "taken"
+                        : ""
+                    : "";
+
             items.push(
                 <g
                     ref={(el) =>
@@ -115,8 +122,11 @@ function Row12(props) {
                     section="1"
                 >
                     <polygon
+                        value={i}
                         className={
-                            seatColor === undefined ? "st6 booth-fill" : ""
+                            seatColor === undefined
+                                ? "st6 booth-fill " + taken
+                                : ""
                         }
                         fill={seatColor === undefined ? "#000000" : "#ffff66"}
                         stroke="#000000"

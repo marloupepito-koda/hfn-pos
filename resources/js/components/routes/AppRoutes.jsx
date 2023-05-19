@@ -6,6 +6,7 @@ import AddToCart from "../add_to_cart/Layout";
 import CheckoutLayout from "../checkout/Layout";
 import SearchTicketLayout from "../search_ticket/Layout";
 import OrderedComplete from "../checkout/components/OrderedComplete";
+import UpgradeTable from "../checkout/components/UpgradeTable";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/checkout/:code",
-                element: <CheckoutLayout />,
+                element: <UpgradeTable />,
             },
             {
                 path: "/tickets",

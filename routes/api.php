@@ -33,6 +33,11 @@ Route::post('/accept_redeem', [CartOrderedProductsController::class, 'accept_red
 Route::get('/release_ticket/{id}/{productid}', [CartOrderedProductsController::class, 'release_ticket']);
 Route::get('/get_ordered_products/{code}', [CartOrderedProductsController::class, 'get_ordered_products']);
 
+
+Route::post('/update_seats', [CartOrdersController::class, 'update_seats']);
+
+
+
 // Route::middleware(['web'])->group(function () {
 // }); 
 
