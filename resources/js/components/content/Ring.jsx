@@ -17,33 +17,33 @@ function Ring(props) {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [scale, setScale] = useState(1.4);
 
-    const moveRight = () => {
+    function moveRight() {
         setPosition((prevPosition) => ({
             ...prevPosition,
             x: prevPosition.x + 50,
         }));
-    };
+    }
 
-    const moveLeft = () => {
+    function moveLeft() {
         setPosition((prevPosition) => ({
             ...prevPosition,
             x: prevPosition.x - 50,
         }));
-    };
+    }
 
-    const moveUp = () => {
+    function moveUp() {
         setPosition((prevPosition) => ({
             ...prevPosition,
             y: prevPosition.y - 50,
         }));
-    };
+    }
 
-    const moveDown = () => {
+    function moveDown() {
         setPosition((prevPosition) => ({
             ...prevPosition,
             y: prevPosition.y + 50,
         }));
-    };
+    }
 
     const container = {
         overflowX: "hidden",
@@ -63,13 +63,13 @@ function Ring(props) {
     //     setZoom(zoom - 0.1);
     // };
 
-    const zoomIn = () => {
+    function zoomIn() {
         setScale((prevScale) => prevScale + 0.3);
-    };
+    }
 
-    const zoomOut = () => {
+    function zoomOut() {
         setScale((prevScale) => prevScale - 0.3);
-    };
+    }
 
     const handleScroll = (event) => {
         const currentScroll = event.deltaY;
@@ -89,7 +89,7 @@ function Ring(props) {
 
     return (
         <div>
-            <div className="col-md-12 p-3" style={{ zIndex: "1" }}>
+            <div className="col-md-12 p-3">
                 <br />
                 <div className="row ">
                     <div className="col-md-6 col-6">
