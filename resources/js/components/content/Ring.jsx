@@ -170,74 +170,66 @@ function Ring(props) {
                     <div className="spinner-border" role="status"></div>
                 </center>
             ) : (
-                <div className="container col-md-12" style={container}>
+                <div className=" col-md-12" style={container}>
                     {/* <Draggable> */}
                     <br />
                     <br />
                     <br />
                     <center
-                        // onWheel={handleScroll}
-                        className="container"
-                        // style={{
-                        //     transform: `scale(${zoom})`,
-                        // }}
+                        style={{
+                            transition: "transform 3s ease",
+                            transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                        }}
                     >
-                        <div
+                        <svg
                             style={{
-                                transition: "transform 3s ease",
-                                transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                                enableBackground: "new 0 0 612 792",
+                                WebkitUserDrag: "none",
+                                // cursor: "move",
+                                touchAction: "none",
+                                userSelect: "none",
+                                WebkitUserDrag: "none",
+                                WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
+                                cursor: "move",
                             }}
+                            viewBox="0 0 612 792"
+                            xmlSpace="preserve"
+                            xmlns="http://www.w3.org/2000/svg"
                         >
-                            <svg
-                                style={{
-                                    enableBackground: "new 0 0 612 792",
-                                    WebkitUserDrag: "none",
-                                    // cursor: "move",
-                                    touchAction: "none",
-                                    userSelect: "none",
-                                    WebkitUserDrag: "none",
-                                    WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
-                                    cursor: "move",
-                                }}
-                                viewBox="0 0 612 792"
-                                xmlSpace="preserve"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <defs id="defs18930" />
-                                <g id="viewport">
-                                    <SectionA seats={seats} />
-                                    {/* <SectionB /> */}
-                                    <SectionC seats={seats} />
-                                    {/* <SectionD /> */}
-                                    <SectionE seats={seats} />
-                                    {/* <SectionF /> */}
-                                    <SectionG seats={seats} />
-                                    <rect
-                                        x="292"
-                                        y="291"
-                                        className="st6"
-                                        width="77.5"
-                                        height="77.5"
-                                        id="rect18191"
-                                    />
-                                    <rect
-                                        x="292"
-                                        y="291"
-                                        className="st21"
-                                        width="77.5"
-                                        height="77.5"
-                                        id="rect18193"
-                                    />
-                                    <text
-                                        transform="matrix(1 0 0 1 316.9026 331.7651)"
-                                        className="st22 st23"
-                                        id="text18195"
-                                    >
-                                        RING
-                                    </text>
-                                </g>
-                            </svg>
-                        </div>
+                            <defs id="defs18930" />
+                            <g id="viewport">
+                                <SectionA seats={seats} />
+                                {/* <SectionB /> */}
+                                <SectionC seats={seats} />
+                                {/* <SectionD /> */}
+                                <SectionE seats={seats} />
+                                {/* <SectionF /> */}
+                                <SectionG seats={seats} />
+                                <rect
+                                    x="292"
+                                    y="291"
+                                    className="st6"
+                                    width="77.5"
+                                    height="77.5"
+                                    id="rect18191"
+                                />
+                                <rect
+                                    x="292"
+                                    y="291"
+                                    className="st21"
+                                    width="77.5"
+                                    height="77.5"
+                                    id="rect18193"
+                                />
+                                <text
+                                    transform="matrix(1 0 0 1 316.9026 331.7651)"
+                                    className="st22 st23"
+                                    id="text18195"
+                                >
+                                    RING
+                                </text>
+                            </g>
+                        </svg>
                     </center>
                     {/* </Draggable> */}
                 </div>
