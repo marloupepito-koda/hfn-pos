@@ -11,7 +11,7 @@ function Row4(props) {
         const seatCheck = CartData.data.find(
             (obj) => obj.cart_product_id === e.cart_product_id
         );
-        if (seatCheck === undefined) {
+        if (seatCheck === undefined && e.quantity === 1) {
             CartData.data.push(e);
             navigate("#" + Math.floor(Math.random() * 9999));
         } else {
@@ -37,7 +37,11 @@ function Row4(props) {
         const name = data.product_name;
         const price = data.price_list;
         const dataTable =
-            '<table className="table" <span style="color: aqua;"><thead> </thead> <tbody> <tr><th scope="row">Section</th><td>' +
+            '<table className="table" <span style="color: aqua;"> <tbody>' +
+            '<tr><th scope="row">Status</th><td>' +
+            status +
+            "</td> </tr>" +
+            '<tr><th scope="row">Section</th><td>' +
             section +
             '</td> </tr> <tr><th scope="row">Row</th><td>' +
             row +
@@ -112,8 +116,18 @@ function Row4(props) {
                                 : ""
                         ] = el)
                     }
-                    onMouseEnter={() => openTooltip(true, seatData)}
-                    onMouseLeave={() => openTooltip(false, seatData)}
+                    onMouseEnter={() =>
+                        openTooltip(
+                            taken !== "taken" ? "Vacant" : "Sold Out",
+                            seatData
+                        )
+                    }
+                    onMouseLeave={() =>
+                        openTooltip(
+                            taken !== "taken" ? "Vacant" : "Sold Out",
+                            seatData
+                        )
+                    }
                     key={i + Math.random()}
                     onClick={() => addCartSeat(seatData)}
                     id="seat-3827"

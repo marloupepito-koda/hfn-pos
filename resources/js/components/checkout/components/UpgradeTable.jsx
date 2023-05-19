@@ -44,6 +44,13 @@ function UpgradeTable() {
     }
 
     const where = ["From", "To"];
+    function isNegative(number) {
+        if (number < 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     return (
         <div className="container">
             <div className=" col-md-8 offset-md-2">
@@ -114,7 +121,9 @@ function UpgradeTable() {
                 <button
                     onClick={updateSeats}
                     disabled={
-                        addCart.length === 1 || addCart.length === 0
+                        addCart.length === 1 ||
+                        addCart.length === 0 ||
+                        isNegative(additional) === true
                             ? true
                             : false
                     }

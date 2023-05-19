@@ -35,7 +35,7 @@ class CartOrdersController extends Controller
 
 
         return response()->json([
-               'status' =>$request->newSeat['cart_product_id'],
+               'status' =>'success',
           ]); 
       }
 }

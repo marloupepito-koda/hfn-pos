@@ -11,29 +11,66 @@ import axios from "axios";
 import { set } from "lodash";
 import DraggableComponent from "./Draggable";
 function Ring(props) {
-    const [zoom, setZoom] = useState(1);
+    const [zoom, setZoom] = useState(1.4);
     const [seats, setSeats] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [scale, setScale] = useState(1.4);
+
+    const moveRight = () => {
+        setPosition((prevPosition) => ({
+            ...prevPosition,
+            x: prevPosition.x + 50,
+        }));
+    };
+
+    const moveLeft = () => {
+        setPosition((prevPosition) => ({
+            ...prevPosition,
+            x: prevPosition.x - 50,
+        }));
+    };
+
+    const moveUp = () => {
+        setPosition((prevPosition) => ({
+            ...prevPosition,
+            y: prevPosition.y - 50,
+        }));
+    };
+
+    const moveDown = () => {
+        setPosition((prevPosition) => ({
+            ...prevPosition,
+            y: prevPosition.y + 50,
+        }));
+    };
+
     const container = {
-        width: "100%",
-        height: "85vh",
         overflowX: "hidden",
         overflowY: "hidden",
         position: "relative",
-        border: "solid 1px #006fbd",
+        border: "solid 4px #006fbd",
         display: "block",
         marginLeft: "auto",
         marginRight: "auto",
-        marginBottom: "30px",
     };
 
-    const handleZoomIn = () => {
-        setZoom(zoom + 0.1);
+    // const handleZoomIn = () => {
+    //     setZoom(zoom + 0.1);
+    // };
+
+    // const handleZoomOut = () => {
+    //     setZoom(zoom - 0.1);
+    // };
+
+    const zoomIn = () => {
+        setScale((prevScale) => prevScale + 0.3);
     };
 
-    const handleZoomOut = () => {
-        setZoom(zoom - 0.1);
+    const zoomOut = () => {
+        setScale((prevScale) => prevScale - 0.3);
     };
+
     const handleScroll = (event) => {
         const currentScroll = event.deltaY;
         if (currentScroll > zoom) {
@@ -53,8 +90,63 @@ function Ring(props) {
     return (
         <div>
             <div className="col-md-12 p-3" style={{ zIndex: "1" }}>
+                <br />
                 <div className="row ">
-                    <div className="col-md-3 col-4">
+                    <div className="col-md-6 col-6">
+                        <div className="circleBase" id="rotateMode">
+                            <button
+                                id="left"
+                                className="btn btn-default btn-sm "
+                                onClick={moveLeft}
+                            >
+                                <i className="fa fa-arrow-left fa-2x text-white p-1 "></i>
+                            </button>
+
+                            <button
+                                id="right"
+                                className="btn btn-default btn-sm"
+                                onClick={moveRight}
+                            >
+                                <i className="fa fa-arrow-right fa-2x text-white p-1 "></i>
+                            </button>
+
+                            <button
+                                id="up"
+                                className="btn btn-default btn-sm"
+                                onClick={moveUp}
+                            >
+                                <i className="fa fa-arrow-up fa-2x text-white p-1 "></i>
+                            </button>
+
+                            <button
+                                id="down"
+                                className="btn btn-default btn-sm"
+                                onClick={moveDown}
+                            >
+                                <i className="fa fa-arrow-down fa-2x text-white p-1 "></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-6">
+                        <div className="circleBase" id="rotateMode2">
+                            <button
+                                id="up1"
+                                className="btn btn-default btn-sm"
+                                onClick={zoomIn}
+                            >
+                                <i className="fa fa-search-plus fa-3x text-white p-1 "></i>
+                            </button>
+
+                            <button
+                                id="down1"
+                                className="btn btn-default btn-sm"
+                                onClick={zoomOut}
+                            >
+                                <i className="fa fa-search-minus fa-3x text-white p-1 "></i>
+                            </button>
+                        </div>
+                    </div>
+                    {/* <div className="col-md-3 col-4">
                         <button
                             onClick={handleZoomIn}
                             className="btn btn-md btn-primary"
@@ -69,7 +161,7 @@ function Ring(props) {
                         >
                             Zoom Out
                         </button>
-                    </div>
+                    </div> */}
                 </div>
                 &nbsp;
             </div>
@@ -79,23 +171,33 @@ function Ring(props) {
                 </center>
             ) : (
                 <div className="container col-md-12" style={container}>
-                    <Draggable>
-                        <center
-                            // onWheel={handleScroll}
-                            className="container"
+                    {/* <Draggable> */}
+                    <br />
+                    <br />
+                    <br />
+                    <center
+                        // onWheel={handleScroll}
+                        className="container"
+                        // style={{
+                        //     transform: `scale(${zoom})`,
+                        // }}
+                    >
+                        <div
                             style={{
-                                transform: `scale(${zoom})`,
+                                transition: "transform 3s ease",
+                                transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
                             }}
                         >
                             <svg
-                                height="200%"
-                                width="1150px"
                                 style={{
-                                    transform: `scale(${zoom})`,
                                     enableBackground: "new 0 0 612 792",
                                     WebkitUserDrag: "none",
                                     // cursor: "move",
-                                    marginTop: "-250",
+                                    touchAction: "none",
+                                    userSelect: "none",
+                                    WebkitUserDrag: "none",
+                                    WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
+                                    cursor: "move",
                                 }}
                                 viewBox="0 0 612 792"
                                 xmlSpace="preserve"
@@ -135,8 +237,9 @@ function Ring(props) {
                                     </text>
                                 </g>
                             </svg>
-                        </center>
-                    </Draggable>
+                        </div>
+                    </center>
+                    {/* </Draggable> */}
                 </div>
             )}
         </div>
