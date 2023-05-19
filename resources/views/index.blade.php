@@ -256,7 +256,6 @@
     left: 50%;
     transform: translateX(-50%);
 }
-
 </style>
 
     <body className="antialiased">
