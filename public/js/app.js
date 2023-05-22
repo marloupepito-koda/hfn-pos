@@ -8500,7 +8500,7 @@ function OrderedComplete() {
                 children: "Action"
               })]
             })
-          }), data !== undefined ? data.map(function (res) {
+          }), data !== undefined ? data.map(function (res, index) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
               children: res.cart_products === null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
@@ -8545,7 +8545,7 @@ function OrderedComplete() {
                   })
                 })]
               })
-            }, res.cart_product_id);
+            }, index);
           }) : ""]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {

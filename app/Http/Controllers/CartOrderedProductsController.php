@@ -74,7 +74,7 @@ class CartOrderedProductsController extends Controller
      {
           $cartOrderProducts = new CartOrderedProducts;
           $token = $request->session()->get('token');
-
+         session(['tokens' => $token]);
             $request->session()->put('order_complete', $request->data);
           $data = $request->session()->get('create_checkout');
 

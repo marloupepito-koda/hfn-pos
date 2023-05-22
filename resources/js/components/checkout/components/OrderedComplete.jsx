@@ -93,8 +93,8 @@ function OrderedComplete() {
                             </tr>
                         </thead>
                         {data !== undefined
-                            ? data.map((res) => (
-                                  <tbody key={res.cart_product_id}>
+                            ? data.map((res, index) => (
+                                  <tbody key={index}>
                                       {res.cart_products === null ? (
                                           <tr>
                                               <th scope="row">No Seats</th>
