@@ -22,7 +22,9 @@ function CardSearchTicket() {
     return (
         <>
             <div className="card mt-5">
-                <div className="card-header">Search Tickets</div>
+                <div className="card-header" style={{ marginTop: 50 }}>
+                    Search Tickets
+                </div>
                 <div className="card-body">
                     <form onSubmit={searchTicket}>
                         <div className="row">
@@ -50,7 +52,12 @@ function CardSearchTicket() {
                     <div className="col-md-12 mt-5">
                         {value.length !== 0 ? (
                             value.map((res) =>
-                                res.cart_products.quantity === 1 ? (
+                                res.cart_product_id === 7247 ? (
+                                    <SearchTicketTable
+                                        key={res.cart_ordered_product_id}
+                                        data={value}
+                                    />
+                                ) : res.cart_products.quantity === 1 ? (
                                     <h3 key={res.cart_ordered_product_id}>
                                         No results!
                                     </h3>

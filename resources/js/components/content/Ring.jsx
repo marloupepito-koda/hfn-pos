@@ -1,48 +1,36 @@
 import React, { useState, useEffect } from "react";
 import SectionA from "./sections/SectionA";
-import SectionB from "./sections/SectionB";
 import SectionC from "./sections/SectionC";
-import SectionD from "./sections/SectionD";
 import SectionE from "./sections/SectionE";
-import SectionF from "./sections/SectionF";
 import SectionG from "./sections/SectionG";
-import Draggable from "react-draggable";
 import axios from "axios";
-import { set } from "lodash";
-import DraggableComponent from "./Draggable";
 function Ring(props) {
-    const [zoom, setZoom] = useState(1.4);
     const [seats, setSeats] = useState([]);
     const [loading, setLoading] = useState(true);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [scale, setScale] = useState(1.4);
 
-    function moveRight() {
-        setPosition((prevPosition) => ({
-            ...prevPosition,
-            x: prevPosition.x + 50,
-        }));
+    useEffect(() => {
+        axios.get("/api/get_seats").then((res) => {
+            setSeats(res.data.status);
+            setLoading(false);
+        });
+    }, [position + scale]);
+
+    async function moveRight() {
+        await setPosition({ x: position.x + 50, y: position.y });
     }
 
-    function moveLeft() {
-        setPosition((prevPosition) => ({
-            ...prevPosition,
-            x: prevPosition.x - 50,
-        }));
+    async function moveLeft() {
+        await setPosition({ x: position.x - 50, y: position.y });
     }
 
-    function moveUp() {
-        setPosition((prevPosition) => ({
-            ...prevPosition,
-            y: prevPosition.y - 50,
-        }));
+    async function moveUp() {
+        await setPosition({ x: position.x, y: position.y - 50 });
     }
 
-    function moveDown() {
-        setPosition((prevPosition) => ({
-            ...prevPosition,
-            y: prevPosition.y + 50,
-        }));
+    async function moveDown() {
+        await setPosition({ x: position.x, y: position.y + 50 });
     }
 
     const container = {
@@ -55,37 +43,13 @@ function Ring(props) {
         marginRight: "auto",
     };
 
-    // const handleZoomIn = () => {
-    //     setZoom(zoom + 0.1);
-    // };
-
-    // const handleZoomOut = () => {
-    //     setZoom(zoom - 0.1);
-    // };
-
-    function zoomIn() {
-        setScale((prevScale) => prevScale + 0.3);
+    async function zoomIn() {
+        await setScale(scale + 0.4);
     }
 
-    function zoomOut() {
-        setScale((prevScale) => prevScale - 0.3);
+    async function zoomOut() {
+        await setScale(scale - 0.4);
     }
-
-    const handleScroll = (event) => {
-        const currentScroll = event.deltaY;
-        if (currentScroll > zoom) {
-            setZoom(zoom - 0.1);
-        } else {
-            setZoom(zoom + 0.1);
-        }
-    };
-
-    useEffect(() => {
-        axios.get("/api/get_seats").then((res) => {
-            setSeats(res.data.status);
-            setLoading(false);
-        });
-    }, []);
 
     return (
         <div>
@@ -146,22 +110,6 @@ function Ring(props) {
                             </button>
                         </div>
                     </div>
-                    {/* <div className="col-md-3 col-4">
-                        <button
-                            onClick={handleZoomIn}
-                            className="btn btn-md btn-primary"
-                        >
-                            Zoom In
-                        </button>
-                    </div>
-                    <div className="col-md-3  col-4">
-                        <button
-                            onClick={handleZoomOut}
-                            className="btn btn-md btn-primary "
-                        >
-                            Zoom Out
-                        </button>
-                    </div> */}
                 </div>
                 &nbsp;
             </div>

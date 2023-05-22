@@ -47,7 +47,8 @@ function AddToCartNoSeats() {
         const seatCheck = CartData.data.find(
             (obj) => obj.cart_product_id === "no seats"
         );
-        if (seatCheck === undefined && e.quantity === 1) {
+        // console.log(e.quantity);
+        if (seatCheck === undefined) {
             CartData.data.push(data);
             navigate("#" + Math.floor(Math.random() * 9999));
         } else {
