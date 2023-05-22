@@ -133,10 +133,8 @@ function Ring(props) {
                             style={{
                                 enableBackground: "new 0 0 612 792",
                                 WebkitUserDrag: "none",
-                                // cursor: "move",
                                 touchAction: "none",
                                 userSelect: "none",
-                                WebkitUserDrag: "none",
                                 WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
                                 cursor: "move",
                             }}
