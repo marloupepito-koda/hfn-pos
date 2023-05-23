@@ -19,8 +19,6 @@
             <link href="css/bootstrap-icons.css" rel="stylesheet">
             <link href="css/templatemo-festava-live.css" rel="stylesheet">
 
-             @viteReactRefresh
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
   <style
    type="text/css">
