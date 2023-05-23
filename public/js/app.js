@@ -9980,12 +9980,12 @@ var Modal = function Modal(_ref) {
     children = _ref.children;
   if (!isOpen) return null;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "modal-overlay ",
+    className: "modal-overlay",
     style: {
       zIndex: 1
     },
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "modal-content ",
+      className: "modal-content  bg-white",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
         className: "modal-close-button",
         onClick: onClose,
