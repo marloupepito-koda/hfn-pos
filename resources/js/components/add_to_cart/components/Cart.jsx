@@ -58,7 +58,7 @@ function AddToCartNoSeats() {
     };
     return (
         <>
-            <div className="card mb-5 mt-5">
+            <div className="card mb-5 ">
                 <div className="card-header">Seats Pricing</div>
                 <div className="card-body">
                     <blockquote className="blockquote mb-0">
@@ -127,7 +127,7 @@ function AddToCartNoSeats() {
                                     </button>
                                 </div>
                             </div>
-                            <div className="col-md-12 mt-5">
+                            {/* <div className="col-md-12 mt-5">
                                 <div
                                     className="card "
                                     style={{ backgroundColor: "#d9d9d9" }}
@@ -219,7 +219,7 @@ function AddToCartNoSeats() {
                                         </table>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </blockquote>
                 </div>

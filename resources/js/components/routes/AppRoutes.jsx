@@ -7,6 +7,7 @@ import CheckoutLayout from "../checkout/Layout";
 import SearchTicketLayout from "../search_ticket/Layout";
 import OrderedComplete from "../checkout/components/OrderedComplete";
 import UpgradeTable from "../checkout/components/UpgradeTable";
+import IndexLayout from "../content/Layout";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -14,11 +15,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <AddToCart />,
+                element: <IndexLayout />,
             },
             {
                 path: "/upgrade/:code",
-                element: <AddToCart />,
+                element: <IndexLayout />,
             },
             {
                 path: "/checkout",

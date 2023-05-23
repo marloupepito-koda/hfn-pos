@@ -141,9 +141,9 @@ function Row1(props) {
                         className={
                             seatColor === undefined
                                 ? "st6 booth-fill " + taken
-                                : ""
+                                : "st6 booth-fill selected"
                         }
-                        fill={seatColor === undefined ? "#000000" : "#ffff66"}
+                        fill="#FFFFFF"
                         stroke="#000000"
                         strokeWidth=".5"
                         strokeMiterlimit="10"

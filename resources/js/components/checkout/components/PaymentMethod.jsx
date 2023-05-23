@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import CartData from "../../add_to_cart/CartData";
+import Swal from "sweetalert2";
 function CheckoutPaymentMethods(props) {
     const [method, setMethod] = useState("credits");
     const [amount, setAmount] = useState(0);
@@ -88,6 +89,13 @@ function CheckoutPaymentMethods(props) {
     const submitPayment = (e) => {
         e.preventDefault();
         setDisabled(true);
+        Swal.fire({
+            title: "Loading...",
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
         if (method === "credits") {
             axios
                 .post("/api/send_place_orders", {

@@ -43,9 +43,10 @@ function AppLayout() {
     return (
         <>
             <AddToCartTopNavbar />
-            <TimerSession time={timeLeft} />
-            <div style={{ marginTop: "15px" }}></div>
-            <Outlet context={[data]} />
+            {/* <TimerSession time={timeLeft} /> */}
+            <div className="container">
+                <Outlet context={[data]} />
+            </div>
         </>
     );
 }
