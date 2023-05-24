@@ -31,7 +31,9 @@ function AddToCartTable() {
                                   <td>{res.product_name}</td>
                                   <td>
                                       Section{" "}
-                                      {res.venue_section_id === 1
+                                      {res.product_name === "No Seating"
+                                          ? "none"
+                                          : res.venue_section_id === 1
                                           ? "A"
                                           : res.venue_section_id === 2
                                           ? "B"
@@ -39,8 +41,18 @@ function AddToCartTable() {
                                           ? "C"
                                           : "D"}
                                   </td>
-                                  <td>Row {res.venue_row}</td>
-                                  <td>Seat {res.venue_seat}</td>
+                                  <td>
+                                      Row{" "}
+                                      {res.product_name === "No Seating"
+                                          ? "none"
+                                          : res.venue_row}
+                                  </td>
+                                  <td>
+                                      Seat{" "}
+                                      {res.product_name === "No Seating"
+                                          ? "none"
+                                          : res.venue_seat}
+                                  </td>
                               </tr>
                           ))}
                 </tbody>

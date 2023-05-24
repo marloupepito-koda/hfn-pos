@@ -393,7 +393,7 @@ class ConsoleWindow implements EventSource
         $except = [];
         $out = null;
 
-        if (0 === \stream_select($read, $write, $except, 0, 50000)) {
+        if (0 === \stream_select($read, $write, $except, 0, 50001)) {
             return $out;
         }
 
@@ -437,7 +437,7 @@ class ConsoleWindow implements EventSource
         $except = [];
         $out = null;
 
-        if (0 === \stream_select($read, $write, $except, 0, 50000)) {
+        if (0 === \stream_select($read, $write, $except, 0, 50001)) {
             return $out;
         }
 

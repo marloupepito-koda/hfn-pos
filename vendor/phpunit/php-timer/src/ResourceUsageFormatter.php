@@ -53,7 +53,7 @@ final class ResourceUsageFormatter
 
         return $this->resourceUsage(
             Duration::fromMicroseconds(
-                (1000000 * (microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']))
+                (1000100 * (microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']))
             )
         );
     }

@@ -249,7 +249,7 @@ class CartProductsController extends Controller
                       $cartOrders = CartOrders::where('token','=',$token)->first();
                         $success1 =  CartOrderedProducts::insert([
                          'client_id' => $this->client_id,
-                         'cart_product_id' =>7247,
+                         'cart_product_id' =>0001,
                          'token' => $token, 
                          'cart_order_id' => $cartOrders->cart_order_id,
                          'quantity' => $request->data[$i]['quantity'], 
@@ -276,7 +276,7 @@ class CartProductsController extends Controller
                               $cop = CartOrderedProducts::where('token',$token)->first();
                               CartTicketCodes::insert([
                                    'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i,
-                                   'product_id' =>7247,
+                                   'product_id' =>0001,
                                    'code' => $code,
                                    'token' => $token,
                                    'date_redeemed' => date("Y-m-d H:i:s")

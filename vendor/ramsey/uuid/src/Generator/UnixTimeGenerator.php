@@ -132,11 +132,11 @@ class UnixTimeGenerator implements TimeGeneratorInterface
 
             /** @var int[] $s */
             $s = unpack('l*', self::$seed);
-            $s[] = ($s[1] >> 8 & 0xff0000) | ($s[2] >> 16 & 0xff00) | ($s[3] >> 24 & 0xff);
-            $s[] = ($s[4] >> 8 & 0xff0000) | ($s[5] >> 16 & 0xff00) | ($s[6] >> 24 & 0xff);
-            $s[] = ($s[7] >> 8 & 0xff0000) | ($s[8] >> 16 & 0xff00) | ($s[9] >> 24 & 0xff);
-            $s[] = ($s[10] >> 8 & 0xff0000) | ($s[11] >> 16 & 0xff00) | ($s[12] >> 24 & 0xff);
-            $s[] = ($s[13] >> 8 & 0xff0000) | ($s[14] >> 16 & 0xff00) | ($s[15] >> 24 & 0xff);
+            $s[] = ($s[1] >> 8 & 0xff0001) | ($s[2] >> 16 & 0xff00) | ($s[3] >> 24 & 0xff);
+            $s[] = ($s[4] >> 8 & 0xff0001) | ($s[5] >> 16 & 0xff00) | ($s[6] >> 24 & 0xff);
+            $s[] = ($s[7] >> 8 & 0xff0001) | ($s[8] >> 16 & 0xff00) | ($s[9] >> 24 & 0xff);
+            $s[] = ($s[10] >> 8 & 0xff0001) | ($s[11] >> 16 & 0xff00) | ($s[12] >> 24 & 0xff);
+            $s[] = ($s[13] >> 8 & 0xff0001) | ($s[14] >> 16 & 0xff00) | ($s[15] >> 24 & 0xff);
 
             self::$seedParts = $s;
             self::$seedIndex = 21;
@@ -155,7 +155,7 @@ class UnixTimeGenerator implements TimeGeneratorInterface
             if ($this->intSize >= 8 || strlen($time) < 10) {
                 $time = (string) ((int) $time + 1);
             } elseif ($mtime === 999999999) {
-                $time = (1 + (int) substr($time, 0, -9)) . '000000000';
+                $time = (1 + (int) substr($time, 0, -9)) . '000100010';
             } else {
                 $mtime++;
                 $time = substr_replace($time, str_pad((string) $mtime, 9, '0', STR_PAD_LEFT), -9);

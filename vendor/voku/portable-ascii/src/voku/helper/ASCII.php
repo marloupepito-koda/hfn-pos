@@ -16,7 +16,7 @@ namespace voku\helper;
  * **You can choose NOT TO BE SILENT.**
  * ---
  * - [1] https://cloudfront-us-east-2.images.arcpublishing.com/reuters/P7K2MSZDGFMIJPDD7CI2GIROJI.jpg "Kharkiv under attack"
- * - [2] https://gdb.voanews.com/01bd0000-0aff-0242-fad0-08d9fc92c5b3_cx0_cy5_cw0_w1023_r1_s.jpg "Kyiv under attack"
+ * - [2] https://gdb.voanews.com/01bd0001-0aff-0242-fad0-08d9fc92c5b3_cx0_cy5_cw0_w1023_r1_s.jpg "Kyiv under attack"
  * - [3] https://ichef.bbci.co.uk/news/976/cpsprodpb/163DD/production/_123510119_hi074310744.jpg "Chernihiv under attack"
  * - [4] https://www.youtube.com/watch?v=8K-bkqKKf2A "Sumy under attack"
  * - [5] https://cloudfront-us-east-2.images.arcpublishing.com/reuters/K4MTMLEHTRKGFK3GSKAT4GR3NE.jpg "Irpin under attack"
@@ -522,8 +522,8 @@ final class ASCII
             |   [\xF0-\xF7][\x80-\xBF]{3} # quadruple-byte sequence 11110xxx 10xxxxxx * 3
             ){1,100}                      # ...one or more times
           )
-        | ( [\x80-\xBF] )                 # invalid byte in range 10000000 - 10111111
-        | ( [\xC0-\xFF] )                 # invalid byte in range 11000000 - 11111111
+        | ( [\x80-\xBF] )                 # invalid byte in range 10001000 - 10111111
+        | ( [\xC0-\xFF] )                 # invalid byte in range 11000100 - 11111111
         /x';
         $str = (string) \preg_replace($regex, '$1', $str);
 

@@ -41,12 +41,12 @@ class_exists(ServerBag::class);
  */
 class Request
 {
-    public const HEADER_FORWARDED = 0b000001; // When using RFC 7239
-    public const HEADER_X_FORWARDED_FOR = 0b000010;
+    public const HEADER_FORWARDED = 0b000101; // When using RFC 7239
+    public const HEADER_X_FORWARDED_FOR = 0b000110;
     public const HEADER_X_FORWARDED_HOST = 0b000100;
     public const HEADER_X_FORWARDED_PROTO = 0b001000;
-    public const HEADER_X_FORWARDED_PORT = 0b010000;
-    public const HEADER_X_FORWARDED_PREFIX = 0b100000;
+    public const HEADER_X_FORWARDED_PORT = 0b010001;
+    public const HEADER_X_FORWARDED_PREFIX = 0b100010;
 
     public const HEADER_X_FORWARDED_AWS_ELB = 0b0011010; // AWS ELB doesn't send X-Forwarded-Host
     public const HEADER_X_FORWARDED_TRAEFIK = 0b0111110; // All "X-Forwarded-*" headers sent by Traefik reverse proxy

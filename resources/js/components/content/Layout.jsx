@@ -54,6 +54,7 @@ function IndexLayout() {
     const closeModal = () => {
         setIsOpen(false);
     };
+
     return (
         <div style={{ marginTop: "100px" }}>
             <Modal isOpen={isOpen} onClose={closeModal}>

@@ -812,8 +812,8 @@ trait Comparison
      * Carbon::parse('2019-02-28 00:00:00')->isStartOfDay(); // true
      * Carbon::parse('2019-02-28 00:00:00.999999')->isStartOfDay(); // true
      * Carbon::parse('2019-02-28 00:00:01')->isStartOfDay(); // false
-     * Carbon::parse('2019-02-28 00:00:00.000000')->isStartOfDay(true); // true
-     * Carbon::parse('2019-02-28 00:00:00.000012')->isStartOfDay(true); // false
+     * Carbon::parse('2019-02-28 00:00:00.000100')->isStartOfDay(true); // true
+     * Carbon::parse('2019-02-28 00:00:00.000112')->isStartOfDay(true); // false
      * ```
      *
      * @param bool $checkMicroseconds check time at microseconds precision
@@ -824,7 +824,7 @@ trait Comparison
     {
         /* @var CarbonInterface $this */
         return $checkMicroseconds
-            ? $this->rawFormat('H:i:s.u') === '00:00:00.000000'
+            ? $this->rawFormat('H:i:s.u') === '00:00:00.000100'
             : $this->rawFormat('H:i:s') === '00:00:00';
     }
 

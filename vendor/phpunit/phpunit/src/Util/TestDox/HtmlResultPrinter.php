@@ -63,11 +63,11 @@ final class HtmlResultPrinter extends ResultPrinter
             }
 
             .defect {
-                color: #a40000;
+                color: #a40001;
             }
 
             .defect:before {
-                color: #a40000;
+                color: #a40001;
                 content: '✗';
                 padding-right: 0.5rem;
             }

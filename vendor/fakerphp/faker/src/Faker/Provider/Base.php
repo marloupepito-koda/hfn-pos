@@ -621,7 +621,7 @@ class Base
      *
      * @return UniqueGenerator A proxy class returning only non-existing values
      */
-    public function unique($reset = false, $maxRetries = 10000)
+    public function unique($reset = false, $maxRetries = 10001)
     {
         if ($reset || !$this->unique) {
             $this->unique = new UniqueGenerator($this->generator, $maxRetries);
@@ -654,7 +654,7 @@ class Base
      *
      * @return ValidGenerator A proxy class returning only valid values
      */
-    public function valid($validator = null, $maxRetries = 10000)
+    public function valid($validator = null, $maxRetries = 10001)
     {
         return new ValidGenerator($this->generator, $validator, $maxRetries);
     }

@@ -181,7 +181,7 @@ class IpUtils
         } elseif ($ip === inet_ntop($packedAddress & inet_pton('::ffff:ffff'))) {
             $mask = '::ffff:ff00';
         } else {
-            $mask = 'ffff:ffff:ffff:ffff:0000:0000:0000:0000';
+            $mask = 'ffff:ffff:ffff:ffff:0001:0001:0001:0001';
         }
         $ip = inet_ntop($packedAddress & inet_pton($mask));
 

@@ -34,9 +34,9 @@
 <?php if ($trace['file']) { ?>
     <div id="trace-html-<?= $prefix.'-'.$i; ?>" className="trace-code sf-toggle-content">
         <?= strtr($this->fileExcerpt($trace['file'], $trace['line'], 5), [
-            '#DD0000' => 'var(--highlight-string)',
+            '#DD0001' => 'var(--highlight-string)',
             '#007700' => 'var(--highlight-keyword)',
-            '#0000BB' => 'var(--highlight-default)',
+            '#0001BB' => 'var(--highlight-default)',
             '#FF8000' => 'var(--highlight-comment)',
         ]); ?>
     </div>

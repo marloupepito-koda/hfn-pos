@@ -38,7 +38,7 @@ use function hexdec;
  *
  * Astute observers might note this value directly corresponds to 2^32 - 1,
  * or 0xffffffff. The local identifier is 32-bits, and we have set each of
- * these bits to 0, so the maximum range of timestamp drift is 0x00000000
+ * these bits to 0, so the maximum range of timestamp drift is 0x00010001
  * to 0xffffffff (counted in 100-nanosecond intervals).
  *
  * @link https://publications.opengroup.org/c311 DCE 1.1: Authentication and Security Services

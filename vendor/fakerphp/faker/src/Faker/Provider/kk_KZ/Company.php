@@ -56,7 +56,7 @@ class Company extends \Faker\Provider\Company
      *
      * @param \DateTime $registrationDate
      *
-     * @return string 12 digits, like 150140000019
+     * @return string 12 digits, like 150140001019
      */
     public static function businessIdentificationNumber(\DateTime $registrationDate = null)
     {

@@ -7940,6 +7940,7 @@ function AddToCartNoSeats() {
     } else {
       setDisabled(false);
     }
+    console.log("waaa", _CartData__WEBPACK_IMPORTED_MODULE_2__["default"].data);
   }, [_CartData__WEBPACK_IMPORTED_MODULE_2__["default"].data.length]);
   var addNoSeats = function addNoSeats(e) {
     var data = {
@@ -8113,11 +8114,11 @@ function AddToCartTable() {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
               children: res.product_name
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
-              children: ["Section", " ", res.venue_section_id === 1 ? "A" : res.venue_section_id === 2 ? "B" : res.venue_section_id === 3 ? "C" : "D"]
+              children: ["Section", " ", res.product_name === "No Seating" ? "none" : res.venue_section_id === 1 ? "A" : res.venue_section_id === 2 ? "B" : res.venue_section_id === 3 ? "C" : "D"]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
-              children: ["Row ", res.venue_row]
+              children: ["Row", " ", res.product_name === "No Seating" ? "none" : res.venue_row]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
-              children: ["Seat ", res.venue_seat]
+              children: ["Seat", " ", res.product_name === "No Seating" ? "none" : res.venue_seat]
             })]
           }, res.cart_product_id);
         })]
@@ -8300,7 +8301,7 @@ function OrderedComplete() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("/api/get_order_complete").then(function (res) {
       setData(res.data.status);
-      // console.log("waaa", res.data.status);
+      console.log("waaa", res.data.status);
     });
   }, []);
   function backToIndex() {
@@ -8414,7 +8415,7 @@ function OrderedComplete() {
               })
             }), data !== undefined ? data.map(function (res, index) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
-                children: res.cart_product_id === 7247 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+                children: res.cart_product_id === parseInt("0001") ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
                     scope: "row",
                     children: "No Seats"
@@ -10308,7 +10309,7 @@ function Row1(props) {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "st6 booth-fill selected",
           fill: "#FFFFFF",
-          stroke: "#000000",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -10449,8 +10450,8 @@ function Row10(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -10591,8 +10592,8 @@ function Row11(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -10733,8 +10734,8 @@ function Row12(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -10875,8 +10876,8 @@ function Row2(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -10955,7 +10956,7 @@ function Row3() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
           className: "st6 booth-fill",
           fill: "#FFFFFF",
-          stroke: "#000000",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -11093,8 +11094,8 @@ function Row4(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -11235,8 +11236,8 @@ function Row5(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -11377,8 +11378,8 @@ function Row6(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -11519,8 +11520,8 @@ function Row7(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -11661,8 +11662,8 @@ function Row8(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -11803,8 +11804,8 @@ function Row9(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn10 + " " + gapRow12 + "," + gapColumn11 + " " + gapRow13 + "," + gapColumn12 + " " + gapRow14 + "," + gapColumn11 + " " + gapRow15 + "," + gapColumn10 + " " + gapRow2 + "," + gapColumn13 + " " + gapRow2 + "," + gapColumn8 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn7 + " " + gapRow3 + "," + gapColumn6,
@@ -12132,8 +12133,8 @@ function Row1(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -12274,8 +12275,8 @@ function Row10(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -12416,8 +12417,8 @@ function Row11(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -12558,8 +12559,8 @@ function Row12(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -12700,8 +12701,8 @@ function Row13(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -12842,8 +12843,8 @@ function Row14(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -12984,8 +12985,8 @@ function Row2(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -13064,7 +13065,7 @@ function Row3() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
           className: "st6 booth-fill",
           fill: "#FFFFFF",
-          stroke: "#000000",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -13202,8 +13203,8 @@ function Row4(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -13344,8 +13345,8 @@ function Row5(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -13486,8 +13487,8 @@ function Row6(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -13628,8 +13629,8 @@ function Row7(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -13770,8 +13771,8 @@ function Row8(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -13912,8 +13913,8 @@ function Row9(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapColumn1 + "," + gapRow1 + " " + gapColumn2 + "," + gapRow1 + " " + gapColumn3 + "," + gapRow2 + " " + gapColumn4 + "," + gapRow3 + " " + gapColumn4 + "," + gapRow4 + " " + gapColumn3 + "," + gapRow5 + " " + gapColumn2 + "," + gapRow6 + " " + gapColumn1 + "," + gapRow7 + " " + gapColumn5 + "," + gapRow8 + " " + gapColumn6 + "," + gapRow9 + " " + gapColumn6 + "," + gapRow10 + " " + gapColumn7 + "," + gapRow6 + " " + gapColumn8 + "," + gapRow6 + " " + gapColumn9 + "," + gapRow5 + " " + gapColumn10 + "," + gapRow11 + " " + gapColumn11 + "," + gapRow12 + " " + gapColumn10 + "," + gapRow13 + " " + gapColumn12 + "," + gapRow14 + " " + gapColumn8 + "," + gapRow15 + " " + gapColumn7 + "," + gapRow15 + " " + gapColumn6 + "," + gapRow16 + " " + gapColumn7 + "," + gapRow17 + " " + gapColumn5 + "," + gapRow2 + " ",
@@ -14243,8 +14244,8 @@ function Row1(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -14385,8 +14386,8 @@ function Row10(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -14527,8 +14528,8 @@ function Row11(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -14669,8 +14670,8 @@ function Row12(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -14811,8 +14812,8 @@ function Row2(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -14953,8 +14954,8 @@ function Row3(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -15095,8 +15096,8 @@ function Row4(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -15237,8 +15238,8 @@ function Row5(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -15379,8 +15380,8 @@ function Row6(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -15521,8 +15522,8 @@ function Row7(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -15663,8 +15664,8 @@ function Row8(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -15805,8 +15806,8 @@ function Row9(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn2 + " " + gapRow3 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn4 + " " + gapRow6 + "," + gapColumn3 + " " + gapRow7 + "," + gapColumn2 + " " + gapRow7 + "," + gapColumn1 + "   " + gapRow6 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn6 + " " + gapRow9 + "," + gapColumn7 + " " + gapRow10 + "," + gapColumn6 + " " + gapRow10 + "," + gapColumn8 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn10 + " " + gapRow15 + "," + gapColumn9 + " " + gapRow2 + ", " + gapColumn8 + " " + gapRow2 + "," + gapColumn6 + " " + gapRow15 + "," + gapColumn7 + " " + gapRow16 + "," + gapColumn6 + " " + gapRow3 + "," + gapColumn12,
@@ -16098,8 +16099,8 @@ function Row1(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn1 + " " + gapRow3 + "," + gapColumn2 + " " + gapRow4 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow1 + "," + gapColumn6 + "   " + gapRow7 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn12 + " " + gapRow13 + "," + gapColumn13 + " " + gapRow12 + "," + gapColumn14 + "   " + gapRow15 + "," + gapColumn15 + " " + gapRow10 + "," + gapColumn15 + " " + gapRow9 + "," + gapColumn16 + " " + gapRow8 + "," + gapColumn17 + " " + gapRow7 + "," + gapColumn2 + " ",
@@ -16146,7 +16147,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "497,254.1 495.4,254 494.7,254.3 494.5,255.3 494.4,257.5 494.7,258.5 495.3,258.8 496.9,258.8   498.7,258.6 498.9,258.5 498.8,258.8 499,259 499.4,259 499.7,258.7 499.9,258.2 500.1,256.5 500,254.8 499.8,254.3 499.5,254   499.1,254 498.9,254.2 499,254.5 498.8,254.4 ",
@@ -16167,7 +16168,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.9,259.2 495.3,259.2 494.7,259.5 494.4,260.4 494.4,262.7 494.6,263.7 495.2,264 496.8,264   498.6,263.7 498.8,263.6 498.8,263.9 498.9,264.1 499.3,264.1 499.7,263.9 499.9,263.3 500,261.7 499.9,260 499.7,259.5   499.5,259.2 499,259.2 498.8,259.4 498.9,259.7 498.7,259.6 ",
@@ -16188,7 +16189,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.9,264.4 495.2,264.4 494.6,264.7 494.3,265.6 494.3,267.9 494.5,268.8 495.1,269.2 496.8,269.2   498.5,268.9 498.8,268.8 498.7,269.1 498.8,269.3 499.3,269.3 499.6,269 499.8,268.5 499.9,266.9 499.8,265.2 499.6,264.6   499.4,264.4 498.9,264.4 498.7,264.6 498.8,264.9 498.6,264.7 ",
@@ -16209,7 +16210,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.8,269.6 495.1,269.5 494.5,269.8 494.2,270.8 494.2,273 494.4,274 495,274.3 496.7,274.3   498.5,274.1 498.7,274 498.6,274.3 498.7,274.5 499.2,274.5 499.5,274.2 499.7,273.7 499.8,272 499.7,270.3 499.5,269.8   499.3,269.5 498.8,269.5 498.7,269.7 498.7,270 498.5,269.9 ",
@@ -16230,7 +16231,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.7,274.7 495,274.7 494.4,275 494.1,275.9 494.1,278.2 494.3,279.2 494.9,279.5 496.6,279.5   498.4,279.2 498.6,279.1 498.5,279.4 498.6,279.6 499.1,279.6 499.4,279.4 499.6,278.8 499.7,277.2 499.6,275.5 499.4,275   499.2,274.7 498.7,274.7 498.6,274.9 498.6,275.2 498.4,275.1 ",
@@ -16251,7 +16252,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.6,279.9 494.9,279.9 494.3,280.2 494,281.1 494,283.4 494.2,284.3 494.8,284.7 496.5,284.7   498.3,284.4 498.5,284.3 498.4,284.6 498.5,284.8 499,284.8 499.3,284.5 499.5,284 499.6,282.3 499.5,280.7 499.4,280.1   499.1,279.9 498.6,279.9 498.5,280.1 498.6,280.4 498.3,280.2 ",
@@ -16272,7 +16273,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.5,285.1 494.8,285 494.2,285.3 493.9,286.3 493.9,288.5 494.1,289.5 494.7,289.8 496.4,289.8   498.2,289.6 498.4,289.5 498.3,289.8 498.4,290 498.9,290 499.2,289.7 499.4,289.2 499.5,287.5 499.5,285.8 499.3,285.3 499,285   498.5,285 498.4,285.2 498.5,285.5 498.2,285.4 ",
@@ -16293,7 +16294,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.4,290.2 494.7,290.2 494.1,290.5 493.9,291.4 493.8,293.7 494,294.7 494.6,295 496.3,295   498.1,294.7 498.3,294.6 498.2,294.9 498.3,295.1 498.8,295.1 499.1,294.9 499.3,294.3 499.4,292.7 499.4,291 499.2,290.5   498.9,290.2 498.4,290.2 498.3,290.4 498.4,290.7 498.2,290.6 ",
@@ -16314,7 +16315,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.3,295.4 494.6,295.4 494,295.7 493.8,296.6 493.7,298.9 493.9,299.8 494.5,300.2 496.2,300.2   498,299.9 498.2,299.8 498.1,300.1 498.2,300.3 498.7,300.3 499,300 499.2,299.5 499.3,297.8 499.3,296.2 499.1,295.6 498.8,295.4   498.3,295.4 498.2,295.6 498.3,295.9 498.1,295.7 ",
@@ -16335,7 +16336,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.2,300.6 494.5,300.5 493.9,300.8 493.7,301.8 493.6,304 493.9,305 494.4,305.3 496.1,305.3   497.9,305 498.1,305 498,305.3 498.2,305.5 498.6,305.5 498.9,305.2 499.1,304.7 499.2,303 499.2,301.3 499,300.8 498.7,300.5   498.2,300.5 498.1,300.7 498.2,301 498,300.9 ",
@@ -16356,7 +16357,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.1,305.7 494.4,305.7 493.8,306 493.6,306.9 493.5,309.2 493.8,310.2 494.4,310.5 496,310.5   497.8,310.2 498,310.1 497.9,310.4 498.1,310.6 498.5,310.6 498.8,310.3 499,309.8 499.2,308.2 499.1,306.5 498.9,306 498.6,305.7   498.2,305.7 498,305.9 498.1,306.2 497.9,306.1 ",
@@ -16377,7 +16378,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496,310.9 494.4,310.9 493.8,311.2 493.5,312.1 493.4,314.3 493.7,315.3 494.3,315.7 495.9,315.7   497.7,315.4 497.9,315.3 497.9,315.6 498,315.8 498.4,315.8 498.7,315.5 498.9,315 499.1,313.3 499,311.7 498.8,311.1 498.6,310.9   498.1,310.8 497.9,311.1 498,311.4 497.8,311.2 ",
@@ -16398,7 +16399,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496,316.1 494.3,316 493.7,316.3 493.4,317.3 493.4,319.5 493.6,320.5 494.2,320.8 495.9,320.8   497.6,320.5 497.9,320.5 497.8,320.8 497.9,321 498.4,321 498.7,320.7 498.9,320.2 499,318.5 498.9,316.8 498.7,316.3 498.5,316   498,316 497.8,316.2 497.9,316.5 497.7,316.4 ",
@@ -16419,7 +16420,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "495.9,321.2 494.2,321.2 493.6,321.5 493.3,322.4 493.3,324.7 493.5,325.7 494.1,326 495.8,326   497.6,325.7 497.8,325.6 497.7,325.9 497.8,326.1 498.3,326.1 498.6,325.8 498.8,325.3 498.9,323.7 498.8,322 498.6,321.5   498.4,321.2 497.9,321.2 497.8,321.4 497.8,321.7 497.6,321.6 ",
@@ -16440,7 +16441,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "495.8,326.4 494.1,326.4 493.5,326.7 493.2,327.6 493.2,329.8 493.4,330.8 494,331.2 495.7,331.2   497.5,330.9 497.7,330.8 497.6,331.1 497.7,331.3 498.2,331.3 498.5,331 498.7,330.5 498.8,328.8 498.7,327.2 498.5,326.6   498.3,326.4 497.8,326.3 497.7,326.6 497.7,326.9 497.5,326.7 ",
@@ -16461,7 +16462,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "499,337.5 497.3,337.5 496.7,337.8 496.4,338.7 496.3,340.9 496.5,341.9 497.1,342.3 498.8,342.3   500.6,342.1 500.8,342 500.7,342.3 500.8,342.5 501.3,342.5 501.6,342.2 501.8,341.7 501.9,340 501.9,338.4 501.7,337.8   501.5,337.5 501,337.5 500.9,337.7 500.9,338 500.7,337.9 ",
@@ -16482,7 +16483,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "498.8,342.7 497.1,342.6 496.5,342.9 496.2,343.9 496.1,346.1 496.3,347.1 496.9,347.4 498.6,347.5   500.4,347.2 500.6,347.1 500.5,347.4 500.6,347.6 501.1,347.7 501.4,347.4 501.6,346.9 501.8,345.2 501.7,343.5 501.5,343   501.3,342.7 500.8,342.7 500.7,342.9 500.7,343.2 500.5,343.1 ",
@@ -16503,7 +16504,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "498.6,347.9 496.9,347.8 496.3,348.1 496,349 496,351.3 496.2,352.3 496.7,352.6 498.4,352.6   500.2,352.4 500.4,352.3 500.3,352.6 500.4,352.8 500.9,352.8 501.2,352.5 501.4,352 501.6,350.4 501.6,348.7 501.4,348.2   501.1,347.9 500.6,347.9 500.5,348.1 500.6,348.4 500.3,348.2 ",
@@ -16524,7 +16525,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "498.4,353 496.7,353 496.1,353.2 495.9,354.2 495.8,356.4 496,357.4 496.6,357.8 498.2,357.8   500,357.5 500.2,357.5 500.2,357.8 500.3,358 500.7,358 501,357.7 501.3,357.2 501.4,355.5 501.4,353.8 501.2,353.3 500.9,353   500.4,353 500.3,353.2 500.4,353.5 500.2,353.4 ",
@@ -16545,7 +16546,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "498.2,358.2 496.6,358.1 495.9,358.4 495.7,359.4 495.6,361.6 495.8,362.6 496.4,362.9 498.1,363   499.9,362.7 500.1,362.6 500,362.9 500.1,363.1 500.6,363.1 500.9,362.9 501.1,362.3 501.2,360.7 501.2,359 501,358.5 500.8,358.2   500.3,358.2 500.1,358.4 500.2,358.7 500,358.6 ",
@@ -16566,7 +16567,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "498.1,363.4 496.4,363.3 495.8,363.6 495.5,364.5 495.4,366.8 495.6,367.8 496.2,368.1 497.9,368.1   499.7,367.9 499.9,367.8 499.8,368.1 499.9,368.3 500.4,368.3 500.7,368 500.9,367.5 501,365.9 501,364.2 500.8,363.6 500.6,363.4   500.1,363.3 500,363.6 500,363.9 499.8,363.7 ",
@@ -16587,7 +16588,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "497.9,368.5 496.2,368.5 495.6,368.7 495.3,369.7 495.2,371.9 495.4,372.9 496,373.2 497.7,373.3   499.5,373 499.7,372.9 499.6,373.2 499.7,373.5 500.2,373.5 500.5,373.2 500.7,372.7 500.9,371 500.8,369.3 500.6,368.8   500.4,368.5 499.9,368.5 499.8,368.7 499.8,369 499.6,368.9 ",
@@ -16608,7 +16609,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "497.7,373.7 496,373.6 495.4,373.9 495.1,374.8 495,377.1 495.3,378.1 495.8,378.4 497.5,378.5   499.3,378.2 499.5,378.1 499.4,378.4 499.5,378.6 500,378.6 500.3,378.3 500.5,377.8 500.7,376.2 500.7,374.5 500.5,374   500.2,373.7 499.7,373.7 499.6,373.9 499.7,374.2 499.4,374.1 ",
@@ -16629,7 +16630,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "497.5,378.8 495.8,378.8 495.2,379.1 495,380 494.9,382.3 495.1,383.3 495.7,383.6 497.3,383.6   499.1,383.4 499.3,383.3 499.3,383.6 499.4,383.8 499.8,383.8 500.1,383.5 500.4,383 500.5,381.3 500.5,379.7 500.3,379.1   500,378.8 499.5,378.8 499.4,379.1 499.5,379.3 499.3,379.2 ",
@@ -16650,7 +16651,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "497.3,384 495.7,383.9 495,384.2 494.8,385.2 494.7,387.4 494.9,388.4 495.5,388.7 497.2,388.8   499,388.5 499.2,388.4 499.1,388.7 499.2,388.9 499.7,389 500,388.7 500.2,388.2 500.3,386.5 500.3,384.8 500.1,384.3 499.9,384   499.4,384 499.2,384.2 499.3,384.5 499.1,384.4 ",
@@ -16671,7 +16672,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "497.2,389.2 495.5,389.1 494.9,389.4 494.6,390.3 494.5,392.6 494.7,393.6 495.3,393.9 497,393.9   498.8,393.7 499,393.6 498.9,393.9 499,394.1 499.5,394.1 499.8,393.8 500,393.3 500.1,391.7 500.1,390 499.9,389.5 499.7,389.2   499.2,389.2 499.1,389.4 499.1,389.7 498.9,389.6 ",
@@ -16692,7 +16693,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "497,394.3 495.3,394.3 494.7,394.6 494.4,395.5 494.3,397.7 494.5,398.7 495.1,399.1 496.8,399.1   498.6,398.9 498.8,398.8 498.7,399.1 498.8,399.3 499.3,399.3 499.6,399 499.8,398.5 500,396.8 499.9,395.2 499.7,394.6   499.5,394.3 499,394.3 498.9,394.5 498.9,394.8 498.7,394.7 ",
@@ -16713,7 +16714,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.8,399.5 495.1,399.4 494.5,399.7 494.2,400.7 494.1,402.9 494.4,403.9 494.9,404.2 496.6,404.3   498.4,404 498.6,403.9 498.5,404.2 498.6,404.4 499.1,404.4 499.4,404.2 499.6,403.7 499.8,402 499.8,400.3 499.6,399.8   499.3,399.5 498.8,399.5 498.7,399.7 498.8,400 498.5,399.9 ",
@@ -16734,7 +16735,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.6,404.7 494.9,404.6 494.3,404.9 494.1,405.8 494,408.1 494.2,409.1 494.8,409.4 496.4,409.4   498.2,409.2 498.4,409.1 498.4,409.4 498.5,409.6 498.9,409.6 499.2,409.3 499.5,408.8 499.6,407.2 499.6,405.5 499.4,405   499.1,404.7 498.6,404.7 498.5,404.9 498.6,405.2 498.4,405 ",
@@ -16755,7 +16756,7 @@ function Row10() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
         className: "st6 booth-fill",
         fill: "#FFFFFF",
-        stroke: "#000000",
+        stroke: "#000100",
         strokeWidth: ".5",
         strokeMiterlimit: "10",
         points: "496.4,409.8 494.8,409.8 494.1,410 493.9,411 493.8,413.2 494,414.2 494.6,414.6 496.3,414.6   498.1,414.3 498.3,414.2 498.2,414.5 498.3,414.8 498.8,414.8 499.1,414.5 499.3,414 499.4,412.3 499.4,410.6 499.2,410.1   499,409.8 498.5,409.8 498.3,410 498.4,410.3 498.2,410.2 ",
@@ -16911,8 +16912,8 @@ function Row2(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn1 + " " + gapRow3 + "," + gapColumn2 + " " + gapRow4 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow1 + "," + gapColumn6 + "   " + gapRow7 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn12 + " " + gapRow13 + "," + gapColumn13 + " " + gapRow12 + "," + gapColumn14 + "   " + gapRow15 + "," + gapColumn15 + " " + gapRow10 + "," + gapColumn15 + " " + gapRow9 + "," + gapColumn16 + " " + gapRow8 + "," + gapColumn17 + " " + gapRow7 + "," + gapColumn2 + " ",
@@ -17055,7 +17056,7 @@ function Row3(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           className: "st6 booth-fill",
           fill: "#FFFFFF",
-          stroke: "#000000",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn1 + " " + gapRow3 + "," + gapColumn2 + " " + gapRow4 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow1 + "," + gapColumn6 + "   " + gapRow7 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn12 + " " + gapRow13 + "," + gapColumn13 + " " + gapRow12 + "," + gapColumn14 + "   " + gapRow15 + "," + gapColumn15 + " " + gapRow10 + "," + gapColumn15 + " " + gapRow9 + "," + gapColumn16 + " " + gapRow8 + "," + gapColumn17 + " " + gapRow7 + "," + gapColumn2 + " ",
@@ -17210,7 +17211,7 @@ function Row4(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           className: "st6 booth-fill",
           fill: "#FFFFFF",
-          stroke: "#000000",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn1 + " " + gapRow3 + "," + gapColumn2 + " " + gapRow4 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow1 + "," + gapColumn6 + "   " + gapRow7 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn12 + " " + gapRow13 + "," + gapColumn13 + " " + gapRow12 + "," + gapColumn14 + "   " + gapRow15 + "," + gapColumn15 + " " + gapRow10 + "," + gapColumn15 + " " + gapRow9 + "," + gapColumn16 + " " + gapRow8 + "," + gapColumn17 + " " + gapRow7 + "," + gapColumn2 + " ",
@@ -17365,8 +17366,8 @@ function Row5(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn1 + " " + gapRow3 + "," + gapColumn2 + " " + gapRow4 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow1 + "," + gapColumn6 + "   " + gapRow7 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn12 + " " + gapRow13 + "," + gapColumn13 + " " + gapRow12 + "," + gapColumn14 + "   " + gapRow15 + "," + gapColumn15 + " " + gapRow10 + "," + gapColumn15 + " " + gapRow9 + "," + gapColumn16 + " " + gapRow8 + "," + gapColumn17 + " " + gapRow7 + "," + gapColumn2 + " ",
@@ -17521,8 +17522,8 @@ function Row6(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn1 + " " + gapRow3 + "," + gapColumn2 + " " + gapRow4 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow1 + "," + gapColumn6 + "   " + gapRow7 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn12 + " " + gapRow13 + "," + gapColumn13 + " " + gapRow12 + "," + gapColumn14 + "   " + gapRow15 + "," + gapColumn15 + " " + gapRow10 + "," + gapColumn15 + " " + gapRow9 + "," + gapColumn16 + " " + gapRow8 + "," + gapColumn17 + " " + gapRow7 + "," + gapColumn2 + " ",
@@ -17677,8 +17678,8 @@ function Row7(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn1 + " " + gapRow3 + "," + gapColumn2 + " " + gapRow4 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow1 + "," + gapColumn6 + "   " + gapRow7 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn12 + " " + gapRow13 + "," + gapColumn13 + " " + gapRow12 + "," + gapColumn14 + "   " + gapRow15 + "," + gapColumn15 + " " + gapRow10 + "," + gapColumn15 + " " + gapRow9 + "," + gapColumn16 + " " + gapRow8 + "," + gapColumn17 + " " + gapRow7 + "," + gapColumn2 + " ",
@@ -17833,8 +17834,8 @@ function Row8(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn1 + " " + gapRow3 + "," + gapColumn2 + " " + gapRow4 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow1 + "," + gapColumn6 + "   " + gapRow7 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn12 + " " + gapRow13 + "," + gapColumn13 + " " + gapRow12 + "," + gapColumn14 + "   " + gapRow15 + "," + gapColumn15 + " " + gapRow10 + "," + gapColumn15 + " " + gapRow9 + "," + gapColumn16 + " " + gapRow8 + "," + gapColumn17 + " " + gapRow7 + "," + gapColumn2 + " ",
@@ -17989,8 +17990,8 @@ function Row9(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("polygon", {
           value: i,
           className: seatColor === undefined ? "st6 booth-fill " + taken : "",
-          fill: seatColor === undefined ? "#000000" : "#ffff66",
-          stroke: "#000000",
+          fill: seatColor === undefined ? "#000100" : "#ffff66",
+          stroke: "#000100",
           strokeWidth: ".5",
           strokeMiterlimit: "10",
           points: gapRow1 + "," + gapColumn1 + " " + gapRow2 + "," + gapColumn1 + " " + gapRow3 + "," + gapColumn2 + " " + gapRow4 + "," + gapColumn3 + " " + gapRow4 + "," + gapColumn4 + " " + gapRow5 + "," + gapColumn5 + " " + gapRow6 + "," + gapColumn6 + " " + gapRow1 + "," + gapColumn6 + "   " + gapRow7 + "," + gapColumn5 + " " + gapRow8 + "," + gapColumn7 + " " + gapRow9 + "," + gapColumn8 + " " + gapRow10 + "," + gapColumn9 + " " + gapRow11 + "," + gapColumn9 + " " + gapRow12 + "," + gapColumn10 + " " + gapRow13 + "," + gapColumn11 + " " + gapRow14 + "," + gapColumn12 + " " + gapRow13 + "," + gapColumn13 + " " + gapRow12 + "," + gapColumn14 + "   " + gapRow15 + "," + gapColumn15 + " " + gapRow10 + "," + gapColumn15 + " " + gapRow9 + "," + gapColumn16 + " " + gapRow8 + "," + gapColumn17 + " " + gapRow7 + "," + gapColumn2 + " ",
@@ -18220,7 +18221,7 @@ function CardSearchTicket() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "col-md-12 mt-5",
           children: value.length !== 0 ? value.map(function (res) {
-            return res.cart_product_id === 7247 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            return res.cart_product_id === parseInt("0001") ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
               data: value
             }, res.cart_ordered_product_id) : res.cart_products.quantity === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
               children: "No results!"
@@ -18344,7 +18345,7 @@ function SearchTicketTable(props) {
               scope: "row",
               children: res.cart_order_id
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-              children: res.cart_product_id === 7247 ? "General Admission No Seat" : res.cart_products.product_name
+              children: res.cart_product_id === parseInt("0001") ? "General Admission No Seat" : res.cart_products.product_name
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
               children: res.code
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {

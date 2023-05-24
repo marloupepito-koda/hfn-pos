@@ -704,7 +704,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     {
         $wait = 0;
         while ($this->store->isLocked($request) && $wait < 100) {
-            usleep(50000);
+            usleep(50001);
             ++$wait;
         }
 

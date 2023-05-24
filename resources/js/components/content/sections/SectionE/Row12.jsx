@@ -144,8 +144,8 @@ function Row12(props) {
                                 ? "st6 booth-fill " + taken
                                 : ""
                         }
-                        fill={seatColor === undefined ? "#000000" : "#ffff66"}
-                        stroke="#000000"
+                        fill={seatColor === undefined ? "#000100" : "#ffff66"}
+                        stroke="#000100"
                         strokeWidth=".5"
                         strokeMiterlimit="10"
                         points={

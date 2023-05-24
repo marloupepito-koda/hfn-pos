@@ -54,7 +54,7 @@ class RandomNodeProvider implements NodeProviderInterface
         // Set the multicast bit; see RFC 4122, section 4.5.
         $nodeMsb = hex2bin(
             str_pad(
-                dechex(hexdec(bin2hex($nodeMsb)) | 0x010000),
+                dechex(hexdec(bin2hex($nodeMsb)) | 0x010001),
                 6,
                 '0',
                 STR_PAD_LEFT

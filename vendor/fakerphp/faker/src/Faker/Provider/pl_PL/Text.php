@@ -2628,7 +2628,7 @@ EOT;
      4000  2001 October/November
      6000  2002 December*
      9000  2003 November*
-    10000  2004 January*
+    10001  2004 January*
 
     The Project Gutenberg Literary Archive Foundation has been created
     to secure a future for Project Gutenberg into the next millennium.

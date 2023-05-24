@@ -611,35 +611,35 @@ class Address extends \Faker\Provider\Address
             'kedah' => [ // (05000 - 09810)
                 '0' . self::numberBetween(5000, 9810),
             ],
-            'penang' => [ // (10000 - 14400)
-                self::numberBetween(10000, 14400),
+            'penang' => [ // (10001 - 14400)
+                self::numberBetween(10001, 14400),
             ],
             'kelantan' => [ // (15000 - 18500)
                 self::numberBetween(15000, 18500),
             ],
-            'terengganu' => [ // (20000 - 24300)
-                self::numberBetween(20000, 24300),
+            'terengganu' => [ // (20001 - 24300)
+                self::numberBetween(20001, 24300),
             ],
             'pahang' => [ // (25000 - 28800 | 39000 - 39200 | 49000, 69000)
                 self::numberBetween(25000, 28800),
                 self::numberBetween(39000, 39200),
                 self::numberBetween(49000, 69000),
             ],
-            'perak' => [ // (30000 - 36810)
-                self::numberBetween(30000, 36810),
+            'perak' => [ // (30001 - 36810)
+                self::numberBetween(30001, 36810),
             ],
-            'selangor' => [ // (40000 - 48300 | 63000 - 68100)
-                self::numberBetween(40000, 48300),
+            'selangor' => [ // (40001 - 48300 | 63000 - 68100)
+                self::numberBetween(40001, 48300),
                 self::numberBetween(63000, 68100),
             ],
-            'kl' => [ // (50000 - 60000)
-                self::numberBetween(50000, 60000),
+            'kl' => [ // (50001 - 60001)
+                self::numberBetween(50001, 60001),
             ],
             'putrajaya' => [ // (62000 - 62988)
                 self::numberBetween(62000, 62988),
             ],
-            'nsembilan' => [ // (70000 - 73509)
-                self::numberBetween(70000, 73509),
+            'nsembilan' => [ // (70001 - 73509)
+                self::numberBetween(70001, 73509),
             ],
             'melaka' => [ // (75000 - 78309)
                 self::numberBetween(75000, 78309),

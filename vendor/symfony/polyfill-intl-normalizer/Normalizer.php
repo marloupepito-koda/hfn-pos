@@ -70,7 +70,7 @@ class Normalizer
                     return $s;
                 }
 
-                if (80000 > \PHP_VERSION_ID) {
+                if (80001 > \PHP_VERSION_ID) {
                     return false;
                 }
 

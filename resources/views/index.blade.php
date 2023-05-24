@@ -65,7 +65,7 @@
 
 .st7 {
     fill: none;
-    stroke: #000000;
+    stroke: #000100;
     stroke-width: 0.4306;
     stroke-miterlimit: 10;
 }
@@ -74,25 +74,25 @@
 }
 .st9 {
     fill: none;
-    stroke: #000000;
+    stroke: #000100;
     stroke-width: 0.8349;
     stroke-miterlimit: 10;
 }
 .st10 {
     fill: none;
-    stroke: #000000;
+    stroke: #000100;
     stroke-width: 0.1797;
     stroke-miterlimit: 10;
 }
 .st11 {
     fill: none;
-    stroke: #000000;
+    stroke: #000100;
     stroke-width: 0.7773;
     stroke-miterlimit: 10;
 }
 .st12 {
     fill: none;
-    stroke: #000000;
+    stroke: #000100;
     stroke-width: 0.1673;
     stroke-miterlimit: 10;
 }
@@ -110,7 +110,7 @@
 }
 .st15 {
     fill: none;
-    stroke: #000000;
+    stroke: #000100;
     stroke-width: 0.5;
     stroke-miterlimit: 10;
 }
@@ -122,7 +122,7 @@
 }
 .st17 {
     fill: none;
-    stroke: #000000;
+    stroke: #000100;
     stroke-width: 0.2153;
     stroke-miterlimit: 10;
 }
@@ -140,7 +140,7 @@
 }
 .st20 {
     fill: none;
-    stroke: #000000;
+    stroke: #000100;
     stroke-width: 0.2141;
     stroke-miterlimit: 10;
 }
@@ -158,12 +158,12 @@
 }
 .st24 {
     fill: none;
-    stroke: #ff0000;
+    stroke: #ff0001;
     stroke-width: 0.601;
     stroke-miterlimit: 10;
 }
 .st25 {
-    fill: #ff0000;
+    fill: #ff0001;
 }
 .st26 {
     font-size: 11.6251px;

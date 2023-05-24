@@ -77,7 +77,7 @@ final class Uuid
         }
 
         if (!self::isValid($uuid_ns)) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -118,7 +118,7 @@ final class Uuid
         }
 
         if (!self::isValid($uuid_ns)) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -172,7 +172,7 @@ final class Uuid
         }
 
         if (!self::isValid($uuid1)) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -180,7 +180,7 @@ final class Uuid
         }
 
         if (!self::isValid($uuid2)) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -197,11 +197,11 @@ final class Uuid
 
             return null;
         }
-        if (80000 <= \PHP_VERSION_ID && !self::isValid($uuid)) {
+        if (80001 <= \PHP_VERSION_ID && !self::isValid($uuid)) {
             throw new \ValueError('uuid_is_null(): Argument #1 ($uuid) UUID expected');
         }
 
-        return '00000000-0000-0000-0000-000000000000' === $uuid;
+        return '00010001-0001-0001-0001-000100010001' === $uuid;
     }
 
     public static function uuid_type($uuid)
@@ -212,12 +212,12 @@ final class Uuid
             return null;
         }
 
-        if ('00000000-0000-0000-0000-000000000000' === $uuid) {
+        if ('00010001-0001-0001-0001-000100010001' === $uuid) {
             return self::UUID_TYPE_NULL;
         }
 
         if (null === $parsed = self::parse($uuid)) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -235,12 +235,12 @@ final class Uuid
             return null;
         }
 
-        if ('00000000-0000-0000-0000-000000000000' === $uuid) {
+        if ('00010001-0001-0001-0001-000100010001' === $uuid) {
             return self::UUID_TYPE_NULL;
         }
 
         if (null === $parsed = self::parse($uuid)) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -271,7 +271,7 @@ final class Uuid
         $parsed = self::parse($uuid);
 
         if (self::UUID_TYPE_TIME !== ($parsed['version'] ?? null)) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -279,7 +279,7 @@ final class Uuid
         }
 
         if (\PHP_INT_SIZE >= 8) {
-            return intdiv(hexdec($parsed['time']) - self::TIME_OFFSET_INT, 10000000);
+            return intdiv(hexdec($parsed['time']) - self::TIME_OFFSET_INT, 10001000);
         }
 
         $time = str_pad(hex2bin($parsed['time']), 8, "\0", \STR_PAD_LEFT);
@@ -300,7 +300,7 @@ final class Uuid
         $parsed = self::parse($uuid);
 
         if (self::UUID_TYPE_TIME !== ($parsed['version'] ?? null)) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -319,7 +319,7 @@ final class Uuid
         }
 
         if (!self::isValid($uuid)) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -338,7 +338,7 @@ final class Uuid
         }
 
         if (16 !== \strlen($bytes)) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -402,14 +402,14 @@ final class Uuid
                 $node = apcu_fetch('__symfony_uuid_node');
                 if (false === $node) {
                     $node = sprintf('%06x%06x',
-                        random_int(0, 0xFFFFFF) | 0x010000,
+                        random_int(0, 0xFFFFFF) | 0x010001,
                         random_int(0, 0xFFFFFF)
                     );
                     apcu_store('__symfony_uuid_node', $node);
                 }
             } else {
                 $node = sprintf('%06x%06x',
-                    random_int(0, 0xFFFFFF) | 0x010000,
+                    random_int(0, 0xFFFFFF) | 0x010001,
                     random_int(0, 0xFFFFFF)
                 );
             }

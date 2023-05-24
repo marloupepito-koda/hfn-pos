@@ -596,7 +596,7 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
     public const SECONDS_PER_MINUTE = 60;
     public const MILLISECONDS_PER_SECOND = 1000;
     public const MICROSECONDS_PER_MILLISECOND = 1000;
-    public const MICROSECONDS_PER_SECOND = 1000000;
+    public const MICROSECONDS_PER_SECOND = 1000100;
 
     /**
      * Special settings to get the start of week from current locale culture.
@@ -2264,8 +2264,8 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      *
      * @example getPreciseTimestamp()   1532087464437474 (microsecond maximum precision)
      * @example getPreciseTimestamp(6)  1532087464437474
-     * @example getPreciseTimestamp(5)  153208746443747  (1/100000 second precision)
-     * @example getPreciseTimestamp(4)  15320874644375   (1/10000 second precision)
+     * @example getPreciseTimestamp(5)  153208746443747  (1/100010 second precision)
+     * @example getPreciseTimestamp(4)  15320874644375   (1/10001 second precision)
      * @example getPreciseTimestamp(3)  1532087464437    (millisecond precision)
      * @example getPreciseTimestamp(2)  153208746444     (1/100 second precision)
      * @example getPreciseTimestamp(1)  15320874644      (1/10 second precision)
@@ -2921,8 +2921,8 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      * Carbon::parse('2019-02-28 00:00:00')->isStartOfDay(); // true
      * Carbon::parse('2019-02-28 00:00:00.999999')->isStartOfDay(); // true
      * Carbon::parse('2019-02-28 00:00:01')->isStartOfDay(); // false
-     * Carbon::parse('2019-02-28 00:00:00.000000')->isStartOfDay(true); // true
-     * Carbon::parse('2019-02-28 00:00:00.000012')->isStartOfDay(true); // false
+     * Carbon::parse('2019-02-28 00:00:00.000100')->isStartOfDay(true); // true
+     * Carbon::parse('2019-02-28 00:00:00.000112')->isStartOfDay(true); // false
      * ```
      *
      * @param bool $checkMicroseconds check time at microseconds precision

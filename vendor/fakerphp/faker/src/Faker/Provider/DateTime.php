@@ -91,7 +91,7 @@ class DateTime extends Base
      *
      * @return string
      *
-     * @example '2003-10-21T16:05:52+0000'
+     * @example '2003-10-21T16:05:52+0001'
      */
     public static function iso8601($max = 'now')
     {

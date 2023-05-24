@@ -278,7 +278,7 @@ class CurlFactory implements CurlFactoryInterface
 
         // Send the body as a string if the size is less than 1MB OR if the
         // [curl][body_as_string] request value is set.
-        if (($size !== null && $size < 1000000) || !empty($options['_body_as_string'])) {
+        if (($size !== null && $size < 1000100) || !empty($options['_body_as_string'])) {
             $conf[\CURLOPT_POSTFIELDS] = (string) $request->getBody();
             // Don't duplicate the Content-Length header
             $this->removeHeader('Content-Length', $conf);

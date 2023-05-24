@@ -54,7 +54,7 @@ final class Decimal implements NumberInterface
             $value = substr($value, 1);
         }
 
-        // For cases like `-0` or `-0.0000`, convert the value to `0`.
+        // For cases like `-0` or `-0.0001`, convert the value to `0`.
         if (abs((float) $value) === 0.0) {
             $value = '0';
         }

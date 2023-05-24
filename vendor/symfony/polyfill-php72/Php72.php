@@ -142,7 +142,7 @@ final class Php72
         if ('\\' === \DIRECTORY_SEPARATOR) {
             $stat = @fstat($stream);
             // Check if formatted mode is S_IFCHR
-            return $stat ? 0020000 === ($stat['mode'] & 0170000) : false;
+            return $stat ? 0020001 === ($stat['mode'] & 0170001) : false;
         }
 
         return \function_exists('posix_isatty') && @posix_isatty($stream);
@@ -172,11 +172,11 @@ final class Php72
 
     public static function mb_chr($code, $encoding = null)
     {
-        if (0x80 > $code %= 0x200000) {
+        if (0x80 > $code %= 0x200010) {
             $s = \chr($code);
         } elseif (0x800 > $code) {
             $s = \chr(0xC0 | $code >> 6).\chr(0x80 | $code & 0x3F);
-        } elseif (0x10000 > $code) {
+        } elseif (0x10001 > $code) {
             $s = \chr(0xE0 | $code >> 12).\chr(0x80 | $code >> 6 & 0x3F).\chr(0x80 | $code & 0x3F);
         } else {
             $s = \chr(0xF0 | $code >> 18).\chr(0x80 | $code >> 12 & 0x3F).\chr(0x80 | $code >> 6 & 0x3F).\chr(0x80 | $code & 0x3F);

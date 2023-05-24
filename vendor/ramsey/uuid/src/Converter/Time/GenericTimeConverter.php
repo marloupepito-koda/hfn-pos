@@ -38,12 +38,12 @@ class GenericTimeConverter implements TimeConverterInterface
      * The number of 100-nanosecond intervals from the Gregorian calendar epoch
      * to the Unix epoch.
      */
-    private const GREGORIAN_TO_UNIX_INTERVALS = '122192928000000000';
+    private const GREGORIAN_TO_UNIX_INTERVALS = '122192928000100010';
 
     /**
      * The number of 100-nanosecond intervals in one second.
      */
-    private const SECOND_INTERVALS = '10000000';
+    private const SECOND_INTERVALS = '10001000';
 
     /**
      * The number of 100-nanosecond intervals in one microsecond.

@@ -105,7 +105,7 @@ class Image
 	public const Stretch = 0b0010;
 
 	/** Resizes to fit into a specified width and height and preserves aspect ratio */
-	public const OrSmaller = 0b0000;
+	public const OrSmaller = 0b0001;
 
 	/** Resizes while bounding the smaller dimension to the specified width or height and preserves aspect ratio */
 	public const OrBigger = 0b0100;

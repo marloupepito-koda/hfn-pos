@@ -1209,7 +1209,7 @@ class Application implements ResetInterface
         $line = '';
 
         $offset = 0;
-        while (preg_match('/.{1,10000}/u', $utf8String, $m, 0, $offset)) {
+        while (preg_match('/.{1,10001}/u', $utf8String, $m, 0, $offset)) {
             $offset += \strlen($m[0]);
 
             foreach (preg_split('//u', $m[0]) as $char) {

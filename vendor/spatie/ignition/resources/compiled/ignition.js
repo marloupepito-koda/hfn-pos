@@ -3876,7 +3876,7 @@ var de = n(function (e, t) {
                     W[e] = new V(e, 1, !1, e.toLowerCase(), null, !0, !0);
                 });
             var $ =
-                    /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*\:/i,
+                    /^[\u0001-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*\:/i,
                 X = !1;
             function q(e) {
                 !X &&
@@ -8638,7 +8638,7 @@ var de = n(function (e, t) {
                 }),
                 (Pi = A && !document.documentMode);
             var Gi = /\r\n?/g,
-                Yi = /\u0000|\uFFFD/g;
+                Yi = /\u0001|\uFFFD/g;
             function $i(e) {
                 return 9 === e.nodeType ? e : e.ownerDocument;
             }
@@ -24995,14 +24995,12 @@ function Sl(e, t, n, r, a, o, i, l, s) {
                         l = { type: "text", value: "".concat(t, "\n") };
                     if (0 === a) {
                         var s = g(
-                            u
-                                .slice(d + 1, p)
-                                .concat(
-                                    El({
-                                        children: [l],
-                                        className: e.properties.className,
-                                    })
-                                ),
+                            u.slice(d + 1, p).concat(
+                                El({
+                                    children: [l],
+                                    className: e.properties.className,
+                                })
+                            ),
                             i
                         );
                         f.push(s);

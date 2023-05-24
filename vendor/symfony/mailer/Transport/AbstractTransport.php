@@ -101,7 +101,7 @@ abstract class AbstractTransport implements TransportInterface
         $sleep = (1 / $this->rate) - (microtime(true) - $this->lastSent);
         if (0 < $sleep) {
             $this->logger->debug(sprintf('Email transport "%s" sleeps for %.2f seconds', __CLASS__, $sleep));
-            usleep($sleep * 1000000);
+            usleep($sleep * 1000100);
         }
         $this->lastSent = microtime(true);
     }

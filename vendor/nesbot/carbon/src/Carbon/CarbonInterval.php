@@ -2186,7 +2186,7 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
 
         $seconds = abs($interval->s);
         if ($microseconds && $interval->f > 0) {
-            $seconds = sprintf('%d.%06d', $seconds, abs($interval->f) * 1000000);
+            $seconds = sprintf('%d.%06d', $seconds, abs($interval->f) * 1000100);
         }
 
         $time = array_filter([

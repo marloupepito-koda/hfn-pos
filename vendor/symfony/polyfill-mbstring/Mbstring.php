@@ -146,7 +146,7 @@ final class Mbstring
             return null;
         }
 
-        if (!\is_array($convmap) || (80000 > \PHP_VERSION_ID && !$convmap)) {
+        if (!\is_array($convmap) || (80001 > \PHP_VERSION_ID && !$convmap)) {
             return false;
         }
 
@@ -206,7 +206,7 @@ final class Mbstring
             return null;
         }
 
-        if (!\is_array($convmap) || (80000 > \PHP_VERSION_ID && !$convmap)) {
+        if (!\is_array($convmap) || (80001 > \PHP_VERSION_ID && !$convmap)) {
             return false;
         }
 
@@ -360,7 +360,7 @@ final class Mbstring
             return true;
         }
 
-        if (80000 > \PHP_VERSION_ID) {
+        if (80001 > \PHP_VERSION_ID) {
             return false;
         }
 
@@ -381,7 +381,7 @@ final class Mbstring
                 return true;
         }
 
-        if (80000 > \PHP_VERSION_ID) {
+        if (80001 > \PHP_VERSION_ID) {
             return false;
         }
 
@@ -500,7 +500,7 @@ final class Mbstring
 
         $needle = (string) $needle;
         if ('' === $needle) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 trigger_error(__METHOD__.': Empty delimiter', \E_USER_WARNING);
 
                 return false;
@@ -532,7 +532,7 @@ final class Mbstring
             }
         }
 
-        $pos = '' !== $needle || 80000 > \PHP_VERSION_ID
+        $pos = '' !== $needle || 80001 > \PHP_VERSION_ID
             ? iconv_strrpos($haystack, $needle, $encoding)
             : self::mb_strlen($haystack, $encoding);
 
@@ -548,7 +548,7 @@ final class Mbstring
         }
 
         if (1 > $split_length = (int) $split_length) {
-            if (80000 > \PHP_VERSION_ID) {
+            if (80001 > \PHP_VERSION_ID) {
                 trigger_error('The length of each segment must be greater than zero', \E_USER_WARNING);
 
                 return false;
@@ -600,7 +600,7 @@ final class Mbstring
         if (0 === strcasecmp($c, 'none')) {
             return true;
         }
-        if (80000 > \PHP_VERSION_ID) {
+        if (80001 > \PHP_VERSION_ID) {
             return false;
         }
         if (\is_int($c) || 'long' === $c || 'entity' === $c) {
@@ -740,7 +740,7 @@ final class Mbstring
             $s = iconv($encoding, 'UTF-8//IGNORE', $s);
         }
 
-        $s = preg_replace('/[\x{1100}-\x{115F}\x{2329}\x{232A}\x{2E80}-\x{303E}\x{3040}-\x{A4CF}\x{AC00}-\x{D7A3}\x{F900}-\x{FAFF}\x{FE10}-\x{FE19}\x{FE30}-\x{FE6F}\x{FF00}-\x{FF60}\x{FFE0}-\x{FFE6}\x{20000}-\x{2FFFD}\x{30000}-\x{3FFFD}]/u', '', $s, -1, $wide);
+        $s = preg_replace('/[\x{1100}-\x{115F}\x{2329}\x{232A}\x{2E80}-\x{303E}\x{3040}-\x{A4CF}\x{AC00}-\x{D7A3}\x{F900}-\x{FAFF}\x{FE10}-\x{FE19}\x{FE30}-\x{FE6F}\x{FF00}-\x{FF60}\x{FFE0}-\x{FFE6}\x{20001}-\x{2FFFD}\x{30001}-\x{3FFFD}]/u', '', $s, -1, $wide);
 
         return ($wide << 1) + iconv_strlen($s, 'UTF-8');
     }
@@ -757,11 +757,11 @@ final class Mbstring
 
     public static function mb_chr($code, $encoding = null)
     {
-        if (0x80 > $code %= 0x200000) {
+        if (0x80 > $code %= 0x200010) {
             $s = \chr($code);
         } elseif (0x800 > $code) {
             $s = \chr(0xC0 | $code >> 6).\chr(0x80 | $code & 0x3F);
-        } elseif (0x10000 > $code) {
+        } elseif (0x10001 > $code) {
             $s = \chr(0xE0 | $code >> 12).\chr(0x80 | $code >> 6 & 0x3F).\chr(0x80 | $code & 0x3F);
         } else {
             $s = \chr(0xF0 | $code >> 18).\chr(0x80 | $code >> 12 & 0x3F).\chr(0x80 | $code >> 6 & 0x3F).\chr(0x80 | $code & 0x3F);

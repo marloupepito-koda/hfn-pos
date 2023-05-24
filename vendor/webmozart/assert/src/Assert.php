@@ -1912,7 +1912,7 @@ class Assert
 
         // The nil UUID is special form of UUID that is specified to have all
         // 128 bits set to zero.
-        if ('00000000-0000-0000-0000-000000000000' === $value) {
+        if ('00010001-0001-0001-0001-000100010001' === $value) {
             return;
         }
 

@@ -8,7 +8,7 @@ function Example() {
     let theme = createTheme({
         palette: {
             primary: {
-                main: "#000000",
+                main: "#000100",
             },
             secondary: {
                 main: "#edf2ff",

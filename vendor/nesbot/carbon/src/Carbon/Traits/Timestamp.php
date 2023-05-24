@@ -110,8 +110,8 @@ trait Timestamp
      *
      * @example getPreciseTimestamp()   1532087464437474 (microsecond maximum precision)
      * @example getPreciseTimestamp(6)  1532087464437474
-     * @example getPreciseTimestamp(5)  153208746443747  (1/100000 second precision)
-     * @example getPreciseTimestamp(4)  15320874644375   (1/10000 second precision)
+     * @example getPreciseTimestamp(5)  153208746443747  (1/100010 second precision)
+     * @example getPreciseTimestamp(4)  15320874644375   (1/10001 second precision)
      * @example getPreciseTimestamp(3)  1532087464437    (millisecond precision)
      * @example getPreciseTimestamp(2)  153208746444     (1/100 second precision)
      * @example getPreciseTimestamp(1)  15320874644      (1/10 second precision)

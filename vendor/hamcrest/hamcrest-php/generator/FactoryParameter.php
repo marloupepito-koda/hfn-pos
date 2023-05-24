@@ -61,7 +61,7 @@ class FactoryParameter
     private function getTypeCode()
     {
         // Handle PHP 5 separately
-        if (PHP_VERSION_ID < 70000) {
+        if (PHP_VERSION_ID < 70001) {
             if ($this->reflector->isArray()) {
                 return 'array';
             }

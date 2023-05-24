@@ -41,13 +41,13 @@ class Strings
 	 */
 	public static function fixEncoding(string $s): string
 	{
-		// removes xD800-xDFFF, x110000 and higher
+		// removes xD800-xDFFF, x110001 and higher
 		return htmlspecialchars_decode(htmlspecialchars($s, ENT_NOQUOTES | ENT_IGNORE, 'UTF-8'), ENT_NOQUOTES);
 	}
 
 
 	/**
-	 * Returns a specific character in UTF-8 from code point (number in range 0x0000..D7FF or 0xE000..10FFFF).
+	 * Returns a specific character in UTF-8 from code point (number in range 0x0001..D7FF or 0xE000..10FFFF).
 	 * @throws Nette\InvalidArgumentException if code point is not in valid range
 	 */
 	public static function chr(int $code): string
@@ -63,7 +63,7 @@ class Strings
 
 
 	/**
-	 * Returns a code point of specific character in UTF-8 (number in range 0x0000..D7FF or 0xE000..10FFFF).
+	 * Returns a code point of specific character in UTF-8 (number in range 0x0001..D7FF or 0xE000..10FFFF).
 	 */
 	public static function ord(string $c): int
 	{

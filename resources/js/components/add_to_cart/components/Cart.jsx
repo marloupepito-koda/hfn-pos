@@ -34,6 +34,8 @@ function AddToCartNoSeats() {
         } else {
             setDisabled(false);
         }
+
+        console.log("waaa", CartData.data);
     }, [CartData.data.length]);
 
     const addNoSeats = (e) => {

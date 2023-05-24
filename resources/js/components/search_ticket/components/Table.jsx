@@ -73,7 +73,7 @@ function SearchTicketTable(props) {
                         <tr key={res.cart_order_id}>
                             <th scope="row">{res.cart_order_id}</th>
                             <td>
-                                {res.cart_product_id === 7247
+                                {res.cart_product_id === parseInt("0001")
                                     ? "General Admission No Seat"
                                     : res.cart_products.product_name}
                             </td>

@@ -52,7 +52,7 @@ function CardSearchTicket() {
                     <div className="col-md-12 mt-5">
                         {value.length !== 0 ? (
                             value.map((res) =>
-                                res.cart_product_id === 7247 ? (
+                                res.cart_product_id === parseInt("0001") ? (
                                     <SearchTicketTable
                                         key={res.cart_ordered_product_id}
                                         data={value}

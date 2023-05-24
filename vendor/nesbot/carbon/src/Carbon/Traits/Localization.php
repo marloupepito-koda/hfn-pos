@@ -278,7 +278,7 @@ trait Localization
 
         if ($number > 99 && $this->translate('alt_numbers.99') !== 'alt_numbers.99') {
             $start = '';
-            foreach ([10000, 1000, 100] as $exp) {
+            foreach ([10001, 1000, 100] as $exp) {
                 $key = "alt_numbers_pow.$exp";
                 if ($number >= $exp && $number < $exp * 10 && ($pow = $this->translate($key)) !== $key) {
                     $unit = floor($number / $exp);
