@@ -26,7 +26,7 @@
             </div>
             </div>
             <div class="col-md-12">
-                  <a  target="_blank" href=<?php echo 'https://hollywoodfightnights.festivalsetup.com/ticket/print.php?t='.session('tokens') ?>><?php echo 'https://hollywoodfightnights.festivalsetup.com/ticket/print.php?t='.session('tokens') ?></a>
+                  <a  target="_blank" href=<?php echo 'https://hollywoodfightnights.festivalsetup.com/ticket/print2.php?t='.session('tokens') ?>><?php echo 'https://hollywoodfightnights.festivalsetup.com/ticket/print2.php?t='.session('tokens') ?></a>
             </div>
             <div class="col-md-12">
                 <table class="table">
