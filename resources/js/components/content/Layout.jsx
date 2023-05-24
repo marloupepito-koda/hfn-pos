@@ -71,6 +71,7 @@ function IndexLayout() {
                                             <th scope="col">Product Name</th>
                                             <th scope="col">Rows</th>
                                             <th scope="col">Seats</th>
+                                            <th scope="col">Prices</th>
                                             <th scope="col">Add</th>
                                         </tr>
                                     </thead>
@@ -85,6 +86,7 @@ function IndexLayout() {
                                                 <td>{res.product_name}</td>
                                                 <td>Row {res.venue_row}</td>
                                                 <td>Seat {res.venue_seat}</td>
+                                                <td>$ {res.price_sale}</td>
                                                 <td>
                                                     {res.quantity === 1 &&
                                                     CartData.data.find(
