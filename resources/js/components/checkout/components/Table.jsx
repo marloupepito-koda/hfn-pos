@@ -74,60 +74,64 @@ function CheckoutTable() {
     }
 
     return (
-        <>
+        <div>
             <h3 className="mt-5">Order Summary</h3>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Fee</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {addCart.map((res) => (
-                        <tr key={res.cart_product_id}>
-                            <th scope="row">
-                                {res.product_name}
-                                {res.product_name ===
-                                "General Admission No Seat"
-                                    ? ""
-                                    : "Section " + res.venue_section_id === 1
-                                    ? "A"
-                                    : res.venue_section_id === 2
-                                    ? "B"
-                                    : res.venue_section_id === 3
-                                    ? "C"
-                                    : res.venue_section_id === 4
-                                    ? "D"
-                                    : "Row " +
-                                      res.venue_row +
-                                      " Seats " +
-                                      res.venue_seat}
-                            </th>
-                            <td>{res.price_list}</td>
-                            <td>{res.price_fee}</td>
-                            <td>{res.quantity}</td>
-                            <td>
-                                {res.price_fee + res.price_list * res.quantity}
-                            </td>
-                            <td>
-                                <button
-                                    onClick={() =>
-                                        removeItem(res.cart_product_id)
-                                    }
-                                    className="btn btn-sm btn-danger"
-                                >
-                                    remove
-                                </button>
-                            </td>
+            <div style={{ overflowX: "scroll" }}>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Fee</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Remove</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {addCart.map((res) => (
+                            <tr key={res.cart_product_id}>
+                                <th scope="row">
+                                    {res.product_name}
+                                    {res.product_name ===
+                                    "General Admission No Seat"
+                                        ? ""
+                                        : "Section " + res.venue_section_id ===
+                                          1
+                                        ? "A"
+                                        : res.venue_section_id === 2
+                                        ? "B"
+                                        : res.venue_section_id === 3
+                                        ? "C"
+                                        : res.venue_section_id === 4
+                                        ? "D"
+                                        : "Row " +
+                                          res.venue_row +
+                                          " Seats " +
+                                          res.venue_seat}
+                                </th>
+                                <td>{res.price_list}</td>
+                                <td>{res.price_fee}</td>
+                                <td>{res.quantity}</td>
+                                <td>
+                                    {res.price_fee +
+                                        res.price_list * res.quantity}
+                                </td>
+                                <td>
+                                    <button
+                                        onClick={() =>
+                                            removeItem(res.cart_product_id)
+                                        }
+                                        className="btn btn-sm btn-danger"
+                                    >
+                                        remove
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <div className="col-md-4 offset-md-8">
                 <table className="table table-striped">
                     <thead>
@@ -167,7 +171,7 @@ function CheckoutTable() {
                 grandTotal={grandTotal - inputValue}
                 discount={inputValue}
             />
-        </>
+        </div>
     );
 }
 

@@ -186,17 +186,17 @@ class CartProductsController extends Controller
                     ]);
 
 
-               $datetime = new DateTime($request->date);
-               $datetime->modify('+6 minutes');
+               // $datetime = new DateTime($request->date);
+               // $datetime->modify('+6 minutes');
 
-                  $request->session()->put('session',$datetime->format('Y-m-d H:i:s'));
+               //    $request->session()->put('session',$datetime->format('Y-m-d H:i:s'));
           }
 
 
              for ($i = 0; $i < count($request->data); $i++) {
 
              $code = mt_rand(1000000000, 9999999999);
-                    $token = $request->session()->get('token');
+             $token = $request->session()->get('token');
 
                if ($request->data[$i]['product_name'] !== 'General Admission No Seat') {
                     $cartOrders = CartOrders::where('token','=',$token)->first();

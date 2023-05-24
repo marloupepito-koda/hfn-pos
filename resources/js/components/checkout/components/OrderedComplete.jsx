@@ -6,7 +6,7 @@ function OrderedComplete() {
     useEffect(() => {
         axios.get("/api/get_order_complete").then((res) => {
             setData(res.data.status);
-            console.log("waaa", res.data.status);
+            // console.log("waaa", res.data.status);
         });
     }, []);
 
@@ -81,72 +81,77 @@ function OrderedComplete() {
                     Nights
                 </div>
                 <div className="col-md-12">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Tickets</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        {data !== undefined
-                            ? data.map((res, index) => (
-                                  <tbody key={index}>
-                                      {res.cart_products === null ? (
-                                          <tr>
-                                              <th scope="row">No Seats</th>
-                                              <td>
-                                                  {res.cart_ticket_codes.code}
-                                              </td>
-                                              <td>{res.price}</td>
-                                              <td>{res.quantity}</td>
-                                              <td>{res.price}</td>
-                                              <td>
-                                                  <button
-                                                      onClick={() =>
-                                                          clickRedeem(
-                                                              res.cart_ordered_product_id
-                                                          )
+                    <div style={{ overflowX: "scroll" }}>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Tickets</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            {data !== undefined
+                                ? data.map((res, index) => (
+                                      <tbody key={index}>
+                                          {res.cart_product_id === 7247 ? (
+                                              <tr>
+                                                  <th scope="row">No Seats</th>
+                                                  <td>
+                                                      {
+                                                          res.cart_ticket_codes
+                                                              .code
                                                       }
-                                                      className="btn btn-success btn-sm"
-                                                  >
-                                                      Redeem
-                                                  </button>
-                                              </td>
-                                          </tr>
-                                      ) : (
-                                          <tr>
-                                              <th scope="row">
-                                                  {
-                                                      res.cart_products
-                                                          .product_name
-                                                  }
-                                              </th>
-                                              <td>{res.code}</td>
-                                              <td>{res.price}</td>
-                                              <td>{res.quantity}</td>
-                                              <td>{res.price}</td>
-                                              <td>
-                                                  <button
-                                                      onClick={() =>
-                                                          clickRedeem(
-                                                              res.cart_ordered_product_id
-                                                          )
+                                                  </td>
+                                                  <td>{res.price}</td>
+                                                  <td>{res.quantity}</td>
+                                                  <td>{res.price}</td>
+                                                  <td>
+                                                      <button
+                                                          onClick={() =>
+                                                              clickRedeem(
+                                                                  res.cart_ordered_product_id
+                                                              )
+                                                          }
+                                                          className="btn btn-success btn-sm"
+                                                      >
+                                                          Redeem
+                                                      </button>
+                                                  </td>
+                                              </tr>
+                                          ) : (
+                                              <tr>
+                                                  <th scope="row">
+                                                      {
+                                                          res.cart_products
+                                                              .product_name
                                                       }
-                                                      className="btn btn-success btn-sm"
-                                                  >
-                                                      Redeem
-                                                  </button>
-                                              </td>
-                                          </tr>
-                                      )}
-                                  </tbody>
-                              ))
-                            : ""}
-                    </table>
+                                                  </th>
+                                                  <td>{res.code}</td>
+                                                  <td>{res.price}</td>
+                                                  <td>{res.quantity}</td>
+                                                  <td>{res.price}</td>
+                                                  <td>
+                                                      <button
+                                                          onClick={() =>
+                                                              clickRedeem(
+                                                                  res.cart_ordered_product_id
+                                                              )
+                                                          }
+                                                          className="btn btn-success btn-sm"
+                                                      >
+                                                          Redeem
+                                                      </button>
+                                                  </td>
+                                              </tr>
+                                          )}
+                                      </tbody>
+                                  ))
+                                : ""}
+                        </table>
+                    </div>
                 </div>
                 <div className="col-md-3 offset-md-9">
                     <table className="table">

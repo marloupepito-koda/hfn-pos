@@ -31,10 +31,10 @@ const rows = [
     createData("Brazil", "BR", 210147125, 8515767),
 ];
 
-export default function TableComponents({ perPage }) {
+export default function TableComponents({ perPage, total }) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(perPage);
-
+    const TAX_RATE = 0.07;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -43,6 +43,18 @@ export default function TableComponents({ perPage }) {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    function ccyFormat(num) {
+        return `${num.toFixed(2)}`;
+    }
+
+    function subtotal(items) {
+        return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
+    }
+
+    const invoiceSubtotal = subtotal(rows);
+    const invoiceTaxes = TAX_RATE * invoiceSubtotal;
+    const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
     const columns = ["Product Name", "Sections", "Rows", "Seats"];
 
@@ -88,6 +100,35 @@ export default function TableComponents({ perPage }) {
                                     </TableRow>
                                 );
                             })}
+
+                        {total === true ? (
+                            <>
+                                <TableRow>
+                                    <TableCell rowSpan={3} />
+                                    <TableCell colSpan={2}>Subtotal</TableCell>
+                                    <TableCell align="right">
+                                        {ccyFormat(invoiceSubtotal)}
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Tax</TableCell>
+                                    <TableCell align="right">{`${(
+                                        TAX_RATE * 100
+                                    ).toFixed(0)} %`}</TableCell>
+                                    <TableCell align="right">
+                                        {ccyFormat(invoiceTaxes)}
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell colSpan={2}>Total</TableCell>
+                                    <TableCell align="right">
+                                        {ccyFormat(invoiceTotal)}
+                                    </TableCell>
+                                </TableRow>
+                            </>
+                        ) : (
+                            ""
+                        )}
                     </TableBody>
                 </Table>
             </TableContainer>

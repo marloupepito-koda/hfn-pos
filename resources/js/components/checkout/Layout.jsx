@@ -3,8 +3,11 @@ import CheckoutTable from "./components/Table";
 
 function CheckoutLayout() {
     return (
-        <div className="row col-md-8 offset-md-2">
-            <CheckoutTable />
+        <div className="container">
+            <br />
+            <div className="row col-md-8 offset-md-2">
+                <CheckoutTable />
+            </div>
         </div>
     );
 }

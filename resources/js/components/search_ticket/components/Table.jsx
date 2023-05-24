@@ -57,53 +57,55 @@ function SearchTicketTable(props) {
             });
     }
     return (
-        <table className="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Order</th>
-                    <th scope="col">NameTicket</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Upgrade</th>
-                    <th scope="col">Release</th>
-                </tr>
-            </thead>
-            <tbody>
-                {props.data.map((res) => (
-                    <tr key={res.cart_order_id}>
-                        <th scope="row">{res.cart_order_id}</th>
-                        <td>
-                            {res.cart_product_id === 7247
-                                ? "General Admission No Seat"
-                                : res.cart_products.product_name}
-                        </td>
-                        <td>{res.code}</td>
-                        <td>
-                            <button
-                                onClick={() => upgradeHandler(res.code)}
-                                type="button"
-                                className="btn btn-success"
-                            >
-                                Upgrade
-                            </button>
-                        </td>
-                        <td>
-                            <button
-                                onClick={() =>
-                                    releaseHandler(
-                                        res.cart_product_id,
-                                        res.code
-                                    )
-                                }
-                                type="button"
-                                className="btn btn-success"
-                            >
-                                Release
-                            </button>
-                        </td>
+        <div style={{ overflowX: "scroll" }}>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Order</th>
+                        <th scope="col">NameTicket</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Upgrade</th>
+                        <th scope="col">Release</th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {props.data.map((res) => (
+                        <tr key={res.cart_order_id}>
+                            <th scope="row">{res.cart_order_id}</th>
+                            <td>
+                                {res.cart_product_id === 7247
+                                    ? "General Admission No Seat"
+                                    : res.cart_products.product_name}
+                            </td>
+                            <td>{res.code}</td>
+                            <td>
+                                <button
+                                    onClick={() => upgradeHandler(res.code)}
+                                    type="button"
+                                    className="btn btn-success"
+                                >
+                                    Upgrade
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    onClick={() =>
+                                        releaseHandler(
+                                            res.cart_product_id,
+                                            res.code
+                                        )
+                                    }
+                                    type="button"
+                                    className="btn btn-success"
+                                >
+                                    Release
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 }
 

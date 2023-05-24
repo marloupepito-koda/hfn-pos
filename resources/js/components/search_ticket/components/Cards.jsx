@@ -28,10 +28,10 @@ function CardSearchTicket() {
                 <div className="card-body">
                     <form onSubmit={searchTicket}>
                         <div className="row">
-                            <div className="col-md-4 col-4">
+                            <div className="col-md-4 col-12">
                                 <h3>Ticket Code:</h3>
                             </div>
-                            <div className="col-md-4 col-4">
+                            <div className="col-md-4 col-8">
                                 <input
                                     onChange={(e) => setSearch(e.target.value)}
                                     className="form-control form-control-lg"

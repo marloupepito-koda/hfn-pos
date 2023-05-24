@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import HfnLayout from "../hfn/Layout";
-import HfnIndexPage from "../hfn/sections/index/Index";
+import HfnIndexLayout from "../hfn/sections/index/Layout";
+import HfnPlaceOrderLayout from "../hfn/sections/place_order/Layout";
+import OrderCompletedLayout from "../hfn/sections/order_completed/Layout";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -9,7 +11,15 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <HfnIndexPage />,
+                element: <HfnIndexLayout />,
+            },
+            {
+                path: "/place_order",
+                element: <HfnPlaceOrderLayout />,
+            },
+            {
+                path: "/order_completed",
+                element: <OrderCompletedLayout />,
             },
         ],
     },
