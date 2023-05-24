@@ -9191,20 +9191,25 @@ function UpgradeTable() {
     return currentValue.price_list - accumulator;
   }, 0);
   function updateSeats() {
+    sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
+      title: "Loading...",
+      allowOutsideClick: false,
+      didOpen: function didOpen() {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().showLoading();
+      }
+    });
     axios__WEBPACK_IMPORTED_MODULE_5__["default"].post("/api/update_seats/", {
       code: code,
       newSeat: addCart[1],
       additional: additional
     }).then(function (res) {
-      if (res.data.status === "success") {
-        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
-          icon: "success",
-          title: "Your work has been saved",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        window.location.href = "/";
-      }
+      sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      window.location.href = "/";
     });
   }
   var where = ["From", "To"];

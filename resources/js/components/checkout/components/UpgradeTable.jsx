@@ -24,6 +24,13 @@ function UpgradeTable() {
         return currentValue.price_list - accumulator;
     }, 0);
     function updateSeats() {
+        Swal.fire({
+            title: "Loading...",
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
         axios
             .post("/api/update_seats/", {
                 code: code,
@@ -31,15 +38,13 @@ function UpgradeTable() {
                 additional: additional,
             })
             .then((res) => {
-                if (res.data.status === "success") {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Your work has been saved",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    window.location.href = "/";
-                }
+                Swal.fire({
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                window.location.href = "/";
             });
     }
 
