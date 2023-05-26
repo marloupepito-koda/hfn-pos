@@ -170,7 +170,9 @@ const PDFDocument = ({ data }) => {
                             paddingTop: "15px",
                             backgroundColor:
                                 res.cart_products.product_name ===
-                                "Reserved Seating"
+                                    "Reserved Seating" ||
+                                res.cart_products.product_name ===
+                                    "General Admission Seating"
                                     ? "rgb(253, 177, 0)"
                                     : res.cart_products.product_name ===
                                       "Preferred Seating"
@@ -189,6 +191,8 @@ const PDFDocument = ({ data }) => {
                             marginLeft:
                                 res.cart_products.product_name ===
                                     "Reserved Seating" ||
+                                res.cart_products.product_name ===
+                                    "General Admission Seating" ||
                                 res.cart_products.product_name ===
                                     "Preferred Seating"
                                     ? "360"

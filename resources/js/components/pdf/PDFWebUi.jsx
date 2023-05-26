@@ -16,7 +16,7 @@ function PDFWebUi() {
         <div style={{ height: "99vh" }}>
             <PDFViewer style={{ width: "100%", height: "100%" }}>
                 {data.map((res, index) => (
-                    <PDFDocument data={data} />
+                    <PDFDocument key={index} data={data} />
                 ))}
             </PDFViewer>
         </div>
