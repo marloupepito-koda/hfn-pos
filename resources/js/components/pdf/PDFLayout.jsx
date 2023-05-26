@@ -4,6 +4,7 @@ import PDFDocument from "./PDFDocument";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { saveAs } from "file-saver";
+import PDFWebUi from "./PDFWebUi";
 
 const PDFLayout = () => {
     const { token } = useParams();
@@ -11,7 +12,6 @@ const PDFLayout = () => {
     useEffect(() => {
         axios.get("/api/get_cart_orders_token/" + token).then((res) => {
             setData(res.data.status);
-            console.log(res.data.status);
         });
     }, []);
     const handleConvertToPDF = async () => {
@@ -19,14 +19,8 @@ const PDFLayout = () => {
         const pdfBlob = await pdf(doc).toBlob();
         saveAs(pdfBlob, "tickets.pdf");
     };
-    // useEffect(() => {
-    //     handleConvertToPDF();
-    // }, []);
-    return (
-        <div>
-            <button onClick={handleConvertToPDF}>Download</button>
-        </div>
-    );
+
+    return <PDFWebUi />;
 };
 
 export default PDFLayout;

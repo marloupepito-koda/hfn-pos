@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Document, Page, Image, Text, StyleSheet } from "@react-pdf/renderer";
-import reserved from "./tickets/reserved.png";
+import tickets from "./tickets/tickets.png";
 
 import moment from "moment";
 const PDFDocument = ({ data }) => {
@@ -135,7 +135,7 @@ const PDFDocument = ({ data }) => {
         <Document>
             {data.map((res, index) => (
                 <Page key={index}>
-                    <Image style={styles.image} src={reserved} />
+                    <Image style={styles.image} src={tickets} />
                     <Text style={styles.orderInfo}>
                         Order # {res.cart_order_id}{" "}
                         {moment(res.date_submitted).format("LLL")}

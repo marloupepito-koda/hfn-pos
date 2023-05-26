@@ -19,7 +19,6 @@
             <link href="css/bootstrap-icons.css" rel="stylesheet">
             <link href="css/templatemo-festava-live.css" rel="stylesheet">
 
-
     </head>
 
     
