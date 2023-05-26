@@ -201,7 +201,17 @@ const PDFDocument = ({ data }) => {
                             fontSize: "24",
                         }}
                     >
-                        {res.cart_products.product_name}
+                        {res.cart_products.product_name ===
+                            "Reserved Seating" ||
+                        res.cart_products.product_name ===
+                            "General Admission Seating"
+                            ? "General Admission"
+                            : res.cart_products.product_name ===
+                              "Preferred Seating"
+                            ? "Preferred Seating"
+                            : res.cart_products.product_name === "VIP Ringside"
+                            ? "VIP Ringside"
+                            : "No Seat"}
                     </Text>
                     <Text style={styles.productPrice}>
                         Price: $ {res.cart_products.price_sale}
