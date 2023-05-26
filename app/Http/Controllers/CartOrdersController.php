@@ -9,6 +9,13 @@ use App\Models\CartOrderedProducts;
 use App\Models\CartTicketCodes;
 class CartOrdersController extends Controller
 {
+   public function  get_cart_orders_token($token){
+
+    $data= CartOrderedProducts::where('token',$token)->with(['cartProducts','cartOrders'])->get();
+        return response()->json([
+               'status' =>$data,
+          ]); 
+    }
      
       public function update_seats(Request $request){
         $data= CartTicketCodes::where('code',$request->code)->first();

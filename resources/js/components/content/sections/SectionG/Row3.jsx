@@ -128,7 +128,7 @@ function Row3(props) {
                     <polygon
                         className="st6 booth-fill"
                         fill="#FFFFFF"
-                        stroke="#000100"
+                        stroke="#000000"
                         strokeWidth=".5"
                         strokeMiterlimit="10"
                         points={

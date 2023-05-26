@@ -143,7 +143,7 @@ function Row12(props) {
                                 : ""
                         }
                         fill={seatColor === undefined ? "#000100" : "#ffff66"}
-                        stroke="#000100"
+                        stroke="#000000"
                         strokeWidth=".5"
                         strokeMiterlimit="10"
                         points={

@@ -144,7 +144,7 @@ function Row1(props) {
                                 : "st6 booth-fill selected"
                         }
                         fill="#FFFFFF"
-                        stroke="#000100"
+                        stroke="#000000"
                         strokeWidth=".5"
                         strokeMiterlimit="10"
                         points={

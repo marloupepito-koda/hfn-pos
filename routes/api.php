@@ -35,6 +35,7 @@ Route::get('/get_ordered_products/{code}', [CartOrderedProductsController::class
 
 
 Route::post('/update_seats', [CartOrdersController::class, 'update_seats']);
+Route::get('/get_cart_orders_token/{token}', [CartOrdersController::class, 'get_cart_orders_token']);
 
 
 

@@ -8,6 +8,7 @@ import SearchTicketLayout from "../search_ticket/Layout";
 import OrderedComplete from "../checkout/components/OrderedComplete";
 import UpgradeTable from "../checkout/components/UpgradeTable";
 import IndexLayout from "../content/Layout";
+import PDFLayout from "../pdf/PDFLayout";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
                 element: <OrderedComplete />,
             },
         ],
+    },
+    {
+        path: "/tickets/pdf/:token",
+        element: <PDFLayout />,
     },
     { path: "*", element: <Error404 /> },
 ]);

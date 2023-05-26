@@ -97,14 +97,13 @@ function OrderedComplete() {
                                 ? data.map((res, index) => (
                                       <tbody key={index}>
                                           {res.cart_product_id ===
-                                          parseInt("0001") ? (
+                                          parseInt("1") ? (
                                               <tr>
                                                   <th scope="row">No Seats</th>
                                                   <td>
-                                                      {
-                                                          res.cart_ticket_codes
-                                                              .code
-                                                      }
+                                                      {res.code === null
+                                                          ? ""
+                                                          : res.code}
                                                   </td>
                                                   <td>{res.price}</td>
                                                   <td>{res.quantity}</td>
@@ -130,7 +129,11 @@ function OrderedComplete() {
                                                               .product_name
                                                       }
                                                   </th>
-                                                  <td>{res.code}</td>
+                                                  <td>
+                                                      {res.code === null
+                                                          ? ""
+                                                          : res.code}
+                                                  </td>
                                                   <td>{res.price}</td>
                                                   <td>{res.quantity}</td>
                                                   <td>{res.price}</td>
