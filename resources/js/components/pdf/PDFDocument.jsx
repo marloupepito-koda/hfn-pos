@@ -148,7 +148,10 @@ const PDFDocument = ({ data }) => {
                     </Text>
                     <Image
                         style={styles.qrcode}
-                        src="http://api.qrserver.com/v1/create-qr-code/?data=input.value"
+                        src={
+                            "http://api.qrserver.com/v1/create-qr-code/?data=https://hfn.ee4.co/redeem/" +
+                            res.code
+                        }
                     />
                     <Text style={styles.code}>{res.code}</Text>
                     <Text style={styles.event}>

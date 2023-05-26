@@ -9,6 +9,7 @@ import OrderedComplete from "../checkout/components/OrderedComplete";
 import UpgradeTable from "../checkout/components/UpgradeTable";
 import IndexLayout from "../content/Layout";
 import PDFLayout from "../pdf/PDFLayout";
+import RedeemLayout from "../redeem/Layout";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
                 path: "/checkout/:code",
                 element: <UpgradeTable />,
             },
+
             {
                 path: "/tickets",
                 element: <SearchTicketLayout />,
@@ -39,6 +41,10 @@ export const router = createBrowserRouter([
                 element: <OrderedComplete />,
             },
         ],
+    },
+    {
+        path: "/redeem/:code",
+        element: <RedeemLayout />,
     },
     {
         path: "/tickets/pdf/:token",

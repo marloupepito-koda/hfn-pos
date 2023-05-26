@@ -30,6 +30,7 @@ Route::get('/search_ticket_code/{search}', [CartOrderedProductsController::class
 Route::get('/get_order_complete', [CartOrderedProductsController::class, 'get_order_complete']);
 Route::post('/redeem_ticket', [CartOrderedProductsController::class, 'redeem_ticket']);
 Route::post('/accept_redeem', [CartOrderedProductsController::class, 'accept_redeem']);
+Route::get('/get_specific_code/{code}', [CartOrderedProductsController::class, 'get_specific_code']);
 Route::get('/release_ticket/{id}/{productid}', [CartOrderedProductsController::class, 'release_ticket']);
 Route::get('/get_ordered_products/{code}', [CartOrderedProductsController::class, 'get_ordered_products']);
 

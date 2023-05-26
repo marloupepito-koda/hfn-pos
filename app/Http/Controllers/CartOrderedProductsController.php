@@ -11,6 +11,14 @@ class CartOrderedProductsController extends Controller
 {
       public $client_id = 157;
 
+
+      
+      public function get_specific_code($code){
+          $redeem = CartTicketCodes::where('code',$code)->first();
+           return response()->json([
+               'status' =>$redeem,
+            ]); 
+      }
        public function get_ordered_products($code){
             $order= CartOrderedProducts::where('code',$code)->with('cartProducts')->get();
             return response()->json([
