@@ -10,6 +10,7 @@ function CheckoutPaymentMethods(props) {
     const [disable, setDisabled] = useState(false);
     const navigate = useNavigate();
     const location = useLocation().hash;
+
     useEffect(() => {
         setDiscount(props.discount);
     }, [CartData + props.discount]);
@@ -90,30 +91,38 @@ function CheckoutPaymentMethods(props) {
         e.preventDefault();
         setDisabled(true);
         Swal.fire({
-            title: "Loading...",
+            title: "Loading Payment Confirmation...",
             allowOutsideClick: false,
             didOpen: () => {
                 Swal.showLoading();
             },
         });
         if (method === "credits") {
+            setDisabled(false);
             axios
-                .post("/api/send_place_orders", {
+                .post("/api/m2_reader_response", {
                     data: paymentCard,
-                    discount: discount,
                 })
                 .then((res) => {
-                    if (res.data.status === "success") {
-                        axios
-                            .post("/send_reservation", {
-                                data: paymentCard,
-                            })
-                            .then((res) => {
-                                console.log("res", paymentCard);
-                                window.location.href = "/order_complete";
-                            });
-                    }
+                    Swal.close();
                 });
+            // axios
+            //     .post("/api/send_place_orders", {
+            //         data: paymentCard,
+            //         discount: discount,
+            //     })
+            //     .then((res) => {
+            //         if (res.data.status === "success") {
+            //             axios
+            //                 .post("/send_reservation", {
+            //                     data: paymentCard,
+            //                 })
+            //                 .then((res) => {
+            //                     console.log("res", paymentCard);
+            //                     window.location.href = "/order_complete";
+            //                 });
+            //         }
+            //     });
         } else if (method === "cash") {
             axios
                 .post("/api/send_place_orders", {

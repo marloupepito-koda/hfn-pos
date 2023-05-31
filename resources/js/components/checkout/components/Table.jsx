@@ -75,6 +75,7 @@ function CheckoutTable() {
 
     return (
         <div>
+            <br />
             <h3 className="mt-5">Order Summary</h3>
             <div style={{ overflowX: "scroll" }}>
                 <table className="table table-striped">

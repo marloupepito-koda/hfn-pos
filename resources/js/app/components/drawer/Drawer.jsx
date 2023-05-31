@@ -45,7 +45,7 @@ export default function DrawerComponents({ section, children }) {
     );
 
     return (
-        <div>
+        <div className="col-md-12 col-12">
             {["left"].map((anchor) => (
                 <React.Fragment key={anchor}>
                     <Button

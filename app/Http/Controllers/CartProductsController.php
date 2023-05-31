@@ -64,7 +64,7 @@ class CartProductsController extends Controller
 
        
 
-          if ($request->session()->get('session') === null) {
+          if ($request->session()->get('token') === null) {
                 function generateRandomString()
                     {
                          $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -308,17 +308,17 @@ class CartProductsController extends Controller
      public function end_session(Request $request)
      {
 
-          $data = $request->session()->get('create_checkout');
-          // $checkoutToken = $request->session()->get('checkout_token');
+          // $data = $request->session()->get('create_checkout');
+          // // $checkoutToken = $request->session()->get('checkout_token');
 
-          for ($i = 0; $i < count($data); $i++) {
-               if ($data[$i]['product_name'] !== 'General Admission No Seat') {
-                    CartProducts::where('cart_product_id', $data[$i]['cart_product_id'])
-                         ->update([
-                              'quantity' => 1
-                         ]);
-               }
-          }
+          // for ($i = 0; $i < count($data); $i++) {
+          //      if ($data[$i]['product_name'] !== 'General Admission No Seat') {
+          //           CartProducts::where('cart_product_id', $data[$i]['cart_product_id'])
+          //                ->update([
+          //                     'quantity' => 1
+          //                ]);
+          //      }
+          // }
 
           // CartOrders::where('token',$checkoutToken)-update([
           //      'status' =>'cancelled'
@@ -326,9 +326,9 @@ class CartProductsController extends Controller
           // CartOrderedProducts::where('token',session('token'))->delete();
           // CartTicketCodes::where('token',session('token'))->delete();
           // CartOrders::where('token',session('token'))->delete();
-          $request->session()->forget('session');
-          $request->session()->forget('token');
-          $request->session()->forget('create_checkout');
+          // $request->session()->forget('session');
+          // $request->session()->forget('token');
+          // $request->session()->forget('create_checkout');
           return response()->json([
                'status' => 'success',
           ]);
