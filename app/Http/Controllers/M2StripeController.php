@@ -54,7 +54,7 @@ class M2StripeController extends Controller
         
         $stripe = new \Stripe\StripeClient(env('STRIPE_SK_TEST'));
         $payment = $stripe->paymentIntents->create([
-        'amount' => 7777,
+        'amount' => 9999,
         'currency' => 'usd',
         'payment_method_types' => ['card_present'],
         'capture_method' => 'manual',
