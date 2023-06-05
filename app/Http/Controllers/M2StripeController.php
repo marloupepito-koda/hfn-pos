@@ -43,10 +43,17 @@ class M2StripeController extends Controller
                 'token'=>$token,
                 'status' =>'pending'
             ]);
-        }
-          return response()->json([
+
+            return response()->json([
                 'status' =>$request->data,
             ]);
+        }else{
+             return response()->json([
+                'status' =>'error',
+                'token' => $token 
+            ]);
+        }
+          
 
              
      }

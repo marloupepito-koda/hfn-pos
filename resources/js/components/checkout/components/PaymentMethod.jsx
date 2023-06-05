@@ -105,26 +105,30 @@ function CheckoutPaymentMethods(props) {
                     data: paymentCard,
                 })
                 .then((res) => {
-                    axios
-                        .post("/api/send_place_orders", {
-                            data: paymentCard,
-                            discount: discount,
-                        })
-                        .then((res) => {
-                            console.log("res", paymentCard);
-                            window.location.href = "/order_complete";
-                            Swal.close();
-                            // if (res.data.status === "success") {
-                            //     axios
-                            //         .post("/send_reservation", {
-                            //             data: paymentCard,
-                            //         })
-                            //         .then((res) => {
-                            //             console.log("res", paymentCard);
-                            //             window.location.href = "/order_complete";
-                            //         });
-                            // }
-                        });
+                    if (res.data.status !== "error") {
+                        axios
+                            .post("/api/send_place_orders", {
+                                data: paymentCard,
+                                discount: discount,
+                            })
+                            .then((res) => {
+                                window.location.href = "/order_complete";
+                                Swal.close();
+                                // if (res.data.status === "success") {
+                                //     axios
+                                //         .post("/send_reservation", {
+                                //             data: paymentCard,
+                                //         })
+                                //         .then((res) => {
+                                //             console.log("res", paymentCard);
+                                //             window.location.href = "/order_complete";
+                                //         });
+                                // }
+                            });
+                    } else {
+                        console.log(res.data.token);
+                        Swal.close();
+                    }
                 });
         } else if (method === "cash") {
             axios
