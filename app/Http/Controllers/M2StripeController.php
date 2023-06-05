@@ -28,7 +28,7 @@ class M2StripeController extends Controller
             
     }
      public function m2_reader_response(Request $request){
-        $token = $request->session()->get('token');
+        $token = session('tokens');
         
        $response=  M2Stripe::where('token',$token)->get();
        
