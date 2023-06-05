@@ -17,10 +17,13 @@ use App\Http\Controllers\M2StripeController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
 Route::get('/connection_token', [M2StripeController::class, 'connection_token']);
 Route::post('/create_payment_intent', [M2StripeController::class, 'create_payment_intent']);
 Route::post('/confirm_payment_intent', [M2StripeController::class, 'confirm_payment_intent']);
 Route::post('/m2_reader_response', [M2StripeController::class, 'm2_reader_response']);
+Route::get('/get_m2_reader_response', [M2StripeController::class, 'get_m2_reader_response']);
+Route::get('/get_m2_ordered_product/{token}', [M2StripeController::class, 'get_m2_ordered_product']);
 
 Route::get('/get_seats', [CartProductsController::class, 'get_seats']);
 Route::post('/create_checkout', [CartProductsController::class, 'create_checkout']);

@@ -59,7 +59,7 @@ class CartOrderedProductsController extends Controller
 
         
       public function get_order_complete(Request $request){
-          $ordered =CartOrderedProducts::where('token',$request->session()->get('token'))->with(['cartProducts','cartTicketCodes'])->get();
+          $ordered =CartOrderedProducts::where('token',session('tokens'))->with(['cartProducts','cartTicketCodes'])->get();
             return response()->json([
                'status' =>$ordered,
           ]);
@@ -147,6 +147,7 @@ class CartOrderedProductsController extends Controller
 
          $request->session()->forget('session');
          $request->session()->forget('create_checkout');
+         $request->session()->forget('token');
           return response()->json([
                'status' =>'success',
           ]);

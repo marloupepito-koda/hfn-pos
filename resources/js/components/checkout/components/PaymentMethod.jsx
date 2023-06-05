@@ -99,30 +99,33 @@ function CheckoutPaymentMethods(props) {
         });
         if (method === "credits") {
             setDisabled(false);
+
             axios
                 .post("/api/m2_reader_response", {
                     data: paymentCard,
                 })
                 .then((res) => {
-                    Swal.close();
+                    axios
+                        .post("/api/send_place_orders", {
+                            data: paymentCard,
+                            discount: discount,
+                        })
+                        .then((res) => {
+                            console.log("res", paymentCard);
+                            window.location.href = "/order_complete";
+                            Swal.close();
+                            // if (res.data.status === "success") {
+                            //     axios
+                            //         .post("/send_reservation", {
+                            //             data: paymentCard,
+                            //         })
+                            //         .then((res) => {
+                            //             console.log("res", paymentCard);
+                            //             window.location.href = "/order_complete";
+                            //         });
+                            // }
+                        });
                 });
-            // axios
-            //     .post("/api/send_place_orders", {
-            //         data: paymentCard,
-            //         discount: discount,
-            //     })
-            //     .then((res) => {
-            //         if (res.data.status === "success") {
-            //             axios
-            //                 .post("/send_reservation", {
-            //                     data: paymentCard,
-            //                 })
-            //                 .then((res) => {
-            //                     console.log("res", paymentCard);
-            //                     window.location.href = "/order_complete";
-            //                 });
-            //         }
-            //     });
         } else if (method === "cash") {
             axios
                 .post("/api/send_place_orders", {
