@@ -6,7 +6,7 @@ function OrderedComplete() {
     useEffect(() => {
         axios.get("/api/get_order_complete").then((res) => {
             setData(res.data.status);
-            console.log("waaa", res.data.status);
+            console.log("waaa", res.data.token);
         });
     }, []);
 
@@ -19,7 +19,6 @@ function OrderedComplete() {
                 data: e,
             })
             .then((res) => {
-                console.log(e);
                 if (res.data.status.cart_ticket_codes === null) {
                     axios
                         .post("/api/accept_redeem", {

@@ -59,7 +59,7 @@ class CartOrderedProductsController extends Controller
 
         
       public function get_order_complete(Request $request){
-          $ordered =CartOrderedProducts::where('token',session('tokens'))->with(['cartProducts','cartTicketCodes'])->get();
+          $ordered =CartOrderedProducts::where('token',$request->session()->get('tkn'))->with(['cartProducts','cartTicketCodes'])->get();
             return response()->json([
                'status' =>$ordered,
           ]);
@@ -96,8 +96,6 @@ class CartOrderedProductsController extends Controller
                     'check_info'=>$request->data['check_info'],
                     'total_discount'=>$request->discount
                ]);
-
-          $request->session()->put('tokens', $token);
              for ($i=0; $i < count($data); $i++) { 
                     if($data[$i]['cart_product_id'] === 'no seats'){
                          CartOrderedProducts::where('token','=',$token)
@@ -148,7 +146,7 @@ class CartOrderedProductsController extends Controller
 
          $request->session()->forget('session');
          $request->session()->forget('create_checkout');
-         $request->session()->forget('token');
+     //     $request->session()->forget('token');
           return response()->json([
                'status' =>'success',
           ]);

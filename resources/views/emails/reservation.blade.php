@@ -49,7 +49,6 @@
                             <td>{{$seat['cart_product_id'] === 'no seats'?'':$seat['venue_section']}}</td>
                             <td>{{$seat['cart_product_id'] === 'no seats'?'':$seat['venue_row']}}</td>
                             <td>{{$seat['cart_product_id'] === 'no seats'?'':$seat['venue_seat']}}</td>
-                            <td>Mark</td>
                             <td>{{$seat['cart_product_id'] === 'no seats'?'':$seat['price_sale']}}</td>
                         </tr>
                     @endforeach

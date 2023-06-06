@@ -19,6 +19,7 @@ function AddToCartNoSeats() {
                     date: moment().format("LLL"),
                 })
                 .then((res) => {
+                    console.log(res.data.status);
                     navigate("/checkout#" + Math.floor(Math.random() * 9999));
                 });
         } else {

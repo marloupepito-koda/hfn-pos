@@ -75,7 +75,7 @@ class CartProductsController extends Controller
                          return $randomString;
                     }
                     $request->session()->put('token', generateRandomString());
-                    $token = session('token');                  
+                    $token = $request->session()->get('token');   
                        CartOrders::insert([
                          'client_id' => $this->client_id,
                          'invoice_number' => -1,
@@ -291,7 +291,7 @@ class CartProductsController extends Controller
 
            $request->session()->put('create_checkout', $request->data);
           return response()->json([
-               'status' =>$request->session()->get('session'),
+               'status' =>$request->session()->get('token'),
           ]);
 
      }

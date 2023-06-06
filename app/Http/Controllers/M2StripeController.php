@@ -28,12 +28,13 @@ class M2StripeController extends Controller
             
     }
      public function m2_reader_response(Request $request){
-        $token = $request->session()->get('tokens');
+        $token = $request->session()->get('token');
         
         if($token !== null){
-         $response=  M2Stripe::where('token',$token)->get();
-        if(count($response) === 0){
-             M2Stripe::insert([
+           $request->session()->put('tkn', $token);
+           $response=  M2Stripe::where('token',$token)->get();
+          if(count($response) === 0){
+                 M2Stripe::insert([
                     'notes'=>$request->data['notes'],
                     'name'=>$request->data['fullname'],
                     'email'=>$request->data['email'],
@@ -43,21 +44,25 @@ class M2StripeController extends Controller
                     'token'=>$token,
                     'status' =>'pending'
                 ]);
-                $request->session()->forget('tokens');
+                $request->session()->forget('tkn');
                 return response()->json([
                     'status' =>$request->data,
                 ]);
             }else{
+                 $request->session()->forget('token');
                 return response()->json([
                     'status' =>'error',
                     'token' => $token 
                 ]);
             }
+
+             $request->session()->forget('token');
         }else{
              return response()->json([
                 'status' =>'error',
-                'token' => $token 
+                'token' => $request->session()->get('tkn')
             ]);
+              $request->session()->forget('token');
         }
     
           

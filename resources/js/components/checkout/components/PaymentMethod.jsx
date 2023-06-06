@@ -105,6 +105,7 @@ function CheckoutPaymentMethods(props) {
                     data: paymentCard,
                 })
                 .then((res) => {
+                    console.log("token", res.data.token);
                     if (res.data.status !== "error") {
                         axios
                             .post("/api/send_place_orders", {
