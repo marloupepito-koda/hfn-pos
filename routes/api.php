@@ -6,6 +6,7 @@ use App\Http\Controllers\CartOrderedProductsController;
 use App\Http\Controllers\CartOrdersController;
 use App\Http\Controllers\CartProductsController;
 use App\Http\Controllers\M2StripeController;
+use App\Http\Controllers\PusherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,14 @@ use App\Http\Controllers\M2StripeController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+// Route::post('/pusher-payment', function () {
+//      event(new App\Events\PusherPayment('Hello from Laravel and Pusher!'));
+//     return 'Event sent';
+// });
+
+
+Route::post('/pusher-payment', [PusherController::class, 'pusherPayments']);
 
 Route::get('/connection_token', [M2StripeController::class, 'connection_token']);
 Route::post('/create_payment_intent', [M2StripeController::class, 'create_payment_intent']);

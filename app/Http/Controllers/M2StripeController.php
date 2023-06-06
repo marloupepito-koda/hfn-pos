@@ -44,7 +44,7 @@ class M2StripeController extends Controller
                     'token'=>$token,
                     'status' =>'pending'
                 ]);
-                $request->session()->forget('tkn');
+                $request->session()->forget('token');
                 return response()->json([
                     'status' =>$request->data,
                 ]);

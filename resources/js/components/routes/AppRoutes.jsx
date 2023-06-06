@@ -10,6 +10,7 @@ import UpgradeTable from "../checkout/components/UpgradeTable";
 import IndexLayout from "../content/Layout";
 import PDFLayout from "../pdf/PDFLayout";
 import RedeemLayout from "../redeem/Layout";
+import PushNotification from "../components/PushNotification";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
     {
         path: "/tickets/pdf/:token",
         element: <PDFLayout />,
+    },
+    {
+        path: "/push_notification",
+        element: <PushNotification />,
     },
     { path: "*", element: <Error404 /> },
 ]);

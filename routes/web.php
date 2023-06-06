@@ -32,6 +32,7 @@ Route::post('/send_reservation', function (Request $request) {
     //             ]);
 });
 
+
 Route::get('/{jsx?}',function(){
     return view('index');
 })->where('jsx','[\/\w\.-]*');
@@ -39,6 +40,8 @@ Route::get('/{jsx?}',function(){
 
 
 Route::post('/create_checkout', [CartProductsController::class, 'create_checkout']);
+
+
 
 
 
