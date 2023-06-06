@@ -573,6 +573,7 @@ class ComposerStaticInita4bde2f16b1f70dd8e2471ab427fa910
         'App\\Models\\CartOrders' => __DIR__ . '/../..' . '/app/Models/CartOrders.php',
         'App\\Models\\CartProducts' => __DIR__ . '/../..' . '/app/Models/CartProducts.php',
         'App\\Models\\CartTicketCodes' => __DIR__ . '/../..' . '/app/Models/CartTicketCodes.php',
+        'App\\Models\\M2Stripe' => __DIR__ . '/../..' . '/app/Models/M2Stripe.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

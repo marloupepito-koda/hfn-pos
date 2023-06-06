@@ -122,11 +122,11 @@ function CheckoutTable() {
                                           " Seats " +
                                           res.venue_seat}
                                 </th>
-                                <td>{res.price_list}</td>
-                                <td>{res.price_fee}</td>
+                                <td>${res.price_list}</td>
+                                <td>${res.price_fee}</td>
                                 <td>{res.quantity}</td>
                                 <td>
-                                    {res.price_fee +
+                                    ${res.price_fee +
                                         res.price_list * res.quantity}
                                 </td>
                                 <td>
