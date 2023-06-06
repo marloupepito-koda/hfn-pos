@@ -105,9 +105,9 @@ function OrderedComplete() {
                                                           ? ""
                                                           : res.code}
                                                   </td>
-                                                  <td>{res.price}</td>
+                                                  <td>${res.price}</td>
                                                   <td>{res.quantity}</td>
-                                                  <td>{res.price}</td>
+                                                  <td>${res.price}</td>
                                                   <td>
                                                       <button
                                                           onClick={() =>
@@ -134,9 +134,9 @@ function OrderedComplete() {
                                                           ? ""
                                                           : res.code}
                                                   </td>
-                                                  <td>{res.price}</td>
+                                                  <td>${res.price}</td>
                                                   <td>{res.quantity}</td>
-                                                  <td>{res.price}</td>
+                                                  <td>${res.price}</td>
                                                   <td>
                                                       <button
                                                           onClick={() =>
@@ -162,7 +162,7 @@ function OrderedComplete() {
                         <thead>
                             <tr>
                                 <th scope="col">Sub Total</th>
-                                <td scope="col">{subTotal}</td>
+                                <td scope="col">${subTotal}</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -172,11 +172,11 @@ function OrderedComplete() {
                             </tr>
                             <tr>
                                 <th scope="row">Ticket Fee</th>
-                                <td>{ticketFee}</td>
+                                <td>${ticketFee}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Grand Total</th>
-                                <td>{grandTotal - discount}</td>
+                                <td>${grandTotal - discount}</td>
                             </tr>
                         </tbody>
                     </table>
