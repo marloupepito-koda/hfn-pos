@@ -28,31 +28,38 @@ class M2StripeController extends Controller
             
     }
      public function m2_reader_response(Request $request){
-        $token = session('tokens');
+        $token = session()->get('tokens');
         
-       $response=  M2Stripe::where('token',$token)->get();
-       
+        if($token !== null){
+         $response=  M2Stripe::where('token',$token)->get();
         if(count($response) === 0){
              M2Stripe::insert([
-                'notes'=>$request->data['notes'],
-                'name'=>$request->data['fullname'],
-                'email'=>$request->data['email'],
-                'grandtotal'=>$request->data['grandTotal'],
-                'subtotal'=>$request->data['subTotal'],
-                'ticket_fee'=>$request->data['ticketFee'],
-                'token'=>$token,
-                'status' =>'pending'
-            ]);
-
-            return response()->json([
-                'status' =>$request->data,
-            ]);
+                    'notes'=>$request->data['notes'],
+                    'name'=>$request->data['fullname'],
+                    'email'=>$request->data['email'],
+                    'grandtotal'=>$request->data['grandTotal'],
+                    'subtotal'=>$request->data['subTotal'],
+                    'ticket_fee'=>$request->data['ticketFee'],
+                    'token'=>$token,
+                    'status' =>'pending'
+                ]);
+                session()->forget('tokens');
+                return response()->json([
+                    'status' =>$request->data,
+                ]);
+            }else{
+                return response()->json([
+                    'status' =>'error',
+                    'token' => $token 
+                ]);
+            }
         }else{
              return response()->json([
                 'status' =>'error',
                 'token' => $token 
             ]);
         }
+    
           
 
              

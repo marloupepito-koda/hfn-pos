@@ -11,6 +11,14 @@ function AddToCartTable() {
             code === undefined ? CartData.data : CartData.data.slice(0, 2);
         setData(value);
     }, [location + count]);
+
+    function deleteSeats(e) {
+        const index = data.findIndex(
+            (res) => res.cart_product_id === e.cart_product_id
+        );
+        data.splice(index, 1);
+        navigate("#" + Math.floor(Math.random() * 9999));
+    }
     return (
         <div className="container">
             <table className="table">
@@ -20,6 +28,7 @@ function AddToCartTable() {
                         <th scope="col">Section</th>
                         <th scope="col">Row</th>
                         <th scope="col">Seat</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,6 +61,22 @@ function AddToCartTable() {
                                       {res.product_name === "No Seating"
                                           ? "none"
                                           : res.venue_seat}
+                                  </td>
+                                  <td>
+                                      <a
+                                          href="#"
+                                          onClick={() => deleteSeats(res)}
+                                      >
+                                          <center>
+                                              <i
+                                                  class="fa fa-trash-o"
+                                                  style={{
+                                                      fontSize: "24px",
+                                                      color: "red",
+                                                  }}
+                                              ></i>
+                                          </center>
+                                      </a>
                                   </td>
                               </tr>
                           ))}

@@ -82,7 +82,6 @@ class CartOrderedProductsController extends Controller
      {
           $cartOrderProducts = new CartOrderedProducts;
           $token = $request->session()->get('token');
-          session(['tokens' => $token]);
             $request->session()->put('order_complete', $request->data);
             $data = $request->session()->get('create_checkout');
 
@@ -97,6 +96,8 @@ class CartOrderedProductsController extends Controller
                     'check_info'=>$request->data['check_info'],
                     'total_discount'=>$request->discount
                ]);
+
+          session(['tokens' => $token]);
              for ($i=0; $i < count($data); $i++) { 
                     if($data[$i]['cart_product_id'] === 'no seats'){
                          CartOrderedProducts::where('token','=',$token)
