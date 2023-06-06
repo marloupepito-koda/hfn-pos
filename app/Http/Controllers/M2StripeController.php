@@ -28,7 +28,7 @@ class M2StripeController extends Controller
             
     }
      public function m2_reader_response(Request $request){
-        $token = session()->get('tokens');
+        $token = $request->session()->get('tokens');
         
         if($token !== null){
          $response=  M2Stripe::where('token',$token)->get();
@@ -43,7 +43,7 @@ class M2StripeController extends Controller
                     'token'=>$token,
                     'status' =>'pending'
                 ]);
-                session()->forget('tokens');
+                $request->session()->forget('tokens');
                 return response()->json([
                     'status' =>$request->data,
                 ]);
