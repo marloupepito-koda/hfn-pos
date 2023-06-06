@@ -29,6 +29,7 @@ return array(
     'App\\Models\\CartOrders' => $baseDir . '/app/Models/CartOrders.php',
     'App\\Models\\CartProducts' => $baseDir . '/app/Models/CartProducts.php',
     'App\\Models\\CartTicketCodes' => $baseDir . '/app/Models/CartTicketCodes.php',
+    'App\\Models\\M2Stripe' => $baseDir . '/app/Models/M2Stripe.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

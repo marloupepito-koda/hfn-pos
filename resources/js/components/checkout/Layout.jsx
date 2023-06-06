@@ -5,7 +5,7 @@ function CheckoutLayout() {
     return (
         <div className="container">
             <br />
-            <div className="row col-md-8 offset-md-2">
+            <div className="row col-md-12">
                 <CheckoutTable />
             </div>
         </div>
