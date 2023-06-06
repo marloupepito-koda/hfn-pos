@@ -97,7 +97,7 @@ class CartOrderedProductsController extends Controller
                     'total_discount'=>$request->discount
                ]);
 
-          session(['tokens' => $token]);
+          session()->put('tokens', $token);
              for ($i=0; $i < count($data); $i++) { 
                     if($data[$i]['cart_product_id'] === 'no seats'){
                          CartOrderedProducts::where('token','=',$token)
