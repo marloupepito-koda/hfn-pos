@@ -9,6 +9,7 @@ function AddToCartNoSeats() {
     const [quantity, setQuantity] = useState(0);
     const [count, setCount] = useOutletContext();
     const [disable, setDisabled] = useState(true);
+    const [subtotal, setSubtotal] = useState(0);
     const navigate = useNavigate();
     const { code } = useParams();
 
@@ -36,9 +37,19 @@ function AddToCartNoSeats() {
         } else {
             setDisabled(false);
         }
-
-        console.log("waaa", CartData.data);
-    }, [CartData.data.length]);
+        setSubtotal(
+            CartData.data
+                .map((res) =>
+                    res.cart_product_id === "no seats"
+                        ? res.price_list * quantity
+                        : res.price_list
+                )
+                .reduce(
+                    (accumulator, currentValue) => accumulator + currentValue,
+                    0
+                )
+        );
+    }, [CartData.data.length + quantity]);
 
     const addNoSeats = (e) => {
         const data = {
@@ -60,6 +71,7 @@ function AddToCartNoSeats() {
             navigate("#" + Math.floor(Math.random() * 9999));
         }
     };
+
     return (
         <>
             <div className="card mb-5 ">
@@ -120,6 +132,10 @@ function AddToCartNoSeats() {
                                             </tbody>
                                         </table>
                                     </div>
+                                    <div className="container col-md-12">
+                                        <b>SUBTOTAL: $ {subtotal}</b>
+                                    </div>
+
                                     <AddToCartTable />
 
                                     <button

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import CartData from "../../add_to_cart/CartData";
+import PaymentChange from "../../add_to_cart/Change";
 import Swal from "sweetalert2";
 function CheckoutPaymentMethods(props) {
     const [method, setMethod] = useState("credits");
@@ -13,7 +14,10 @@ function CheckoutPaymentMethods(props) {
 
     useEffect(() => {
         setDiscount(props.discount);
-    }, [CartData + props.discount]);
+        const change =
+            amount - props.grandTotal < 0 ? 0 : amount - props.grandTotal;
+        PaymentChange.data = change;
+    }, [CartData + props.discount + amount]);
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
         fullname: "",
@@ -81,6 +85,7 @@ function CheckoutPaymentMethods(props) {
     const paymentCashHandler = (e) => {
         paymentCash.tenders = e;
         setAmount(e);
+        navigate("/checkout#" + Math.floor(Math.random() * 9999));
     };
 
     const paymentCheckHandler = (e) => {
@@ -261,7 +266,9 @@ function CheckoutPaymentMethods(props) {
                             </div>
                             <div className="input-group-append">
                                 <span className="input-group-text">
-                                    {amount - props.grandTotal}
+                                    {amount - props.grandTotal < 0
+                                        ? 0
+                                        : amount - props.grandTotal}
                                 </span>
                             </div>
                         </div>

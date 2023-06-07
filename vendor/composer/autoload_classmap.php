@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Events\\PusherPayment' => $baseDir . '/app/Events/PusherPayment.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\CartOrderedProductsController' => $baseDir . '/app/Http/Controllers/CartOrderedProductsController.php',
     'App\\Http\\Controllers\\CartOrdersController' => $baseDir . '/app/Http/Controllers/CartOrdersController.php',
@@ -14,6 +15,7 @@ return array(
     'App\\Http\\Controllers\\CartTicketCodesController' => $baseDir . '/app/Http/Controllers/CartTicketCodesController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\M2StripeController' => $baseDir . '/app/Http/Controllers/M2StripeController.php',
+    'App\\Http\\Controllers\\PusherController' => $baseDir . '/app/Http/Controllers/PusherController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

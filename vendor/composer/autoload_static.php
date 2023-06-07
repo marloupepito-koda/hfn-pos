@@ -557,6 +557,7 @@ class ComposerStaticInita4bde2f16b1f70dd8e2471ab427fa910
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Events\\PusherPayment' => __DIR__ . '/../..' . '/app/Events/PusherPayment.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\CartOrderedProductsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CartOrderedProductsController.php',
         'App\\Http\\Controllers\\CartOrdersController' => __DIR__ . '/../..' . '/app/Http/Controllers/CartOrdersController.php',
@@ -564,6 +565,7 @@ class ComposerStaticInita4bde2f16b1f70dd8e2471ab427fa910
         'App\\Http\\Controllers\\CartTicketCodesController' => __DIR__ . '/../..' . '/app/Http/Controllers/CartTicketCodesController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\M2StripeController' => __DIR__ . '/../..' . '/app/Http/Controllers/M2StripeController.php',
+        'App\\Http\\Controllers\\PusherController' => __DIR__ . '/../..' . '/app/Http/Controllers/PusherController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

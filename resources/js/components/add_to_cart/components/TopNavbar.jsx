@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CartData from "../CartData";
 import { useLocation, Link } from "react-router-dom";
+import PaymentChange from "../Change";
 function AddToCartTopNavbar() {
     const [cartCount, setCartCount] = useState(0);
     const location = useLocation().hash;
@@ -59,7 +60,9 @@ function AddToCartTopNavbar() {
                                 href="#section_7"
                             >
                                 Charge&nbsp;
-                                <span className="badge bg-primary">$0.00</span>
+                                <span className="badge bg-primary">
+                                    $ {PaymentChange.data}
+                                </span>
                             </a>
                         </li>
                     </ul>

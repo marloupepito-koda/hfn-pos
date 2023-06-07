@@ -19,9 +19,10 @@ class PusherPayment
      *
      * @return void
      */
+     public $post;
     public function __construct()
     {
-        //
+        $this->post = 'Hello World';
     }
 
     /**
@@ -30,8 +31,14 @@ class PusherPayment
      * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn()
+    {          
+        return new PrivateChannel('push_notification'); 
+        //  return new PrivateChannel('my-channel');
+    }
+
+    public function broadcastAs()
     {
-          return new PrivateChannel('pusher-channel');
+        return 'my-event';
     }
     
 }

@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from "react";
-import Echo from "laravel-echo";
 import Pusher from "pusher-js";
+import Echo from "laravel-echo";
 const PushNotification = () => {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        const echo = new Echo({
-            broadcaster: "pusher",
-            key: "82a17c42350e8ce1d15d",
+        var pusher = new Pusher("82a17c42350e8ce1d15d", {
             cluster: "us3",
             encrypted: true,
         });
 
-        echo.channel("pusher-channel").listen(".pusher-payment", (data) => {
-            console.log(data);
-            setMessages((prevMessages) => [...prevMessages, data.message]);
+        var channel = pusher.subscribe("push_notification");
+        channel.bind("push_notification", function (response) {
+            alert("some notification");
         });
-
-        return () => {
-            echo.disconnect();
-        };
     }, []);
 
     const handleSend = () => {
-        const message = prompt("Enter a message:");
+        const message = Math.random();
         if (message) {
             axios.post("/api/pusher-payment", { message });
         }
@@ -33,11 +27,7 @@ const PushNotification = () => {
         <div>
             <h1>Laravel & React with Pusher</h1>
             <button onClick={handleSend}>Send Event</button>
-            <ul>
-                {messages.map((message, index) => (
-                    <li key={index}>{message}</li>
-                ))}
-            </ul>
+            <h1>{messages}</h1>
         </div>
     );
 };

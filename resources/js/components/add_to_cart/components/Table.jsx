@@ -70,7 +70,7 @@ function AddToCartTable() {
                                       >
                                           <center>
                                               <i
-                                                  class="fa fa-trash-o"
+                                                  className="fa fa-trash-o"
                                                   style={{
                                                       fontSize: "24px",
                                                       color: "red",
