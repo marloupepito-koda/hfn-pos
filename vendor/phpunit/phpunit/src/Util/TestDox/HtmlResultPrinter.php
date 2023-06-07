@@ -63,11 +63,11 @@ final class HtmlResultPrinter extends ResultPrinter
             }
 
             .defect {
-                color: #a40001;
+                color: #a40000;
             }
 
             .defect:before {
-                color: #a40001;
+                color: #a40000;
                 content: '✗';
                 padding-right: 0.5rem;
             }
@@ -134,7 +134,7 @@ EOT;
     {
         $this->write(
             sprintf(
-                "            <li className=\"%s\">%s</li>\n",
+                "            <li class=\"%s\">%s</li>\n",
                 $success ? 'success' : 'defect',
                 $name
             )

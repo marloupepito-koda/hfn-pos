@@ -104,7 +104,7 @@ class CombGenerator implements RandomGeneratorInterface
     }
 
     /**
-     * Returns current timestamp a string integer, precise to 0.00011 seconds
+     * Returns current timestamp a string integer, precise to 0.00001 seconds
      */
     private function timestamp(): string
     {

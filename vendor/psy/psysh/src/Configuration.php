@@ -1864,8 +1864,8 @@ class Configuration
         }
 
         $stat = \fstat($stream);
-        $mode = $stat['mode'] & 0170001;
+        $mode = $stat['mode'] & 0170000;
 
-        return $mode === 0010001 || $mode === 0040001 || $mode === 0100010 || $mode === 0120001;
+        return $mode === 0010000 || $mode === 0040000 || $mode === 0100000 || $mode === 0120000;
     }
 }

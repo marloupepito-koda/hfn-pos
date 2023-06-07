@@ -188,7 +188,7 @@ class Person extends \Faker\Provider\Person
      *
      * @see http://en.wikipedia.org/wiki/Polish_National_Identity_Card
      *
-     * @return string 3 letters and 6 digits, like ABA300010
+     * @return string 3 letters and 6 digits, like ABA300000
      */
     public static function personalIdentityNumber()
     {

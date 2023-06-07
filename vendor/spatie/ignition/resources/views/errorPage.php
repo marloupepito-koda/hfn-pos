@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php /** @var \Spatie\Ignition\ErrorPage\ErrorPageViewModel $viewModel */ ?>
-<html lang="en" className="<?= $viewModel->theme() ?>">
+<html lang="en" class="<?= $viewModel->theme() ?>">
 <!--
 <?= $viewModel->throwableString() ?>
 -->
@@ -35,7 +35,7 @@
     <?= $viewModel->customHtmlHead() ?>
 
 </head>
-<body className="scrollbar-lg antialiased bg-center bg-dots-darker dark:bg-dots-lighter">
+<body class="scrollbar-lg antialiased bg-center bg-dots-darker dark:bg-dots-lighter">
 
 <script>
     window.data = <?=

@@ -104,7 +104,7 @@ class TemplateHelper
     {
         $parts = explode($delimiter, $s);
         foreach ($parts as &$part) {
-            $part = '<span className="delimiter">' . $part . '</span>';
+            $part = '<span class="delimiter">' . $part . '</span>';
         }
 
         return implode($delimiter, $parts);
@@ -203,7 +203,7 @@ class TemplateHelper
         $numFrames = count($frame->getArgs());
 
         if ($numFrames > 0) {
-            $html = '<ol className="linenums">';
+            $html = '<ol class="linenums">';
             foreach ($frame->getArgs() as $j => $frameArg) {
                 $html .= '<li>'. $this->dump($frameArg) .'</li>';
             }

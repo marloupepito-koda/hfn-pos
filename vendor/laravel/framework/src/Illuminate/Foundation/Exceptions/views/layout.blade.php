@@ -42,9 +42,9 @@
         </style>
     </head>
     <body>
-        <div className="flex-center position-ref full-height">
-            <div className="content">
-                <div className="title">
+        <div class="flex-center position-ref full-height">
+            <div class="content">
+                <div class="title">
                     @yield('message')
                 </div>
             </div>

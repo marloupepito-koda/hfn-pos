@@ -16,8 +16,8 @@
   </head>
   <body>
 
-    <div className="Whoops container">
-      <div className="stack-container">
+    <div class="Whoops container">
+      <div class="stack-container">
 
         <?php $tpl->render($panel_left_outer) ?>
 

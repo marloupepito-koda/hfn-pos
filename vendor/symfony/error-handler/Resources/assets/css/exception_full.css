@@ -10,7 +10,7 @@
 }
 .sf-reset #logs .traces li.error {
     font-style: normal;
-    color: #aa3333;
+    color: #AA3333;
     background: #f9ecec;
 }
 .sf-reset #logs .traces li.warning {
@@ -22,7 +22,7 @@
     content: "\00A0";
 }
 .sf-reset .trace {
-    border: 1px solid #d3d3d3;
+    border: 1px solid #D3D3D3;
     padding: 10px;
     overflow: auto;
     margin: 10px 0 20px;
@@ -58,7 +58,7 @@
 .sf-reset .text-exception .close-quote {
     font-family: Arial, Helvetica, sans-serif;
     position: absolute;
-    color: #c9c9c9;
+    color: #C9C9C9;
     font-size: 8em;
 }
 .sf-reset .open-quote {
@@ -80,8 +80,7 @@
     float: left;
     width: 654px;
 }
-.sf-reset .error-count,
-.sf-reset .support {
+.sf-reset .error-count, .sf-reset .support {
     float: right;
     width: 170px;
     text-align: right;
@@ -105,7 +104,7 @@
     -webkit-border-radius: 6px;
     border-radius: 6px;
     padding: 4px;
-    color: #000100;
+    color: #000000;
     margin-right: 2px;
     font-size: 11px;
     font-weight: bold;

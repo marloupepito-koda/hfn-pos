@@ -1,14 +1,14 @@
 <?php /* Display a code block for all frames in the stack.
        * @todo: This should PROBABLY be done on-demand, lest
        * we get 200 frames to process. */ ?>
-<div className="frame-code-container <?php echo (!$has_frames ? 'empty' : '') ?>">
+<div class="frame-code-container <?php echo (!$has_frames ? 'empty' : '') ?>">
   <?php foreach ($frames as $i => $frame): ?>
     <?php $line = $frame->getLine(); ?>
-      <div className="frame-code <?php echo ($i == 0 ) ? 'active' : '' ?>" id="frame-code-<?php echo $i ?>">
-        <div className="frame-file">
+      <div class="frame-code <?php echo ($i == 0 ) ? 'active' : '' ?>" id="frame-code-<?php echo $i ?>">
+        <div class="frame-file">
           <?php $filePath = $frame->getFile(); ?>
           <?php if ($filePath && $editorHref = $handler->getEditorHref($filePath, (int) $line)): ?>
-            <a href="<?php echo $editorHref ?>" className="editor-link"<?php echo ($handler->getEditorAjax($filePath, (int) $line) ? ' data-ajax' : '') ?>>
+            <a href="<?php echo $editorHref ?>" class="editor-link"<?php echo ($handler->getEditorAjax($filePath, (int) $line) ? ' data-ajax' : '') ?>>
               Open:
               <strong><?php echo $tpl->breakOnDelimiter('/', $tpl->escape($filePath ?: '<#unknown>')) ?></strong>
             </a>
@@ -29,21 +29,21 @@
             $start = key($range) + 1;
             $code  = join("\n", $range);
         ?>
-            <pre className="code-block line-numbers"
+            <pre class="code-block line-numbers"
               data-line="<?php echo $line ?>"
               data-line-offset="<?php echo $start ?>"
               data-start="<?php echo $start ?>"
-            ><code className="language-php"><?php echo $tpl->escape($code) ?></code></pre>
+            ><code class="language-php"><?php echo $tpl->escape($code) ?></code></pre>
 
           <?php endif ?>
         <?php endif ?>
 
         <?php $frameArgs = $tpl->dumpArgs($frame); ?>
         <?php if ($frameArgs): ?>
-          <div className="frame-file">
+          <div class="frame-file">
               Arguments
           </div>
-          <div id="frame-code-args-<?=$i?>" className="code-block frame-args">
+          <div id="frame-code-args-<?=$i?>" class="code-block frame-args">
               <?php echo $frameArgs; ?>
           </div>
         <?php endif ?>
@@ -52,11 +52,11 @@
           // Append comments for this frame
           $comments = $frame->getComments();
         ?>
-        <div className="frame-comments <?php echo empty($comments) ? 'empty' : '' ?>">
+        <div class="frame-comments <?php echo empty($comments) ? 'empty' : '' ?>">
           <?php foreach ($comments as $commentNo => $comment): ?>
             <?php extract($comment) ?>
-            <div className="frame-comment" id="comment-<?php echo $i . '-' . $commentNo ?>">
-              <span className="frame-comment-context"><?php echo $tpl->escape($context) ?></span>
+            <div class="frame-comment" id="comment-<?php echo $i . '-' . $commentNo ?>">
+              <span class="frame-comment-context"><?php echo $tpl->escape($context) ?></span>
               <?php echo $tpl->escapeButPreserveUris($comment) ?>
             </div>
           <?php endforeach ?>

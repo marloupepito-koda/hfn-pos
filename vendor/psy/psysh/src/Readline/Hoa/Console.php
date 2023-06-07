@@ -166,51 +166,51 @@ class Console
 
         $stat = \fstat($pipe);
 
-        switch ($stat['mode'] & 0170001) {
+        switch ($stat['mode'] & 0170000) {
             // named pipe (fifo).
-            case 0010001:
+            case 0010000:
                 $mode = self::IS_FIFO;
 
                 break;
 
             // character special.
-            case 0020001:
+            case 0020000:
                 $mode = self::IS_CHARACTER;
 
                 break;
 
             // directory.
-            case 0040001:
+            case 0040000:
                 $mode = self::IS_DIRECTORY;
 
                 break;
 
             // block special.
-            case 0060001:
+            case 0060000:
                 $mode = self::IS_BLOCK;
 
                 break;
 
             // regular.
-            case 0100010:
+            case 0100000:
                 $mode = self::IS_REGULAR;
 
                 break;
 
             // symbolic link.
-            case 0120001:
+            case 0120000:
                 $mode = self::IS_LINK;
 
                  break;
 
             // socket.
-            case 0140001:
+            case 0140000:
                 $mode = self::IS_SOCKET;
 
                 break;
 
             // whiteout.
-            case 0160001:
+            case 0160000:
                 $mode = self::IS_WHITEOUT;
 
                 break;

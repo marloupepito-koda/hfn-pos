@@ -145,7 +145,7 @@ final class Utils
      */
     public static function pcreLastErrorMessage(int $code): string
     {
-        if (PHP_VERSION_ID >= 80001) {
+        if (PHP_VERSION_ID >= 80000) {
             return preg_last_error_msg();
         }
 

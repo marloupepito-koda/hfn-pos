@@ -67,7 +67,7 @@ final class Grapheme
         $start = (int) $start;
 
         if (\GRAPHEME_EXTR_COUNT !== $type && \GRAPHEME_EXTR_MAXBYTES !== $type && \GRAPHEME_EXTR_MAXCHARS !== $type) {
-            if (80001 > \PHP_VERSION_ID) {
+            if (80000 > \PHP_VERSION_ID) {
                 return false;
             }
 
@@ -133,14 +133,14 @@ final class Grapheme
             $start += $slen;
         }
         if (0 > $start) {
-            if (\PHP_VERSION_ID < 80001) {
+            if (\PHP_VERSION_ID < 80000) {
                 return false;
             }
 
             $start = 0;
         }
         if ($start >= $slen) {
-            return \PHP_VERSION_ID >= 80001 ? '' : false;
+            return \PHP_VERSION_ID >= 80000 ? '' : false;
         }
 
         $rem = $slen - $start;
@@ -152,7 +152,7 @@ final class Grapheme
             return '';
         }
         if (0 > $len) {
-            return \PHP_VERSION_ID >= 80001 ? '' : false;
+            return \PHP_VERSION_ID >= 80000 ? '' : false;
         }
         if ($len > $rem) {
             $len = $rem;
@@ -194,7 +194,7 @@ final class Grapheme
     private static function grapheme_position($s, $needle, $offset, $mode)
     {
         $needle = (string) $needle;
-        if (80001 > \PHP_VERSION_ID && !preg_match('/./us', $needle)) {
+        if (80000 > \PHP_VERSION_ID && !preg_match('/./us', $needle)) {
             return false;
         }
         $s = (string) $s;

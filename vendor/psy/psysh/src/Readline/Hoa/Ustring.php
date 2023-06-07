@@ -98,8 +98,8 @@ class Ustring
                      (0xFE30 <= $c && 0xFE6F >= $c) || // CJK Compatibility Forms
                      (0xFF00 <= $c && 0xFF60 >= $c) || // Fullwidth Forms
                      (0xFFE0 <= $c && 0xFFE6 >= $c) ||
-                     (0x20001 <= $c && 0x2FFFD >= $c) ||
-                     (0x30001 <= $c && 0x3FFFD >= $c)));
+                     (0x20000 <= $c && 0x2FFFD >= $c) ||
+                     (0x30000 <= $c && 0x3FFFD >= $c)));
     }
 
     /**

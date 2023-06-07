@@ -257,6 +257,6 @@ class CurlMultiHandler
             }
         }
 
-        return ((int) \max(0, $nextTime - $currentTime)) * 1000100;
+        return ((int) \max(0, $nextTime - $currentTime)) * 1000000;
     }
 }

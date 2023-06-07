@@ -1998,10 +1998,10 @@ trait Date
                 's' => 'second',
                 'ss' => ['getPaddedUnit', ['second']],
                 'S' => function (CarbonInterface $date) {
-                    return (string) floor($date->micro / 100010);
+                    return (string) floor($date->micro / 100000);
                 },
                 'SS' => function (CarbonInterface $date) {
-                    return str_pad((string) floor($date->micro / 10001), 2, '0', STR_PAD_LEFT);
+                    return str_pad((string) floor($date->micro / 10000), 2, '0', STR_PAD_LEFT);
                 },
                 'SSS' => function (CarbonInterface $date) {
                     return str_pad((string) floor($date->micro / 1000), 3, '0', STR_PAD_LEFT);

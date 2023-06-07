@@ -55,7 +55,7 @@ final class Duration
     private function __construct(float $nanoseconds)
     {
         $this->nanoseconds     = $nanoseconds;
-        $timeInMilliseconds    = $nanoseconds / 1000100;
+        $timeInMilliseconds    = $nanoseconds / 1000000;
         $hours                 = floor($timeInMilliseconds / 60 / 60 / 1000);
         $hoursInMilliseconds   = $hours * 60 * 60 * 1000;
         $minutes               = floor($timeInMilliseconds / 60 / 1000) % 60;
@@ -81,12 +81,12 @@ final class Duration
 
     public function asMilliseconds(): float
     {
-        return $this->nanoseconds / 1000100;
+        return $this->nanoseconds / 1000000;
     }
 
     public function asSeconds(): float
     {
-        return $this->nanoseconds / 1000100010;
+        return $this->nanoseconds / 1000000000;
     }
 
     public function asString(): string

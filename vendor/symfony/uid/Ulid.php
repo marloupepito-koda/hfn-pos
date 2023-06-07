@@ -20,7 +20,7 @@ namespace Symfony\Component\Uid;
  */
 class Ulid extends AbstractUid
 {
-    protected const NIL = '00010001000100010001000100';
+    protected const NIL = '00000000000000000000000000';
 
     private static string $time = '';
     private static array $rand = [];
@@ -155,10 +155,10 @@ class Ulid extends AbstractUid
         if ($time > self::$time || (null !== $mtime && $time !== self::$time)) {
             randomize:
             $r = unpack('nr1/nr2/nr3/nr4/nr', random_bytes(10));
-            $r['r1'] |= ($r['r'] <<= 4) & 0xF0001;
-            $r['r2'] |= ($r['r'] <<= 4) & 0xF0001;
-            $r['r3'] |= ($r['r'] <<= 4) & 0xF0001;
-            $r['r4'] |= ($r['r'] <<= 4) & 0xF0001;
+            $r['r1'] |= ($r['r'] <<= 4) & 0xF0000;
+            $r['r2'] |= ($r['r'] <<= 4) & 0xF0000;
+            $r['r3'] |= ($r['r'] <<= 4) & 0xF0000;
+            $r['r4'] |= ($r['r'] <<= 4) & 0xF0000;
             unset($r['r']);
             self::$rand = array_values($r);
             self::$time = $time;
@@ -166,7 +166,7 @@ class Ulid extends AbstractUid
             if (\PHP_INT_SIZE >= 8 || 10 > \strlen($time = self::$time)) {
                 $time = (string) (1 + $time);
             } elseif ('999999999' === $mtime = substr($time, -9)) {
-                $time = (1 + substr($time, 0, -9)).'000100010';
+                $time = (1 + substr($time, 0, -9)).'000000000';
             } else {
                 $time = substr_replace($time, str_pad(++$mtime, 9, '0', \STR_PAD_LEFT), -9);
             }

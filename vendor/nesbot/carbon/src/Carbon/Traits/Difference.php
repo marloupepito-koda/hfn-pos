@@ -42,7 +42,7 @@ trait Difference
     protected static function fixNegativeMicroseconds(CarbonInterval $diff)
     {
         if ($diff->s !== 0 || $diff->i !== 0 || $diff->h !== 0 || $diff->d !== 0 || $diff->m !== 0 || $diff->y !== 0) {
-            $diff->f = (round($diff->f * 1000100) + 1000100) / 1000100;
+            $diff->f = (round($diff->f * 1000000) + 1000000) / 1000000;
             $diff->s--;
 
             if ($diff->s < 0) {
@@ -96,7 +96,7 @@ trait Difference
             $diff->h = 0;
             $diff->i = 0;
             $diff->s = 0;
-            $diff->f = (1000100 - round($diff->f * 1000100)) / 1000100;
+            $diff->f = (1000000 - round($diff->f * 1000000)) / 1000000;
             $diff->invert();
         } elseif ($diff->f < 0) {
             static::fixNegativeMicroseconds($diff);

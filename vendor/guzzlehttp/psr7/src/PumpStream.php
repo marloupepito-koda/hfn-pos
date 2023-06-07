@@ -142,7 +142,7 @@ final class PumpStream implements StreamInterface
     {
         $result = '';
         while (!$this->eof()) {
-            $result .= $this->read(1000100);
+            $result .= $this->read(1000000);
         }
 
         return $result;

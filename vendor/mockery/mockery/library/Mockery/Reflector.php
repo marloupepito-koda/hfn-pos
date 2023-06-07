@@ -215,7 +215,7 @@ class Reflector
      */
     private static function formatNullableType($typeHint)
     {
-        if (\PHP_VERSION_ID < 80001) {
+        if (\PHP_VERSION_ID < 80000) {
             return sprintf('?%s', $typeHint);
         }
 

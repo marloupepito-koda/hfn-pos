@@ -32,7 +32,7 @@ $timer = new Timer;
 
 $timer->start();
 
-foreach (\range(0, 100010) as $i) {
+foreach (\range(0, 100000) as $i) {
     // ...
 }
 
@@ -70,7 +70,7 @@ use SebastianBergmann\Timer\Timer;
 $timer = new Timer;
 $timer->start();
 
-foreach (\range(0, 100010) as $i) {
+foreach (\range(0, 100000) as $i) {
     // ...
 }
 
@@ -90,7 +90,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 use SebastianBergmann\Timer\ResourceUsageFormatter;
 
-foreach (\range(0, 100010) as $i) {
+foreach (\range(0, 100000) as $i) {
     // ...
 }
 

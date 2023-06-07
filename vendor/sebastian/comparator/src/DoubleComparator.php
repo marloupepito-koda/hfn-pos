@@ -24,7 +24,7 @@ class DoubleComparator extends NumericComparator
      *
      * @var float
      */
-    public const EPSILON = 0.0001000101;
+    public const EPSILON = 0.0000000001;
 
     /**
      * Returns whether the comparator can compare two values.

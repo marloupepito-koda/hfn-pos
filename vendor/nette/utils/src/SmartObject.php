@@ -69,7 +69,7 @@ trait SmartObject
 			}
 
 			$m = ($prop & 0b0010 ? 'get' : 'is') . ucfirst($name);
-			if ($prop & 0b10001) {
+			if ($prop & 0b10000) {
 				$trace = debug_backtrace(0, 1)[0]; // suppose this method is called from __call()
 				$loc = isset($trace['file'], $trace['line'])
 					? " in $trace[file] on line $trace[line]"
@@ -105,7 +105,7 @@ trait SmartObject
 			}
 
 			$m = 'set' . ucfirst($name);
-			if ($prop & 0b10001) {
+			if ($prop & 0b10000) {
 				$trace = debug_backtrace(0, 1)[0]; // suppose this method is called from __call()
 				$loc = isset($trace['file'], $trace['line'])
 					? " in $trace[file] on line $trace[line]"

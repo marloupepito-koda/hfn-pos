@@ -232,7 +232,7 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
      *
      * @var int
      */
-    public const END_MAX_ATTEMPTS = 10001;
+    public const END_MAX_ATTEMPTS = 10000;
 
     /**
      * The registered macros.

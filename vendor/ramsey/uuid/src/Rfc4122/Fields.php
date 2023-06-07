@@ -85,7 +85,7 @@ final class Fields implements FieldsInterface
         if ($this->isMax()) {
             $clockSeq = 0xffff;
         } elseif ($this->isNil()) {
-            $clockSeq = 0x0001;
+            $clockSeq = 0x0000;
         } else {
             $clockSeq = hexdec(bin2hex(substr($this->bytes, 8, 2))) & 0x3fff;
         }

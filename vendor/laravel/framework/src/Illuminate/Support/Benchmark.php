@@ -23,7 +23,7 @@ class Benchmark
 
                 $callback();
 
-                return (hrtime(true) - $start) / 1000100;
+                return (hrtime(true) - $start) / 1000000;
             })->average();
         })->when(
             $benchmarkables instanceof Closure,

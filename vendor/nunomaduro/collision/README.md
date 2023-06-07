@@ -1,6 +1,6 @@
 <a href="https://supportukrainenow.org/"><img src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct.svg" width="100%"></a>
 
----
+------
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/nunomaduro/collision/stable/docs/logo.png" alt="Collision logo" width="480">
@@ -20,9 +20,9 @@
 
 Collision was created by, and is maintained by **[Nuno Maduro](https://github.com/nunomaduro)**, and is a package designed to give you beautiful error reporting when interacting with your app through the command line.
 
--   It's included on **[Laravel](https://laravel.com)**, the most popular free, open-source PHP framework in the world.
--   Built on top of the **[Whoops](https://github.com/filp/whoops)** error handler.
--   Supports [Laravel](https://github.com/laravel/laravel), [Symfony](https://symfony.com), [PHPUnit](https://github.com/sebastianbergmann/phpunit), and many other frameworks.
+* It's included on **[Laravel](https://laravel.com)**, the most popular free, open-source PHP framework in the world.
+* Built on top of the **[Whoops](https://github.com/filp/whoops)** error handler.
+* Supports [Laravel](https://github.com/laravel/laravel), [Symfony](https://symfony.com), [PHPUnit](https://github.com/sebastianbergmann/phpunit), and many other frameworks.
 
 ## Installation & Usage
 
@@ -36,12 +36,12 @@ composer require nunomaduro/collision --dev
 
 ## Laravel Version Compatibility
 
-| Laravel | Collision |
-| :------ | :-------- |
-| 6.x     | 3.x       |
-| 7.x     | 4.x       |
-| 8.x     | 5.x       |
-| 9.x     | 6.x       |
+ Laravel  | Collision
+:---------|:----------
+ 6.x      | 3.x
+ 7.x      | 4.x
+ 8.x      | 5.x
+ 9.x      | 6.x
 
 As an example, here is how to require Collision on Laravel 6.x:
 
@@ -57,7 +57,7 @@ Add the Collision `printerClass` to your `phpunit.xml` in the `phpunit` section:
 
 ```xml
 <phpunit
-        printerclassName="NunoMaduro\Collision\Adapters\Phpunit\Printer">
+        printerClass="NunoMaduro\Collision\Adapters\Phpunit\Printer">
 ```
 
 ## No adapter

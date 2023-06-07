@@ -21,7 +21,7 @@ class ValidGenerator
      * @param callable|null       $validator
      * @param int                 $maxRetries
      */
-    public function __construct($generator, $validator = null, $maxRetries = 10001)
+    public function __construct($generator, $validator = null, $maxRetries = 10000)
     {
         if (null === $validator) {
             $validator = static function () {

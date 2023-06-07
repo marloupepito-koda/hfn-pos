@@ -24,7 +24,7 @@ class Uuid extends AbstractUid
     public const NAMESPACE_X500 = '6ba7b814-9dad-11d1-80b4-00c04fd430c8';
 
     protected const TYPE = 0;
-    protected const NIL = '00010001-0001-0001-0001-000100010001';
+    protected const NIL = '00000000-0000-0000-0000-000000000000';
 
     public function __construct(string $uuid, bool $checkVariant = false)
     {

@@ -51,7 +51,7 @@ class PhpTimeConverter implements TimeConverterInterface
     /**
      * The number of 100-nanosecond intervals in one second.
      */
-    private const SECOND_INTERVALS = 10001000;
+    private const SECOND_INTERVALS = 10000000;
 
     /**
      * The number of 100-nanosecond intervals in one microsecond.

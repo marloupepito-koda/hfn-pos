@@ -314,7 +314,7 @@ class FlattenException
         $result = [];
         foreach ($args as $key => $value) {
             if (++$count > 1e4) {
-                return ['array', '*SKIPPED over 10001 entries*'];
+                return ['array', '*SKIPPED over 10000 entries*'];
             }
             if ($value instanceof \__PHP_Incomplete_Class) {
                 $result[$key] = ['incomplete-object', $this->getClassNameFromIncomplete($value)];

@@ -30,7 +30,7 @@ use SebastianBergmann\Exporter\Exporter;
 $exporter = new Exporter;
 
 /*
-Exception Object &0001000178de0f0d000100012003a261 (
+Exception Object &0000000078de0f0d000000002003a261 (
     'message' => ''
     'string' => ''
     'code' => 0
@@ -119,8 +119,8 @@ $array['self'] = &$array;
 print $exporter->export($array);
 
 /*
-stdClass Object &0001000103a66dcc0001000125e723e2 (
-    'self' => stdClass Object &0001000103a66dcc0001000125e723e2
+stdClass Object &0000000003a66dcc0000000025e723e2 (
+    'self' => stdClass Object &0000000003a66dcc0000000025e723e2
 )
 */
 

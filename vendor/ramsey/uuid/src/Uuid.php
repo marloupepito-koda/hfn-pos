@@ -83,7 +83,7 @@ class Uuid implements UuidInterface
      *
      * @link http://tools.ietf.org/html/rfc4122#section-4.1.7 RFC 4122, § 4.1.7: Nil UUID
      */
-    public const NIL = '00010001-0001-0001-0001-000100010001';
+    public const NIL = '00000000-0000-0000-0000-000000000000';
 
     /**
      * The max UUID is a special form of UUID that is specified to have all 128
