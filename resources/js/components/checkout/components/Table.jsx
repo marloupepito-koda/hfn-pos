@@ -126,7 +126,8 @@ function CheckoutTable() {
                                 <td>${res.price_fee}</td>
                                 <td>{res.quantity}</td>
                                 <td>
-                                    ${res.price_fee +
+                                    $
+                                    {res.price_fee +
                                         res.price_list * res.quantity}
                                 </td>
                                 <td>

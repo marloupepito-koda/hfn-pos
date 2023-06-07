@@ -81,10 +81,9 @@ class CartOrderedProductsController extends Controller
      public function send_place_orders(Request $request)
      {
           $cartOrderProducts = new CartOrderedProducts;
-          $token = $request->session()->get('token');
+            $token = $request->session()->get('token');
             $request->session()->put('order_complete', $request->data);
             $data = $request->session()->get('create_checkout');
-
                CartOrders::where('token',$token)->update([
                     'shipping_first_name' =>$request->data['fullname'],
                     'shipping_email'=>$request->data['email'],
@@ -143,10 +142,9 @@ class CartOrderedProductsController extends Controller
 
 
             }
-
          $request->session()->forget('session');
          $request->session()->forget('create_checkout');
-     //     $request->session()->forget('token');
+          $request->session()->forget('token');
           return response()->json([
                'status' =>'success',
           ]);

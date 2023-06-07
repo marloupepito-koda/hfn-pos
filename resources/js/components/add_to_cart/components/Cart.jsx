@@ -11,6 +11,7 @@ function AddToCartNoSeats() {
     const [disable, setDisabled] = useState(true);
     const navigate = useNavigate();
     const { code } = useParams();
+
     const goToCheckOut = () => {
         if (code === undefined) {
             axios

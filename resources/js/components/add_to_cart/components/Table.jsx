@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CartData from "../CartData";
 import { useLocation, useOutletContext, useParams } from "react-router-dom";
+
 function AddToCartTable() {
     const [count, setCount] = useOutletContext();
     const location = useLocation().hash;

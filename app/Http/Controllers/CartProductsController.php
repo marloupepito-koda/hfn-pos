@@ -62,10 +62,8 @@ class CartProductsController extends Controller
      {
         
 
-       
-
-          if ($request->session()->get('token') === null) {
-                function generateRandomString()
+         if ($request->session()->get('token') === null) {
+                    function generateRandomString()
                     {
                          $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                          $randomString = '';
@@ -75,8 +73,10 @@ class CartProductsController extends Controller
                          return $randomString;
                     }
                     $request->session()->put('token', generateRandomString());
-                    $token = $request->session()->get('token');   
-                       CartOrders::insert([
+                    $token = $request->session()->get('token');  
+                    $request->session()->put('tkn', $token);
+                    if($token !== null){
+                        CartOrders::insert([
                          'client_id' => $this->client_id,
                          'invoice_number' => -1,
                          'cart_customer_id' => $this->cart_customer_id,
@@ -183,113 +183,110 @@ class CartProductsController extends Controller
                          'user_ip_address' => '119.93.234.79',
                          'user_operating_system' => 'Windows 10',
                          'customer_id' => 0
-                    ]);
+                     ]);
+                    }
+                   
+         }
 
 
-               // $datetime = new DateTime($request->date);
-               // $datetime->modify('+6 minutes');
-
-               //    $request->session()->put('session',$datetime->format('Y-m-d H:i:s'));
-          }
-
-
-             for ($i = 0; $i < count($request->data); $i++) {
+          for ($i = 0; $i < count($request->data); $i++) {
 
              $code = mt_rand(1000000000, 9999999999);
-             $token = $request->session()->get('token');
+             $token = $request->session()->get('token'); 
+             $exist = CartOrderedProducts::where([['token','=',$token],['cart_product_id','=',$request->data[$i]['cart_product_id']]])->get();
 
-               if ($request->data[$i]['product_name'] !== 'General Admission No Seat') {
-                    $cartOrders = CartOrders::where('token','=',$token)->first();
-                          CartProducts::where('cart_product_id', $request->data[$i]['cart_product_id'])
-                         ->update([
-                              'quantity' => 0
-                         ]);
+               if(count($exist) === 0){
+                    if ($request->data[$i]['product_name'] !== 'General Admission No Seat') {
 
-                        $success1 =  CartOrderedProducts::insert([
-                         'client_id' => $this->client_id,
-                         'cart_product_id' => $request->data[$i]['cart_product_id'],
-                         'token' => $token, 
-                         'cart_order_id' => $cartOrders->cart_order_id,
-                         'quantity' => $request->data[$i]['quantity'], 
-                         'price' => $request->data[$i]['price_list'], 
-                         'price_group' => 0,
-                         'price_offset' => 0.00,
-                         'code' => $code, 
-                         'discount_offset' => 0.00,
-                         'cart_product_options' => 0, 
-                         'cart_coupon_id' => 0,
-                         'date_submitted' => date("Y-m-d H:i:s"),
-                         'team_members' => null,
-                         'units' => 0,
-                         'donation' => 0.00,
-                         'printed_fee' => 0,
-                         'printed_fee_type' => 0,
-                         'first_name' => '',
-                         'last_name' => '',
-                         'expires' => date("Y-m-d H:i:s"),
-                         'table_number' => 0,
-                         ]);
-                         
-                         
-                         if($success1){
-                              $cop = CartOrderedProducts::where('token',$token)->first();
-
-                              CartTicketCodes::insert([
-                                   'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i,
-                                   'product_id' => $request->data[$i]['cart_product_id'],
-                                   'code' => $code,
-                                   'token' => $token,
-                                   'date_redeemed' => date("Y-m-d H:i:s")
+                         $cartOrders = CartOrders::where('token','=',$token)->first();
+                              CartProducts::where('cart_product_id', $request->data[$i]['cart_product_id'])
+                              ->update([
+                                   'quantity' => 0
                               ]);
-                         }
-               
-                   
 
-               }else{
-                      $cartOrders = CartOrders::where('token','=',$token)->first();
-                        $success1 =  CartOrderedProducts::insert([
-                         'client_id' => $this->client_id,
-                         'cart_product_id' =>0001,
-                         'token' => $token, 
-                         'cart_order_id' => $cartOrders->cart_order_id,
-                         'quantity' => $request->data[$i]['quantity'], 
-                         'price' => $request->data[$i]['price_list'], 
-                         'price_group' => 0,
-                         'price_offset' => 0.00,
-                         'code' => $code, 
-                         'discount_offset' => 0.00,
-                         'cart_product_options' => 0, 
-                         'cart_coupon_id' => 0,
-                         'date_submitted' => date("Y-m-d H:i:s"),
-                         'team_members' => null,
-                         'units' => 0,
-                         'donation' => 0.00,
-                         'printed_fee' => 0,
-                         'printed_fee_type' => 0,
-                         'first_name' => '',
-                         'last_name' => '',
-                         'expires' => date("Y-m-d H:i:s"),
-                         'table_number' => 0,
-                         ]);
-                         
-                         if($success1){
-                              $cop = CartOrderedProducts::where('token',$token)->first();
-                              CartTicketCodes::insert([
-                                   'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i,
-                                   'product_id' =>0001,
-                                   'code' => $code,
-                                   'token' => $token,
-                                   'date_redeemed' => date("Y-m-d H:i:s")
+                         $success1 =  CartOrderedProducts::insert([
+                              'client_id' => $this->client_id,
+                              'cart_product_id' => $request->data[$i]['cart_product_id'],
+                              'token' => $token, 
+                              'cart_order_id' => $cartOrders->cart_order_id,
+                              'quantity' => $request->data[$i]['quantity'], 
+                              'price' => $request->data[$i]['price_list'], 
+                              'price_group' => 0,
+                              'price_offset' => 0.00,
+                              'code' => $code, 
+                              'discount_offset' => 0.00,
+                              'cart_product_options' => 0, 
+                              'cart_coupon_id' => 0,
+                              'date_submitted' => date("Y-m-d H:i:s"),
+                              'team_members' => null,
+                              'units' => 0,
+                              'donation' => 0.00,
+                              'printed_fee' => 0,
+                              'printed_fee_type' => 0,
+                              'first_name' => '',
+                              'last_name' => '',
+                              'expires' => date("Y-m-d H:i:s"),
+                              'table_number' => 0,
                               ]);
-                         }
-               
+                              
+                              
+                              if($success1){
+                                   $cop = CartOrderedProducts::where('token',$token)->first();
+
+                                   CartTicketCodes::insert([
+                                        'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i,
+                                        'product_id' => $request->data[$i]['cart_product_id'],
+                                        'code' => $code,
+                                        'token' => $token,
+                                        'date_redeemed' => date("Y-m-d H:i:s")
+                                   ]);
+                              }
+
+                    }else{
+                              $cartOrders = CartOrders::where('token','=',$token)->first();
+                              $success1 =  CartOrderedProducts::insert([
+                              'client_id' => $this->client_id,
+                              'cart_product_id' =>0001,
+                              'token' => $token, 
+                              'cart_order_id' => $cartOrders->cart_order_id,
+                              'quantity' => $request->data[$i]['quantity'], 
+                              'price' => $request->data[$i]['price_list'], 
+                              'price_group' => 0,
+                              'price_offset' => 0.00,
+                              'code' => $code, 
+                              'discount_offset' => 0.00,
+                              'cart_product_options' => 0, 
+                              'cart_coupon_id' => 0,
+                              'date_submitted' => date("Y-m-d H:i:s"),
+                              'team_members' => null,
+                              'units' => 0,
+                              'donation' => 0.00,
+                              'printed_fee' => 0,
+                              'printed_fee_type' => 0,
+                              'first_name' => '',
+                              'last_name' => '',
+                              'expires' => date("Y-m-d H:i:s"),
+                              'table_number' => 0,
+                              ]);
+                              
+                              if($success1){
+                                   $cop = CartOrderedProducts::where('token',$token)->first();
+                                   CartTicketCodes::insert([
+                                        'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i,
+                                        'product_id' =>0001,
+                                        'code' => $code,
+                                        'token' => $token,
+                                        'date_redeemed' => date("Y-m-d H:i:s")
+                                   ]);
+                              }
+                    }
                }
-               
-
-          }
 
 
            $request->session()->put('create_checkout', $request->data);
+          }
+          // $request->session()->forget('create_checkout');
+          // $request->session()->forget('token');
           return response()->json([
                'status' =>$request->session()->get('token'),
           ]);
