@@ -3,12 +3,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import CartData from "../../add_to_cart/CartData";
 import PaymentChange from "../../add_to_cart/Change";
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
+
 import Swal from "sweetalert2";
 function CheckoutPaymentMethods(props) {
     const [method, setMethod] = useState("credits");
     const [amount, setAmount] = useState(0);
     const [discount, setDiscount] = useState(0);
     const [disable, setDisabled] = useState(false);
+    const [submit, setSubmit] = useState(false);
     const navigate = useNavigate();
     const location = useLocation().hash;
 
@@ -17,7 +21,16 @@ function CheckoutPaymentMethods(props) {
         const change =
             amount - props.grandTotal < 0 ? 0 : amount - props.grandTotal;
         PaymentChange.data = change;
-    }, [CartData + props.discount + amount]);
+        checkPayment("error");
+        var pusher = new Pusher("82a17c42350e8ce1d15d", {
+            cluster: "us3",
+        });
+
+        var channel = pusher.subscribe("popup-channel");
+        channel.bind("user-register", function (data) {
+            setSubmit(Math.random());
+        });
+    }, [CartData + props.discount + amount + submit]);
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
         fullname: "",
@@ -92,6 +105,31 @@ function CheckoutPaymentMethods(props) {
         paymentCheck.check_info = e;
     };
 
+    async function checkPayment(status) {
+        const res = await axios.get("/api/check_payment");
+        //if 0, already paid
+        console.log(res.data.status);
+        if (res.data.status === "not exist") {
+        } else if (res.data.status === "loading") {
+            Swal.fire({
+                title: "Loading Payment Confirmation...",
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            });
+        } else if (res.data.status === "done") {
+            axios
+                .post("/api/send_place_orders", {
+                    data: paymentCard,
+                    discount: discount,
+                })
+                .then((res) => {});
+            window.location.href = "/order_complete";
+            Swal.close();
+        }
+    }
+
     const submitPayment = (e) => {
         e.preventDefault();
         setDisabled(true);
@@ -104,37 +142,12 @@ function CheckoutPaymentMethods(props) {
         });
         if (method === "credits") {
             setDisabled(false);
-
             axios
                 .post("/api/m2_reader_response", {
                     data: paymentCard,
                 })
                 .then((res) => {
-                    console.log("token", res.data.token);
-                    if (res.data.status !== "error") {
-                        axios
-                            .post("/api/send_place_orders", {
-                                data: paymentCard,
-                                discount: discount,
-                            })
-                            .then((res) => {
-                                window.location.href = "/order_complete";
-                                Swal.close();
-                                // if (res.data.status === "success") {
-                                //     axios
-                                //         .post("/send_reservation", {
-                                //             data: paymentCard,
-                                //         })
-                                //         .then((res) => {
-                                //             console.log("res", paymentCard);
-                                //             window.location.href = "/order_complete";
-                                //         });
-                                // }
-                            });
-                    } else {
-                        console.log(res.data.token);
-                        Swal.close();
-                    }
+                    checkPayment(res.data.status);
                 });
         } else if (method === "cash") {
             axios
@@ -143,7 +156,6 @@ function CheckoutPaymentMethods(props) {
                     discount: discount,
                 })
                 .then((res) => {
-                    console.log(paymentCash);
                     if (res.data.status === "success") {
                         axios
                             .post("/send_reservation", {

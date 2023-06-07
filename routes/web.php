@@ -5,6 +5,8 @@ use App\Http\Controllers\CartProductsController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SeatsReservation;
 use Illuminate\Http\Request;
+use App\Events\PusherPayment;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,7 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('index');
 });
+
 
 Route::post('/send_reservation', function (Request $request) {
     $title = 'Welcome to Hollywood Fight Nights';

@@ -10,19 +10,20 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PusherPayment
+class PusherPayment implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $name;
     /**
      * Create a new event instance.
      *
      * @return void
      */
      public $post;
-    public function __construct()
+    public function __construct($name)
     {
-        $this->post = 'Hello World';
+        $this->name = $name;
     }
 
     /**
@@ -32,13 +33,13 @@ class PusherPayment
      */
     public function broadcastOn()
     {          
-        return new PrivateChannel('push_notification'); 
+        return new Channel('popup-channel'); 
         //  return new PrivateChannel('my-channel');
     }
 
     public function broadcastAs()
     {
-        return 'my-event';
+        return 'user-register';
     }
     
 }

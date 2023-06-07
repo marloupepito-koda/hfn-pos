@@ -9,6 +9,26 @@ use App\Models\CartOrderedProducts;
 class M2StripeController extends Controller
 {
 
+    public function check_payment(Request $request){
+         $token = $request->session()->get('token');
+         $exist1 =  M2Stripe::where('token','=',$token)->get();
+         $exist2 =  M2Stripe::where([['status','=','pending'],['token','=',$token]])->get();
+         $exist3 =  M2Stripe::where([['status','=','success'],['token','=',$token]])->get();
+         if(count($exist1) === 0){
+            return response()->json([
+                 'status' =>'not exist',
+            ]);
+         }else if(count($exist2) === 1){
+            return response()->json([
+                 'status' =>'loading',
+            ]);
+         }else if(count($exist3) === 1){
+              $request->session()->forget('token');
+              return response()->json([
+                 'status' =>'done',
+            ]);
+         }
+    }
      public function get_m2_ordered_product($token){
             $result = CartOrderedProducts::where('token',$token)->with('cartProducts')->get();
             if($result){
@@ -19,7 +39,7 @@ class M2StripeController extends Controller
             
     }
     public function get_m2_reader_response(){
-            $result  =M2Stripe::where('status','pending')->get();
+            $result  = M2Stripe::where('status','pending')->get();
             if($result){
                 return response()->json([
                     'status' =>$result,
@@ -35,7 +55,7 @@ class M2StripeController extends Controller
            $response=  M2Stripe::where('token',$token)->get();
           if(count($response) === 0){
                  M2Stripe::insert([
-                    'notes'=>$request->data['notes'],
+                    'notes'=>$request->data['notes'].'-',
                     'name'=>$request->data['fullname'],
                     'email'=>$request->data['email'],
                     'grandtotal'=>$request->data['grandTotal'],
@@ -44,25 +64,21 @@ class M2StripeController extends Controller
                     'token'=>$token,
                     'status' =>'pending'
                 ]);
-                $request->session()->forget('token');
                 return response()->json([
                     'status' =>$request->data,
                 ]);
             }else{
-                 $request->session()->forget('token');
                 return response()->json([
                     'status' =>'error',
                     'token' => $token 
                 ]);
             }
 
-             $request->session()->forget('token');
         }else{
              return response()->json([
                 'status' =>'error',
                 'token' => $request->session()->get('tkn')
             ]);
-              $request->session()->forget('token');
         }
     
           

@@ -87,7 +87,7 @@ class CartOrderedProductsController extends Controller
                CartOrders::where('token',$token)->update([
                     'shipping_first_name' =>$request->data['fullname'],
                     'shipping_email'=>$request->data['email'],
-                    'notes'=>$request->data['notes'],
+                    'notes'=>$request->data['notes'].'-',
                     'total_grand'=>$request->data['grandTotal'],
                     'ticket_fee'=>$request->data['ticketFee'],
                     'total_sub'=>$request->data['subTotal'],
