@@ -50,7 +50,7 @@ function IndexLayout() {
                     obj.cart_product_id < selected[1] &&
                     obj.quantity === act
             );
-
+            console.log(ext1.concat(seatData));
             const value =
                 e === "B"
                     ? ext.concat(seatData)
