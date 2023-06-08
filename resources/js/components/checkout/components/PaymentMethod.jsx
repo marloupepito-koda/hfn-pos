@@ -33,7 +33,7 @@ function CheckoutPaymentMethods(props) {
     }, [CartData + props.discount + amount + submit]);
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
-        fullname: "",
+        fullname: " ",
         email: "",
         check_info: 0,
         where_find: "",
@@ -46,7 +46,7 @@ function CheckoutPaymentMethods(props) {
 
     const [paymentCash, setPaymentCash] = useState({
         cart: CartData.data,
-        fullname: "",
+        fullname: " ",
         email: "",
         tenders: 0,
         check_info: 0,
@@ -59,7 +59,7 @@ function CheckoutPaymentMethods(props) {
 
     const [paymentCheck, setPaymentCheck] = useState({
         cart: CartData.data,
-        fullname: "",
+        fullname: " ",
         email: "",
         check_info: 0,
         tenders: 0,
@@ -108,7 +108,6 @@ function CheckoutPaymentMethods(props) {
     async function checkPayment(status) {
         const res = await axios.post("/api/check_payment");
         //if 0, already paid
-        console.log(res.data.status);
         if (res.data.status === "not exist") {
         } else if (res.data.status === "loading") {
             Swal.fire({
