@@ -107,7 +107,7 @@ function CheckoutTable() {
                                 <th scope="row">
                                     {res.product_name}{" "}
                                     {res.product_name ===
-                                    "General Admission No Seatss"
+                                    "General Admission No Seat"
                                         ? ""
                                         : "Section " + res.venue_section_id ===
                                           1

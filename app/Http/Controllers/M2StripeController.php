@@ -9,6 +9,7 @@ use App\Models\CartOrderedProducts;
 class M2StripeController extends Controller
 {
 
+    
     public function check_payment(Request $request){
         $upgrade = CartOrderedProducts::where('code',$request->code)->first();
 
@@ -126,8 +127,12 @@ class M2StripeController extends Controller
 
     public function connection_token()
     {
-
-        $stripe = new \Stripe\StripeClient(env('STRIPE_SK_TEST'));
+        if(env('APP_ENV') === 'local'){
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SK_TEST'));
+        }else{
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SK_LIVE'));
+        }
+        
         try {
            
         $connectionToken = $stripe->terminal->connectionTokens->create(
@@ -148,7 +153,12 @@ class M2StripeController extends Controller
     }
    public function create_payment_intent(Request $request)
     {
-        $stripe = new \Stripe\StripeClient(env('STRIPE_SK_TEST'));
+         if(env('APP_ENV') === 'local'){
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SK_TEST'));
+        }else{
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SK_LIVE'));
+        }
+        
         $payment = $stripe->paymentIntents->create([
         'amount' => number_format((float)$request->price, 2, '', ''),
         'currency' => 'usd',
@@ -163,7 +173,12 @@ class M2StripeController extends Controller
 
     
    public function confirm_payment_intent(Request $request){
-      $stripe = new \Stripe\StripeClient(env('STRIPE_SK_TEST'));
+       if(env('APP_ENV') === 'local'){
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SK_TEST'));
+        }else{
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SK_LIVE'));
+        }
+        
 
          $paymentIntent = $stripe->paymentIntents->retrieve($request->paymentIntentId);
          $paymentIntent->capture();

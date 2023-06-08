@@ -21,6 +21,7 @@ function IndexLayout() {
             const sectionC = [6681, 7041];
             const sectionD = [7041, 7217];
             const extension = [7217, 7257];
+            const extension2 = [7258, 7259];
             const selected =
                 e === "A"
                     ? sectionA
@@ -36,6 +37,12 @@ function IndexLayout() {
                     obj.cart_product_id < extension[1] &&
                     obj.quantity === act
             );
+            const ext1 = res.data.status.filter(
+                (obj) =>
+                    obj.cart_product_id >= extension2[0] &&
+                    obj.cart_product_id < extension2[1] &&
+                    obj.quantity === act
+            );
 
             const seatData = res.data.status.filter(
                 (obj) =>
@@ -44,7 +51,12 @@ function IndexLayout() {
                     obj.quantity === act
             );
 
-            const value = e === "B" ? ext.concat(seatData) : seatData;
+            const value =
+                e === "B"
+                    ? ext.concat(seatData)
+                    : e === "D"
+                    ? ext1.concat(seatData)
+                    : seatData;
             setSeats(value);
 
             // console.log("BB", seatData);

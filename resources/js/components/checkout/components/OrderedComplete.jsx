@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 function OrderedComplete() {
     const [data, setData] = useState([]);
     const [reload, setReload] = useState([]);
-
     useEffect(() => {
         axios.get("/api/get_order_complete").then((res) => {
             setData(res.data.status);
