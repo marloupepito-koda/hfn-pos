@@ -20,6 +20,7 @@ function IndexLayout() {
             const sectionB = [6321, 6681];
             const sectionC = [6681, 7041];
             const sectionD = [7041, 7217];
+            const extension = [7217, 7257];
             const selected =
                 e === "A"
                     ? sectionA
@@ -28,15 +29,25 @@ function IndexLayout() {
                     : e === "C"
                     ? sectionC
                     : sectionD;
+
+            const ext = res.data.status.filter(
+                (obj) =>
+                    obj.cart_product_id >= extension[0] &&
+                    obj.cart_product_id < extension[1] &&
+                    obj.quantity === act
+            );
+
             const seatData = res.data.status.filter(
                 (obj) =>
                     obj.cart_product_id >= selected[0] &&
                     obj.cart_product_id < selected[1] &&
                     obj.quantity === act
             );
-            setSeats(seatData);
 
-            console.log("waa", seatData);
+            const value = e === "B" ? ext.concat(seatData) : seatData;
+            setSeats(value);
+
+            // console.log("BB", seatData);
         });
     };
 
