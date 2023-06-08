@@ -21,7 +21,7 @@ function IndexLayout() {
             const sectionC = [6681, 7041];
             const sectionD = [7041, 7217];
             const extension = [7217, 7257];
-            const extension2 = [7258, 7259];
+            const extension2 = [7258, 7260];
             const selected =
                 e === "A"
                     ? sectionA
