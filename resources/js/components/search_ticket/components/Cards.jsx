@@ -19,6 +19,7 @@ function CardSearchTicket() {
                     // } else {
                     //     setStatus("No results!");
                     // }
+                    console.log(res.data.status);
                 });
         }
     }, [hash]);
@@ -29,6 +30,7 @@ function CardSearchTicket() {
             navigate("?" + searching + "#" + Math.random());
             if (res.data.status.length !== undefined) {
                 setValue(res.data.status);
+
                 if (res.data.status.length !== 0) {
                     setStatus("");
                 } else {
@@ -73,7 +75,7 @@ function CardSearchTicket() {
                     <div className="col-md-12 mt-5">
                         {value.length !== 0 ? (
                             value.map((res) =>
-                                res.cart_product_id === parseInt("1") ? (
+                                res.cart_product_id === parseInt("7257") ? (
                                     <SearchTicketTable
                                         key={res.cart_ordered_product_id}
                                         data={value}

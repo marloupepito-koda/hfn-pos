@@ -150,31 +150,44 @@ function OrderedComplete() {
                                                           res.cart_products
                                                               .product_name
                                                       }{" "}
-                                                      ( Section{" "}
                                                       {res.cart_products
-                                                          .venue_section_id ===
-                                                      1
-                                                          ? "A"
-                                                          : res.cart_products
-                                                                .venue_section_id ===
-                                                            2
-                                                          ? "B"
-                                                          : res.cart_products
-                                                                .venue_section_id ===
-                                                            3
-                                                          ? "C"
-                                                          : "D"}
-                                                      , Row{" "}
-                                                      {
-                                                          res.cart_products
-                                                              .venue_row
-                                                      }
-                                                      , Seat{" "}
-                                                      {
-                                                          res.cart_products
-                                                              .venue_seat
-                                                      }{" "}
-                                                      )
+                                                          .product_name ===
+                                                      "No Seating" ? (
+                                                          ""
+                                                      ) : (
+                                                          <>
+                                                              {" "}
+                                                              ( Section{" "}
+                                                              {res.cart_products
+                                                                  .venue_section_id ===
+                                                              1
+                                                                  ? "A"
+                                                                  : res
+                                                                        .cart_products
+                                                                        .venue_section_id ===
+                                                                    2
+                                                                  ? "B"
+                                                                  : res
+                                                                        .cart_products
+                                                                        .venue_section_id ===
+                                                                    3
+                                                                  ? "C"
+                                                                  : "D"}
+                                                              , Row{" "}
+                                                              {
+                                                                  res
+                                                                      .cart_products
+                                                                      .venue_row
+                                                              }
+                                                              , Seat{" "}
+                                                              {
+                                                                  res
+                                                                      .cart_products
+                                                                      .venue_seat
+                                                              }{" "}
+                                                              )
+                                                          </>
+                                                      )}
                                                   </th>
                                                   <td>
                                                       {res.code === null
