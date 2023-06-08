@@ -14,11 +14,28 @@ function AddToCartTable() {
     }, [location + count]);
 
     function deleteSeats(e) {
-        const index = data.findIndex(
-            (res) => res.cart_product_id === e.cart_product_id
+        const index = CartData.data.findIndex(
+            (res) => res.cart_product_id === event
         );
-        data.splice(index, 1);
-        navigate("#" + Math.floor(Math.random() * 9999));
+        const deleted = CartData.data.splice(index, 1);
+        if (deleted) {
+            axios
+                .post("/api/remove_checkout", {
+                    cart_product_id: event,
+                    data: CartData.data,
+                })
+                .then((res) => {
+                    if (res.data.status === "success") {
+                        if (CartData.data.length === 0) {
+                            axios.post("/api/end_session").then((res) => {
+                                window.location.href = "/";
+                            });
+                        } else {
+                            navigate("#" + Math.floor(Math.random() * 9999));
+                        }
+                    }
+                });
+        }
     }
     return (
         <div className="container">
