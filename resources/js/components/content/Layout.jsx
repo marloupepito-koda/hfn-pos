@@ -12,6 +12,7 @@ function IndexLayout() {
     const navigate = useNavigate();
     const openModal = (e, act) => {
         setIsOpen(true);
+        setLoading(true);
         axios.get("/api/get_seats").then((res) => {
             setLoading(false);
             setSection(e);
@@ -39,6 +40,9 @@ function IndexLayout() {
         });
     };
 
+    useEffect(() => {
+        setLoading(false);
+    }, []);
     const addCartSeat = (e) => {
         const seatCheck = CartData.data.find(
             (obj) => obj.cart_product_id === e.cart_product_id
@@ -115,7 +119,6 @@ function IndexLayout() {
                                 </button>
                             </div>
                         </div>
-
                         <div className="col-md-12" style={{ marginTop: 15 }}>
                             <div style={{ marginBottom: 100 }}>
                                 <div className="container">
@@ -165,105 +168,119 @@ function IndexLayout() {
                                                         </a>
                                                     </li>
                                                 </ul>
-                                                <table className="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">
-                                                                Product Name
-                                                            </th>
-                                                            <th scope="col">
-                                                                Rows
-                                                            </th>
-                                                            <th scope="col">
-                                                                Seats
-                                                            </th>
-                                                            <th scope="col">
-                                                                Prices
-                                                            </th>
-                                                            <th scope="col">
-                                                                Add
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody
-                                                        style={{
-                                                            height: "300px",
-                                                            overflowY: "scroll",
-                                                        }}
-                                                    >
-                                                        {seats.map(
-                                                            (res, index) => (
-                                                                <tr key={index}>
-                                                                    <td>
-                                                                        {
-                                                                            res.product_name
+                                                {loading ? (
+                                                    <center>
+                                                        <div class="spinner-border text-dark mt-5"></div>
+                                                    </center>
+                                                ) : (
+                                                    <table className="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">
+                                                                    Product Name
+                                                                </th>
+                                                                <th scope="col">
+                                                                    Rows
+                                                                </th>
+                                                                <th scope="col">
+                                                                    Seats
+                                                                </th>
+                                                                <th scope="col">
+                                                                    Prices
+                                                                </th>
+                                                                <th scope="col">
+                                                                    Add
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody
+                                                            style={{
+                                                                height: "300px",
+                                                                overflowY:
+                                                                    "scroll",
+                                                            }}
+                                                        >
+                                                            {seats.map(
+                                                                (
+                                                                    res,
+                                                                    index
+                                                                ) => (
+                                                                    <tr
+                                                                        key={
+                                                                            index
                                                                         }
-                                                                    </td>
-                                                                    <td>
-                                                                        Row{" "}
-                                                                        {
-                                                                            res.venue_row
-                                                                        }
-                                                                    </td>
-                                                                    <td>
-                                                                        Seat{" "}
-                                                                        {
-                                                                            res.venue_seat
-                                                                        }
-                                                                    </td>
-                                                                    <td>
-                                                                        ${" "}
-                                                                        {
-                                                                            res.price_sale
-                                                                        }
-                                                                    </td>
-                                                                    <td>
-                                                                        {res.quantity ===
-                                                                            1 &&
-                                                                        CartData.data.find(
-                                                                            (
-                                                                                obj
-                                                                            ) =>
-                                                                                obj.cart_product_id ===
-                                                                                res.cart_product_id
-                                                                        ) ===
-                                                                            undefined ? (
-                                                                            <span
-                                                                                onClick={() =>
-                                                                                    addCartSeat(
-                                                                                        res
-                                                                                    )
-                                                                                }
-                                                                                className="btn btn-success btn-sm w-100 "
-                                                                            >
-                                                                                Add
-                                                                                To
-                                                                                Cart
-                                                                            </span>
-                                                                        ) : res.quantity ===
-                                                                          0 ? (
-                                                                            <span className="btn btn-danger btn-sm w-100 ">
-                                                                                Sold
-                                                                                Out
-                                                                            </span>
-                                                                        ) : (
-                                                                            <span
-                                                                                onClick={() =>
-                                                                                    addCartSeat(
-                                                                                        res
-                                                                                    )
-                                                                                }
-                                                                                className="btn btn-warning btn-sm w-100 "
-                                                                            >
-                                                                                Selected
-                                                                            </span>
-                                                                        )}
-                                                                    </td>
-                                                                </tr>
-                                                            )
-                                                        )}
-                                                    </tbody>
-                                                </table>
+                                                                    >
+                                                                        <td>
+                                                                            {
+                                                                                res.product_name
+                                                                            }
+                                                                        </td>
+                                                                        <td>
+                                                                            Row{" "}
+                                                                            {
+                                                                                res.venue_row
+                                                                            }
+                                                                        </td>
+                                                                        <td>
+                                                                            Seat{" "}
+                                                                            {
+                                                                                res.venue_seat
+                                                                            }
+                                                                        </td>
+                                                                        <td>
+                                                                            ${" "}
+                                                                            {
+                                                                                res.price_sale
+                                                                            }
+                                                                        </td>
+                                                                        <td>
+                                                                            {res.quantity ===
+                                                                                1 &&
+                                                                            CartData.data.find(
+                                                                                (
+                                                                                    obj
+                                                                                ) =>
+                                                                                    obj.cart_product_id ===
+                                                                                    res.cart_product_id
+                                                                            ) ===
+                                                                                undefined ? (
+                                                                                <span
+                                                                                    onClick={() =>
+                                                                                        addCartSeat(
+                                                                                            res
+                                                                                        )
+                                                                                    }
+                                                                                    className="btn btn-success btn-sm w-100 "
+                                                                                >
+                                                                                    Add
+                                                                                    To
+                                                                                    Cart
+                                                                                </span>
+                                                                            ) : res.quantity ===
+                                                                              0 ? (
+                                                                                <span className="btn btn-danger btn-sm w-100 ">
+                                                                                    Sold
+                                                                                    Out
+                                                                                </span>
+                                                                            ) : (
+                                                                                <span
+                                                                                    onClick={() =>
+                                                                                        addCartSeat(
+                                                                                            res
+                                                                                        )
+                                                                                    }
+                                                                                    className="btn btn-warning btn-sm w-100 "
+                                                                                >
+                                                                                    Selected
+                                                                                </span>
+                                                                            )}
+                                                                        </td>
+                                                                    </tr>
+                                                                )
+                                                            )}
+                                                        </tbody>
+                                                    </table>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
