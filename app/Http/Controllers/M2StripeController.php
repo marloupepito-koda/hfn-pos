@@ -10,24 +10,44 @@ class M2StripeController extends Controller
 {
 
     public function check_payment(Request $request){
-         $token = $request->session()->get('token');
-         $exist1 =  M2Stripe::where('token','=',$token)->get();
-         $exist2 =  M2Stripe::where([['status','=','pending'],['token','=',$token]])->get();
-         $exist3 =  M2Stripe::where([['status','=','success'],['token','=',$token]])->get();
-         if(count($exist1) === 0){
-            return response()->json([
-                 'status' =>'not exist',
-            ]);
-         }else if(count($exist2) === 1){
-            return response()->json([
-                 'status' =>'loading',
-            ]);
-         }else if(count($exist3) === 1){
-              $request->session()->forget('token');
-              return response()->json([
-                 'status' =>'done',
-            ]);
+        $upgrade = CartOrderedProducts::where('code',$request->code)->first();
+
+         $token = $request->type === 'upgrade'?$upgrade->token:$request->session()->get('token');
+        
+         if($request->type === 'upgrade'){
+                $exist1 =  M2Stripe::where('token','=',$token)->get();
+                $exist2 =  M2Stripe::where([['status','=','pending'],['token','=',$token]])->get();
+                $exist3 =  M2Stripe::where([['status','=','success'],['token','=',$token]])->get();
+                if(count($exist1) === 0){
+                    return response()->json([
+                        'status' =>'not exist',
+                    ]);
+                }else if(count($exist2) === 1){
+                    return response()->json([
+                        'status' =>'loading',
+                    ]);
+                }
+                
+         }else{
+                $exist1 =  M2Stripe::where('token','=',$token)->get();
+                $exist2 =  M2Stripe::where([['status','=','pending'],['token','=',$token]])->get();
+                $exist3 =  M2Stripe::where([['status','=','success'],['token','=',$token]])->get();
+                if(count($exist1) === 0){
+                    return response()->json([
+                        'status' =>'not exist',
+                    ]);
+                }else if(count($exist2) === 1){
+                    return response()->json([
+                        'status' =>'loading',
+                    ]);
+                }else if(count($exist3) === 1){
+                    $request->session()->forget('token');
+                    return response()->json([
+                        'status' =>'done',
+                    ]);
+                } 
          }
+         
     }
      public function get_m2_ordered_product($token){
             $result = CartOrderedProducts::where('token',$token)->with('cartProducts')->get();
@@ -50,7 +70,26 @@ class M2StripeController extends Controller
      public function m2_reader_response(Request $request){
         $token = $request->session()->get('token');
         
-        if($token !== null){
+        if($request->type === 'upgrade'){
+            $upgrade = CartOrderedProducts::where('code',$request->code)->first();
+             $token = $upgrade->token;
+            $request->session()->put('tkn', $token);
+           $response=  M2Stripe::where('token',$token)->get();
+           M2Stripe::insert([
+                    'notes'=>$request->data['notes'].'- This additional payment is for upgrading tickets',
+                    'name'=>'Upgrade Ticket to the '.' '.$request->newSeat['venue_area'].' Section '.$request->newSeat['venue_section'].' Row '.$request->newSeat['venue_row'].' Seat '.$request->newSeat['venue_row'],
+                    'email'=>$request->data['email'],
+                    'grandtotal'=>$request->data['grandTotal'],
+                    'subtotal'=>$request->data['subTotal'],
+                    'ticket_fee'=>$request->data['ticketFee'],
+                    'token'=>$token,
+                    'status' =>'pending'
+                ]);
+                return response()->json([
+                    'status' =>$request->data,
+                ]);
+        }else{
+            if($token !== null){
            $request->session()->put('tkn', $token);
            $response=  M2Stripe::where('token',$token)->get();
           if(count($response) === 0){
@@ -80,9 +119,7 @@ class M2StripeController extends Controller
                 'token' => $request->session()->get('tkn')
             ]);
         }
-    
-          
-
+        }
              
      }
 

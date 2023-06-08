@@ -31,13 +31,18 @@ function CheckoutTable() {
     }, [count + location]);
 
     const subTotal = CartData.data.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.price_list;
+        return (
+            accumulator +
+            currentValue.price_list * parseInt(currentValue.quantity)
+        );
     }, 0);
 
     const ticketFee = CartData.data.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.price_fee;
+        return (
+            accumulator +
+            currentValue.price_fee * parseInt(currentValue.quantity)
+        );
     }, 0);
-
     const grandTotal = subTotal + ticketFee;
 
     function handleInput(event) {
@@ -104,7 +109,7 @@ function CheckoutTable() {
                         {addCart.map((res) => (
                             <tr key={res.cart_product_id}>
                                 <th scope="row">
-                                    {res.product_name}
+                                    {res.product_name}{" "}
                                     {res.product_name ===
                                     "General Admission No Seat"
                                         ? ""
@@ -127,8 +132,8 @@ function CheckoutTable() {
                                 <td>{res.quantity}</td>
                                 <td>
                                     $
-                                    {res.price_fee +
-                                        res.price_list * res.quantity}
+                                    {res.price_list * res.quantity +
+                                        res.quantity * res.price_fee}
                                 </td>
                                 <td>
                                     <button

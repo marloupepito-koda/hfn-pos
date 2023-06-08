@@ -4,9 +4,15 @@ import { useLocation, Link } from "react-router-dom";
 import PaymentChange from "../Change";
 function AddToCartTopNavbar() {
     const [cartCount, setCartCount] = useState(0);
+    const [balance, setBalance] = useState(0);
     const location = useLocation().hash;
     useEffect(() => {
         setCartCount(CartData.data.length);
+        if (CartData.data.length === 2) {
+            const balances =
+                CartData.data[1].price_list - CartData.data[0].price_list;
+            setBalance(balances);
+        }
     }, [location]);
     return (
         <nav className="navbar navbar-expand-lg bg-black fixed-top">
@@ -42,7 +48,9 @@ function AddToCartTopNavbar() {
                                 href="#section_5"
                             >
                                 Balance&nbsp;
-                                <span className="badge bg-primary">$0.00</span>
+                                <span className="badge bg-primary">
+                                    {balance}
+                                </span>
                             </a>
                         </li>
 

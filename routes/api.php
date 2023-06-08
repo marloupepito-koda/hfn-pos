@@ -33,7 +33,7 @@ Route::post('/confirm_payment_intent', [M2StripeController::class, 'confirm_paym
 Route::post('/m2_reader_response', [M2StripeController::class, 'm2_reader_response']);
 Route::get('/get_m2_reader_response', [M2StripeController::class, 'get_m2_reader_response']);
 Route::get('/get_m2_ordered_product/{token}', [M2StripeController::class, 'get_m2_ordered_product']);
-Route::get('/check_payment', [M2StripeController::class, 'check_payment']);
+Route::post('/check_payment', [M2StripeController::class, 'check_payment']);
 
 Route::get('/get_seats', [CartProductsController::class, 'get_seats']);
 Route::post('/create_checkout', [CartProductsController::class, 'create_checkout']);

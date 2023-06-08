@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import {
+    useNavigate,
+    useOutletContext,
+    useParams,
+    useLocation,
+} from "react-router-dom";
 import AddToCartTable from "./Table";
 import CartData from "../CartData";
 import axios from "axios";
 import moment from "moment";
 function AddToCartNoSeats() {
     const rows = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     const [count, setCount] = useOutletContext();
     const [disable, setDisabled] = useState(true);
     const [subtotal, setSubtotal] = useState(0);
+    const { pathname } = useLocation();
     const navigate = useNavigate();
     const { code } = useParams();
+    const [type, setType] = useState();
 
     const goToCheckOut = () => {
         if (code === undefined) {
@@ -32,11 +39,13 @@ function AddToCartNoSeats() {
     };
 
     useEffect(() => {
+        setType(pathname.split("/")[1]);
         if (CartData.data.length === 0) {
             setDisabled(true);
         } else {
             setDisabled(false);
         }
+
         setSubtotal(
             CartData.data
                 .map((res) =>
@@ -71,7 +80,10 @@ function AddToCartNoSeats() {
             navigate("#" + Math.floor(Math.random() * 9999));
         }
     };
-
+    const balance = 0;
+    //     CartData.data[0] === undefined
+    //         ? 0
+    //         : CartData.data[1].price_list - CartData.data[0].price_list;
     return (
         <>
             <div className="card mb-5 ">
@@ -133,7 +145,11 @@ function AddToCartNoSeats() {
                                         </table>
                                     </div>
                                     <div className="container col-md-12">
-                                        <b>SUBTOTAL: $ {subtotal}</b>
+                                        {type === "upgrade" ? (
+                                            <b></b>
+                                        ) : (
+                                            <b>SUBTOTAL: $ {subtotal}</b>
+                                        )}
                                     </div>
 
                                     <AddToCartTable />

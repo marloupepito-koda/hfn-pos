@@ -194,7 +194,7 @@ class CartProductsController extends Controller
              $code = mt_rand(1000000000, 9999999999);
              $token = $request->session()->get('token'); 
              $exist = CartOrderedProducts::where([['token','=',$token],['cart_product_id','=',$request->data[$i]['cart_product_id']]])->get();
-
+             $exist2 = CartOrderedProducts::where([['token','=',$token],['cart_product_id','=',1]])->get();
                if(count($exist) === 0){
                     if ($request->data[$i]['product_name'] !== 'General Admission No Seat') {
 
@@ -243,6 +243,7 @@ class CartProductsController extends Controller
                               }
 
                     }else{
+                         if(count($exist2) === 0){
                               $cartOrders = CartOrders::where('token','=',$token)->first();
                               $success1 =  CartOrderedProducts::insert([
                               'client_id' => $this->client_id,
@@ -279,6 +280,7 @@ class CartProductsController extends Controller
                                         'date_redeemed' => date("Y-m-d H:i:s")
                                    ]);
                               }
+                         }
                     }
                }
 
@@ -296,6 +298,7 @@ class CartProductsController extends Controller
 
      public function session(Request $request)
      {
+          // $request->session()->forget('create_checkout');
           return response()->json([
                'status' => $request->session()->get('session'),
                'checkout' => $request->session()->get('create_checkout'),

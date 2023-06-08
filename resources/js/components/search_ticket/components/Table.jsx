@@ -56,6 +56,56 @@ function SearchTicketTable(props) {
                 }
             });
     }
+
+    async function clickRedeem(e, code) {
+        await axios
+            .post("/api/redeem_ticket", {
+                data: e,
+            })
+            .then((res) => {
+                if (res.data.status.cart_ticket_codes === null) {
+                    axios
+                        .post("/api/accept_redeem", {
+                            cart_ordered_product_id: e,
+                            status: 1,
+                        })
+                        .then((res) => {
+                            navigate("?" + code + "#" + Math.random());
+                            Swal.fire({
+                                allowOutsideClick: false,
+                                icon: "success",
+                                title: "Ticket Redeemed",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        });
+                } else if (res.data.status.cart_ticket_codes.status === 0) {
+                    axios
+                        .post("/api/accept_redeem", {
+                            cart_ordered_product_id: e,
+                            status: 1,
+                        })
+                        .then((res) => {
+                            navigate("?" + code + "#" + Math.random());
+                            Swal.fire({
+                                allowOutsideClick: false,
+                                icon: "success",
+                                title: "Ticket Redeemed",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        });
+                } else {
+                    Swal.fire({
+                        allowOutsideClick: false,
+                        icon: "error",
+                        title: "Ticket already Redeemed",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            });
+    }
     return (
         <div style={{ overflowX: "scroll" }}>
             <table className="table table-striped">
@@ -64,6 +114,7 @@ function SearchTicketTable(props) {
                         <th scope="col">Order</th>
                         <th scope="col">NameTicket</th>
                         <th scope="col">Code</th>
+                        <th scope="col">Redeem</th>
                         <th scope="col">Upgrade</th>
                         <th scope="col">Release</th>
                     </tr>
@@ -78,11 +129,31 @@ function SearchTicketTable(props) {
                                     : res.cart_products.product_name}
                             </td>
                             <td>{res.code}</td>
+
+                            <td>
+                                {res.cart_ticket_codes.status === 1 ? (
+                                    <button className="btn btn-warning btn-sm">
+                                        Redeemed
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={() =>
+                                            clickRedeem(
+                                                res.cart_ordered_product_id,
+                                                res.code
+                                            )
+                                        }
+                                        className="btn btn-success btn-sm"
+                                    >
+                                        Redeem
+                                    </button>
+                                )}
+                            </td>
                             <td>
                                 <button
                                     onClick={() => upgradeHandler(res.code)}
                                     type="button"
-                                    className="btn btn-success"
+                                    className="btn btn-success btn-sm"
                                 >
                                     Upgrade
                                 </button>
@@ -96,7 +167,7 @@ function SearchTicketTable(props) {
                                         )
                                     }
                                     type="button"
-                                    className="btn btn-success"
+                                    className="btn btn-success btn-sm"
                                 >
                                     Release
                                 </button>

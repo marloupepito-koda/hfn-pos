@@ -80,7 +80,7 @@ class CartOrderedProductsController extends Controller
 
      public function send_place_orders(Request $request)
      {
-          $cartOrderProducts = new CartOrderedProducts;
+            $cartOrderProducts = new CartOrderedProducts;
             $token = $request->session()->get('token');
             $request->session()->put('order_complete', $request->data);
             $data = $request->session()->get('create_checkout');
@@ -137,14 +137,10 @@ class CartOrderedProductsController extends Controller
                               'table_number' => 0,
                       ]);
                     }
-                       
-
-
-
             }
-         $request->session()->forget('session');
+
          $request->session()->forget('create_checkout');
-          $request->session()->forget('token');
+         $request->session()->forget('token');
           return response()->json([
                'status' =>'success',
           ]);

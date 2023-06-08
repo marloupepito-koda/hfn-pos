@@ -106,7 +106,7 @@ function CheckoutPaymentMethods(props) {
     };
 
     async function checkPayment(status) {
-        const res = await axios.get("/api/check_payment");
+        const res = await axios.post("/api/check_payment");
         //if 0, already paid
         console.log(res.data.status);
         if (res.data.status === "not exist") {
@@ -124,9 +124,10 @@ function CheckoutPaymentMethods(props) {
                     data: paymentCard,
                     discount: discount,
                 })
-                .then((res) => {});
-            window.location.href = "/order_complete";
-            Swal.close();
+                .then((res) => {
+                    window.location.href = "/order_complete";
+                    Swal.close();
+                });
         }
     }
 

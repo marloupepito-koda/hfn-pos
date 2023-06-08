@@ -1,14 +1,16 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 function OrderedComplete() {
     const [data, setData] = useState([]);
+    const [reload, setReload] = useState([]);
+
     useEffect(() => {
         axios.get("/api/get_order_complete").then((res) => {
             setData(res.data.status);
-            console.log("waaa", res.data.token);
         });
-    }, []);
+    }, [reload]);
 
     function backToIndex() {
         window.location.href = "/";
@@ -26,6 +28,7 @@ function OrderedComplete() {
                             status: 1,
                         })
                         .then((res) => {
+                            setReload(Math.random());
                             Swal.fire({
                                 allowOutsideClick: false,
                                 icon: "success",
@@ -41,6 +44,7 @@ function OrderedComplete() {
                             status: 1,
                         })
                         .then((res) => {
+                            setReload(Math.random());
                             Swal.fire({
                                 allowOutsideClick: false,
                                 icon: "success",
@@ -61,11 +65,19 @@ function OrderedComplete() {
             });
     }
     const subTotal = data.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.cart_products.price_list;
+        return (
+            accumulator +
+            currentValue.cart_products.price_list *
+                parseInt(currentValue.quantity)
+        );
     }, 0);
 
     const ticketFee = data.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.cart_products.price_fee;
+        return (
+            accumulator +
+            currentValue.cart_products.price_fee *
+                parseInt(currentValue.quantity)
+        );
     }, 0);
 
     const grandTotal = subTotal + ticketFee;
@@ -73,7 +85,11 @@ function OrderedComplete() {
     return (
         <div className="container mt-5 pt-5">
             <div className="row">
-                <div className="col-md-12"></div>
+                <div className="col-md-12">
+                    <Link className="offset-md-10 btn btn-dark" to="/tickets">
+                        SEARCH TICKETS
+                    </Link>
+                </div>
                 <div className="col-md-12">
                     <h3>Order Complete</h3>
                     Thank you for purchasing your ticket(s) for Hollywood Fight
@@ -89,6 +105,7 @@ function OrderedComplete() {
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Total</th>
+                                    <th scope="col">Fee</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -98,7 +115,7 @@ function OrderedComplete() {
                                           {res.cart_product_id ===
                                           parseInt("1") ? (
                                               <tr>
-                                                  <th scope="row">No Seats</th>
+                                                  <th scope="row">No Seat</th>
                                                   <td>
                                                       {res.code === null
                                                           ? ""
@@ -107,6 +124,13 @@ function OrderedComplete() {
                                                   <td>${res.price}</td>
                                                   <td>{res.quantity}</td>
                                                   <td>${res.price}</td>
+                                                  <td>
+                                                      $
+                                                      {
+                                                          res.cart_products
+                                                              .price_fee
+                                                      }
+                                                  </td>
                                                   <td>
                                                       <button
                                                           onClick={() =>
@@ -126,7 +150,32 @@ function OrderedComplete() {
                                                       {
                                                           res.cart_products
                                                               .product_name
+                                                      }{" "}
+                                                      ( Section{" "}
+                                                      {res.cart_products
+                                                          .venue_section_id ===
+                                                      1
+                                                          ? "A"
+                                                          : res.cart_products
+                                                                .venue_section_id ===
+                                                            2
+                                                          ? "B"
+                                                          : res.cart_products
+                                                                .venue_section_id ===
+                                                            3
+                                                          ? "C"
+                                                          : "D"}
+                                                      , Row{" "}
+                                                      {
+                                                          res.cart_products
+                                                              .venue_row
                                                       }
+                                                      , Seat{" "}
+                                                      {
+                                                          res.cart_products
+                                                              .venue_seat
+                                                      }{" "}
+                                                      )
                                                   </th>
                                                   <td>
                                                       {res.code === null
@@ -135,18 +184,35 @@ function OrderedComplete() {
                                                   </td>
                                                   <td>${res.price}</td>
                                                   <td>{res.quantity}</td>
-                                                  <td>${res.price}</td>
                                                   <td>
-                                                      <button
-                                                          onClick={() =>
-                                                              clickRedeem(
-                                                                  res.cart_ordered_product_id
-                                                              )
-                                                          }
-                                                          className="btn btn-success btn-sm"
-                                                      >
-                                                          Redeem
-                                                      </button>
+                                                      $
+                                                      {res.price * res.quantity}
+                                                  </td>
+                                                  <td>
+                                                      $
+                                                      {
+                                                          res.cart_products
+                                                              .price_fee
+                                                      }
+                                                  </td>
+                                                  <td>
+                                                      {res.cart_ticket_codes
+                                                          .status === 1 ? (
+                                                          <button className="btn btn-warning btn-sm">
+                                                              Redeemed
+                                                          </button>
+                                                      ) : (
+                                                          <button
+                                                              onClick={() =>
+                                                                  clickRedeem(
+                                                                      res.cart_ordered_product_id
+                                                                  )
+                                                              }
+                                                              className="btn btn-success btn-sm"
+                                                          >
+                                                              Redeem
+                                                          </button>
+                                                      )}
                                                   </td>
                                               </tr>
                                           )}

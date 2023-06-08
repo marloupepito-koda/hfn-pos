@@ -8,8 +8,9 @@ function IndexLayout() {
     const [section, setSection] = useState(null);
     const [seats, setSeats] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [active, setActive] = useState(1);
     const navigate = useNavigate();
-    const openModal = (e) => {
+    const openModal = (e, act) => {
         setIsOpen(true);
         axios.get("/api/get_seats").then((res) => {
             setLoading(false);
@@ -29,9 +30,12 @@ function IndexLayout() {
             const seatData = res.data.status.filter(
                 (obj) =>
                     obj.cart_product_id >= selected[0] &&
-                    obj.cart_product_id < selected[1]
+                    obj.cart_product_id < selected[1] &&
+                    obj.quantity === act
             );
             setSeats(seatData);
+
+            console.log("waa", seatData);
         });
     };
 
@@ -55,6 +59,10 @@ function IndexLayout() {
         setIsOpen(false);
     };
 
+    function setActiveHandler(e, section) {
+        setActive(e);
+        openModal(section, e);
+    }
     return (
         <div style={{ marginTop: "100px" }}>
             {/* <Modal isOpen={isOpen} onClose={closeModal}> */}
@@ -68,7 +76,7 @@ function IndexLayout() {
                                 <button
                                     type="button"
                                     className="w-100 p-4 btn btn-dark h-100"
-                                    onClick={() => openModal("A")}
+                                    onClick={() => openModal("A", active)}
                                 >
                                     <h3 className="text-white">Section A</h3>
                                 </button>
@@ -79,7 +87,7 @@ function IndexLayout() {
                                 <button
                                     type="button"
                                     className="w-100 p-4 btn btn-dark h-100"
-                                    onClick={() => openModal("B")}
+                                    onClick={() => openModal("B", active)}
                                 >
                                     <h3 className="text-white">Section B</h3>
                                 </button>
@@ -90,7 +98,7 @@ function IndexLayout() {
                                 <button
                                     type="button"
                                     className="w-100 p-4 btn btn-dark h-100"
-                                    onClick={() => openModal("C")}
+                                    onClick={() => openModal("C", active)}
                                 >
                                     <h3 className="text-white">Section C</h3>
                                 </button>
@@ -101,12 +109,13 @@ function IndexLayout() {
                                 <button
                                     type="button"
                                     className="w-100 p-4 btn btn-dark h-100"
-                                    onClick={() => openModal("D")}
+                                    onClick={() => openModal("D", active)}
                                 >
                                     <h3 className="text-white">Section D</h3>
                                 </button>
                             </div>
                         </div>
+
                         <div className="col-md-12" style={{ marginTop: 15 }}>
                             <div style={{ marginBottom: 100 }}>
                                 <div className="container">
@@ -117,6 +126,45 @@ function IndexLayout() {
                                                 style={{ height: "600px" }}
                                             >
                                                 <h3>Section {section}</h3>
+                                                <ul class="nav nav-pills">
+                                                    <li class="nav-item">
+                                                        <a
+                                                            onClick={() =>
+                                                                setActiveHandler(
+                                                                    1,
+                                                                    section
+                                                                )
+                                                            }
+                                                            class={
+                                                                active === 1
+                                                                    ? "nav-link active"
+                                                                    : "nav-link"
+                                                            }
+                                                            aria-current="page"
+                                                            href="#"
+                                                        >
+                                                            Remaining
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a
+                                                            onClick={() =>
+                                                                setActiveHandler(
+                                                                    0,
+                                                                    section
+                                                                )
+                                                            }
+                                                            class={
+                                                                active === 0
+                                                                    ? "nav-link active"
+                                                                    : "nav-link"
+                                                            }
+                                                            href="#"
+                                                        >
+                                                            Sold Out
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                                 <table className="table">
                                                     <thead>
                                                         <tr>

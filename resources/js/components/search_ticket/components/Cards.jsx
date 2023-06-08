@@ -1,27 +1,46 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import SearchTicketTable from "./Table";
+import { useLocation, useNavigate } from "react-router-dom";
 function CardSearchTicket() {
-    const [search, setSearch] = useState(7536717902);
+    const [searching, setSearching] = useState("");
     const [value, setValue] = useState([]);
     const [status, setStatus] = useState("");
+    const { search, hash } = useLocation();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (search !== "") {
+            axios
+                .get("/api/search_ticket_code/" + search.substring(1))
+                .then((res) => {
+                    setValue(res.data.status);
+                    // if (res.data.status.length !== 0) {
+                    //     setStatus("");
+                    // } else {
+                    //     setStatus("No results!");
+                    // }
+                });
+        }
+    }, [hash]);
     const searchTicket = (e) => {
         e.preventDefault();
         setStatus("Loading...");
-        axios.get("/api/search_ticket_code/" + search).then((res) => {
-            setValue(res.data.status);
-            console.log("new", res.data.status);
-            if (res.data.status.length !== 0) {
-                setStatus("");
-            } else {
-                setStatus("No results!");
+        axios.get("/api/search_ticket_code/" + searching).then((res) => {
+            navigate("?" + searching + "#" + Math.random());
+            if (res.data.status.length !== undefined) {
+                setValue(res.data.status);
+                if (res.data.status.length !== 0) {
+                    setStatus("");
+                } else {
+                    setStatus("No results!");
+                }
             }
         });
     };
 
     return (
         <>
-            <div className="card mt-5">
+            <div className="card mt-3">
                 <div className="card-header" style={{ marginTop: 50 }}>
                     Search Tickets
                 </div>
@@ -33,7 +52,9 @@ function CardSearchTicket() {
                             </div>
                             <div className="col-md-4 col-8">
                                 <input
-                                    onChange={(e) => setSearch(e.target.value)}
+                                    onChange={(e) =>
+                                        setSearching(e.target.value)
+                                    }
                                     className="form-control form-control-lg"
                                     type="text"
                                     placeholder="Search Tickets..."

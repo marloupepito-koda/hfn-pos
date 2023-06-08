@@ -40,28 +40,33 @@ function AddToCartTable() {
                               <tr key={res.cart_product_id}>
                                   <td>{res.product_name}</td>
                                   <td>
-                                      Section{" "}
-                                      {res.product_name === "No Seating"
-                                          ? "none"
+                                      {res.product_name ===
+                                          "General Admission No Seat" ||
+                                      res.product_name === "No Seating"
+                                          ? "-"
                                           : res.venue_section_id === 1
-                                          ? "A"
+                                          ? "Section A"
                                           : res.venue_section_id === 2
-                                          ? "B"
+                                          ? "Section B"
                                           : res.venue_section_id === 3
-                                          ? "C"
-                                          : "D"}
+                                          ? "Section C"
+                                          : res.venue_section_id === 4
+                                          ? "Section D"
+                                          : ""}
                                   </td>
                                   <td>
-                                      Row{" "}
-                                      {res.product_name === "No Seating"
-                                          ? "none"
-                                          : res.venue_row}
+                                      {res.product_name ===
+                                          "General Admission No Seat" ||
+                                      res.product_name === "No Seating"
+                                          ? "-"
+                                          : "Row " + res.venue_row}
                                   </td>
                                   <td>
-                                      Seat{" "}
-                                      {res.product_name === "No Seating"
-                                          ? "none"
-                                          : res.venue_seat}
+                                      {res.product_name ===
+                                          "General Admission No Seat" ||
+                                      res.product_name === "No Seating"
+                                          ? "-"
+                                          : "Seat " + res.venue_seat}
                                   </td>
                                   <td>
                                       <a

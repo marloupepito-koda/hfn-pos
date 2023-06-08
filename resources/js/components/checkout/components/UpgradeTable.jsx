@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
+import UpgradePaymentMethods from "./UpgradePaymentMethods";
 function UpgradeTable() {
     const location = useLocation().hash;
     const [addCart, setAddCart] = useState([]);
@@ -56,9 +57,18 @@ function UpgradeTable() {
             return false;
         }
     }
+
+    function grandTotalHandler(totalValue) {
+        const formatter = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+        });
+        return formatter.format(totalValue);
+    }
+
     return (
         <div className="container">
-            <div className=" col-md-8 offset-md-2">
+            <div className=" col-md-12">
                 <br />
                 <br />
                 <h3 className="mt-5">Order Summary</h3>
@@ -68,7 +78,7 @@ function UpgradeTable() {
                             <th scope="col"></th>
                             <th scope="col">Product</th>
                             <th scope="col">Price</th>
-                            <th scope="col">Fee</th>
+                            {/* <th scope="col">Fee</th> */}
                             <th scope="col">Quantity</th>
                             <th scope="col">Total</th>
                         </tr>
@@ -78,26 +88,28 @@ function UpgradeTable() {
                             <tr key={res.cart_product_id}>
                                 <th>{where[index]}:</th>
                                 <th scope="row">
-                                    {res.product_name}
-                                    {res.product_name ===
-                                    "General Admission No Seat"
+                                    {res.product_name}{" "}
+                                    {res.product_name === "No Seating"
                                         ? ""
                                         : "Section " + res.venue_section_id ===
                                           1
                                         ? "A"
                                         : res.venue_section_id === 2
-                                        ? "B"
+                                        ? "Section B"
                                         : res.venue_section_id === 3
-                                        ? "C"
+                                        ? "Section C"
                                         : res.venue_section_id === 4
-                                        ? "D"
-                                        : "Row " +
+                                        ? "Section D, "
+                                        : ""}
+                                    {res.product_name !== "No Seating"
+                                        ? "Row " +
                                           res.venue_row +
-                                          " Seats " +
-                                          res.venue_seat}
+                                          ", Seat " +
+                                          res.venue_seat
+                                        : ""}
                                 </th>
                                 <td>{res.price_list}</td>
-                                <td>{res.price_fee}</td>
+                                {/* <td>{res.price_fee}</td> */}
                                 <td>{res.quantity}</td>
                                 <td>
                                     {res.price_fee +
@@ -114,6 +126,14 @@ function UpgradeTable() {
                                 <td scope="row">Additional Payment:</td>
                                 <th>${additional}</th>
                             </tr>
+                            <tr>
+                                <td scope="row">Ticket Fee:</td>
+                                <th>$ 7.50</th>
+                            </tr>
+                            <tr>
+                                <td scope="row">Grand Total:</td>
+                                <th>{additional + 7.5}</th>
+                            </tr>
                         </thead>
                     </table>
                 </div>
@@ -123,7 +143,7 @@ function UpgradeTable() {
                 >
                     BACK TO CART
                 </Link>
-                <button
+                {/* <button
                     onClick={updateSeats}
                     disabled={
                         addCart.length === 1 ||
@@ -135,7 +155,14 @@ function UpgradeTable() {
                     className="btn btn-dark col-md-3 mb-3 offset-md-6"
                 >
                     Upgrade
-                </button>
+                </button> */}
+                <UpgradePaymentMethods
+                    cartData={addCart}
+                    subTotal={additional}
+                    ticketFee={7.5}
+                    grandTotal={additional + 7.5}
+                    discount={0}
+                />
             </div>
         </div>
     );

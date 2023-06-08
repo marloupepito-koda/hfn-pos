@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import AddToCartTopNavbar from "./add_to_cart/components/TopNavbar";
-import TimerSession from "./components/Timer";
 import CartData from "./add_to_cart/CartData";
 import moment from "moment";
 import { useParams } from "react-router-dom";
@@ -43,7 +42,6 @@ function AppLayout() {
     return (
         <>
             <AddToCartTopNavbar />
-            {/* <TimerSession time={timeLeft} /> */}
             <div className="container">
                 <Outlet context={[data]} />
             </div>
