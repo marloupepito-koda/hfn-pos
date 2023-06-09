@@ -64,7 +64,7 @@ function OrderedComplete() {
                 }
             });
     }
-    const subTotal = data.reduce((accumulator, currentValue) => {
+    const sub = data.reduce((accumulator, currentValue) => {
         return (
             accumulator +
             currentValue.cart_products.price_list *
@@ -72,7 +72,7 @@ function OrderedComplete() {
         );
     }, 0);
 
-    const ticketFee = data.reduce((accumulator, currentValue) => {
+    const fee = data.reduce((accumulator, currentValue) => {
         return (
             accumulator +
             currentValue.cart_products.price_fee *
@@ -80,8 +80,12 @@ function OrderedComplete() {
         );
     }, 0);
 
-    const grandTotal = subTotal + ticketFee;
     const discount = data[0] === undefined ? 0 : data[0].discount_offset;
+    const ticketFee = fee;
+    const subTotal = sub + ticketFee;
+    const grandTotal = (subTotal + ticketFee + 0.3) / 0.971 - discount;
+    const transactionFee = grandTotal - subTotal - ticketFee;
+
     function grandTotalHandler(totalValue) {
         const formatter = new Intl.NumberFormat("en-US", {
             style: "currency",
@@ -257,9 +261,7 @@ function OrderedComplete() {
                             <tr>
                                 <th scope="col">Sub Total</th>
                                 <td scope="col">
-                                    {grandTotalHandler(
-                                        grandTotal - discount + 0.3
-                                    )}
+                                    {grandTotalHandler(subTotal)}
                                 </td>
                             </tr>
                         </thead>
@@ -274,27 +276,11 @@ function OrderedComplete() {
                             </tr>
                             <tr>
                                 <th scope="row">Transaction Fee</th>
-                                <td>
-                                    {grandTotalHandler(
-                                        (grandTotal - discount + 0.3) /
-                                            (1 - 0.029) -
-                                            (grandTotal - discount)
-                                    )}
-                                </td>
+                                <td>{grandTotalHandler(transactionFee)}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Grand Total</th>
-                                <td>
-                                    {grandTotalHandler(
-                                        grandTotal -
-                                            discount +
-                                            0.3 +
-                                            ((grandTotal - discount + 0.3) /
-                                                (1 - 0.029) -
-                                                (grandTotal - discount)) +
-                                            ticketFee
-                                    )}
-                                </td>
+                                <td>{grandTotalHandler(grandTotal)}</td>
                             </tr>
                         </tbody>
                     </table>

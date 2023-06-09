@@ -155,10 +155,12 @@ class M2StripeController extends Controller
     {
          if(env('APP_ENV') === 'local'){
             $stripe = new \Stripe\StripeClient(env('STRIPE_SK_TEST'));
+               $amountValue = ($request->price * 100).'00';
         }else{
             $stripe = new \Stripe\StripeClient(env('STRIPE_SK_LIVE'));
+            $amountValue = $request->price;
         }
-        $amountValue = $request->price*100;
+     
         $payment = $stripe->paymentIntents->create([
         'amount' => $amountValue,
         'currency' => 'usd',

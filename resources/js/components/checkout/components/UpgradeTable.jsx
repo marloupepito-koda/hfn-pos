@@ -24,6 +24,20 @@ function UpgradeTable() {
     const additional = CartData.data.reduce((accumulator, currentValue) => {
         return currentValue.price_list - accumulator;
     }, 0);
+
+    const fee = CartData.data.reduce((accumulator, currentValue) => {
+        return (
+            accumulator +
+            currentValue.price_fee * parseInt(currentValue.quantity)
+        );
+    }, 0);
+
+    const ticketFee = 7.5;
+    const discount = 0;
+    const subTotal = additional + ticketFee;
+    const grandTotal = (subTotal + 7.5 + 0.3) / 0.971 - discount;
+    const transactionFee = grandTotal - subTotal - ticketFee;
+
     function updateSeats() {
         Swal.fire({
             title: "Loading...",
@@ -50,6 +64,7 @@ function UpgradeTable() {
     }
 
     const where = ["From", "To"];
+
     function isNegative(number) {
         if (number < 0) {
             return true;
@@ -124,15 +139,19 @@ function UpgradeTable() {
                         <thead>
                             <tr>
                                 <td scope="row">Additional Payment:</td>
-                                <th>${additional}</th>
+                                <th>{grandTotalHandler(additional)}</th>
                             </tr>
                             <tr>
                                 <td scope="row">Ticket Fee:</td>
-                                <th>$ 7.50</th>
+                                <th>$7.50</th>
+                            </tr>
+                            <tr>
+                                <td scope="row">Transaction Fee:</td>
+                                <th>{grandTotalHandler(transactionFee)}</th>
                             </tr>
                             <tr>
                                 <td scope="row">Grand Total:</td>
-                                <th>{additional + 7.5}</th>
+                                <th>{grandTotalHandler(additional + 7.5)}</th>
                             </tr>
                         </thead>
                     </table>
@@ -156,12 +175,13 @@ function UpgradeTable() {
                 >
                     Upgrade
                 </button> */}
+
                 <UpgradePaymentMethods
                     cartData={addCart}
-                    subTotal={additional}
-                    ticketFee={7.5}
-                    grandTotal={additional + 7.5}
-                    discount={0}
+                    subTotal={subTotal}
+                    ticketFee={ticketFee}
+                    grandTotal={grandTotal}
+                    discount={discount}
                 />
             </div>
         </div>

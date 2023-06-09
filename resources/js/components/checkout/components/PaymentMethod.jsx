@@ -5,8 +5,9 @@ import CartData from "../../add_to_cart/CartData";
 import PaymentChange from "../../add_to_cart/Change";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
-
+import moment from "moment";
 import Swal from "sweetalert2";
+
 function CheckoutPaymentMethods(props) {
     const [method, setMethod] = useState("credits");
     const [amount, setAmount] = useState(0);
@@ -22,14 +23,11 @@ function CheckoutPaymentMethods(props) {
             amount - props.grandTotal < 0 ? 0 : amount - props.grandTotal;
         PaymentChange.data = change;
         checkPayment("");
-        // var pusher = new Pusher("82a17c42350e8ce1d15d", {
-        //     cluster: "us3",
-        // });
+        paymentCard.grandTotal = props.grandTotal - discount;
+        paymentCash.grandTotal = props.grandTotal - discount;
+        paymentCheck.grandTotal = props.grandTotal - discount;
 
-        // var channel = pusher.subscribe("popup-channel");
-        // channel.bind("user-register", function (data) {
-        //     setSubmit(Math.random());
-        // });
+        console.log("waaa", props.grandTotal);
     }, [CartData + props.discount + amount + submit]);
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
@@ -39,9 +37,11 @@ function CheckoutPaymentMethods(props) {
         where_find: "",
         tenders: 0,
         notes: "",
-        grandTotal: props.grandTotal,
+        orderDate: moment().format("LLLL"),
+        grandTotal: props.grandTotal - discount,
         ticketFee: props.ticketFee,
         subTotal: props.subTotal,
+        transactionFee: props.transactionFee,
     });
 
     const [paymentCash, setPaymentCash] = useState({
@@ -52,9 +52,11 @@ function CheckoutPaymentMethods(props) {
         check_info: 0,
         where_find: "",
         notes: "",
-        grandTotal: props.grandTotal,
+        orderDate: moment().format("LLLL"),
+        grandTotal: props.grandTotal - discount,
         ticketFee: props.ticketFee,
         subTotal: props.subTotal,
+        transactionFee: props.transactionFee,
     });
 
     const [paymentCheck, setPaymentCheck] = useState({
@@ -65,9 +67,11 @@ function CheckoutPaymentMethods(props) {
         tenders: 0,
         where_find: "",
         notes: "",
-        grandTotal: props.grandTotal,
+        orderDate: moment().format("LLLL"),
+        grandTotal: props.grandTotal - discount,
         ticketFee: props.ticketFee,
         subTotal: props.subTotal,
+        transactionFee: props.transactionFee,
     });
     const changeHandler = (e) => {
         setMethod(e);
@@ -131,6 +135,12 @@ function CheckoutPaymentMethods(props) {
                 confirmButtonText: "Proceed",
             }).then((result) => {
                 if (result.isConfirmed) {
+                    loading();
+                    axios
+                        .post("/send_reservation", {
+                            data: paymentCard,
+                        })
+                        .then((res) => {});
                     axios
                         .post("/api/send_place_orders", {
                             data: paymentCard,
@@ -156,8 +166,8 @@ function CheckoutPaymentMethods(props) {
     }
     const submitPayment = (e) => {
         e.preventDefault();
-        setDisabled(true);
-
+        // setDisabled(true);
+        console.log(paymentCard);
         if (method === "credits") {
             setDisabled(false);
             axios

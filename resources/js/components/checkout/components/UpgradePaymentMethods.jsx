@@ -5,8 +5,9 @@ import CartData from "../../add_to_cart/CartData";
 import PaymentChange from "../../add_to_cart/Change";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
-
+import moment from "moment";
 import Swal from "sweetalert2";
+
 function UpgradePaymentMethods(props) {
     const [method, setMethod] = useState("credits");
     const [amount, setAmount] = useState(0);
@@ -22,55 +23,51 @@ function UpgradePaymentMethods(props) {
         const change =
             amount - props.grandTotal < 0 ? 0 : amount - props.grandTotal;
         PaymentChange.data = change;
-        checkPayment("error");
-        var pusher = new Pusher("82a17c42350e8ce1d15d", {
-            cluster: "us3",
-        });
-
-        var channel = pusher.subscribe("popup-channel");
-        channel.bind("user-register", function (data) {
-            setSubmit(Math.random());
-            updateSeats();
-        });
     }, [CartData + props.discount + amount + submit]);
 
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
-        fullname: "",
+        fullname: " ",
         email: "",
         check_info: 0,
         where_find: "",
         tenders: 0,
         notes: "",
+        orderDate: moment().format("LLLL"),
         grandTotal: props.grandTotal,
         ticketFee: props.ticketFee,
         subTotal: props.subTotal,
+        transactionFee: props.transactionFee,
     });
 
     const [paymentCash, setPaymentCash] = useState({
         cart: CartData.data,
-        fullname: "",
+        fullname: " ",
         email: "",
-        tenders: 0,
         check_info: 0,
         where_find: "",
+        tenders: 0,
         notes: "",
+        orderDate: moment().format("LLLL"),
         grandTotal: props.grandTotal,
         ticketFee: props.ticketFee,
         subTotal: props.subTotal,
+        transactionFee: props.transactionFee,
     });
 
     const [paymentCheck, setPaymentCheck] = useState({
         cart: CartData.data,
-        fullname: "",
+        fullname: " ",
         email: "",
         check_info: 0,
-        tenders: 0,
         where_find: "",
+        tenders: 0,
         notes: "",
+        orderDate: moment().format("LLLL"),
         grandTotal: props.grandTotal,
         ticketFee: props.ticketFee,
         subTotal: props.subTotal,
+        transactionFee: props.transactionFee,
     });
     const changeHandler = (e) => {
         setMethod(e);
@@ -98,6 +95,7 @@ function UpgradePaymentMethods(props) {
         paymentCash.notes = e;
         paymentCheck.notes = e;
     };
+
     const paymentCashHandler = (e) => {
         paymentCash.tenders = e;
         setAmount(e);
@@ -113,6 +111,54 @@ function UpgradePaymentMethods(props) {
         paymentCheck.check_info = e;
     };
 
+    async function checkPayment(status) {
+        const res = await axios.post("/api/check_payment", {
+            type: "upgrade",
+            code: code.pathname.split("/")[2],
+        });
+        //if 0, already paid
+        if (res.data.status === "not exist") {
+            Swal.fire({
+                title: "Payment Confirmation",
+                allowOutsideClick: false,
+                text: status,
+                confirmButtonText: "Proceed",
+                // didOpen: () => {
+                //     Swal.showLoading();
+                // },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    checkPayment("Unpaid Payment!");
+                }
+            });
+        } else if (res.data.status === "loading") {
+            Swal.fire({
+                title: "Payment Confirmation",
+                allowOutsideClick: false,
+                text: status,
+                confirmButtonText: "Proceed",
+                // didOpen: () => {
+                //     Swal.showLoading();
+                // },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    checkPayment("Unpaid Payment!");
+                }
+            });
+        } else {
+            Swal.fire({
+                title: "Payment Confirmation",
+                allowOutsideClick: false,
+                text: status,
+                confirmButtonText: "Proceed",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    loading();
+                    updateSeats();
+                }
+            });
+        }
+    }
     function updateSeats() {
         axios
             .post("/api/update_seats/", {
@@ -126,30 +172,7 @@ function UpgradePaymentMethods(props) {
             });
     }
 
-    async function checkPayment(status) {
-        const res = await axios.post("/api/check_payment", {
-            type: "upgrade",
-            code: code.pathname.split("/")[2],
-        });
-        //if 0, already paid
-        if (res.data.status === "not exist") {
-        } else if (res.data.status === "loading") {
-            Swal.fire({
-                title: "Loading Payment Confirmation...",
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                },
-            });
-        } else if (res.data.status === "done") {
-            updateSeats();
-        }
-    }
-
-    console.log(CartData.data[1]);
-    const submitPayment = (e) => {
-        e.preventDefault();
-        setDisabled(true);
+    function loading() {
         Swal.fire({
             title: "Loading Payment Confirmation...",
             allowOutsideClick: false,
@@ -157,6 +180,11 @@ function UpgradePaymentMethods(props) {
                 Swal.showLoading();
             },
         });
+    }
+    const submitPayment = (e) => {
+        e.preventDefault();
+        setDisabled(true);
+
         if (method === "credits") {
             setDisabled(false);
             axios
@@ -167,9 +195,10 @@ function UpgradePaymentMethods(props) {
                     code: code.pathname.split("/")[2],
                 })
                 .then((res) => {
-                    checkPayment(res.data.status);
+                    checkPayment("");
                 });
         } else if (method === "cash") {
+            loading();
             axios
                 .post("/api/send_place_orders", {
                     data: paymentCard,
@@ -188,6 +217,7 @@ function UpgradePaymentMethods(props) {
                     }
                 });
         } else {
+            loading();
             axios
                 .post("/api/send_place_orders", {
                     data: paymentCard,

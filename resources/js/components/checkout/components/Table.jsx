@@ -38,14 +38,19 @@ function CheckoutTable() {
         );
     }, 0);
 
-    const ticketFee = CartData.data.reduce((accumulator, currentValue) => {
+    const fee = CartData.data.reduce((accumulator, currentValue) => {
         return (
             accumulator +
             currentValue.price_fee * parseInt(currentValue.quantity)
         );
     }, 0);
+
+    const ticketFee = fee;
     const subTotal = sub + ticketFee;
-    const grandTotal = sub + ticketFee + 0.3;
+    const grandTotal = (subTotal + ticketFee + 0.3) / 0.971 - inputValue;
+    const grandTotal2 = (subTotal + ticketFee + 0.3) / 0.971;
+    const transactionFee = grandTotal2 - subTotal - ticketFee;
+
     function removeItem(event) {
         const index = CartData.data.findIndex(
             (res) => res.cart_product_id === event
@@ -144,7 +149,7 @@ function CheckoutTable() {
                     <thead>
                         <tr>
                             <td scope="row">Sub Total:</td>
-                            <th>{grandTotalHandler(grandTotal)}</th>
+                            <th>{grandTotalHandler(subTotal)}</th>
                         </tr>
                         <tr>
                             <td scope="row">Ticket Fee:</td>
@@ -152,11 +157,7 @@ function CheckoutTable() {
                         </tr>
                         <tr>
                             <td scope="row">Transaction Fee:</td>
-                            <th>
-                                {grandTotalHandler(
-                                    grandTotal / (1 - 0.029) - subTotal
-                                )}
-                            </th>
+                            <th>{grandTotalHandler(transactionFee)}</th>
                         </tr>
                         <tr>
                             <td scope="row">Discount:</td>
@@ -171,12 +172,7 @@ function CheckoutTable() {
                         </tr>
                         <tr>
                             <td scope="row">Grand Total:</td>
-                            <th>
-                                {grandTotalHandler(
-                                    (grandTotal - inputValue + ticketFee) /
-                                        (1 - 0.029)
-                                )}
-                            </th>
+                            <th>{grandTotalHandler(grandTotal)}</th>
                         </tr>
                     </thead>
                 </table>
@@ -188,7 +184,8 @@ function CheckoutTable() {
                 cartData={addCart}
                 subTotal={subTotal}
                 ticketFee={ticketFee}
-                grandTotal={(grandTotal - inputValue + ticketFee) / (1 - 0.029)}
+                transactionFee={transactionFee}
+                grandTotal={grandTotal2 - inputValue}
                 discount={inputValue}
             />
         </div>

@@ -14,7 +14,7 @@
                     </p>
                     <p>
                         <strong>Order Name:</strong> <span>{{ $data['fullname'] }}</span><br />
-                        <strong>Order Number:</strong> <span>{{$data['orderDate']}}</span><br />
+                        <strong>Order Number:</strong> <span>{{session('code')}}</span><br />
                         <strong>Order Date:</strong> <span>{{$data['orderDate']}}</span><br /><br />
 
                         <strong>Ticket Link:</strong> <a target="_blank" href=<?php echo 'https://hollywoodfightnights@festivalsetup.com/ticket/print.php?'.session('tokens') ?>><?php echo 'https://hollywoodfightnights@festivalsetup.com/ticket/print.php?'.session('tokens') ?></a>
@@ -51,19 +51,17 @@
                 <div class="col-md-4 mt-5">
                     <strong>Sub Total:</strong> <span>${{$data['subTotal']}}</span><br />
                     <strong>Ticket Fee:</strong> <span>${{$data['ticketFee']}}</span><br />
-                    <strong>Transaction Fee:</strong> <span>$0.00</span><br />
-                    <strong>Grand Total:</strong> <span>${{$data['grandTotal']}}</span><br />
+                    <strong>Transaction Fee:</strong> <span>{{$data['transactionFee']}}</span><br />
+                    <strong>Grand Total:</strong> <span>${{number_format($data['grandTotal'], 2, '.', '')}}</span><br />
                     <strong>NO REFUNDS</strong>
                 </div>
 
                 <div class="col-md-12 mt-3">
                     <p>
                         <strong>TICKET PURCHASER INFORMATION</strong><br />
-                        CALLUM WALSH<br />
-                        mike@360promotions.us<br />
-                        (805) 910-6111
+                        {{ $data['fullname'] }}<br />
+                        {{ $data['email'] }}<br />
                     </p>
-                
                     <p>
                         <strong>BILLING INFORMATION</strong><br />
                         360 PROMOTIONS<br />
