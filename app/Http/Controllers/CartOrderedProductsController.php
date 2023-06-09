@@ -142,8 +142,8 @@ class CartOrderedProductsController extends Controller
                     }
             }
 
-     //     $request->session()->forget('create_checkout');
-     //     $request->session()->forget('token');
+         $request->session()->forget('create_checkout');
+         $request->session()->forget('token');
           return response()->json([
                'status' =>$token,
           ]);
