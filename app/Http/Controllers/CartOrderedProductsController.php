@@ -63,7 +63,8 @@ class CartOrderedProductsController extends Controller
           $discount = CartOrders::where('token',$request->session()->get('tkn'))->first();
             return response()->json([
                'status' =>$ordered,
-               'discount' =>$discount
+               'discount' =>$discount,
+               'token'=>$request->session()->get('tkn')
           ]);
       }
      
@@ -83,7 +84,7 @@ class CartOrderedProductsController extends Controller
      public function send_place_orders(Request $request)
      {
             $cartOrderProducts = new CartOrderedProducts;
-            $token = $request->session()->get('token');
+            $token = $request->session()->get('tkn');
             $request->session()->put('order_complete', $request->data);
             $data = $request->session()->get('create_checkout');
             session(['tokens' => $token]);

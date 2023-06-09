@@ -10,7 +10,6 @@ function OrderedComplete() {
         axios.get("/api/get_order_complete").then((res) => {
             setData(res.data.status);
             setDiscounted(res.data.discount.total_discount);
-            console.log(res.data.discount);
         });
     }, [reload]);
 
