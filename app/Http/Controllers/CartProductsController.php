@@ -193,7 +193,7 @@ class CartProductsController extends Controller
           for ($i = 0; $i < count($request->data); $i++) {
 
              $code = mt_rand(1000000000, 9999999999);
-             $token = $request->session()->get('token'); 
+             $token = $request->session()->get('tkn'); 
              session(['code' => $code]);
              $exist = CartOrderedProducts::where([['token','=',$token],['cart_product_id','=',$request->data[$i]['cart_product_id']]])->get();
              $exist2 = CartOrderedProducts::where([['token','=',$token],['cart_product_id','=',7257]])->get();
