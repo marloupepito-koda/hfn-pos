@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\CartTicketCodes;
 use App\Models\CartOrders;
 use App\Models\CartProducts;
+use App\Models\M2Stripe;
 
 class CartOrderedProducts extends Model
 {
@@ -54,6 +55,10 @@ class CartOrderedProducts extends Model
     public function cartProducts(): BelongsTo
     {
         return $this->belongsTo(CartProducts::class, 'cart_product_id');
+    }
+    public function m2(): BelongsTo
+    {
+        return $this->belongsTo(M2Stripe::class, 'token');
     }
 
     

@@ -298,7 +298,6 @@ class CartProductsController extends Controller
 
      public function session(Request $request)
      {
-          // $request->session()->forget('create_checkout');
           return response()->json([
                'status' => $request->session()->get('session'),
                'checkout' => $request->session()->get('create_checkout'),
@@ -308,30 +307,12 @@ class CartProductsController extends Controller
      public function end_session(Request $request)
      {
 
-          // $data = $request->session()->get('create_checkout');
-          // // $checkoutToken = $request->session()->get('checkout_token');
-
-          // for ($i = 0; $i < count($data); $i++) {
-          //      if ($data[$i]['product_name'] !== 'General Admission No Seat') {
-          //           CartProducts::where('cart_product_id', $data[$i]['cart_product_id'])
-          //                ->update([
-          //                     'quantity' => 1
-          //                ]);
-          //      }
-          // }
-
-          // CartOrders::where('token',$checkoutToken)-update([
-          //      'status' =>'cancelled'
-          // ]);
-          // CartOrderedProducts::where('token',session('token'))->delete();
-          // CartTicketCodes::where('token',session('token'))->delete();
-          // CartOrders::where('token',session('token'))->delete();
-          // $request->session()->forget('session');
-          // $request->session()->forget('token');
-          // $request->session()->forget('create_checkout');
+          $request->session()->forget('token');
+          $request->session()->forget('create_checkout');
           return response()->json([
                'status' => 'success',
           ]);
+
      }
 
 

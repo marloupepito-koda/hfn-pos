@@ -59,7 +59,7 @@ class CartOrderedProductsController extends Controller
 
         
       public function get_order_complete(Request $request){
-          $ordered =CartOrderedProducts::where('token',$request->session()->get('tkn'))->with(['cartProducts','cartTicketCodes'])->get();
+          $ordered =CartOrderedProducts::where('token',$request->session()->get('tkn'))->with(['m2','cartProducts','cartTicketCodes'])->get();
             return response()->json([
                'status' =>$ordered,
           ]);

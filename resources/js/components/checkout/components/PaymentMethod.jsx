@@ -5,7 +5,6 @@ import CartData from "../../add_to_cart/CartData";
 import PaymentChange from "../../add_to_cart/Change";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
-import moment from "moment";
 
 import Swal from "sweetalert2";
 function CheckoutPaymentMethods(props) {
@@ -43,7 +42,6 @@ function CheckoutPaymentMethods(props) {
         grandTotal: props.grandTotal,
         ticketFee: props.ticketFee,
         subTotal: props.subTotal,
-        orderDate: moment().format("LLLL"),
     });
 
     const [paymentCash, setPaymentCash] = useState({
@@ -126,27 +124,13 @@ function CheckoutPaymentMethods(props) {
                     discount: discount,
                 })
                 .then((res) => {
-                    axios
-                        .post("/send_reservation", {
-                            data: paymentCard,
-                        })
-                        .then((res) => {
-                            window.location.href = "/order_complete";
-                            Swal.close();
-                        });
+                    window.location.href = "/order_complete";
+                    Swal.close();
                 });
         }
     }
-    function grandTotalHandler(totalValue) {
-        const formatter = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-        });
-        return formatter.format(totalValue);
-    }
 
     const submitPayment = (e) => {
-        console.log(paymentCard);
         e.preventDefault();
         setDisabled(true);
         Swal.fire({
@@ -277,7 +261,7 @@ function CheckoutPaymentMethods(props) {
                                 <span className="input-group-text">$</span>
                             </div>
                             <input
-                                type="decimal"
+                                type="number"
                                 defaultValue={paymentCash.tenders}
                                 className="form-control"
                                 onChange={(e) =>
@@ -294,11 +278,9 @@ function CheckoutPaymentMethods(props) {
                             </div>
                             <div className="input-group-append">
                                 <span className="input-group-text">
-                                    {grandTotalHandler(
-                                        amount - props.grandTotal < 0
-                                            ? 0
-                                            : amount - props.grandTotal
-                                    )}
+                                    {amount - props.grandTotal < 0
+                                        ? 0
+                                        : amount - props.grandTotal}
                                 </span>
                             </div>
                         </div>

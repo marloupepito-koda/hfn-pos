@@ -8,6 +8,7 @@ function OrderedComplete() {
     useEffect(() => {
         axios.get("/api/get_order_complete").then((res) => {
             setData(res.data.status);
+            console.log("waaa", res.data.status);
         });
     }, [reload]);
 

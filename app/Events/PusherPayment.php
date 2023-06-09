@@ -34,7 +34,6 @@ class PusherPayment implements ShouldBroadcast
     public function broadcastOn()
     {          
         return new Channel('popup-channel'); 
-        //  return new PrivateChannel('my-channel');
     }
 
     public function broadcastAs()

@@ -80,7 +80,7 @@ function CheckoutTable() {
     }
 
     PaymentChange.data = grandTotalHandler(
-        (grandTotal - inputValue) / (1 - 0.029)
+        (grandTotal - inputValue + ticketFee) / (1 - 0.029)
     );
     return (
         <div>
