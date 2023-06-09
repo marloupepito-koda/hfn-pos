@@ -23,7 +23,6 @@ function CheckoutPaymentMethods(props) {
         const change =
             amount - props.grandTotal < 0 ? 0 : amount - props.grandTotal;
         PaymentChange.data = change;
-        checkPayment("");
         paymentCard.grandTotal = props.grandTotal - discount;
         paymentCash.grandTotal = props.grandTotal - discount;
         paymentCheck.grandTotal = props.grandTotal - discount;
@@ -159,7 +158,6 @@ function CheckoutPaymentMethods(props) {
             });
         }
     }
-    window.location.href = "/order_complete";
     function loading() {
         Swal.fire({
             title: "Loading Payment Confirmation...",

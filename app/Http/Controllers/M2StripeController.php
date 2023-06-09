@@ -42,7 +42,7 @@ class M2StripeController extends Controller
                         'status' =>'loading',
                     ]);
                 }else if(count($exist3) === 1){
-                    
+                    $request->session()->forget('token');
                     return response()->json([
                         'status' =>'done',
                     ]);
