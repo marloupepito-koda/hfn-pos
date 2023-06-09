@@ -137,7 +137,7 @@ class M2StripeController extends Controller
            
         $connectionToken = $stripe->terminal->connectionTokens->create(
            [
-               'location'=>'tml_FHEgWQGCZvduqr',
+               'location'=>env('STRIPE_M2_TML'),
             ]
         );
       
@@ -158,9 +158,9 @@ class M2StripeController extends Controller
         }else{
             $stripe = new \Stripe\StripeClient(env('STRIPE_SK_LIVE'));
         }
-        
+        $amountValue = $request->price*100;
         $payment = $stripe->paymentIntents->create([
-        'amount' => number_format((float)$request->price, 2, '', ''),
+        'amount' => $amountValue,
         'currency' => 'usd',
         'payment_method_types' => ['card_present'],
         'capture_method' => 'manual',

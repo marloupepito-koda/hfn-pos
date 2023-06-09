@@ -21,15 +21,15 @@ function CheckoutPaymentMethods(props) {
         const change =
             amount - props.grandTotal < 0 ? 0 : amount - props.grandTotal;
         PaymentChange.data = change;
-        checkPayment("error");
-        var pusher = new Pusher("82a17c42350e8ce1d15d", {
-            cluster: "us3",
-        });
+        checkPayment("");
+        // var pusher = new Pusher("82a17c42350e8ce1d15d", {
+        //     cluster: "us3",
+        // });
 
-        var channel = pusher.subscribe("popup-channel");
-        channel.bind("user-register", function (data) {
-            setSubmit(Math.random());
-        });
+        // var channel = pusher.subscribe("popup-channel");
+        // channel.bind("user-register", function (data) {
+        //     setSubmit(Math.random());
+        // });
     }, [CartData + props.discount + amount + submit]);
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
@@ -111,28 +111,41 @@ function CheckoutPaymentMethods(props) {
         if (res.data.status === "not exist") {
         } else if (res.data.status === "loading") {
             Swal.fire({
-                title: "Loading Payment Confirmation...",
+                title: "Payment Confirmation",
                 allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                },
+                text: status,
+                confirmButtonText: "Proceed",
+                // didOpen: () => {
+                //     Swal.showLoading();
+                // },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    checkPayment("Unpaid Payment!");
+                }
             });
         } else if (res.data.status === "done") {
-            axios
-                .post("/api/send_place_orders", {
-                    data: paymentCard,
-                    discount: discount,
-                })
-                .then((res) => {
-                    window.location.href = "/order_complete";
-                    Swal.close();
-                });
+            Swal.fire({
+                title: "Payment Confirmation",
+                allowOutsideClick: false,
+                text: status,
+                confirmButtonText: "Proceed",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .post("/api/send_place_orders", {
+                            data: paymentCard,
+                            discount: discount,
+                        })
+                        .then((res) => {
+                            window.location.href = "/order_complete";
+                            Swal.close();
+                        });
+                }
+            });
         }
     }
 
-    const submitPayment = (e) => {
-        e.preventDefault();
-        setDisabled(true);
+    function loading() {
         Swal.fire({
             title: "Loading Payment Confirmation...",
             allowOutsideClick: false,
@@ -140,6 +153,11 @@ function CheckoutPaymentMethods(props) {
                 Swal.showLoading();
             },
         });
+    }
+    const submitPayment = (e) => {
+        e.preventDefault();
+        setDisabled(true);
+
         if (method === "credits") {
             setDisabled(false);
             axios
@@ -147,9 +165,10 @@ function CheckoutPaymentMethods(props) {
                     data: paymentCard,
                 })
                 .then((res) => {
-                    checkPayment(res.data.status);
+                    checkPayment("");
                 });
         } else if (method === "cash") {
+            loading();
             axios
                 .post("/api/send_place_orders", {
                     data: paymentCard,
@@ -168,6 +187,7 @@ function CheckoutPaymentMethods(props) {
                     }
                 });
         } else {
+            loading();
             axios
                 .post("/api/send_place_orders", {
                     data: paymentCard,
@@ -313,6 +333,7 @@ function CheckoutPaymentMethods(props) {
                     Fullname
                     <input
                         onChange={(e) => nameHandler(e.target.value)}
+                        required
                         className="form-control"
                         type="text"
                         placeholder="First and Last Name"
@@ -321,6 +342,7 @@ function CheckoutPaymentMethods(props) {
                 <div className="col-md-4">
                     Email
                     <input
+                        required
                         onChange={(e) => emailHandler(e.target.value)}
                         className="form-control"
                         type="email"

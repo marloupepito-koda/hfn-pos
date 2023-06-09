@@ -8,6 +8,7 @@ use App\Models\CartProducts;
 use App\Models\CartOrderedProducts;
 use App\Models\CartOrders;
 use App\Models\CartTicketCodes;
+use App\Models\M2Stripe;
 
 class CartProductsController extends Controller
 {
@@ -194,7 +195,7 @@ class CartProductsController extends Controller
              $code = mt_rand(1000000000, 9999999999);
              $token = $request->session()->get('token'); 
              $exist = CartOrderedProducts::where([['token','=',$token],['cart_product_id','=',$request->data[$i]['cart_product_id']]])->get();
-             $exist2 = CartOrderedProducts::where([['token','=',$token],['cart_product_id','=',1]])->get();
+             $exist2 = CartOrderedProducts::where([['token','=',$token],['cart_product_id','=',7257]])->get();
                if(count($exist) === 0){
                     if ($request->data[$i]['product_name'] !== 'General Admission No Seat') {
 
@@ -282,10 +283,9 @@ class CartProductsController extends Controller
                               }
                          }
                     }
+
+                 $request->session()->put('create_checkout', $request->data);
                }
-
-
-           $request->session()->put('create_checkout', $request->data);
           }
           // $request->session()->forget('create_checkout');
           // $request->session()->forget('token');
@@ -306,6 +306,10 @@ class CartProductsController extends Controller
 
      public function end_session(Request $request)
      {
+          M2Stripe::where('token',$request->session()->get('token'))->delete();
+          CartOrderedProducts::where('token',$request->session()->get('token'))->delete();
+          CartTicketCodes::where('token',$request->session()->get('token'))->delete();
+          CartOrders::where('token',$request->session()->get('token'))->delete();
 
           $request->session()->forget('token');
           $request->session()->forget('create_checkout');

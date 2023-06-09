@@ -18,7 +18,6 @@ function CheckoutTable() {
     const { code } = useParams();
     const navigate = useNavigate();
     useEffect(() => {
-        console.log(addCart);
         if (code === undefined) {
             setAddCart(CartData.data);
             if (CartData.data.length === 0) {
