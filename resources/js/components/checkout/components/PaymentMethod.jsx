@@ -116,6 +116,7 @@ function CheckoutPaymentMethods(props) {
         } else if (res.data.status === "loading") {
             Swal.fire({
                 title: "Payment Confirmation",
+                text: "Please complete transaction in m2 reader application.",
                 allowOutsideClick: false,
                 text: status,
                 confirmButtonText: "Proceed",
@@ -130,6 +131,7 @@ function CheckoutPaymentMethods(props) {
         } else if (res.data.status === "done") {
             Swal.fire({
                 title: "Payment Confirmation",
+
                 allowOutsideClick: false,
                 text: status,
                 confirmButtonText: "Proceed",
@@ -175,7 +177,7 @@ function CheckoutPaymentMethods(props) {
                     data: paymentCard,
                 })
                 .then((res) => {
-                    checkPayment("");
+                    checkPayment("Please Check m2 reader application.");
                 });
         } else if (method === "cash") {
             loading();
