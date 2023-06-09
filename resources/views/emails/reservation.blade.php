@@ -8,14 +8,16 @@
                     <p>ATTENTION: You will see a Charge on Your Credit Card Billing Statement from EVENT ESSENTIALS, the OFFICIAL TICKETING COMPANY for HOLLYWOOD FIGHT NIGHT and 360 PROMOTIONS. NO REFUNDS.</p>
                     
                     <p>
-                        Dear CALLUM WALSH, <br /><br />
+                        Dear {{ $data['fullname'] }}<br /><br />
                         We appreciate your choice to join us at the Hollywood Fight Nights 2023. We look forward to seeing you there!<br /><br />
                         Below is your order summary along with your actual ticket.
                     </p>
                     <p>
                         <strong>Order Name:</strong> <span>{{ $data['fullname'] }}</span><br />
-                        <strong>Order Date:</strong> <span></span><br />
-                        <strong>Ticket Link:</strong> <a target="_blank" href=<?php echo 'https://hfn-pos.ee4.co/tickets/pdf/'.session('tokens') ?>><?php echo 'https://hfn-pos.ee4.co/tickets/pdf/'.session('tokens') ?></a>
+                        <strong>Order Number:</strong> <span>{{$data['orderDate']}}</span><br />
+                        <strong>Order Date:</strong> <span>{{$data['orderDate']}}</span><br /><br />
+
+                        <strong>Ticket Link:</strong> <a target="_blank" href=<?php echo 'https://hollywoodfightnights@festivalsetup.com/ticket/print.php?'.session('tokens') ?>><?php echo 'https://hollywoodfightnights@festivalsetup.com/ticket/print.php?'.session('tokens') ?></a>
                     </p>
                 </div>
 
@@ -24,7 +26,6 @@
                         <thead>
                             <tr>
                                 <th scope="col">Product Name</th>
-                                <th scope="col">Area</th>
                                 <th scope="col">Section</th>
                                 <th scope="col">Row</th>
                                 <th scope="col">Seat</th>
@@ -34,9 +35,8 @@
                         </thead>
                         <tbody>
                             @foreach ($data['cart'] as $seat)
-                                <tr style="text-align: center;">
-                                    <td>{{$seat['cart_product_id']}}</td>
-                                    <td>{{$seat['cart_product_id'] === 'no seats'?'no seat':$seat['venue_area']}}</td>
+                                <tr >
+                                    <td>{{$seat['product_name']}}</td>
                                     <td>{{$seat['cart_product_id'] === 'no seats'?'':$seat['venue_section']}}</td>
                                     <td>{{$seat['cart_product_id'] === 'no seats'?'':$seat['venue_row']}}</td>
                                     <td>{{$seat['cart_product_id'] === 'no seats'?'':$seat['venue_seat']}}</td>

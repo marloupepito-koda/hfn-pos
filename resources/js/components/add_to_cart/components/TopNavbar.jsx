@@ -5,15 +5,29 @@ import PaymentChange from "../Change";
 function AddToCartTopNavbar() {
     const [cartCount, setCartCount] = useState(0);
     const [balance, setBalance] = useState(0);
+    const { pathname } = useLocation();
     const location = useLocation().hash;
     useEffect(() => {
+        console.log(pathname.split("/")[1]);
         setCartCount(CartData.data.length);
-        if (CartData.data.length === 2) {
+        if (
+            pathname.split("/")[1] === "upgrade" &&
+            CartData.data.length === 2
+        ) {
             const balances =
                 CartData.data[1].price_list - CartData.data[0].price_list;
             setBalance(balances);
         }
     }, [location]);
+
+    function grandTotalHandler(totalValue) {
+        const formatter = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+        });
+        return formatter.format(totalValue);
+    }
+
     return (
         <nav className="navbar navbar-expand-lg bg-black fixed-top">
             <div className="container">
@@ -49,7 +63,7 @@ function AddToCartTopNavbar() {
                             >
                                 Balance&nbsp;
                                 <span className="badge bg-primary">
-                                    {balance}
+                                    {grandTotalHandler(balance)}
                                 </span>
                             </a>
                         </li>
@@ -69,7 +83,7 @@ function AddToCartTopNavbar() {
                             >
                                 Charge&nbsp;
                                 <span className="badge bg-primary">
-                                    $ {PaymentChange.data}
+                                    {PaymentChange.data}
                                 </span>
                             </a>
                         </li>

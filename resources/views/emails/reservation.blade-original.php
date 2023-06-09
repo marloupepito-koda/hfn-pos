@@ -33,7 +33,6 @@
                     <thead>
                         <tr>
                             <th scope="col">Product Name</th>
-                            <th scope="col">Area</th>
                             <th scope="col">Section</th>
                             <th scope="col">Row</th>
                             <th scope="col">Seat</th>
@@ -46,7 +45,6 @@
                              <tr>
                             <td>{{$seat['cart_product_id']}}</td>
                             <td>{{$seat['cart_product_id'] === 'no seats'?'no seat':$seat['venue_area']}}</td>
-                            <td>{{$seat['cart_product_id'] === 'no seats'?'':$seat['venue_section']}}</td>
                             <td>{{$seat['cart_product_id'] === 'no seats'?'':$seat['venue_row']}}</td>
                             <td>{{$seat['cart_product_id'] === 'no seats'?'':$seat['venue_seat']}}</td>
                             <td>Mark</td>

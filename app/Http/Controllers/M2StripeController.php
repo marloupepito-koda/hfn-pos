@@ -70,7 +70,7 @@ class M2StripeController extends Controller
     }
      public function m2_reader_response(Request $request){
         $token = $request->session()->get('token');
-        
+        session(['tokens' => $token]);
         if($request->type === 'upgrade'){
             $upgrade = CartOrderedProducts::where('code',$request->code)->first();
              $token = $upgrade->token;
@@ -127,7 +127,7 @@ class M2StripeController extends Controller
 
     public function connection_token()
     {
-        if(env('APP_ENV') === 'local'){
+        if(env('APP_ENV') == 'local'){
             $stripe = new \Stripe\StripeClient(env('STRIPE_SK_TEST'));
         }else{
             $stripe = new \Stripe\StripeClient(env('STRIPE_SK_LIVE'));

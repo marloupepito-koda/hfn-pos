@@ -81,6 +81,14 @@ function OrderedComplete() {
 
     const grandTotal = subTotal + ticketFee;
     const discount = data[0] === undefined ? 0 : data[0].discount_offset;
+    function grandTotalHandler(totalValue) {
+        const formatter = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+        });
+        return formatter.format(totalValue);
+    }
+
     return (
         <div className="container mt-5 pt-5">
             <div className="row">
@@ -194,22 +202,30 @@ function OrderedComplete() {
                                                           ? ""
                                                           : res.code}
                                                   </td>
-                                                  <td>${res.price}</td>
+                                                  <td>
+                                                      {grandTotalHandler(
+                                                          res.price
+                                                      )}
+                                                  </td>
                                                   <td>{res.quantity}</td>
                                                   <td>
-                                                      $
-                                                      {res.price * res.quantity}
+                                                      {grandTotalHandler(
+                                                          res.price *
+                                                              res.quantity
+                                                      )}
                                                   </td>
                                                   <td>
-                                                      $
-                                                      {
+                                                      {grandTotalHandler(
                                                           res.cart_products
                                                               .price_fee
-                                                      }
+                                                      )}
                                                   </td>
                                                   <td>
-                                                      {res.cart_ticket_codes
-                                                          .status === 1 ? (
+                                                      {res.cart_ticket_codes ===
+                                                      null ? (
+                                                          ""
+                                                      ) : res.cart_ticket_codes
+                                                            .status === 1 ? (
                                                           <button className="btn btn-warning btn-sm">
                                                               Redeemed
                                                           </button>
@@ -239,21 +255,45 @@ function OrderedComplete() {
                         <thead>
                             <tr>
                                 <th scope="col">Sub Total</th>
-                                <td scope="col">${subTotal}</td>
+                                <td scope="col">
+                                    {grandTotalHandler(
+                                        grandTotal - discount + 0.3
+                                    )}
+                                </td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">Discount</th>
-                                <td>{discount}</td>
+                                <td>{grandTotalHandler(discount)}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Ticket Fee</th>
-                                <td>${ticketFee}</td>
+                                <td>{grandTotalHandler(ticketFee)}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Transaction Fee</th>
+                                <td>
+                                    {grandTotalHandler(
+                                        (grandTotal - discount + 0.3) /
+                                            (1 - 0.029) -
+                                            (grandTotal - discount)
+                                    )}
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">Grand Total</th>
-                                <td>${grandTotal - discount}</td>
+                                <td>
+                                    {grandTotalHandler(
+                                        grandTotal -
+                                            discount +
+                                            0.3 +
+                                            ((grandTotal - discount + 0.3) /
+                                                (1 - 0.029) -
+                                                (grandTotal - discount)) +
+                                            ticketFee
+                                    )}
+                                </td>
                             </tr>
                         </tbody>
                     </table>

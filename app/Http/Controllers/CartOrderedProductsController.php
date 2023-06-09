@@ -84,6 +84,7 @@ class CartOrderedProductsController extends Controller
             $token = $request->session()->get('token');
             $request->session()->put('order_complete', $request->data);
             $data = $request->session()->get('create_checkout');
+            session(['tokens' => $token]);
                CartOrders::where('token',$token)->update([
                     'shipping_first_name' =>$request->data['fullname'],
                     'shipping_email'=>$request->data['email'],
