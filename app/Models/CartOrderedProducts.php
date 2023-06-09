@@ -66,6 +66,10 @@ class CartOrderedProducts extends Model
           $results = CartOrderedProducts::where('code', '=', $search)->with(['cartProducts','cartTicketCodes'])->get();
           return $results;
      }
+     public function cartOrders2(): BelongsTo
+    {
+        return $this->belongsTo(CartOrders::class, 'token');
+    }
 
 
 

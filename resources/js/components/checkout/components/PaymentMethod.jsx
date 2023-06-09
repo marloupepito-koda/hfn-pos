@@ -18,7 +18,8 @@ function CheckoutPaymentMethods(props) {
     const location = useLocation().hash;
 
     useEffect(() => {
-        setDiscount(props.discount);
+        setDiscount(parseFloat(props.discount));
+        console.log("discount", props.discount);
         const change =
             amount - props.grandTotal < 0 ? 0 : amount - props.grandTotal;
         PaymentChange.data = change;
@@ -125,7 +126,9 @@ function CheckoutPaymentMethods(props) {
                 // },
             }).then((result) => {
                 if (result.isConfirmed) {
-                    checkPayment("Unpaid Payment!");
+                    checkPayment(
+                        "Please complete transaction in m2 reader application"
+                    );
                 }
             });
         } else if (res.data.status === "done") {
@@ -156,7 +159,7 @@ function CheckoutPaymentMethods(props) {
             });
         }
     }
-
+    window.location.href = "/order_complete";
     function loading() {
         Swal.fire({
             title: "Loading Payment Confirmation...",

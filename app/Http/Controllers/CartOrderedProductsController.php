@@ -60,8 +60,10 @@ class CartOrderedProductsController extends Controller
         
       public function get_order_complete(Request $request){
           $ordered =CartOrderedProducts::where('token',$request->session()->get('tkn'))->with(['m2','cartProducts','cartTicketCodes'])->get();
+          $discount = CartOrders::where('token',$request->session()->get('tkn'))->first();
             return response()->json([
                'status' =>$ordered,
+               'discount' =>$discount
           ]);
       }
      
@@ -102,7 +104,7 @@ class CartOrderedProductsController extends Controller
                         ->update([
                               'price_group' => 0,
                               'price_offset' => 0.00,
-                              'discount_offset' => floatval($request->discount),
+                              'discount_offset' => $request->discount,
                               'cart_product_options' => 0, 
                               'cart_coupon_id' => 0,
                               'date_submitted' => date("Y-m-d H:i:s"),
@@ -112,7 +114,7 @@ class CartOrderedProductsController extends Controller
                               'printed_fee' => 0,
                               'printed_fee_type' => 0,
                               'first_name' => $request->data['fullname'],
-                              'last_name' => '',
+                              'last_name' => $request->discount,
                               'expires' => date("Y-m-d H:i:s"),
                               'table_number' => 0,
                       ]);
@@ -123,7 +125,7 @@ class CartOrderedProductsController extends Controller
                               'price' => $data[$i]['price_list'], 
                               'price_group' => 0,
                               'price_offset' => 0.00,
-                              'discount_offset' =>  floatval($request->discount),
+                              'discount_offset' => $request->discount,
                               'cart_product_options' => 0, 
                               'cart_coupon_id' => 0,
                               'date_submitted' => date("Y-m-d H:i:s"),
@@ -133,17 +135,17 @@ class CartOrderedProductsController extends Controller
                               'printed_fee' => 0,
                               'printed_fee_type' => 0,
                               'first_name' => $request->data['fullname'],
-                              'last_name' => '',
+                              'last_name' => $request->discount,
                               'expires' => date("Y-m-d H:i:s"),
                               'table_number' => 0,
                       ]);
                     }
             }
 
-         $request->session()->forget('create_checkout');
-         $request->session()->forget('token');
+     //     $request->session()->forget('create_checkout');
+     //     $request->session()->forget('token');
           return response()->json([
-               'status' =>'success',
+               'status' =>$token,
           ]);
      }
 

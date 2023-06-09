@@ -12,7 +12,7 @@ class M2StripeController extends Controller
     
     public function check_payment(Request $request){
         $upgrade = CartOrderedProducts::where('code',$request->code)->first();
-
+        $request->session()->put('discount', $request->discount);
          $token = $request->type === 'upgrade'?$upgrade->token:$request->session()->get('token');
         
          if($request->type === 'upgrade'){
@@ -42,7 +42,7 @@ class M2StripeController extends Controller
                         'status' =>'loading',
                     ]);
                 }else if(count($exist3) === 1){
-                    $request->session()->forget('token');
+                    
                     return response()->json([
                         'status' =>'done',
                     ]);

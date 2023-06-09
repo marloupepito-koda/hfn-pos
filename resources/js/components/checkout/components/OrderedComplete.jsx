@@ -5,10 +5,12 @@ import Swal from "sweetalert2";
 function OrderedComplete() {
     const [data, setData] = useState([]);
     const [reload, setReload] = useState([]);
+    const [discounted, setDiscounted] = useState([]);
     useEffect(() => {
         axios.get("/api/get_order_complete").then((res) => {
             setData(res.data.status);
-            console.log("waaa", res.data.status);
+            setDiscounted(res.data.discount.total_discount);
+            console.log(res.data.discount);
         });
     }, [reload]);
 
@@ -80,7 +82,7 @@ function OrderedComplete() {
         );
     }, 0);
 
-    const discount = data[0] === undefined ? 0 : data[0].discount_offset;
+    const discount = discounted;
     const ticketFee = fee;
     const subTotal = sub + ticketFee;
     const grandTotal = (subTotal + ticketFee + 0.3) / 0.971 - discount;
@@ -274,10 +276,10 @@ function OrderedComplete() {
                                 <th scope="row">Ticket Fee</th>
                                 <td>{grandTotalHandler(ticketFee)}</td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <th scope="row">Transaction Fee</th>
                                 <td>{grandTotalHandler(transactionFee)}</td>
-                            </tr>
+                            </tr> */}
                             <tr>
                                 <th scope="row">Grand Total</th>
                                 <td>{grandTotalHandler(grandTotal)}</td>
