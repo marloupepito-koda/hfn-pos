@@ -152,8 +152,8 @@ function IndexLayout() {
                                                 style={{ height: "600px" }}
                                             >
                                                 <h3>Section {section}</h3>
-                                                <ul class="nav nav-pills">
-                                                    <li class="nav-item">
+                                                <ul className="nav nav-pills">
+                                                    <li className="nav-item">
                                                         <a
                                                             onClick={() =>
                                                                 setActiveHandler(
@@ -161,7 +161,7 @@ function IndexLayout() {
                                                                     section
                                                                 )
                                                             }
-                                                            class={
+                                                            className={
                                                                 active === 1
                                                                     ? "nav-link active"
                                                                     : "nav-link"
@@ -172,7 +172,7 @@ function IndexLayout() {
                                                             Remaining
                                                         </a>
                                                     </li>
-                                                    <li class="nav-item">
+                                                    <li className="nav-item">
                                                         <a
                                                             onClick={() =>
                                                                 setActiveHandler(
@@ -180,7 +180,7 @@ function IndexLayout() {
                                                                     section
                                                                 )
                                                             }
-                                                            class={
+                                                            className={
                                                                 active === 0
                                                                     ? "nav-link active"
                                                                     : "nav-link"
@@ -193,7 +193,7 @@ function IndexLayout() {
                                                 </ul>
                                                 {loading ? (
                                                     <center>
-                                                        <div class="spinner-border text-dark mt-5"></div>
+                                                        <div className="spinner-border text-dark mt-5"></div>
                                                     </center>
                                                 ) : (
                                                     <table className="table">

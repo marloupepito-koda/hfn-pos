@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import CartData from "../CartData";
-import { useLocation, useOutletContext, useParams } from "react-router-dom";
+import {
+    useLocation,
+    useOutletContext,
+    useParams,
+    useNavigate,
+} from "react-router-dom";
 
 function AddToCartTable() {
     const [count, setCount] = useOutletContext();
     const location = useLocation().hash;
+    const current = useLocation();
     const [data, setData] = useState([]);
     const { code } = useParams();
+    const navigate = useNavigate();
     useEffect(() => {
         const value =
             code === undefined ? CartData.data : CartData.data.slice(0, 2);
@@ -18,7 +25,7 @@ function AddToCartTable() {
             (res) => res.cart_product_id === event
         );
         const deleted = CartData.data.splice(index, 1);
-        if (deleted) {
+        if (deleted && current.pathname.split("/")[1] !== "upgrade") {
             axios
                 .post("/api/remove_checkout", {
                     cart_product_id: event,
@@ -35,6 +42,8 @@ function AddToCartTable() {
                         }
                     }
                 });
+        } else {
+            navigate("#" + Math.floor(Math.random() * 9999));
         }
     }
     return (
@@ -86,7 +95,13 @@ function AddToCartTable() {
                                           : "Seat " + res.venue_seat}
                                   </td>
                                   <td>
-                                      <a
+                                      <button
+                                          disabled={
+                                              res.product_name === "No Seating"
+                                                  ? true
+                                                  : false
+                                          }
+                                          className="btn"
                                           href="#"
                                           onClick={() => deleteSeats(res)}
                                       >
@@ -99,7 +114,7 @@ function AddToCartTable() {
                                                   }}
                                               ></i>
                                           </center>
-                                      </a>
+                                      </button>
                                   </td>
                               </tr>
                           ))}

@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
 import CartData from "../CartData";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useParams } from "react-router-dom";
 import PaymentChange from "../Change";
 function AddToCartTopNavbar() {
     const [cartCount, setCartCount] = useState(0);
     const [balance, setBalance] = useState(0);
     const { pathname } = useLocation();
+    const { code } = useParams();
     const location = useLocation().hash;
     useEffect(() => {
-        console.log(pathname.split("/")[1]);
         setCartCount(CartData.data.length);
-        if (
-            pathname.split("/")[1] === "upgrade" &&
-            CartData.data.length === 2
-        ) {
-            const balances =
-                CartData.data[1].price_list - CartData.data[0].price_list;
-            setBalance(balances);
-        }
+        axios.get("/api/get_ordered_products/" + code).then((res) => {
+            setBalance(res.data.discount.grandtotal);
+        });
     }, [location]);
 
     function grandTotalHandler(totalValue) {
@@ -72,7 +67,7 @@ function AddToCartTopNavbar() {
                             <a className="nav-link click-scroll">
                                 Cart&nbsp;
                                 <span className="badge bg-success">
-                                    {cartCount}
+                                    {CartData.data.length}
                                 </span>
                             </a>
                         </li>

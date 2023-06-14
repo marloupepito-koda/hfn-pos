@@ -21,7 +21,7 @@ function CheckoutTable() {
         if (code === undefined) {
             setAddCart(CartData.data);
             if (CartData.data.length === 0) {
-                navigate("/");
+                navigate("/checkout");
             }
         } else {
             setAddCart(CartData.data);
@@ -83,9 +83,11 @@ function CheckoutTable() {
         return formatter.format(totalValue);
     }
 
-    PaymentChange.data = grandTotalHandler(
-        (grandTotal - inputValue + ticketFee) / (1 - 0.029)
-    );
+    PaymentChange.data = grandTotalHandler(grandTotal2 - inputValue);
+    function setInputValueHandler(e) {
+        setInputValue(e);
+        navigate("#" + Math.floor(Math.random() * 9999));
+    }
     return (
         <div>
             <br />
@@ -164,7 +166,7 @@ function CheckoutTable() {
                             <th>
                                 <input
                                     onChange={(e) =>
-                                        setInputValue(e.target.value)
+                                        setInputValueHandler(e.target.value)
                                     }
                                     className="form-control"
                                 />

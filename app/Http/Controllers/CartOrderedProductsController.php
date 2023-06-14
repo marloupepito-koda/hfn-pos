@@ -7,6 +7,7 @@ use App\Models\CartOrderedProducts;
 use App\Models\CartTicketCodes;
 use App\Models\CartProducts;
 use App\Models\CartOrders;
+use App\Models\M2Stripe;
 class CartOrderedProductsController extends Controller
 {
       public $client_id = 157;
@@ -20,9 +21,12 @@ class CartOrderedProductsController extends Controller
             ]); 
       }
        public function get_ordered_products($code){
+            $aa = CartOrderedProducts::where('code',$code)->first();
+            $discount = M2Stripe::where('token',$aa->token)->first();
             $order= CartOrderedProducts::where('code',$code)->with('cartProducts')->get();
             return response()->json([
                'checkout' =>$order,
+               'discount' =>$discount,
             ]); 
        }
         public function release_ticket($productid,$code){
@@ -61,9 +65,11 @@ class CartOrderedProductsController extends Controller
       public function get_order_complete(Request $request){
           $ordered =CartOrderedProducts::where('token',$request->session()->get('tkn'))->with(['m2','cartProducts','cartTicketCodes'])->get();
           $discount = CartOrders::where('token',$request->session()->get('tkn'))->first();
+          $m2 = M2Stripe::where('token',$request->session()->get('tkn'))->first();
             return response()->json([
                'status' =>$ordered,
                'discount' =>$discount,
+               'm2' =>$m2,
                'token'=>$request->session()->get('tkn')
           ]);
       }

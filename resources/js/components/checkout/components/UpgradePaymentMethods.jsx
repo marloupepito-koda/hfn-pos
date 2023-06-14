@@ -23,8 +23,18 @@ function UpgradePaymentMethods(props) {
         const change =
             amount - props.grandTotal < 0 ? 0 : amount - props.grandTotal;
         PaymentChange.data = change;
-    }, [CartData + props.discount + amount + submit]);
+        paymentCard.grandTotal = props.grandTotal;
+        paymentCash.grandTotal = props.grandTotal;
+        paymentCheck.grandTotal = props.grandTotal;
 
+        paymentCard.subTotal = props.subTotal;
+        paymentCash.subTotal = props.subTotal;
+        paymentCheck.subTotal = props.subTotal;
+
+        paymentCard.ticketFee = props.ticketFee;
+        paymentCash.ticketFee = props.ticketFee;
+        paymentCheck.ticketFee = props.ticketFee;
+    }, [CartData + props.grandTotal + amount + submit]);
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
         fullname: " ",
@@ -116,16 +126,11 @@ function UpgradePaymentMethods(props) {
             type: "upgrade",
             code: code.pathname.split("/")[2],
         });
-        //if 0, already paid
         if (res.data.status === "not exist") {
             Swal.fire({
                 title: "Payment Confirmation",
                 allowOutsideClick: false,
-                text: status,
                 confirmButtonText: "Proceed",
-                // didOpen: () => {
-                //     Swal.showLoading();
-                // },
             }).then((result) => {
                 if (result.isConfirmed) {
                     checkPayment("Unpaid Payment!");
@@ -135,7 +140,6 @@ function UpgradePaymentMethods(props) {
             Swal.fire({
                 title: "Payment Confirmation",
                 allowOutsideClick: false,
-                text: status,
                 confirmButtonText: "Proceed",
                 // didOpen: () => {
                 //     Swal.showLoading();
@@ -149,7 +153,6 @@ function UpgradePaymentMethods(props) {
             Swal.fire({
                 title: "Payment Confirmation",
                 allowOutsideClick: false,
-                text: status,
                 confirmButtonText: "Proceed",
             }).then((result) => {
                 if (result.isConfirmed) {

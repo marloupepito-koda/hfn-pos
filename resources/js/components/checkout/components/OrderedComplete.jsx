@@ -6,10 +6,12 @@ function OrderedComplete() {
     const [data, setData] = useState([]);
     const [reload, setReload] = useState([]);
     const [discounted, setDiscounted] = useState([]);
+    const [m2, setM2] = useState([]);
     useEffect(() => {
         axios.get("/api/get_order_complete").then((res) => {
             setData(res.data.status);
             setDiscounted(res.data.discount.total_discount);
+            setM2(res.data.m2);
         });
     }, [reload]);
 
@@ -262,7 +264,7 @@ function OrderedComplete() {
                             <tr>
                                 <th scope="col">Sub Total</th>
                                 <td scope="col">
-                                    {grandTotalHandler(subTotal)}
+                                    {grandTotalHandler(m2.subtotal)}
                                 </td>
                             </tr>
                         </thead>
@@ -281,7 +283,7 @@ function OrderedComplete() {
                             </tr> */}
                             <tr>
                                 <th scope="row">Grand Total</th>
-                                <td>{grandTotalHandler(grandTotal)}</td>
+                                <td>{grandTotalHandler(m2.grandtotal)}</td>
                             </tr>
                         </tbody>
                     </table>

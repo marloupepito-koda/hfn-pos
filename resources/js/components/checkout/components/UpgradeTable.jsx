@@ -10,34 +10,37 @@ import {
 import Swal from "sweetalert2";
 import axios from "axios";
 import UpgradePaymentMethods from "./UpgradePaymentMethods";
-function UpgradeTable() {
+function UpgradeTable(props) {
     const location = useLocation().hash;
     const [addCart, setAddCart] = useState([]);
-    const [inputValue, setInputValue] = useState("0.00");
+    const [inputValue, setInputValue] = useState([]);
     const [count, setCount] = useOutletContext();
     const { code } = useParams();
     const navigate = useNavigate();
     useEffect(() => {
         setAddCart(CartData.data);
+        axios.get("/api/get_ordered_products/" + code).then((res) => {
+            setInputValue(res.data.discount);
+        });
     }, [count + location]);
 
-    const additional = CartData.data.reduce((accumulator, currentValue) => {
-        return currentValue.price_list - accumulator;
-    }, 0);
+    const additional =
+        CartData.data[1] === undefined
+            ? 0
+            : CartData.data[1].price_list - inputValue.grandtotal;
 
-    const fee = CartData.data.reduce((accumulator, currentValue) => {
-        return (
-            accumulator +
-            currentValue.price_fee * parseInt(currentValue.quantity)
-        );
-    }, 0);
+    // const fee = CartData.data.reduce((accumulator, currentValue) => {
+    //     return (
+    //         accumulator +
+    //         currentValue.price_fee * parseInt(currentValue.quantity)
+    //     );
+    // }, 0);
 
     const ticketFee = 7.5;
     const discount = 0;
     const subTotal = additional + ticketFee;
     const grandTotal = (subTotal + 7.5 + 0.3) / 0.971 - discount;
     const transactionFee = grandTotal - subTotal - ticketFee;
-
     function updateSeats() {
         Swal.fire({
             title: "Loading...",
@@ -127,8 +130,9 @@ function UpgradeTable() {
                                 {/* <td>{res.price_fee}</td> */}
                                 <td>{res.quantity}</td>
                                 <td>
-                                    {res.price_fee +
-                                        res.price_list * res.quantity}
+                                    {res.quantity === 0
+                                        ? inputValue.grandtotal
+                                        : res.price_sale}
                                 </td>
                             </tr>
                         ))}
@@ -139,7 +143,7 @@ function UpgradeTable() {
                         <thead>
                             <tr>
                                 <td scope="row">Additional Payment:</td>
-                                <th>{grandTotalHandler(additional)}</th>
+                                <th>{grandTotalHandler(additional + 7.5)}</th>
                             </tr>
                             <tr>
                                 <td scope="row">Ticket Fee:</td>
@@ -151,7 +155,7 @@ function UpgradeTable() {
                             </tr>
                             <tr>
                                 <td scope="row">Grand Total:</td>
-                                <th>{grandTotalHandler(additional + 7.5)}</th>
+                                <th>{grandTotalHandler(additional)}</th>
                             </tr>
                         </thead>
                     </table>
@@ -162,25 +166,11 @@ function UpgradeTable() {
                 >
                     BACK TO CART
                 </Link>
-                {/* <button
-                    onClick={updateSeats}
-                    disabled={
-                        addCart.length === 1 ||
-                        addCart.length === 0 ||
-                        isNegative(additional) === true
-                            ? true
-                            : false
-                    }
-                    className="btn btn-dark col-md-3 mb-3 offset-md-6"
-                >
-                    Upgrade
-                </button> */}
-
                 <UpgradePaymentMethods
                     cartData={addCart}
-                    subTotal={subTotal}
+                    subTotal={subTotal + 7.5}
                     ticketFee={ticketFee}
-                    grandTotal={grandTotal}
+                    grandTotal={additional}
                     discount={discount}
                 />
             </div>

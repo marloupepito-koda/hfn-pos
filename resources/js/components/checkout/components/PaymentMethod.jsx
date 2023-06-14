@@ -19,16 +19,15 @@ function CheckoutPaymentMethods(props) {
 
     useEffect(() => {
         setDiscount(parseFloat(props.discount));
-        console.log("discount", props.discount);
         const change =
             amount - props.grandTotal < 0 ? 0 : amount - props.grandTotal;
         PaymentChange.data = change;
-        paymentCard.grandTotal = props.grandTotal - discount;
-        paymentCash.grandTotal = props.grandTotal - discount;
-        paymentCheck.grandTotal = props.grandTotal - discount;
+        paymentCard.grandTotal = props.grandTotal;
+        paymentCash.grandTotal = props.grandTotal;
+        paymentCheck.grandTotal = props.grandTotal;
 
         console.log("waaa", props.grandTotal);
-    }, [CartData + props.discount + amount + submit]);
+    }, [CartData + props.grandTotal + amount + submit]);
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
         fullname: " ",
@@ -118,7 +117,6 @@ function CheckoutPaymentMethods(props) {
                 title: "Payment Confirmation",
                 text: "Please complete transaction in m2 reader application.",
                 allowOutsideClick: false,
-                text: status,
                 confirmButtonText: "Proceed",
                 // didOpen: () => {
                 //     Swal.showLoading();
@@ -135,7 +133,6 @@ function CheckoutPaymentMethods(props) {
                 title: "Payment Confirmation",
 
                 allowOutsideClick: false,
-                text: status,
                 confirmButtonText: "Proceed",
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -160,7 +157,7 @@ function CheckoutPaymentMethods(props) {
     }
     function loading() {
         Swal.fire({
-            title: "Loading Payment Confirmation...",
+            title: "Payment Confirmation...",
             allowOutsideClick: false,
             didOpen: () => {
                 Swal.showLoading();

@@ -299,6 +299,7 @@ class CartProductsController extends Controller
 
      public function session(Request $request)
      {
+          
           return response()->json([
                'status' => $request->session()->get('session'),
                'checkout' => $request->session()->get('create_checkout'),
