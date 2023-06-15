@@ -202,43 +202,10 @@ function UpgradePaymentMethods(props) {
                 });
         } else if (method === "cash") {
             loading();
-            axios
-                .post("/api/send_place_orders", {
-                    data: paymentCard,
-                    discount: discount,
-                })
-                .then((res) => {
-                    if (res.data.status === "success") {
-                        axios
-                            .post("/send_reservation", {
-                                data: paymentCard,
-                            })
-                            .then((res) => {
-                                console.log("res", paymentCard);
-                                window.location.href = "/order_complete";
-                            });
-                    }
-                });
+            updateSeats();
         } else {
             loading();
-            axios
-                .post("/api/send_place_orders", {
-                    data: paymentCard,
-                    discount: discount,
-                })
-                .then((res) => {
-                    console.log(paymentCheck);
-                    if (res.data.status === "success") {
-                        axios
-                            .post("/send_reservation", {
-                                data: paymentCard,
-                            })
-                            .then((res) => {
-                                console.log("res", paymentCard);
-                                window.location.href = "/order_complete";
-                            });
-                    }
-                });
+            updateSeats();
         }
     };
     return (

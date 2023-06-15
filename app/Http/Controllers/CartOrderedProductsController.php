@@ -94,6 +94,18 @@ class CartOrderedProductsController extends Controller
             $request->session()->put('order_complete', $request->data);
             $data = $request->session()->get('create_checkout');
             session(['tokens' => $token]);
+
+                M2Stripe::insert([
+                    'notes'=>$request->data['notes'].'-',
+                    'name'=>$request->data['fullname'],
+                    'email'=>$request->data['email'],
+                    'grandtotal'=>$request->data['grandTotal'],
+                    'subtotal'=>$request->data['subTotal'],
+                    'ticket_fee'=>$request->data['ticketFee'],
+                    'token'=>$token,
+                    'status' =>'success'
+                ]);
+
                CartOrders::where('token',$token)->update([
                     'shipping_first_name' =>$request->data['fullname'],
                     'shipping_email'=>$request->data['email'],
@@ -152,7 +164,7 @@ class CartOrderedProductsController extends Controller
          $request->session()->forget('create_checkout');
          $request->session()->forget('token');
           return response()->json([
-               'status' =>$token,
+               'status' =>'success',
           ]);
      }
 

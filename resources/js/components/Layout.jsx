@@ -12,7 +12,7 @@ function AppLayout() {
     const hash = useLocation().hash;
     const { code } = useParams();
     useEffect(() => {
-        if (code === undefined) {
+        if (code == undefined) {
             axios
                 .get("/api/session", {
                     date: moment().format("LLL"),

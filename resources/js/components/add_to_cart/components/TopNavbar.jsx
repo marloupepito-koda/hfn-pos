@@ -10,9 +10,11 @@ function AddToCartTopNavbar() {
     const location = useLocation().hash;
     useEffect(() => {
         setCartCount(CartData.data.length);
-        axios.get("/api/get_ordered_products/" + code).then((res) => {
-            setBalance(res.data.discount.grandtotal);
-        });
+        if (code !== undefined) {
+            axios.get("/api/get_ordered_products/" + code).then((res) => {
+                setBalance(res.data.discount.grandtotal);
+            });
+        }
     }, [location]);
 
     function grandTotalHandler(totalValue) {
