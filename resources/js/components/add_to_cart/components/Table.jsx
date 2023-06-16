@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CartData from "../CartData";
+import PaymentChange from "../Change";
 import {
     useLocation,
     useOutletContext,
@@ -7,7 +8,7 @@ import {
     useNavigate,
 } from "react-router-dom";
 
-function AddToCartTable({ quantity }) {
+function AddToCartTable({ quantity, subtotal }) {
     const [count, setCount] = useOutletContext();
     const location = useLocation().hash;
     const current = useLocation();
@@ -17,14 +18,16 @@ function AddToCartTable({ quantity }) {
     useEffect(() => {
         const value =
             code === undefined ? CartData.data : CartData.data.slice(0, 2);
-        setData(value);
-    }, [location + count]);
 
-    function deleteSeats(e) {
+        setData(value);
+    }, [location + count + subtotal]);
+
+    function deleteSeats(e, price) {
         const index = CartData.data.findIndex(
             (res) => res.cart_product_id === event
         );
         const deleted = CartData.data.splice(index, 1);
+        PaymentChange.data = subtotal - price;
         if (deleted && current.pathname.split("/")[1] !== "upgrade") {
             axios
                 .post("/api/remove_checkout", {
@@ -109,7 +112,15 @@ function AddToCartTable({ quantity }) {
                                           }
                                           className="btn"
                                           href="#"
-                                          onClick={() => deleteSeats(res)}
+                                          onClick={() =>
+                                              deleteSeats(
+                                                  res,
+                                                  res.product_name ===
+                                                      "General Admission No Seat"
+                                                      ? quantity * 60
+                                                      : res.price_sale
+                                              )
+                                          }
                                       >
                                           <center>
                                               <i

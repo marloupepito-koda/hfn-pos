@@ -97,8 +97,8 @@ class CartOrderedProductsController extends Controller
 
                 M2Stripe::insert([
                     'notes'=>$request->data['notes'].'-',
-                    'name'=>$request->data['fullname'],
-                    'email'=>$request->data['email'],
+                    'name'=>($request->data['fullname'] === null)?'event essentials':$request->data['fullname'],
+                    'email'=>($request->data['email'] === null)?'hfn-pos@ee4.co':$request->data['email'],
                     'grandtotal'=>$request->data['grandTotal'],
                     'subtotal'=>$request->data['subTotal'],
                     'ticket_fee'=>$request->data['ticketFee'],
@@ -107,8 +107,8 @@ class CartOrderedProductsController extends Controller
                 ]);
 
                CartOrders::where('token',$token)->update([
-                    'shipping_first_name' =>$request->data['fullname'],
-                    'shipping_email'=>$request->data['email'],
+                    'shipping_first_name' =>($request->data['fullname'] === null)?'event essentials':$request->data['notes'],
+                    'shipping_email'=>($request->data['email'] === null)?'hfn-pos@ee4.co':$request->data['email'],
                     'notes'=>$request->data['notes'].'-',
                     'total_grand'=>$request->data['grandTotal'],
                     'ticket_fee'=>$request->data['ticketFee'],
@@ -132,7 +132,7 @@ class CartOrderedProductsController extends Controller
                               'donation' => 0.00,
                               'printed_fee' => 0,
                               'printed_fee_type' => 0,
-                              'first_name' => $request->data['fullname'],
+                              'first_name' => ($request->data['email'] === null)?'hfn-pos@ee4.co':$request->data['email'],
                               'last_name' => $request->discount,
                               'expires' => date("Y-m-d H:i:s"),
                               'table_number' => 0,
@@ -153,7 +153,7 @@ class CartOrderedProductsController extends Controller
                               'donation' => 0.00,
                               'printed_fee' => 0,
                               'printed_fee_type' => 0,
-                              'first_name' => $request->data['fullname'],
+                              'first_name' => ($request->data['email'] === null)?'hfn-pos@ee4.co':$request->data['email'],
                               'last_name' => $request->discount,
                               'expires' => date("Y-m-d H:i:s"),
                               'table_number' => 0,

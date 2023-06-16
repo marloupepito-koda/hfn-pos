@@ -12,7 +12,7 @@ import moment from "moment";
 import PaymentChange from "../Change";
 function AddToCartNoSeats() {
     const rows = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(0);
     const [quantity1, setQuantity1] = useState(1);
     const [count, setCount] = useOutletContext();
     const [disable, setDisabled] = useState(true);
@@ -60,7 +60,6 @@ function AddToCartNoSeats() {
                     0
                 )
         );
-
         function searchNoseats(array, property, value) {
             return array.find((item) => item[property] === value);
         }
@@ -72,7 +71,7 @@ function AddToCartNoSeats() {
         if (searchedObject !== undefined) {
             setQuantity(searchedObject.quantity);
         }
-    }, [CartData.data.length + quantity]);
+    }, [CartData.data.length + quantity1 + quantity]);
 
     const addNoSeats = (e) => {
         setQuantity(e);
@@ -83,11 +82,20 @@ function AddToCartNoSeats() {
             price_fee: 7.5,
             quantity: e,
         };
-        PaymentChange.data = subtotal;
+        if (quantity === 0) {
+            if (subtotal == 0) {
+                PaymentChange.data = e * 60;
+                setSubtotal(e * 60);
+            } else {
+                PaymentChange.data = PaymentChange.data + e * 60;
+            }
+        } else {
+            PaymentChange.data = subtotal;
+        }
+
         const seatCheck = CartData.data.find(
             (obj) => obj.cart_product_id === "no seats"
         );
-        // console.log(e.quantity);
         if (seatCheck === undefined) {
             CartData.data.push(data);
             navigate("#" + Math.floor(Math.random() * 9999));
@@ -100,6 +108,10 @@ function AddToCartNoSeats() {
     //     CartData.data[0] === undefined
     //         ? 0
     //         : CartData.data[1].price_list - CartData.data[0].price_list;
+    //
+    // if (subtotal !== 0) {
+    //     PaymentChange.data = subtotal;
+    // }
     return (
         <>
             <div className="card mb-5 ">
@@ -178,7 +190,10 @@ function AddToCartNoSeats() {
                                         )}
                                     </div>
 
-                                    <AddToCartTable quantity={quantity} />
+                                    <AddToCartTable
+                                        subtotal={subtotal}
+                                        quantity={quantity}
+                                    />
 
                                     <button
                                         disabled={disable}

@@ -31,7 +31,7 @@ function CheckoutPaymentMethods(props) {
     const [paymentCard, setPaymentCard] = useState({
         cart: CartData.data,
         fullname: " ",
-        email: "",
+        email: "hfn-pos@ee4.co",
         check_info: 0,
         where_find: "",
         tenders: 0,
@@ -46,7 +46,7 @@ function CheckoutPaymentMethods(props) {
     const [paymentCash, setPaymentCash] = useState({
         cart: CartData.data,
         fullname: " ",
-        email: "",
+        email: "hfn-pos@ee4.co",
         tenders: 0,
         check_info: 0,
         where_find: "",
@@ -61,7 +61,7 @@ function CheckoutPaymentMethods(props) {
     const [paymentCheck, setPaymentCheck] = useState({
         cart: CartData.data,
         fullname: " ",
-        email: "",
+        email: "hfn-pos@ee4.co",
         check_info: 0,
         tenders: 0,
         where_find: "",
@@ -164,6 +164,15 @@ function CheckoutPaymentMethods(props) {
             },
         });
     }
+
+    function grandTotalHandler(totalValue) {
+        const formatter = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+        });
+        return formatter.format(totalValue);
+    }
+
     const submitPayment = (e) => {
         e.preventDefault();
         // setDisabled(true);
@@ -291,7 +300,6 @@ function CheckoutPaymentMethods(props) {
                                 <span className="input-group-text">$</span>
                             </div>
                             <input
-                                type="number"
                                 defaultValue={paymentCash.tenders}
                                 className="form-control"
                                 onChange={(e) =>
@@ -308,9 +316,9 @@ function CheckoutPaymentMethods(props) {
                             </div>
                             <div className="input-group-append">
                                 <span className="input-group-text">
-                                    {amount - props.grandTotal < 0
-                                        ? 0
-                                        : amount - props.grandTotal}
+                                    {grandTotalHandler(
+                                        amount - props.grandTotal
+                                    )}
                                 </span>
                             </div>
                         </div>
@@ -343,7 +351,6 @@ function CheckoutPaymentMethods(props) {
                     Fullname
                     <input
                         onChange={(e) => nameHandler(e.target.value)}
-                        required
                         className="form-control"
                         type="text"
                         placeholder="First and Last Name"
@@ -352,7 +359,6 @@ function CheckoutPaymentMethods(props) {
                 <div className="col-md-4">
                     Email
                     <input
-                        required
                         onChange={(e) => emailHandler(e.target.value)}
                         className="form-control"
                         type="email"

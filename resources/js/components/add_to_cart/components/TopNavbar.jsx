@@ -4,6 +4,7 @@ import { useLocation, Link, useParams } from "react-router-dom";
 import PaymentChange from "../Change";
 function AddToCartTopNavbar() {
     const [cartCount, setCartCount] = useState(0);
+    const [charge, setCharge] = useState(0);
     const [balance, setBalance] = useState(0);
     const { pathname } = useLocation();
     const { code } = useParams();
@@ -15,7 +16,8 @@ function AddToCartTopNavbar() {
                 setBalance(res.data.discount.grandtotal);
             });
         }
-    }, [location]);
+        setCharge(PaymentChange.data);
+    }, [location + location]);
 
     function grandTotalHandler(totalValue) {
         const formatter = new Intl.NumberFormat("en-US", {
@@ -80,7 +82,7 @@ function AddToCartTopNavbar() {
                             >
                                 Charge&nbsp;
                                 <span className="badge bg-primary">
-                                    {grandTotalHandler(PaymentChange.data)}
+                                    {grandTotalHandler(charge)}
                                 </span>
                             </a>
                         </li>

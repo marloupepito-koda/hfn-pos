@@ -236,7 +236,7 @@ class CartProductsController extends Controller
                                    $cop = CartOrderedProducts::where('token',$token)->first();
 
                                    CartTicketCodes::insert([
-                                        'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i,
+                                        'cart_ordered_product_id' => $cop->cart_ordered_product_id + $i +1,
                                         'product_id' => $request->data[$i]['cart_product_id'],
                                         'code' => $code,
                                         'token' => $token,

@@ -231,7 +231,16 @@ function OrderedComplete() {
                                                   <td>
                                                       {res.cart_ticket_codes ===
                                                       null ? (
-                                                          ""
+                                                          <button
+                                                              onClick={() =>
+                                                                  clickRedeem(
+                                                                      res.cart_ordered_product_id
+                                                                  )
+                                                              }
+                                                              className="btn btn-success btn-sm"
+                                                          >
+                                                              Redeem
+                                                          </button>
                                                       ) : res.cart_ticket_codes
                                                             .status === 1 ? (
                                                           <button className="btn btn-warning btn-sm">

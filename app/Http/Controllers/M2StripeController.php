@@ -83,7 +83,7 @@ class M2StripeController extends Controller
            M2Stripe::insert([
                     'notes'=>$request->data['notes'].'- This additional payment is for upgrading tickets',
                     'name'=>'Upgrade Ticket to the '.' '.$request->newSeat['venue_area'].' Section '.$request->newSeat['venue_section'].' Row '.$request->newSeat['venue_row'].' Seat '.$request->newSeat['venue_row'],
-                    'email'=>$request->data['email'],
+                    'email'=>($request->data['email'] === null)?'event essentials':$request->data['email'],
                     'grandtotal'=>$request->data['grandTotal'],
                     'subtotal'=>$request->data['subTotal'],
                     'ticket_fee'=>$request->data['ticketFee'],
@@ -100,8 +100,8 @@ class M2StripeController extends Controller
           if(count($response) === 0){
                  M2Stripe::insert([
                     'notes'=>$request->data['notes'].'-',
-                    'name'=>$request->data['fullname'],
-                    'email'=>$request->data['email'],
+                    'name'=>($request->data['fullname'] === null)?'event essentials':$request->data['fullname'],
+                    'email'=>($request->data['email'] === null)?'event essentials':$request->data['email'],
                     'grandtotal'=>$request->data['grandTotal'],
                     'subtotal'=>$request->data['subTotal'],
                     'ticket_fee'=>$request->data['ticketFee'],
