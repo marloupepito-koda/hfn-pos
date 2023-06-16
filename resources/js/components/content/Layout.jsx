@@ -3,6 +3,7 @@ import AddToCartNoSeats from "../add_to_cart/components/Cart";
 import Modal from "./components/Modal";
 import { useNavigate } from "react-router-dom";
 import CartData from "../add_to_cart/CartData";
+import PaymentChange from "../add_to_cart/Change";
 function IndexLayout() {
     const [isOpen, setIsOpen] = useState(false);
     const [section, setSection] = useState(null);
@@ -72,12 +73,16 @@ function IndexLayout() {
         );
         if (seatCheck === undefined && e.quantity === 1) {
             CartData.data.push(e);
+            PaymentChange.data =
+                parseInt(PaymentChange.data) + parseInt(e.price_sale);
             navigate("#" + Math.floor(Math.random() * 9999));
         } else {
             const index = CartData.data.findIndex(
                 (res) => res.cart_product_id === e.cart_product_id
             );
             CartData.data.splice(index, 1);
+            PaymentChange.data =
+                parseInt(PaymentChange.data) - parseInt(e.price_sale);
             navigate("#" + Math.floor(Math.random() * 9999));
         }
     };

@@ -1,0 +1,19 @@
+{
+  "resources/js/components/pdf/tickets/tickets.png": {
+    "file": "assets/tickets.9d3d39e4.png",
+    "src": "resources/js/components/pdf/tickets/tickets.png"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.b000d026.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "assets": [
+      "assets/tickets.9d3d39e4.png"
+    ]
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app.72df05f3.css",
+    "src": "resources/sass/app.scss",
+    "isEntry": true
+  }
+}

@@ -9,9 +9,11 @@ import AddToCartTable from "./Table";
 import CartData from "../CartData";
 import axios from "axios";
 import moment from "moment";
+import PaymentChange from "../Change";
 function AddToCartNoSeats() {
     const rows = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
     const [quantity, setQuantity] = useState(1);
+    const [quantity1, setQuantity1] = useState(1);
     const [count, setCount] = useOutletContext();
     const [disable, setDisabled] = useState(true);
     const [subtotal, setSubtotal] = useState(0);
@@ -50,7 +52,7 @@ function AddToCartNoSeats() {
             CartData.data
                 .map((res) =>
                     res.cart_product_id === "no seats"
-                        ? res.price_list * quantity
+                        ? res.price_list * quantity1
                         : res.price_list
                 )
                 .reduce(
@@ -58,16 +60,30 @@ function AddToCartNoSeats() {
                     0
                 )
         );
+
+        function searchNoseats(array, property, value) {
+            return array.find((item) => item[property] === value);
+        }
+        const searchedObject = searchNoseats(
+            CartData.data,
+            "cart_product_id",
+            "no seats"
+        );
+        if (searchedObject !== undefined) {
+            setQuantity(searchedObject.quantity);
+        }
     }, [CartData.data.length + quantity]);
 
     const addNoSeats = (e) => {
+        setQuantity(e);
         const data = {
             cart_product_id: "no seats",
             product_name: "General Admission No Seat",
             price_list: 60,
             price_fee: 7.5,
-            quantity: quantity,
+            quantity: e,
         };
+        PaymentChange.data = subtotal;
         const seatCheck = CartData.data.find(
             (obj) => obj.cart_product_id === "no seats"
         );
@@ -76,7 +92,7 @@ function AddToCartNoSeats() {
             CartData.data.push(data);
             navigate("#" + Math.floor(Math.random() * 9999));
         } else {
-            seatCheck.quantity = quantity;
+            seatCheck.quantity = e;
             navigate("#" + Math.floor(Math.random() * 9999));
         }
     };
@@ -116,7 +132,7 @@ function AddToCartNoSeats() {
                                                             className="form-select form-select-sm mb-3"
                                                             aria-label=".form-select-sm example"
                                                             onInput={(e) =>
-                                                                setQuantity(
+                                                                setQuantity1(
                                                                     e.target
                                                                         .value
                                                                 )
@@ -124,6 +140,12 @@ function AddToCartNoSeats() {
                                                         >
                                                             {rows.map((res) => (
                                                                 <option
+                                                                    selected={
+                                                                        res ===
+                                                                        quantity
+                                                                            ? true
+                                                                            : false
+                                                                    }
                                                                     key={res}
                                                                     value={res}
                                                                 >
@@ -134,7 +156,11 @@ function AddToCartNoSeats() {
                                                     </td>
                                                     <td>
                                                         <button
-                                                            onClick={addNoSeats}
+                                                            onClick={() =>
+                                                                addNoSeats(
+                                                                    quantity1
+                                                                )
+                                                            }
                                                             className="btn btn-sm btn-primary"
                                                         >
                                                             ADD TO CART
@@ -152,7 +178,7 @@ function AddToCartNoSeats() {
                                         )}
                                     </div>
 
-                                    <AddToCartTable />
+                                    <AddToCartTable quantity={quantity} />
 
                                     <button
                                         disabled={disable}

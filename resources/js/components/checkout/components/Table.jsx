@@ -46,9 +46,9 @@ function CheckoutTable() {
     }, 0);
 
     const ticketFee = fee;
-    const subTotal = sub + ticketFee;
-    const grandTotal = (subTotal + ticketFee + 0.3) / 0.971 - inputValue;
-    const grandTotal2 = (subTotal + ticketFee + 0.3) / 0.971;
+    const subTotal = sub;
+    const grandTotal = (subTotal + ticketFee + 0.3) / (1 - 0.029) - inputValue;
+    const grandTotal2 = (subTotal + ticketFee + 0.3) / (1 - 0.029);
     const transactionFee = grandTotal2 - subTotal - ticketFee;
 
     function removeItem(event) {
@@ -83,7 +83,7 @@ function CheckoutTable() {
         return formatter.format(totalValue);
     }
 
-    PaymentChange.data = grandTotalHandler(grandTotal2 - inputValue);
+    PaymentChange.data = grandTotal2 - inputValue;
     function setInputValueHandler(e) {
         setInputValue(e);
         navigate("#" + Math.floor(Math.random() * 9999));

@@ -7,7 +7,7 @@ import {
     useNavigate,
 } from "react-router-dom";
 
-function AddToCartTable() {
+function AddToCartTable({ quantity }) {
     const [count, setCount] = useOutletContext();
     const location = useLocation().hash;
     const current = useLocation();
@@ -64,7 +64,13 @@ function AddToCartTable() {
                         ? ""
                         : data.map((res) => (
                               <tr key={res.cart_product_id}>
-                                  <td>{res.product_name}</td>
+                                  <td>
+                                      {res.product_name}
+                                      {res.product_name ===
+                                      "General Admission No Seat"
+                                          ? "(" + quantity + ")"
+                                          : ""}
+                                  </td>
                                   <td>
                                       {res.product_name ===
                                           "General Admission No Seat" ||

@@ -28,7 +28,7 @@ function AddToCartTopNavbar() {
     return (
         <nav className="navbar navbar-expand-lg bg-black fixed-top">
             <div className="container">
-                <a href="/" className="navbar-brand">
+                <a href="/" className="navbar-brand text-white">
                     HFN Live
                 </a>
 
@@ -80,7 +80,7 @@ function AddToCartTopNavbar() {
                             >
                                 Charge&nbsp;
                                 <span className="badge bg-primary">
-                                    {PaymentChange.data}
+                                    {grandTotalHandler(PaymentChange.data)}
                                 </span>
                             </a>
                         </li>
